@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Governança do piloto SOE/ANA</title>
+<style>
+:root{--azul:#0b5e75;--verde:#166a52;--claro:#eef6f5;--fundo:#f6f8f9;--alerta:#fff8dd;--borda:#dbe4e7}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--fundo);color:#223;line-height:1.55}header{background:linear-gradient(120deg,#073d57,#0b5e75 55%,#166a52);color:#fff;padding:38px 8vw}header h1{margin:.25rem 0;font-size:clamp(1.8rem,3vw,2.7rem);line-height:1.15}header p{max-width:900px;margin:.3rem 0}nav{background:#fff;border-bottom:1px solid #d9e2e5;padding:12px 8vw}nav a{color:var(--azul);text-decoration:none;font-weight:700;margin-right:18px}main{max-width:1080px;margin:28px auto;padding:0 22px}.card{background:#fff;border:1px solid var(--borda);border-radius:14px;padding:24px;margin:18px 0;box-shadow:0 3px 16px rgba(0,0,0,.04)}h2{color:var(--azul);margin-top:0}h3{color:var(--verde)}.status{background:var(--alerta);border-left:5px solid #d7a900;padding:15px 16px;border-radius:8px;font-weight:700}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}.item{background:var(--claro);padding:16px;border-radius:10px;border-left:4px solid var(--verde)}.btn{display:inline-block;background:var(--azul);color:#fff;text-decoration:none;font-weight:700;padding:10px 14px;border-radius:8px;margin:4px 8px 4px 0}.btn.secondary{background:var(--verde)}ul,ol{padding-left:22px}footer{margin-top:34px;padding:22px 8vw;background:#0b3444;color:#fff;font-size:.86rem}</style>
+</head>
+<body>
+<header>
+<p>SOE/ANA — documentação do piloto</p>
+<h1>Governança e evolução institucional</h1>
+<p>Documentação de trabalho para discussão sobre publicação, interoperabilidade, acesso, segurança e integração futura de dados e produtos técnicos.</p>
+</header>
+<nav><a href="../../">Voltar à página da reunião</a><a href="#minuta">Minuta de NT</a><a href="#avaliacao">Avaliação</a></nav>
+<main>
+<section class="card">
+<div class="status">MINUTA PARA DISCUSSÃO — documento de trabalho, sem aprovação institucional da ANA.</div>
+<p>Esta área foi separada da página operacional da 3ª Reunião da Região Norte. Seu objetivo é permitir avaliação concreta do piloto pela SOE, STI e, quando pertinente, ASCOM, sem alterar o conteúdo técnico já publicado da reunião.</p>
+</section>
+<section id="minuta" class="card">
+<h2>Documento em avaliação</h2>
+<h3>Minuta de Nota Técnica</h3>
+<p><strong>Arquitetura institucional para publicação, interoperabilidade e compartilhamento de dados e produtos técnicos da SOE/ANA.</strong></p>
+<p>A minuta foi estruturada no padrão visual de Nota Técnica da ANA/SEI, preservando os recursos gráficos e a identidade cromática usados no piloto.</p>
+<a class="btn" href="Minuta_NT_STI_Padrao_ANA_SEI_Graficos_Preservados.docx">Baixar a minuta em DOCX</a>
+<a class="btn secondary" href="README.md">Ler documentação da área</a>
+</section>
+<section class="card">
+<h2>Questões centrais</h2>
+<div class="grid">
+<div class="item"><strong>Publicação e custódia</strong><br>Ambiente institucional, persistência de URLs, versionamento e preservação.</div>
+<div class="item"><strong>Dados e metadados</strong><br>Campos mínimos, catálogo, BI, Conjuntura e reaproveitamento anual.</div>
+<div class="item"><strong>Acesso e segurança</strong><br>Separação entre conteúdo público, parceiros autenticados e ambiente interno.</div>
+<div class="item"><strong>Interoperabilidade</strong><br>APIs, séries temporais, serviços OGC, geodados e integração com bases existentes.</div>
+<div class="item"><strong>Piloto institucional</strong><br>Menor escopo viável para testar a arquitetura com baixo risco.</div>
+<div class="item"><strong>Integração com Estados</strong><br>Evolução futura para arquitetura federada, com piloto inicial no Nordeste.</div>
+</div>
+</section>
+<section id="avaliacao" class="card">
+<h2>Como contribuir</h2>
+<p>As contribuições podem registrar problema ou risco observado, proposta de ajuste, dependência técnica ou institucional e unidade responsável pela decisão.</p>
+<p>Foi aberta uma Issue específica no GitHub para concentrar a discussão:</p>
+<a class="btn" href="https://github.com/7it0/soe-salas-prototipo/issues">Abrir área de Issues do repositório</a>
+<p><small>O repositório é público. Não publicar dados pessoais, credenciais, registros internos ou qualquer informação com restrição de acesso.</small></p>
+</section>
+</main>
+<footer>SOE/ANA – GABINETE · José Aguiar de Lima Júnior · Especialista em Geoprocessamento · com suporte de IA</footer>
+</body>
+</html>
