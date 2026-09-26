@@ -1,0 +1,1 @@
+Raiz: index.html, assets, NT da reunião, README. Área separada: documentos/governanca com index.html, README.md, minuta de NT e roteiro de avaliação.
