@@ -1,140 +1,19 @@
 <!doctype html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Bom Futuro | acompanhamento técnico</title>
-<meta name="description" content="Painel técnico preliminar sobre a Barragem Santa Cruz / Garimpo Bom Futuro, com conectividade hidrográfica, estações ANA/SGB, mapas e fontes operacionais.">
 <style>
-:root{--navy:#073d57;--blue:#0b6688;--cyan:#1591c5;--green:#2f6b4f;--ink:#142f3b;--muted:#5d7079;--bg:#f2f5f6;--card:#fff;--line:#d8e1e4;--soft:#eaf3f5;--softg:#edf6f0;--amber:#b87400;--red:#a72b2b;--shadow:0 4px 20px rgba(20,47,59,.07)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.5}a{color:var(--blue)}
-.topnote{background:#082e42;color:#d9edf5;font-size:12px;padding:7px 5vw;text-align:center}.hero{background:linear-gradient(120deg,#073d57 0%,#0b6688 70%,#147b99 100%);color:#fff}.hero-in{max-width:1240px;margin:auto;padding:28px 5vw 24px}.kicker{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.88}.hero h1{font-size:clamp(30px,4.2vw,52px);line-height:1.04;margin:8px 0 8px}.hero .sub{max-width:900px;font-size:17px;color:#e8f5f9;margin:0}.nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.nav a{color:#fff;text-decoration:none;border:1px solid #ffffff50;border-radius:999px;padding:7px 11px;font-size:13px}.nav a:hover{background:#ffffff18}
-.wrap{max-width:1240px;margin:auto;padding:22px 5vw 54px}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:-8px}.metric{background:#fff;border:1px solid var(--line);border-radius:13px;padding:16px;box-shadow:var(--shadow)}.metric .lab{font-size:12px;text-transform:uppercase;letter-spacing:.055em;color:var(--muted);font-weight:700}.metric .val{font-size:19px;font-weight:800;color:var(--navy);margin-top:6px}.metric .note{font-size:12px;color:var(--muted);margin-top:6px}.metric.alert .val{color:var(--red)}
-section{scroll-margin-top:12px}.panel{background:#fff;border:1px solid var(--line);border-radius:15px;padding:22px;margin-top:18px;box-shadow:var(--shadow)}.panel h2{font-size:25px;color:var(--navy);margin:0 0 10px}.panel h3{font-size:17px;color:var(--green);margin:16px 0 7px}.lead{font-size:17px}.callout{background:var(--softg);border-left:5px solid var(--green);padding:14px 16px;border-radius:9px}.warning{background:#fff7e3;border-left:5px solid #cc8a14;padding:14px 16px;border-radius:9px}.small{font-size:12.5px;color:var(--muted)}
-.map{border:1px solid var(--line);background:#f8fafb;border-radius:12px;padding:8px;overflow:hidden}.map a{display:block}.map img{display:block;width:100%;height:auto;border-radius:7px}.caption{margin:9px 2px 2px;font-size:12.5px;color:var(--muted)}.caption b{color:#304a55}.maphint{float:right;font-size:11px;color:var(--muted)}
-.sequence{display:grid;grid-template-columns:repeat(7,1fr);gap:0;align-items:stretch;margin:16px 0 2px}.step{position:relative;background:#f4f8f9;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:13px 8px;text-align:center;font-weight:800;font-size:14px;color:#174b60}.step:first-child{border-left:1px solid var(--line);border-radius:10px 0 0 10px}.step:last-child{border-right:1px solid var(--line);border-radius:0 10px 10px 0}.step:not(:last-child):after{content:'→';position:absolute;right:-9px;top:50%;transform:translateY(-50%);z-index:2;background:var(--bg);width:18px;color:var(--blue);font-size:19px}.step .tag{display:block;font-size:10px;font-weight:600;color:var(--muted);margin-top:4px}.step.hot{background:#fff5f3;color:#8d2a24}.step.key{background:#edf7f0;color:#275a45}
-.tablewrap{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:920px;font-size:13.5px}th,td{border:1px solid #cad6da;padding:9px;vertical-align:top}th{background:#e9f2f4;text-align:left;color:#173e4c}tbody tr:nth-child(even) td{background:#fbfcfc}.prio1{color:#982f27;font-weight:800}.prio2{color:#a06400;font-weight:800}
-.orgs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.org{border:1px solid var(--line);border-radius:10px;padding:13px;background:#fbfdfd}.org b{display:block;color:var(--navy);margin-bottom:3px}
-.links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.linkcard{display:block;text-decoration:none;border:1px solid var(--line);border-radius:10px;padding:13px;background:#fff;color:var(--ink)}.linkcard:hover{border-color:#88b8c9;background:#f8fcfd}.linkcard b{display:block;color:var(--blue);margin-bottom:3px}.linkcard span{font-size:12px;color:var(--muted)}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.btn{display:inline-block;text-decoration:none;border-radius:9px;padding:10px 14px;font-weight:800}.btn.primary{background:var(--navy);color:#fff}.btn.secondary{background:#fff;color:var(--navy);border:1px solid var(--navy)}.btn.green{background:var(--green);color:#fff}.downloadbox{display:flex;justify-content:space-between;align-items:center;gap:18px;background:linear-gradient(120deg,#eef7f0,#eef7fb);border:1px solid #cfe0d6;border-radius:12px;padding:17px}.downloadbox h3{margin:0 0 4px;color:var(--navy)}
-.footer{max-width:1240px;margin:0 auto;padding:0 5vw 38px;color:#667981;font-size:12px}.footer b{color:#435a64}.badges{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.badge{font-size:11px;padding:4px 7px;border-radius:999px;background:#e9f1f3;color:#38545f}.update{font-weight:700;color:#315b48}
-@media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}.orgs{grid-template-columns:1fr 1fr}.links{grid-template-columns:1fr}.sequence{grid-template-columns:1fr}.step{border:1px solid var(--line)!important;border-radius:8px!important;margin:3px 0}.step:not(:last-child):after{content:'↓';right:50%;top:auto;bottom:-15px;transform:translateX(50%);background:transparent}.downloadbox{align-items:flex-start;flex-direction:column}}
-@media(max-width:560px){.cards,.orgs{grid-template-columns:1fr}.hero-in,.wrap,.footer{padding-left:4vw;padding-right:4vw}.panel{padding:17px}}
-</style>
-</head>
-<body>
-<div class="topnote">Protótipo técnico em ambiente pessoal — não constitui publicação institucional da ANA.</div>
-<header class="hero"><div class="hero-in">
-  <div class="kicker">SOE/ANA · estudo técnico pontual · 29/09/2026</div>
-  <h1>Barragem Santa Cruz / Garimpo Bom Futuro</h1>
-  <p class="sub">Leitura orientada por conectividade hidrográfica: da área de Bom Futuro, em Ariquemes (RO), ao rio Candeias, rio Jamari e rio Madeira — com contexto ampliado até o Amazonas e o Atlântico.</p>
-  <nav class="nav"><a href="#situacao">Situação</a><a href="#mapa">Mapa regional</a><a href="#sequencia">Sistema a jusante</a><a href="#rede">Rede ANA/SGB</a><a href="#fontes">Fontes operacionais</a><a href="#download">Síntese para download</a></nav>
-</div></header>
-<main class="wrap">
-  <div class="cards">
-    <div class="metric alert"><div class="lab">Situação</div><div class="val">Risco em apuração</div><div class="note">Sem ruptura ou pluma comprovadas neste produto.</div></div>
-    <div class="metric"><div class="lab">Eixo hidrológico</div><div class="val">Santa Cruz → Candeias → Jamari → Madeira</div><div class="note">Conectividade potencial a jusante.</div></div>
-    <div class="metric"><div class="lab">Ponto prioritário</div><div class="val">Santa Isabel · 15550000</div><div class="note">Rio Candeias; referência fluviométrica a jusante.</div></div>
-    <div class="metric"><div class="lab">Checagem rápida</div><div class="val">SIGBM + Hidroweb + SEDAM</div><div class="note">Segurança da barragem, hidrologia e situação local.</div></div>
-  </div>
-
-  <section id="situacao" class="panel">
-    <h2>Leitura executiva</h2>
-    <div class="callout lead"><b>O foco para a SOE é transformar a notícia em uma cadeia verificável de observação:</b> estado oficial da barragem → chuva e hidrologia local → rio Candeias → baixo Jamari / Samuel → rio Madeira.</div>
-    <p>A notícia publicada em 27/09/2026 relata investigação do Ministério Público Federal em Rondônia sobre falhas estruturais e possível contaminação associadas à Barragem Santa Cruz, vinculada ao garimpo Bom Futuro, em Ariquemes. A documentação utilizada na síntese indica conexão hidrográfica do Santa Cruz com o Candeias, deste com o Jamari e, em seguida, com o Madeira.</p>
-    <p>O material também registra posições divergentes de ANM e Coopersanta. Por isso, esta página trata o quadro como <b>risco em apuração</b>: não afirma rompimento ocorrido, vazamento confirmado nem transporte comprovado de rejeitos ao longo de toda a rede.</p>
-  </section>
-
-  <section id="mapa" class="panel">
-    <h2>Mapa principal — rota regional até o Madeira <span class="maphint">clique para abrir em tamanho integral</span></h2>
-    <div class="map"><a href="assets/mapa-regional.webp" target="_blank" rel="noopener"><img src="assets/mapa-regional.webp" alt="Mapa da rota hidrográfica potencial entre Bom Futuro, Santa Cruz, Candeias, Jamari e Madeira"></a></div>
-    <p class="caption"><b>Figura 1.</b> Rota hidrológica potencial a jusante na escala regional. Mostra o encadeamento Barragem Santa Cruz/Bom Futuro → Santa Cruz → Candeias → Jamari → Madeira. É uma representação de conectividade e priorização de monitoramento; não representa mancha ou área efetivamente atingida.</p>
-  </section>
-
-  <section id="sequencia" class="panel">
-    <h2>O sistema a jusante</h2>
-    <p class="small">Leitura longitudinal, inspirada na lógica de “rio em sequência”: cada trecho corresponde a uma etapa da conectividade hidrográfica e aos pontos onde a observação pode ser organizada.</p>
-    <div class="sequence">
-      <div class="step hot">Bom Futuro<span class="tag">evento / estrutura</span></div>
-      <div class="step">Santa Cruz<span class="tag">curso local</span></div>
-      <div class="step key">Rio Candeias<span class="tag">Santa Isabel · 15550000</span></div>
-      <div class="step">Rio Jamari<span class="tag">Samuel / baixo Jamari</span></div>
-      <div class="step">Rio Madeira<span class="tag">Porto Velho · 15400000</span></div>
-      <div class="step">Rio Amazonas<span class="tag">contexto regional</span></div>
-      <div class="step">Atlântico<span class="tag">continuidade da drenagem</span></div>
-    </div>
-    <div class="warning small"><b>Atenção:</b> a continuidade da drenagem não equivale a afirmar propagação de contaminantes. A comprovação de transporte exige observações de campo, amostragem e/ou modelagem específica.</div>
-  </section>
-
-  <section class="panel">
-    <h2>Contexto amazônico</h2>
-    <div class="map"><a href="assets/mapa-amazonico.webp" target="_blank" rel="noopener"><img src="assets/mapa-amazonico.webp" alt="Mapa de contexto do rio Madeira, foz do Madeira no Amazonas, Manaus, Santarém e foz do Amazonas no Atlântico"></a></div>
-    <p class="caption"><b>Figura 2.</b> Contexto hidrográfico regional corrigido. O rio Madeira segue de Rondônia para o Amazonas e deságua no rio Amazonas <b>a jusante de Manaus</b>; a continuidade segue pelo baixo Amazonas até a foz no Atlântico. A figura não representa pluma de contaminação confirmada.</p>
-  </section>
-
-  <section id="rede" class="panel">
-    <h2>Rede ANA/SGB e pontos de controle</h2>
-    <p>A Rede Hidrometeorológica Nacional fornece a base de referência para verificar níveis, vazões, chuva e, conforme disponibilidade, parâmetros complementares. O status operacional e telemétrico deve ser confirmado no cadastro corrente antes de uso operacional.</p>
-    <div class="tablewrap"><table>
-      <thead><tr><th>Código</th><th>Estação / rio</th><th>Papel no acompanhamento</th><th>Dados relevantes</th><th>Prioridade</th></tr></thead>
-      <tbody>
-        <tr><td>15430000</td><td>Ariquemes — rio Jamari</td><td>Referência hidrológica regional do alto/médio Jamari.</td><td>Cota, vazão; pluviometria associada 00963000.</td><td>Média</td></tr>
-        <tr><td>15550000</td><td>Santa Isabel — rio Candeias</td><td>Principal referência fluviométrica no Candeias a jusante da área de interesse.</td><td>Cota/vazão e variáveis disponíveis.</td><td class="prio1">Muito alta</td></tr>
-        <tr><td>15490000 / 15490001*</td><td>Prosperidade / baixo Jamari</td><td>Referência para o trecho terminal do Jamari antes do Madeira.</td><td>Cota/vazão conforme inventário e operação histórica.</td><td class="prio2">Alta</td></tr>
-        <tr><td>15460000 / 15460012*</td><td>Cachoeira do Samuel — rio Jamari</td><td>Referência associada à UHE/Reservatório de Samuel.</td><td>Cota/vazão; útil para discriminar condições do Jamari.</td><td class="prio2">Alta</td></tr>
-        <tr><td>15400000</td><td>Porto Velho — rio Madeira</td><td>Controle de grande escala no Madeira, complementar a jusante.</td><td>Cota, vazão e outras variáveis conforme disponibilidade.</td><td>Complementar</td></tr>
-      </tbody>
-    </table></div>
-    <p class="small">* Há divergências históricas de código/nomenclatura em alguns inventários. Confirmar o cadastro corrente ANA/SGB antes de decisão operacional.</p>
-  </section>
-
-  <section class="panel">
-    <h2>Bases e instituições envolvidas</h2>
-    <div class="orgs">
-      <div class="org"><b>ANA / SNIRH / Hidroweb</b>Séries hidrométricas, telemetria e referência da RHN.</div>
-      <div class="org"><b>SGB / RHN</b>Operação da rede, confirmação de status e eventual campanha extraordinária.</div>
-      <div class="org"><b>SEDAM-RO / Sala de Situação</b>Monitoramento estadual e informação ambiental local.</div>
-      <div class="org"><b>ANM</b>Condição de estabilidade, DCE, PAEBM e inspeções da barragem.</div>
-      <div class="org"><b>CEMADEN / Defesa Civil</b>Chuva, rede observacional, alertas e proteção de comunidades.</div>
-      <div class="org"><b>UHE Samuel / operador</b>Níveis, defluências e observações do sistema Jamari.</div>
-    </div>
-  </section>
-
-  <section class="panel">
-    <h2>Leitura para atuação da SOE</h2>
-    <ul>
-      <li><b>Horas–dias:</b> confirmar com ANM/SEDAM se houve alteração de emergência, anomalia, vazamento ou vertimento.</li>
-      <li>Verificar chuva recente e telemetria no Candeias e baixo Jamari, preservando uma linha de base antes de eventual ocorrência.</li>
-      <li>Se houver liberação confirmada, priorizar amostragem no Santa Cruz/Candeias antes de depender apenas de grandes estações no Jamari/Madeira.</li>
-      <li>Separar variação natural do hidrograma e efeitos de operação da UHE Samuel de eventual sinal associado à barragem.</li>
-      <li>Na comunicação, utilizar <b>“rota potencial de conectividade”</b> até que medições ou modelagem demonstrem propagação.</li>
-    </ul>
-  </section>
-
-  <section id="fontes" class="panel">
-    <h2>Verificar situação agora</h2>
-    <p class="update">Sequência de consulta rápida: ANM/SIGBM → ANA/Hidroweb/telemetria → SEDAM-RO.</p>
-    <div class="links">
-      <a class="linkcard" href="https://sigbm.anm.gov.br/publico" target="_blank" rel="noopener"><b>ANM — SIGBM Público</b><span>Situação cadastral e informações públicas de segurança de barragens de mineração.</span></a>
-      <a class="linkcard" href="https://www.gov.br/anm/pt-br/assuntos/barragens" target="_blank" rel="noopener"><b>ANM — Segurança de Barragens</b><span>DCE, PAEBM, boletins, normas e informações institucionais.</span></a>
-      <a class="linkcard" href="https://www.snirh.gov.br/hidroweb/" target="_blank" rel="noopener"><b>ANA/SNIRH — Hidroweb</b><span>Séries e dados das estações da rede hidrometeorológica.</span></a>
-      <a class="linkcard" href="https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/monitoramento-hidrologico" target="_blank" rel="noopener"><b>ANA — Monitoramento Hidrológico</b><span>Porta institucional para serviços de acompanhamento hidrológico.</span></a>
-      <a class="linkcard" href="https://www.sgb.gov.br/rede-hidrometeorologica-nacional-rhn" target="_blank" rel="noopener"><b>SGB — Rede Hidrometeorológica Nacional</b><span>Operação da RHN e informações da rede de referência.</span></a>
-      <a class="linkcard" href="https://www.sedam.ro.gov.br/post/cogeo-sala-de-situacao" target="_blank" rel="noopener"><b>SEDAM-RO — Sala de Situação</b><span>Boletins e acompanhamento hidrometeorológico estadual.</span></a>
-      <a class="linkcard" href="https://www.gov.br/cemaden/pt-br/rede-observacional" target="_blank" rel="noopener"><b>CEMADEN — Rede Observacional</b><span>Rede de monitoramento e informações de apoio a alertas.</span></a>
-      <a class="linkcard" href="https://www.gov.br/ana/pt-br/assuntos/aplicativos-sistemas" target="_blank" rel="noopener"><b>ANA — Aplicativos e sistemas</b><span>Acesso a sistemas e serviços operacionais relacionados.</span></a>
-    </div>
-  </section>
-
-  <section id="download" class="panel">
-    <div class="downloadbox">
-      <div><h3>Síntese Avaliativa — versão documental</h3><div class="small">Documento fechado e datado, com as duas figuras cartográficas, rede ANA/SGB, avaliação e fontes. A página web funciona como camada navegável e atualizável.</div></div>
-      <div class="actions"><a class="btn green" href="Sintese_Avaliativa_Bom_Futuro_2026-09-29.pdf" download>Baixar síntese em PDF</a></div>
-    </div>
-  </section>
-</main>
-<footer class="footer"><b>José Aguiar de Lima Jr. — Especialista em Geoprocessamento — SOE/ANA</b><br>Documento de apoio técnico | com suporte de IA | uso preliminar.
-<div class="badges"><span class="badge">Referência temporal: 29/09/2026</span><span class="badge">Evento: Bom Futuro / Ariquemes-RO</span><span class="badge">Produto: estudo técnico pontual</span></div>
-</footer>
-</body>
-</html>
+:root{--az:#0b5f7a;--az2:#073d57;--vd:#2e6a4e;--bg:#f3f6f7;--tx:#17313a;--mu:#65757c;--ln:#d6e0e3;--am:#fff6dd}*{box-sizing:border-box}body{margin:0;font:15px/1.5 Arial,sans-serif;color:var(--tx);background:var(--bg)}a{color:var(--az)}header{background:linear-gradient(120deg,var(--az2),var(--az));color:white;padding:26px 5vw}header>div,main,footer{max-width:1180px;margin:auto}h1{margin:4px 0 8px;font-size:clamp(28px,4vw,46px);line-height:1.05}.sub{max-width:900px;color:#e7f4f8}.nav{margin-top:15px;display:flex;gap:8px;flex-wrap:wrap}.nav a{color:white;text-decoration:none;border:1px solid #ffffff55;border-radius:18px;padding:6px 10px;font-size:12px}main{padding:20px 5vw 45px}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.card,.sec{background:white;border:1px solid var(--ln);border-radius:12px}.card{padding:13px}.lab{font-size:11px;text-transform:uppercase;color:var(--mu);font-weight:bold}.val{font-weight:bold;color:var(--az2);margin-top:4px}.sec{padding:20px;margin-top:16px}.sec h2{margin:0 0 10px;color:var(--az2)}.call{background:#edf6f0;border-left:4px solid var(--vd);padding:12px 14px;border-radius:7px}.warn{background:var(--am);border-left:4px solid #c48a18;padding:10px 12px;border-radius:7px}.map{border:1px solid var(--ln);border-radius:10px;padding:8px;background:#fafcfc}.map img{display:block;width:100%;height:auto;border-radius:6px}.cap{font-size:12px;color:var(--mu);margin-top:8px}.seq{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.seq span{background:#eef4f6;border:1px solid var(--ln);border-radius:8px;padding:7px 9px;font-weight:bold}.seq i{color:var(--az);font-style:normal;font-weight:bold}.tbl{overflow:auto}table{border-collapse:collapse;width:100%;min-width:830px;font-size:13px}th,td{border:1px solid #cad6da;padding:8px;vertical-align:top}th{background:#eaf2f4;text-align:left}.links{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.links a{display:block;text-decoration:none;border:1px solid var(--ln);background:#fbfdfd;border-radius:8px;padding:10px}.links b{display:block}.dl{display:flex;gap:10px;flex-wrap:wrap}.btn{display:inline-block;text-decoration:none;padding:9px 12px;border-radius:8px;font-weight:bold;background:var(--az2);color:white}.btn.alt{background:var(--vd)}footer{padding:0 5vw 30px;color:var(--mu);font-size:12px}@media(max-width:800px){.cards,.links{grid-template-columns:1fr 1fr}}@media(max-width:520px){.cards,.links{grid-template-columns:1fr}}
+</style></head><body>
+<header><div><div style="font-size:11px;font-weight:bold;letter-spacing:.08em">SOE/ANA · ESTUDO TÉCNICO PONTUAL · 29/09/2026</div><h1>Barragem Santa Cruz / Garimpo Bom Futuro</h1><div class="sub">Conectividade hidrográfica, rede ANA/SGB, fontes operacionais e pontos de atenção — Ariquemes (RO).</div><div class="nav"><a href="#situacao">Situação</a><a href="#mapa1">Mapa regional</a><a href="#sequencia">Sistema a jusante</a><a href="#rede">Rede ANA/SGB</a><a href="#fontes">Fontes</a><a href="#download">Download</a></div></div></header>
+<main>
+<div class="cards"><div class="card"><div class="lab">Situação</div><div class="val">Risco em apuração</div></div><div class="card"><div class="lab">Eixo hidrológico</div><div class="val">Santa Cruz → Candeias → Jamari → Madeira</div></div><div class="card"><div class="lab">Ponto prioritário</div><div class="val">Santa Isabel · 15550000</div></div><div class="card"><div class="lab">Checagem rápida</div><div class="val">SIGBM + Hidroweb + SEDAM</div></div></div>
+<section id="situacao" class="sec"><h2>Leitura executiva</h2><div class="call"><b>Cadeia de observação proposta:</b> estado oficial da barragem → chuva/hidrologia local → rio Candeias → baixo Jamari/Samuel → rio Madeira.</div><p>A notícia de 27/09/2026 relata investigação do MPF em Rondônia sobre falhas estruturais e possível contaminação associadas à Barragem Santa Cruz, vinculada ao garimpo Bom Futuro. Este produto trata o quadro como <b>risco em apuração</b>: não afirma ruptura, vazamento ou propagação de rejeitos já comprovados.</p></section>
+<section id="mapa1" class="sec"><h2>Mapa principal — rota regional até o Madeira</h2><div class="map"><a href="https://raw.githubusercontent.com/7it0/soe-salas-prototipo/main/estudos-tecnicos/bom-futuro-2026-09-29/assets/mapa-regional.webp" target="_blank"><img src="https://raw.githubusercontent.com/7it0/soe-salas-prototipo/main/estudos-tecnicos/bom-futuro-2026-09-29/assets/mapa-regional.webp" alt="Rota hidrográfica Bom Futuro–Candeias–Jamari–Madeira"></a></div><div class="cap"><b>Figura 1.</b> Conectividade potencial Barragem Santa Cruz/Bom Futuro → Santa Cruz → Candeias → Jamari → Madeira. Não representa mancha efetivamente atingida. <a href="https://raw.githubusercontent.com/7it0/soe-salas-prototipo/main/estudos-tecnicos/bom-futuro-2026-09-29/assets/mapa-regional.webp" target="_blank">Abrir imagem diretamente</a>.</div></section>
+<section id="sequencia" class="sec"><h2>O sistema a jusante</h2><div class="seq"><span>Bom Futuro</span><i>→</i><span>Santa Cruz</span><i>→</i><span>Rio Candeias</span><i>→</i><span>Rio Jamari</span><i>→</i><span>Rio Madeira</span><i>→</i><span>Rio Amazonas</span><i>→</i><span>Atlântico</span></div><p class="warn"><b>Atenção:</b> continuidade da drenagem não significa transporte comprovado de contaminantes. Isso exige observações, amostragem e/ou modelagem específica.</p></section>
+<section class="sec"><h2>Contexto amazônico</h2><div class="map"><a href="https://raw.githubusercontent.com/7it0/soe-salas-prototipo/main/estudos-tecnicos/bom-futuro-2026-09-29/assets/mapa-amazonico.webp" target="_blank"><img src="https://raw.githubusercontent.com/7it0/soe-salas-prototipo/main/estudos-tecnicos/bom-futuro-2026-09-29/assets/mapa-amazonico.webp" alt="Contexto do rio Madeira até o Amazonas e Atlântico"></a></div><div class="cap"><b>Figura 2.</b> Contexto corrigido: o Madeira deságua no Amazonas a jusante de Manaus; a continuidade segue pelo baixo Amazonas ao Atlântico. <a href="https://raw.githubusercontent.com/7it0/soe-salas-prototipo/main/estudos-tecnicos/bom-futuro-2026-09-29/assets/mapa-amazonico.webp" target="_blank">Abrir imagem diretamente</a>.</div></section>
+<section id="rede" class="sec"><h2>Rede ANA/SGB e pontos de controle</h2><div class="tbl"><table><thead><tr><th>Código</th><th>Estação / rio</th><th>Uso no acompanhamento</th><th>Prioridade</th></tr></thead><tbody><tr><td>15430000</td><td>Ariquemes — Jamari</td><td>Referência hidrológica regional.</td><td>Média</td></tr><tr><td>15550000</td><td>Santa Isabel — Candeias</td><td>Principal referência fluviométrica a jusante da área de interesse.</td><td><b>Muito alta</b></td></tr><tr><td>15490000 / 15490001*</td><td>Prosperidade / baixo Jamari</td><td>Trecho terminal do Jamari antes do Madeira.</td><td>Alta</td></tr><tr><td>15460000 / 15460012*</td><td>Cachoeira do Samuel — Jamari</td><td>Referência associada à UHE/Reservatório de Samuel.</td><td>Alta</td></tr><tr><td>15400000</td><td>Porto Velho — Madeira</td><td>Controle de grande escala a jusante.</td><td>Complementar</td></tr></tbody></table></div><div class="cap">* Confirmar cadastro corrente ANA/SGB antes de uso operacional.</div></section>
+<section class="sec"><h2>Leitura para atuação da SOE</h2><ul><li>Confirmar com ANM/SEDAM eventual alteração de emergência, anomalia, vazamento ou vertimento.</li><li>Verificar chuva e telemetria no Candeias e baixo Jamari.</li><li>Se houver liberação confirmada, priorizar amostragem no Santa Cruz/Candeias.</li><li>Separar variação natural do hidrograma e operação da UHE Samuel de eventual sinal associado à barragem.</li><li>Na comunicação, usar “rota potencial de conectividade” até existir evidência observacional/modelada.</li></ul></section>
+<section id="fontes" class="sec"><h2>Fontes para atualização da situação</h2><div class="links"><a href="https://sigbm.anm.gov.br/publico" target="_blank"><b>ANM — SIGBM Público</b>Condição cadastral e segurança de barragens de mineração.</a><a href="https://www.snirh.gov.br/hidroweb/" target="_blank"><b>ANA/SNIRH — Hidroweb</b>Séries e dados hidrométricos.</a><a href="https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/monitoramento-hidrologico" target="_blank"><b>ANA — Monitoramento Hidrológico</b>Serviços operacionais e acesso aos sistemas.</a><a href="https://www.sgb.gov.br/rede-hidrometeorologica-nacional-rhn" target="_blank"><b>SGB — RHN</b>Operação e informações da rede.</a><a href="https://www.sedam.ro.gov.br/post/cogeo-sala-de-situacao" target="_blank"><b>SEDAM-RO — Sala de Situação</b>Boletins e acompanhamento estadual.</a><a href="https://www.gov.br/cemaden/pt-br/rede-observacional" target="_blank"><b>CEMADEN — Rede Observacional</b>Rede de chuva e apoio a alertas.</a></div></section>
+<section id="download" class="sec"><h2>Síntese documental</h2><p>A página é a camada navegável. O documento fechado e datado permanece disponível para consulta.</p><div class="dl"><a class="btn alt" href="Sintese_Avaliativa_Bom_Futuro_2026-09-29.pdf" download>Baixar Síntese em PDF</a></div></section>
+</main><footer><b>José Aguiar de Lima Jr. — Especialista em Geoprocessamento — SOE/ANA</b><br>Documento de apoio técnico | com suporte de IA | uso preliminar. Protótipo técnico em ambiente pessoal — não constitui publicação institucional da ANA.</footer>
+</body></html>
