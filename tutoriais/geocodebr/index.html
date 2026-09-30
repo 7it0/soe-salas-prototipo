@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tutorial geocodebr — Projetos SOE</title>
+<style>
+:root{--az:#0b5f7a;--az2:#073d57;--vd:#2e6a4e;--bg:#f3f6f7;--tx:#17313a;--mu:#65757c;--ln:#d6e0e3;--am:#fff6dd}
+*{box-sizing:border-box}body{margin:0;font:15px/1.55 Arial,sans-serif;color:var(--tx);background:var(--bg)}a{color:var(--az)}header{background:linear-gradient(120deg,var(--az2),var(--az));color:white;padding:34px 6vw}header>div,main,footer{max-width:1100px;margin:auto}h1{margin:.2rem 0 .5rem;font-size:clamp(28px,4vw,46px)}nav{background:#fff;border-bottom:1px solid var(--ln);padding:11px 6vw;position:sticky;top:0;z-index:5}nav a{margin-right:16px;text-decoration:none;font-weight:bold;font-size:13px}.wrap{padding:20px 6vw 48px}.sec{background:#fff;border:1px solid var(--ln);border-radius:13px;padding:20px;margin:15px 0}.sec h2{color:var(--az2);margin-top:0}.ok{background:#edf6f0;border-left:4px solid var(--vd);padding:12px 14px;border-radius:8px}.warn{background:var(--am);border-left:4px solid #c48a18;padding:12px 14px;border-radius:8px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}.card{border:1px solid var(--ln);border-radius:10px;padding:14px;background:#fbfdfd}.card b{display:block;color:var(--az2);margin-bottom:4px}pre{overflow:auto;background:#102a36;color:#edf7fa;border-radius:9px;padding:14px;font-size:13px;line-height:1.45}.btn{display:inline-block;background:var(--vd);color:#fff;text-decoration:none;font-weight:bold;padding:9px 12px;border-radius:8px;margin:4px 6px 4px 0}code{font-family:Consolas,monospace}footer{padding:0 6vw 30px;color:var(--mu);font-size:12px}
+</style>
+</head>
+<body>
+<header><div><div style="font-size:12px;font-weight:bold;letter-spacing:.08em">SOE/ANA · TUTORIAL DE PROJETO</div><h1>geocodebr — piloto de geocodificação</h1><p>Roteiro de uso para transformar CEPs/endereço em coordenadas e preparar produtos geoespaciais para projetos SOE.</p></div></header>
+<nav><a href="../">Tutoriais</a><a href="#objetivo">Objetivo</a><a href="#ambiente">Ambiente</a><a href="#piloto">Piloto</a><a href="#qualidade">Qualidade</a><a href="#codex">Codex</a><a href="#fontes">Fontes</a></nav>
+<main class="wrap">
+<section id="objetivo" class="sec"><h2>1. Objetivo do piloto</h2><p>Validar um fluxo simples e reutilizável:</p><div class="ok"><b>Entrada</b> tabela com CEPs ou endereços → <b>geocodebr</b> → latitude/longitude + qualidade do pareamento → <b>GeoDataFrame</b> → GeoJSON/GeoParquet → cruzamento posterior com município, bacia, hidrografia, áreas de risco ou comunidades.</div><p>O pacote é desenvolvido pelo Ipea e usa como principal base o CNEFE do IBGE. A versão atual documentada é 0.7.0 e está disponível em Python e R.</p></section>
+<section id="ambiente" class="sec"><h2>2. Onde executar</h2><div class="grid"><div class="card"><b>Codex / Code — recomendado para o piloto</b>Instalar pacotes, criar scripts, rodar testes, gerar arquivos e versionar no GitHub.</div><div class="card"><b>Chat — desenho e revisão</b>Definir metodologia, campos, regras de QA e interpretar os resultados.</div><div class="card"><b>Work — fase posterior</b>Útil quando o fluxo envolver várias fontes, planilhas, páginas, relatórios e atualização recorrente.</div></div><p class="warn"><b>Primeira execução:</b> o geocodebr baixa dados do CNEFE para cache local. Cada função baixa apenas o necessário; o conjunto completo pode chegar a cerca de 1,2 GB. Planeje espaço e tempo para essa primeira carga.</p></section>
+<section class="sec"><h2>3. Preparação</h2><p>No terminal do ambiente Python:</p><pre>python -m pip install "geocodebr[geo]"
+python -m pip install pandas pyarrow
+# opcional para bases territoriais oficiais
+python -m pip install geobr</pre><p>O extra <code>geo</code> permite saída como <code>geopandas.GeoDataFrame</code> e é necessário para algumas funções espaciais.</p></section>
+<section id="piloto" class="sec"><h2>4. Piloto recomendado para amanhã — CEP → coordenadas</h2><p>Comece por CEP porque é o teste mais controlado. Baixe os arquivos de apoio desta própria pasta:</p><a class="btn" href="amostra_ceps.csv" download>Baixar amostra CSV</a><a class="btn" href="piloto_geocodebr.py" download>Baixar script Python</a><p>Depois execute:</p><pre>python piloto_geocodebr.py</pre><p>Saídas esperadas:</p><div class="grid"><div class="card"><b>saida_geocodebr.geojson</b>Para abrir diretamente no QGIS, navegador/cartografia web ou carregar em Leaflet.</div><div class="card"><b>saida_geocodebr.parquet</b>Formato eficiente para análise e integração futura com DuckDB/GeoPandas.</div></div></section>
+<section class="sec"><h2>5. Código essencial</h2><pre>from geocodebr import busca_por_cep
+
+ceps = ["70390-025", "20071-001"]
+
+gdf = busca_por_cep(
+    cep=ceps,
+    h3_res=9,
+    resultado_gpd=True,
+    verboso=True
+)
+
+print(gdf.head())
+gdf.to_file("saida_geocodebr.geojson", driver="GeoJSON")
+gdf.to_parquet("saida_geocodebr.parquet")</pre><p>Os resultados usam SIRGAS 2000 (EPSG:4674). Um mesmo CEP pode retornar mais de uma linha; CEP inexistente pode retornar linha sem correspondência.</p></section>
+<section class="sec"><h2>6. Segunda etapa — endereço completo</h2><p>Depois do teste por CEP, passe para uma tabela com campos separados, por exemplo:</p><pre>id,logradouro,numero,cep,bairro,municipio,uf
+1,SEPS 702 902,Bloco A,70390-025,Asa Sul,Brasilia,DF</pre><p>O fluxo é: <code>definir_campos()</code> para mapear as colunas → <code>geocode()</code> para localizar → conferir <code>precisao</code>, <code>desvio_metros</code>, empates e endereço encontrado. Para o primeiro dia, não automatize a aceitação dos resultados: inspecione os casos de menor precisão e os empates.</p></section>
+<section id="qualidade" class="sec"><h2>7. Controle de qualidade mínimo para SOE</h2><div class="grid"><div class="card"><b>Preservar o identificador original</b>Nunca substituir a chave do registro pelo resultado da geocodificação.</div><div class="card"><b>Guardar precisão e incerteza</b>Manter as colunas de precisão/desvio; não publicar coordenadas sem rastreabilidade do pareamento.</div><div class="card"><b>Separar confirmado de aproximado</b>Registros de baixa precisão devem receber status próprio para revisão.</div><div class="card"><b>Registrar fonte e data</b>Salvar versão do pacote, versão/cache do CNEFE e data de processamento.</div><div class="card"><b>Validar espacialmente</b>Checar se o ponto cai no município/UF esperados e, quando pertinente, dentro da bacia/área de estudo.</div><div class="card"><b>Não expor dado pessoal</b>Antes de publicar no GitHub, remover informações pessoais ou sensíveis; publicar apenas o necessário ao produto técnico.</div></div></section>
+<section class="sec"><h2>8. Extensão natural para os projetos SOE</h2><p>Depois da geocodificação, o fluxo pode crescer para:</p><div class="ok">endereço/CEP → geocodebr → ponto → município/IBGE → bacia/hidrografia ANA → área de inundação/risco → população/comunidade → painel e CSV de saída.</div><p>Para isso, o pacote <b>geobr</b> é um complemento útil: disponibiliza geometrias oficiais brasileiras, inclusive municípios, setores censitários, áreas de risco, unidades de conservação e outras camadas.</p></section>
+<section id="codex" class="sec"><h2>9. Prompt pronto para usar no Codex</h2><p>Há um arquivo pronto para copiar:</p><a class="btn" href="prompt-codex.txt" target="_blank">Abrir prompt do Codex</a><p>O prompt pede um piloto pequeno, sem alterar outras páginas do repositório, com relatório de QA e saídas versionáveis.</p></section>
+<section id="fontes" class="sec"><h2>10. Fontes oficiais / documentação</h2><div class="grid"><div class="card"><b>geocodebr — documentação</b><a href="https://ipea.github.io/geocodebr/" target="_blank" rel="noopener">ipea.github.io/geocodebr</a></div><div class="card"><b>Cache de dados</b><a href="https://ipea.github.io/geocodebr/articles/cache_dados.html" target="_blank" rel="noopener">guia de cache</a></div><div class="card"><b>Busca por CEP</b><a href="https://ipea.github.io/geocodebr/articles/busca_por_cep.html" target="_blank" rel="noopener">vignette CEP</a></div><div class="card"><b>geobr</b><a href="https://ipea.github.io/geobr/" target="_blank" rel="noopener">bases geoespaciais oficiais</a></div></div></section>
+</main>
+<footer>José Aguiar de Lima Jr. — Especialista em Geoprocessamento — SOE/ANA · roteiro preliminar para uso técnico e desenvolvimento.</footer>
+</body></html>
