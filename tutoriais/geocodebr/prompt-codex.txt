@@ -1,0 +1,20 @@
+Contexto: estou no repositório 7it0/soe-salas-prototipo. Quero fazer um piloto pequeno e isolado com o pacote Python geocodebr, sem alterar outras páginas ou produtos existentes.
+
+Objetivo do piloto:
+1. trabalhar apenas dentro da pasta tutoriais/geocodebr/;
+2. instalar/usar geocodebr com suporte geoespacial;
+3. executar o arquivo piloto_geocodebr.py usando amostra_ceps.csv;
+4. gerar saida_geocodebr.geojson e saida_geocodebr.parquet;
+5. verificar se os resultados têm CEP, município/UF, latitude/longitude e geometria coerentes;
+6. informar quais CEPs tiveram correspondência, múltiplas correspondências ou ausência de correspondência;
+7. registrar versão do Python, versão do geocodebr e, se disponível, informação do cache/CNEFE utilizado;
+8. não publicar dados pessoais nem alterar qualquer outra pasta do repositório.
+
+Depois do teste, produza um resumo curto de QA com:
+- o que funcionou;
+- o que não funcionou;
+- tempo/volume aproximado do primeiro download de cache;
+- arquivos gerados;
+- recomendação para o próximo passo: endereço completo -> geocode() -> validação espacial por município/bacia.
+
+Antes de fazer qualquer mudança estrutural no repositório, pare e me mostre a proposta.
