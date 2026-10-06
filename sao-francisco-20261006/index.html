@@ -12,8 +12,13 @@ header{background:linear-gradient(120deg,#073d57,#0b5e75 58%,#166a52);color:whit
 header .tag{font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;opacity:.88}
 header h1{font-size:clamp(1.8rem,3.4vw,3rem);line-height:1.12;margin:.55rem 0}
 header p{max-width:980px;margin:.35rem 0}
-nav{background:#fff;border-bottom:1px solid #d9e2e5;padding:12px 8vw;position:sticky;top:0;z-index:5;overflow-x:auto;white-space:nowrap}
-nav a{color:var(--azul);margin-right:18px;text-decoration:none;font-weight:700;font-size:.9rem}
+nav{background:#fff;border-bottom:1px solid #d9e2e5;padding:10px 8vw;position:sticky;top:0;z-index:5;overflow-x:auto;white-space:nowrap}
+nav .tab-btn{appearance:none;border:0;background:transparent;color:var(--azul);margin-right:8px;padding:10px 13px;border-radius:9px;font-weight:700;font-size:.9rem;cursor:pointer}
+nav .tab-btn:hover{background:#eef6f5}
+nav .tab-btn.active{background:var(--azul);color:#fff}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.detail-note{margin-top:16px;padding:12px 14px;border-radius:9px;background:#f0f5f7;border-left:4px solid var(--azul);font-size:.9rem;color:#46565d}
 main{max-width:1180px;margin:28px auto;padding:0 22px}
 .card{background:#fff;border:1px solid #dbe4e7;border-radius:14px;padding:24px;margin:18px 0;box-shadow:0 3px 16px rgba(0,0,0,.04)}
 h2{color:var(--azul);margin-top:0} h3{color:var(--verde)}
@@ -52,18 +57,19 @@ footer{margin-top:34px;padding:24px 8vw;background:#0b3444;color:#fff;font-size:
 <p>Foco da reunião: <strong>entrada e consolidação do período chuvoso 2026/2027</strong> e sua conversão em resposta hidrológica.</p>
 </header>
 
-<nav>
-<a href="#resumo">Síntese</a>
-<a href="#inmet">INMET</a>
-<a href="#cemaden">CEMADEN</a>
-<a href="#ons">ONS</a>
-<a href="#cruzamentos">Cruzamentos</a>
-<a href="#soe">Leitura SOE</a>
-<a href="#nt">NT/PDF</a>
+<nav aria-label="Seções técnicas">
+<button class="tab-btn active" data-target="resumo">Síntese</button>
+<button class="tab-btn" data-target="inmet">INMET</button>
+<button class="tab-btn" data-target="cemaden">CEMADEN</button>
+<button class="tab-btn" data-target="ons">ONS</button>
+<button class="tab-btn" data-target="cruzamentos">Cruzamentos</button>
+<button class="tab-btn" data-target="soe">Leitura SOE</button>
+<button class="tab-btn" data-target="nt">NT/PDF</button>
+<button class="tab-btn" data-target="fontes">Fontes</button>
 </nav>
 
 <main>
-<section id="resumo" class="card">
+<section id="resumo" class="card tab-panel active">
 <h2>Síntese executiva</h2>
 <p>A reunião ocorre em momento de <strong>transição para o período chuvoso 2026/2027</strong>, particularmente nas áreas formadoras de vazão do Alto São Francisco. INMET e CEMADEN indicam sinais de avanço das chuvas, mas ainda com distribuição espacial e temporal irregular. O ONS, por sua vez, mostra que essa mudança meteorológica ainda não se converteu em recuperação hidrológica sustentada do sistema.</p>
 <p>Três Marias apresenta os primeiros sinais favoráveis, porém as previsões de curto prazo permanecem inferiores à climatologia. Em Sobradinho, a condição segue mais restritiva e dependente da propagação das contribuições de montante. Os armazenamentos permanecem relevantes, mas continuam em trajetória de redução.</p>
@@ -75,7 +81,7 @@ footer{margin-top:34px;padding:24px 8vw;background:#0b3444;color:#fff;font-size:
 <div class="note" style="margin-top:16px"><strong>Eixo da leitura SOE:</strong> acompanhar se a chuva passa de episódica para persistente e se isso produz recuperação das afluências em Três Marias, com posterior propagação para Sobradinho.</div>
 </section>
 
-<section id="inmet" class="card">
+<section id="inmet" class="card tab-panel">
 <h2>Vertical INMET — instalação do período chuvoso</h2>
 <p>O início de outubro deve ser interpretado como <strong>fase de transição</strong>, e não ainda como estabelecimento pleno da estação chuvosa. A climatologia e os produtos de previsão apresentados indicam aumento progressivo da chuva nas semanas seguintes, com novembro assumindo papel decisivo para verificar a regularização do regime sobre o Alto e Médio São Francisco.</p>
 <p>O ponto de atenção não é apenas o volume acumulado, mas a <strong>persistência e recorrência dos episódios</strong>. Em cenário de El Niño, a distribuição temporal e espacial da precipitação pode ser irregular, o que impede traduzir automaticamente o sinal climático em déficit ou excesso uniforme de chuva na bacia.</p>
@@ -134,9 +140,10 @@ footer{margin-top:34px;padding:24px 8vw;background:#0b3444;color:#fff;font-size:
 <a href="https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/apresentacoes-das-reunioes" target="_blank" rel="noopener">▣ Apresentações oficiais — ANA</a>
 <a href="https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/sao-francisco-boletim-diario" target="_blank" rel="noopener">≋ Boletins diários — São Francisco</a>
 </div>
+<div class="detail-note"><strong>Detalhamento:</strong> a análise completa, os gráficos adicionais, as referências e as premissas metodológicas serão consolidados na <strong>Nota Técnica final em PDF</strong>, disponibilizada após o fechamento da reunião.</div>
 </section>
 
-<section id="cemaden" class="card">
+<section id="cemaden" class="card tab-panel">
 <h2>Vertical CEMADEN — chuva observada e primeira resposta da bacia</h2>
 <p>O CEMADEN apresenta sinais mais concretos da transição nas áreas de contribuição para Três Marias. A estação seca de 2026 terminou com precipitação acumulada equivalente a <strong>105% da MLT</strong>; setembro atingiu <strong>179% da MLT</strong> e os quatro primeiros dias de outubro somavam <strong>315% da MLT parcial</strong>. Apesar disso, em 04/10 a vazão em Três Marias era de <strong>165 m³/s (73% da MLT)</strong>, evidenciando a defasagem entre chuva e resposta hidrológica.</p>
 <p>Para 05–18/10, o PDM/CEMADEN indica vazão média de <strong>291 m³/s</strong>, apresentada como 129% da MLT de setembro. O dado deve ser lido com cautela porque o período previsto já é outubro, enquanto o referencial percentual do slide permanece setembro.</p>
@@ -205,9 +212,10 @@ footer{margin-top:34px;padding:24px 8vw;background:#0b3444;color:#fff;font-size:
 <a href="https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/apresentacoes-das-reunioes" target="_blank" rel="noopener">▣ Apresentações oficiais — ANA</a>
 <a href="https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/sao-francisco-boletim-diario" target="_blank" rel="noopener">≋ Boletins diários — São Francisco</a>
 </div>
+<div class="detail-note"><strong>Detalhamento:</strong> a análise completa, os gráficos adicionais, as referências e as premissas metodológicas serão consolidados na <strong>Nota Técnica final em PDF</strong>, disponibilizada após o fechamento da reunião.</div>
 </section>
 
-<section id="ons" class="card">
+<section id="ons" class="card tab-panel">
 <h2>Vertical ONS — afluências, armazenamento e perspectiva operacional</h2>
 <p>O ONS mostra que setembro trouxe melhora importante em Três Marias, com vazão natural equivalente a <strong>116% da MLT</strong>, enquanto a incremental de Sobradinho permaneceu em <strong>67% da MLT</strong>. A assimetria é relevante: o sinal favorável nas cabeceiras ainda não se propagou de modo equivalente para o reservatório de jusante.</p>
 <p>Em 04/10, Três Marias estava com <strong>78,6% do volume útil</strong>, afluência de 190 m³/s e defluência de 676 m³/s. Sobradinho apresentava <strong>64,7% do volume útil</strong>, afluência de 797 m³/s e defluência de 1.322 m³/s. As previsões de curto prazo continuam restritivas: Três Marias entre <strong>31% e 39% da MLT</strong>; Sobradinho entre <strong>43% e 45% da MLT</strong>.</p>
@@ -293,9 +301,10 @@ footer{margin-top:34px;padding:24px 8vw;background:#0b3444;color:#fff;font-size:
 <a href="https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/apresentacoes-das-reunioes" target="_blank" rel="noopener">▣ Apresentações oficiais — ANA</a>
 <a href="https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/sao-francisco-boletim-diario" target="_blank" rel="noopener">≋ Boletins diários — São Francisco</a>
 </div>
+<div class="detail-note"><strong>Detalhamento:</strong> a análise completa, os gráficos adicionais, as referências e as premissas metodológicas serão consolidados na <strong>Nota Técnica final em PDF</strong>, disponibilizada após o fechamento da reunião.</div>
 </section>
 
-<section id="cruzamentos" class="card">
+<section id="cruzamentos" class="card tab-panel">
 <h2>Cruzamentos técnicos</h2>
 <h3>INMET × CEMADEN</h3>
 <p>O INMET identifica a transição atmosférica; o CEMADEN mostra que o sinal já começa a aparecer nas cabeceiras. A convergência, contudo, ainda é de <strong>início de estação</strong>, não de regularização hidrológica consolidada.</p>
@@ -324,9 +333,10 @@ footer{margin-top:34px;padding:24px 8vw;background:#0b3444;color:#fff;font-size:
 </svg>
 <figcaption>Figura sintética SOE — encadeamento dos três níveis de análise da reunião.</figcaption>
 </figure>
+<div class="detail-note"><strong>Detalhamento:</strong> a análise completa, os gráficos adicionais, as referências e as premissas metodológicas serão consolidados na <strong>Nota Técnica final em PDF</strong>, disponibilizada após o fechamento da reunião.</div>
 </section>
 
-<section id="soe" class="card">
+<section id="soe" class="card tab-panel">
 <h2>Leitura integrada SOE/ANA</h2>
 <p>A bacia do São Francisco ingressa na estação chuvosa 2026/2027 em condição de <strong>transição favorável, porém ainda não consolidada</strong>. A atmosfera começa a apresentar sinal de mudança, as chuvas já aparecem em áreas estratégicas do Alto São Francisco, mas as vazões projetadas pelo sistema operacional ainda não indicam recuperação sustentada.</p>
 <div class="grid">
@@ -336,17 +346,18 @@ footer{margin-top:34px;padding:24px 8vw;background:#0b3444;color:#fff;font-size:
 <div class="metric"><span>Foco operacional</span><b>Três Marias → Sobradinho</b><small>acompanhar propagação da recuperação</small></div>
 </div>
 <div class="alert" style="margin-top:16px"><strong>Ponto de decisão:</strong> a próxima avaliação deve verificar se a precipitação se tornou recorrente e se as afluências interromperam a trajetória de baixa, caracterizando efetiva instalação hidrológica do período chuvoso.</div>
+<div class="detail-note"><strong>Detalhamento:</strong> a análise completa, os gráficos adicionais, as referências e as premissas metodológicas serão consolidados na <strong>Nota Técnica final em PDF</strong>, disponibilizada após o fechamento da reunião.</div>
 </section>
 
-<section id="nt" class="card">
+<section id="nt" class="card tab-panel">
 <h2>Nota Técnica / PDF</h2>
 <p>A Nota Técnica integral será disponibilizada após o fechamento da reunião, preservando a rastreabilidade das fontes, os gráficos completos e a consolidação de eventuais decisões e encaminhamentos do debate.</p>
 <span class="download-disabled">PDF — em preparação após o fechamento</span>
 <p style="margin-top:14px" class="source">Supervisão técnica: José Aguiar de Lima Júnior · Especialista em Geoprocessamento · SOE/ANA — Gabinete.</p>
 </section>
 
-<section class="card">
-<h2>Fontes</h2>
+<section id="fontes" class="card tab-panel">
+<h2>Fontes e materiais da reunião</h2>
 <p>Apresentações oficiais da 10ª Reunião em 2026 da Sala de Acompanhamento do Sistema Hídrico do Rio São Francisco, de 06/10/2026: INMET, CEMADEN e ONS.</p>
 <div class="source-links" aria-label="Fontes e materiais da reunião">
 <a href="https://www.youtube.com/live/X9Qo3RorRvk" target="_blank" rel="noopener">▶ Gravação da 10ª Reunião — YouTube</a>
@@ -357,5 +368,21 @@ footer{margin-top:34px;padding:24px 8vw;background:#0b3444;color:#fff;font-size:
 </main>
 
 <footer>SOE/ANA – GABINETE · Supervisão técnica: José Aguiar de Lima Júnior · Especialista em Geoprocessamento · com suporte de IA</footer>
+<script>
+(function(){
+  const buttons=[...document.querySelectorAll('.tab-btn')];
+  const panels=[...document.querySelectorAll('.tab-panel')];
+  function openTab(id, push=true){
+    buttons.forEach(b=>b.classList.toggle('active',b.dataset.target===id));
+    panels.forEach(p=>p.classList.toggle('active',p.id===id));
+    if(push) history.replaceState(null,'','#'+id);
+    const target=document.getElementById(id);
+    if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  buttons.forEach(b=>b.addEventListener('click',()=>openTab(b.dataset.target)));
+  const initial=(location.hash||'#resumo').slice(1);
+  if(document.getElementById(initial)) openTab(initial,false);
+})();
+</script>
 </body>
 </html>
