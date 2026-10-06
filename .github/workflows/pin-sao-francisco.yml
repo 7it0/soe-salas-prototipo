@@ -1,23 +1,24 @@
-name: Pin Sao Francisco presentation figures
+name: Pin Sao Francisco presentation figures and NT
 
 on:
   push:
     branches: [main]
     paths:
       - ".github/workflows/pin-sao-francisco.yml"
+      - "sao-francisco-20261006/NT_10a_Reuniao_Sao_Francisco_06-10-2026.html"
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  figures:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install PDF renderer
+      - name: Install PDF tools
         run: |
           sudo apt-get update
           sudo apt-get install -y poppler-utils
@@ -35,17 +36,38 @@ jobs:
             "https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/apresentacao-ons-sala-do-rio-sao-francisco-06_10_2026.pdf/@@download/file" \
             -o /tmp/ons.pdf
 
-      - name: Render selected slides
+      - name: Render selected official slides
         run: |
           pdftoppm -f 6 -l 6 -singlefile -png -r 150 /tmp/inmet.pdf sao-francisco-20261006/assets/inmet_cosmo_7dias
+          pdftoppm -f 7 -l 7 -singlefile -png -r 150 /tmp/cemaden.pdf sao-francisco-20261006/assets/cemaden_tsi_curto
           pdftoppm -f 8 -l 8 -singlefile -png -r 150 /tmp/cemaden.pdf sao-francisco-20261006/assets/cemaden_gefs_7dias
+          pdftoppm -f 13 -l 13 -singlefile -png -r 150 /tmp/cemaden.pdf sao-francisco-20261006/assets/cemaden_pdm_tm
+          pdftoppm -f 20 -l 20 -singlefile -png -r 150 /tmp/cemaden.pdf sao-francisco-20261006/assets/cemaden_sazonal_ond
           pdftoppm -f 7 -l 7 -singlefile -png -r 150 /tmp/ons.pdf sao-francisco-20261006/assets/ons_condicoes_hidrologicas
+          pdftoppm -f 9 -l 9 -singlefile -png -r 150 /tmp/ons.pdf sao-francisco-20261006/assets/ons_operacao_tm
+          pdftoppm -f 10 -l 10 -singlefile -png -r 150 /tmp/ons.pdf sao-francisco-20261006/assets/ons_operacao_sob
+          pdftoppm -f 13 -l 13 -singlefile -png -r 150 /tmp/ons.pdf sao-francisco-20261006/assets/ons_prev_tm
+          pdftoppm -f 14 -l 14 -singlefile -png -r 150 /tmp/ons.pdf sao-francisco-20261006/assets/ons_prev_sob
+          pdftoppm -f 18 -l 18 -singlefile -png -r 150 /tmp/ons.pdf sao-francisco-20261006/assets/ons_perspectiva_tm
+          pdftoppm -f 19 -l 19 -singlefile -png -r 150 /tmp/ons.pdf sao-francisco-20261006/assets/ons_perspectiva_sob
 
-      - name: Commit figures
+      - name: Generate NT PDF
+        run: |
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROME" ]; then
+            sudo apt-get install -y chromium-browser || sudo apt-get install -y chromium
+            CHROME="$(command -v chromium-browser || command -v chromium)"
+          fi
+          "$CHROME" --headless --disable-gpu --no-sandbox --no-pdf-header-footer \
+            --print-to-pdf="$PWD/sao-francisco-20261006/NT_10a_Reuniao_Sao_Francisco_06-10-2026.pdf" \
+            "file://$PWD/sao-francisco-20261006/NT_10a_Reuniao_Sao_Francisco_06-10-2026.html"
+
+      - name: Commit generated figures and NT
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.email "41898282+7it0@users.noreply.github.com"
           git add sao-francisco-20261006/assets/*.png
+          git add sao-francisco-20261006/NT_10a_Reuniao_Sao_Francisco_06-10-2026.pdf
           git diff --cached --quiet && exit 0
-          git commit -m "Adiciona figuras oficiais da 10a reuniao do Sao Francisco"
+          git commit -m "Atualiza figuras oficiais e gera NT final do Sao Francisco"
           git push
