@@ -34,6 +34,10 @@ svg{width:100%;height:auto;display:block}
 table{border-collapse:collapse;width:100%;font-size:.92rem} th,td{border:1px solid #d8e1e4;padding:9px;vertical-align:top}
 th{background:#dfeeee;color:#073d57;text-align:left}
 .source{font-size:.85rem;color:#607078}
+.source-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;padding:13px 14px;background:#f3f8f8;border:1px solid #d8e5e7;border-radius:10px}
+.source-links a{display:inline-block;color:#07566d;text-decoration:none;font-weight:700;background:white;border:1px solid #cbdcdf;border-radius:8px;padding:8px 11px}
+.source-links a:hover{text-decoration:underline}
+.geo-note{font-size:.82rem;color:#667;margin-top:6px}
 .source a{color:var(--azul)}
 .download-disabled{display:inline-block;background:#a7b1b5;color:white;padding:11px 16px;border-radius:8px;text-decoration:none;font-weight:700;cursor:not-allowed}
 footer{margin-top:34px;padding:24px 8vw;background:#0b3444;color:#fff;font-size:.86rem}
@@ -43,7 +47,7 @@ footer{margin-top:34px;padding:24px 8vw;background:#0b3444;color:#fff;font-size:
 <body>
 <header>
 <div class="tag">SOE/ANA — acompanhamento técnico</div>
-<h1>10ª Reunião da Sala de Acompanhamento do Sistema Hídrico do Rio São Francisco</h1>
+<h1>10ª Reunião em 2026 da Sala de Acompanhamento do Sistema Hídrico do Rio São Francisco</h1>
 <p><strong>06 de outubro de 2026</strong> · Síntese integrada de INMET, CEMADEN e ONS</p>
 <p>Foco da reunião: <strong>entrada e consolidação do período chuvoso 2026/2027</strong> e sua conversão em resposta hidrológica.</p>
 </header>
@@ -77,6 +81,35 @@ footer{margin-top:34px;padding:24px 8vw;background:#0b3444;color:#fff;font-size:
 <p>O ponto de atenção não é apenas o volume acumulado, mas a <strong>persistência e recorrência dos episódios</strong>. Em cenário de El Niño, a distribuição temporal e espacial da precipitação pode ser irregular, o que impede traduzir automaticamente o sinal climático em déficit ou excesso uniforme de chuva na bacia.</p>
 
 <figure class="visual">
+<svg viewBox="0 0 950 470" role="img" aria-label="Esquema geoespacial do São Francisco para a vertical INMET">
+<defs>
+<linearGradient id="gInmet" x1="0" y1="1" x2="0" y2="0">
+<stop offset="0%" stop-color="#2e7d5b"/><stop offset="45%" stop-color="#9fc7a8"/><stop offset="72%" stop-color="#e7d9a1"/><stop offset="100%" stop-color="#d49a72"/>
+</linearGradient>
+</defs>
+<text x="475" y="30" text-anchor="middle" font-size="22" font-weight="700" fill="#073d57">INMET — leitura espacial da transição para o período chuvoso</text>
+<path d="M420 414 C405 382 394 350 401 321 C409 287 431 268 427 237 C422 204 397 184 406 151 C415 118 445 101 458 75 C467 57 467 46 464 38"
+ fill="none" stroke="#0b5e75" stroke-width="11" stroke-linecap="round"/>
+<path d="M362 421 C337 382 338 341 352 303 C365 267 356 225 367 187 C379 143 409 111 430 79 C448 52 455 33 464 22
+ C491 48 512 77 521 110 C532 150 515 184 522 222 C529 261 553 292 557 332 C561 370 547 405 526 432 Z"
+ fill="url(#gInmet)" opacity=".82" stroke="#6a7d7d" stroke-width="2"/>
+<circle cx="447" cy="352" r="12" fill="#0f6c52"/><text x="468" y="358" font-size="16" font-weight="700" fill="#173">Alto SF</text>
+<circle cx="424" cy="256" r="10" fill="#6fa875"/><text x="444" y="262" font-size="16" fill="#334">Médio SF</text>
+<circle cx="459" cy="158" r="10" fill="#c9b26d"/><text x="480" y="164" font-size="16" fill="#334">Submédio</text>
+<circle cx="466" cy="72" r="10" fill="#b97855"/><text x="486" y="78" font-size="16" fill="#334">Baixo SF</text>
+<rect x="85" y="88" width="235" height="112" rx="12" fill="#eef7f2" stroke="#8fb5a5"/>
+<text x="202" y="119" text-anchor="middle" font-size="17" font-weight="700" fill="#166a52">Sinal mais relevante</text>
+<text x="202" y="148" text-anchor="middle" font-size="15" fill="#445">Cabeceiras / Alto SF</text>
+<text x="202" y="174" text-anchor="middle" font-size="14" fill="#667">entrada progressiva das chuvas</text>
+<rect x="635" y="88" width="235" height="112" rx="12" fill="#fff7df" stroke="#d7a900"/>
+<text x="752" y="119" text-anchor="middle" font-size="17" font-weight="700" fill="#8a6b00">Atenção</text>
+<text x="752" y="148" text-anchor="middle" font-size="15" fill="#445">heterogeneidade espacial</text>
+<text x="752" y="174" text-anchor="middle" font-size="14" fill="#667">persistência ainda por confirmar</text>
+<text x="475" y="457" text-anchor="middle" font-size="13" fill="#667">Esquema espacial sintético SOE — não substitui os mapas/modelos oficiais da apresentação.</text>
+</svg>
+<figcaption>Distribuição qualitativa do sinal de instalação da estação chuvosa ao longo da bacia: maior relevância operacional nas áreas formadoras de vazão do Alto São Francisco.</figcaption>
+</figure>
+<figure class="visual">
 <svg viewBox="0 0 900 245" role="img" aria-label="Linha temporal qualitativa da instalação do período chuvoso">
 <rect x="40" y="70" width="245" height="95" rx="14" fill="#eef6f5" stroke="#8db8ad"/>
 <rect x="327" y="70" width="245" height="95" rx="14" fill="#e4f1f4" stroke="#6fa0ad"/>
@@ -96,7 +129,11 @@ footer{margin-top:34px;padding:24px 8vw;background:#0b3444;color:#fff;font-size:
 </svg>
 <figcaption>Figura sintética SOE — leitura qualitativa da instalação do período chuvoso a partir da vertical INMET.</figcaption>
 </figure>
-<p class="source">Fonte: apresentação INMET da 10ª Reunião, 06/10/2026, disponibilizada na página oficial de apresentações da ANA.</p>
+<div class="source-links" aria-label="Fontes e materiais da reunião">
+<a href="https://www.youtube.com/live/X9Qo3RorRvk" target="_blank" rel="noopener">▶ Gravação da 10ª Reunião — YouTube</a>
+<a href="https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/apresentacoes-das-reunioes" target="_blank" rel="noopener">▣ Apresentações oficiais — ANA</a>
+<a href="https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/sao-francisco-boletim-diario" target="_blank" rel="noopener">≋ Boletins diários — São Francisco</a>
+</div>
 </section>
 
 <section id="cemaden" class="card">
@@ -104,6 +141,35 @@ footer{margin-top:34px;padding:24px 8vw;background:#0b3444;color:#fff;font-size:
 <p>O CEMADEN apresenta sinais mais concretos da transição nas áreas de contribuição para Três Marias. A estação seca de 2026 terminou com precipitação acumulada equivalente a <strong>105% da MLT</strong>; setembro atingiu <strong>179% da MLT</strong> e os quatro primeiros dias de outubro somavam <strong>315% da MLT parcial</strong>. Apesar disso, em 04/10 a vazão em Três Marias era de <strong>165 m³/s (73% da MLT)</strong>, evidenciando a defasagem entre chuva e resposta hidrológica.</p>
 <p>Para 05–18/10, o PDM/CEMADEN indica vazão média de <strong>291 m³/s</strong>, apresentada como 129% da MLT de setembro. O dado deve ser lido com cautela porque o período previsto já é outubro, enquanto o referencial percentual do slide permanece setembro.</p>
 
+<figure class="visual">
+<svg viewBox="0 0 950 470" role="img" aria-label="Esquema geoespacial do CEMADEN para chuva recente e estação chuvosa">
+<defs>
+<radialGradient id="rain1"><stop offset="0%" stop-color="#1e88e5" stop-opacity=".86"/><stop offset="100%" stop-color="#1e88e5" stop-opacity="0"/></radialGradient>
+<radialGradient id="rain2"><stop offset="0%" stop-color="#55a868" stop-opacity=".68"/><stop offset="100%" stop-color="#55a868" stop-opacity="0"/></radialGradient>
+</defs>
+<text x="475" y="30" text-anchor="middle" font-size="22" font-weight="700" fill="#073d57">CEMADEN — chuva recente e instalação espacial da estação chuvosa</text>
+<path d="M362 421 C337 382 338 341 352 303 C365 267 356 225 367 187 C379 143 409 111 430 79 C448 52 455 33 464 22
+ C491 48 512 77 521 110 C532 150 515 184 522 222 C529 261 553 292 557 332 C561 370 547 405 526 432 Z"
+ fill="#f2f3ec" stroke="#6a7d7d" stroke-width="2"/>
+<ellipse cx="441" cy="355" rx="130" ry="92" fill="url(#rain1)"/>
+<ellipse cx="414" cy="282" rx="105" ry="82" fill="url(#rain2)"/>
+<ellipse cx="463" cy="170" rx="65" ry="58" fill="url(#rain2)" opacity=".45"/>
+<path d="M420 414 C405 382 394 350 401 321 C409 287 431 268 427 237 C422 204 397 184 406 151 C415 118 445 101 458 75 C467 57 467 46 464 38"
+ fill="none" stroke="#0b5e75" stroke-width="10" stroke-linecap="round"/>
+<circle cx="447" cy="354" r="9" fill="#073d57"/><text x="466" y="359" font-size="15" font-weight="700">Três Marias</text>
+<circle cx="435" cy="217" r="9" fill="#073d57"/><text x="454" y="222" font-size="15" font-weight="700">Sobradinho</text>
+<rect x="70" y="95" width="245" height="116" rx="12" fill="#eaf5fb" stroke="#78aaca"/>
+<text x="192" y="126" text-anchor="middle" font-size="17" font-weight="700" fill="#07566d">Chuva recente</text>
+<text x="192" y="154" text-anchor="middle" font-size="15" fill="#445">sinal mais forte nas cabeceiras</text>
+<text x="192" y="181" text-anchor="middle" font-size="14" fill="#667">resposta ainda espacialmente irregular</text>
+<rect x="640" y="95" width="245" height="116" rx="12" fill="#eef7f2" stroke="#8fb5a5"/>
+<text x="762" y="126" text-anchor="middle" font-size="17" font-weight="700" fill="#166a52">Leitura hidrológica</text>
+<text x="762" y="154" text-anchor="middle" font-size="15" fill="#445">chuva ≠ vazão imediata</text>
+<text x="762" y="181" text-anchor="middle" font-size="14" fill="#667">persistência será determinante</text>
+<text x="475" y="457" text-anchor="middle" font-size="13" fill="#667">Esquema espacial sintético SOE, elaborado a partir dos mapas de chuva/estação chuvosa do CEMADEN.</text>
+</svg>
+<figcaption>Leitura espacial da chuva recente: o sinal se concentra prioritariamente no setor de montante, enquanto a resposta hidrológica ainda é desigual ao longo da bacia.</figcaption>
+</figure>
 <div class="grid">
 <div class="metric"><span>Estação seca 2026</span><b>105% MLT</b><small>precipitação acumulada</small></div>
 <div class="metric"><span>Setembro/2026</span><b>179% MLT</b><small>precipitação</small></div>
@@ -134,7 +200,11 @@ footer{margin-top:34px;padding:24px 8vw;background:#0b3444;color:#fff;font-size:
 </figure>
 
 <div class="note"><strong>Leitura:</strong> a chuva começa a aparecer nas cabeceiras, mas a recuperação hidrológica ainda precisa ser confirmada pela persistência dos eventos e pela elevação sustentada das afluências.</div>
-<p class="source">Fonte: CEMADEN — “Monitoramento, Previsões e Projeções para a Bacia do Rio São Francisco”, 06/10/2026.</p>
+<div class="source-links" aria-label="Fontes e materiais da reunião">
+<a href="https://www.youtube.com/live/X9Qo3RorRvk" target="_blank" rel="noopener">▶ Gravação da 10ª Reunião — YouTube</a>
+<a href="https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/apresentacoes-das-reunioes" target="_blank" rel="noopener">▣ Apresentações oficiais — ANA</a>
+<a href="https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/sao-francisco-boletim-diario" target="_blank" rel="noopener">≋ Boletins diários — São Francisco</a>
+</div>
 </section>
 
 <section id="ons" class="card">
@@ -142,6 +212,31 @@ footer{margin-top:34px;padding:24px 8vw;background:#0b3444;color:#fff;font-size:
 <p>O ONS mostra que setembro trouxe melhora importante em Três Marias, com vazão natural equivalente a <strong>116% da MLT</strong>, enquanto a incremental de Sobradinho permaneceu em <strong>67% da MLT</strong>. A assimetria é relevante: o sinal favorável nas cabeceiras ainda não se propagou de modo equivalente para o reservatório de jusante.</p>
 <p>Em 04/10, Três Marias estava com <strong>78,6% do volume útil</strong>, afluência de 190 m³/s e defluência de 676 m³/s. Sobradinho apresentava <strong>64,7% do volume útil</strong>, afluência de 797 m³/s e defluência de 1.322 m³/s. As previsões de curto prazo continuam restritivas: Três Marias entre <strong>31% e 39% da MLT</strong>; Sobradinho entre <strong>43% e 45% da MLT</strong>.</p>
 
+<figure class="visual">
+<svg viewBox="0 0 950 470" role="img" aria-label="Esquema espacial ONS dos principais reservatórios do São Francisco">
+<text x="475" y="30" text-anchor="middle" font-size="22" font-weight="700" fill="#073d57">ONS — eixo longitudinal do sistema e principais reservatórios</text>
+<path d="M365 410 C390 382 405 355 411 326 C418 291 401 264 412 230 C424 193 451 170 455 137 C460 102 446 77 463 43"
+ fill="none" stroke="#1c7b98" stroke-width="13" stroke-linecap="round"/>
+<path d="M463 43 C487 71 505 101 508 135 C512 169 497 197 506 229 C515 263 541 291 544 326 C548 359 535 391 510 422"
+ fill="none" stroke="#8fc2cc" stroke-width="3" stroke-dasharray="8 7"/>
+<circle cx="405" cy="340" r="14" fill="#166a52"/><text x="430" y="346" font-size="17" font-weight="700">Três Marias</text>
+<text x="430" y="369" font-size="14" fill="#445">78,6% VU · set/26: 116% MLT</text>
+<circle cx="467" cy="220" r="16" fill="#0b5e75"/><text x="494" y="226" font-size="17" font-weight="700">Sobradinho</text>
+<text x="494" y="249" font-size="14" fill="#445">64,7% VU · incremental: 67% MLT</text>
+<circle cx="485" cy="154" r="12" fill="#6f7f88"/><text x="510" y="160" font-size="15">Luiz Gonzaga</text>
+<circle cx="470" cy="78" r="12" fill="#6f7f88"/><text x="495" y="84" font-size="15">Xingó</text>
+<rect x="70" y="90" width="245" height="125" rx="12" fill="#edf6f7" stroke="#7aaab5"/>
+<text x="192" y="121" text-anchor="middle" font-size="17" font-weight="700" fill="#073d57">Montante</text>
+<text x="192" y="150" text-anchor="middle" font-size="15" fill="#445">Três Marias reage primeiro</text>
+<text x="192" y="177" text-anchor="middle" font-size="14" fill="#667">efeito precisa propagar a jusante</text>
+<rect x="650" y="90" width="235" height="125" rx="12" fill="#fff7df" stroke="#d7a900"/>
+<text x="767" y="121" text-anchor="middle" font-size="17" font-weight="700" fill="#8a6b00">Jusante</text>
+<text x="767" y="150" text-anchor="middle" font-size="15" fill="#445">Sobradinho ainda restritivo</text>
+<text x="767" y="177" text-anchor="middle" font-size="14" fill="#667">armazenamento em trajetória de queda</text>
+<text x="475" y="457" text-anchor="middle" font-size="13" fill="#667">Esquema espacial sintético SOE — posição relativa dos principais aproveitamentos, sem escala cartográfica.</text>
+</svg>
+<figcaption>Esquema espacial do eixo principal do São Francisco: a recuperação esperada deve ser observada primeiro em Três Marias e, posteriormente, em Sobradinho e no sistema de jusante.</figcaption>
+</figure>
 <figure class="visual">
 <svg viewBox="0 0 900 310" role="img" aria-label="ONS: afluências observadas em setembro e previsão de curto prazo">
 <text x="450" y="30" text-anchor="middle" font-size="20" font-weight="700" fill="#073d57">Afluências: melhora observada não significa recuperação consolidada</text>
@@ -193,7 +288,11 @@ footer{margin-top:34px;padding:24px 8vw;background:#0b3444;color:#fff;font-size:
 <tr><td>Xingó</td><td>1.360 m³/s</td><td>1.360 m³/s</td><td>Manutenção da condição operativa simulada.</td></tr>
 </tbody>
 </table>
-<p class="source">Fonte: ONS — “Avaliação das condições hidrológicas e de armazenamento na Bacia do Rio São Francisco”, 06/10/2026.</p>
+<div class="source-links" aria-label="Fontes e materiais da reunião">
+<a href="https://www.youtube.com/live/X9Qo3RorRvk" target="_blank" rel="noopener">▶ Gravação da 10ª Reunião — YouTube</a>
+<a href="https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/apresentacoes-das-reunioes" target="_blank" rel="noopener">▣ Apresentações oficiais — ANA</a>
+<a href="https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/sao-francisco-boletim-diario" target="_blank" rel="noopener">≋ Boletins diários — São Francisco</a>
+</div>
 </section>
 
 <section id="cruzamentos" class="card">
@@ -249,7 +348,11 @@ footer{margin-top:34px;padding:24px 8vw;background:#0b3444;color:#fff;font-size:
 <section class="card">
 <h2>Fontes</h2>
 <p>Apresentações oficiais da 10ª Reunião em 2026 da Sala de Acompanhamento do Sistema Hídrico do Rio São Francisco, de 06/10/2026: INMET, CEMADEN e ONS.</p>
-<p class="source"><a href="https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/apresentacoes-das-reunioes">Página oficial de apresentações das reuniões — ANA</a></p>
+<div class="source-links" aria-label="Fontes e materiais da reunião">
+<a href="https://www.youtube.com/live/X9Qo3RorRvk" target="_blank" rel="noopener">▶ Gravação da 10ª Reunião — YouTube</a>
+<a href="https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/apresentacoes-das-reunioes" target="_blank" rel="noopener">▣ Apresentações oficiais — ANA</a>
+<a href="https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/sao-francisco-boletim-diario" target="_blank" rel="noopener">≋ Boletins diários — São Francisco</a>
+</div>
 </section>
 </main>
 
