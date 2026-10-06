@@ -34,6 +34,7 @@ img{max-width:100%;height:auto}
 .slide-figure{margin:20px 0}
 .slide-figure img{display:block;width:100%;border-radius:10px;border:1px solid #dbe4e7;background:#fff}
 .slide-figure figcaption{font-size:.86rem;color:#667;margin-top:7px}
+.download{display:inline-block;background:var(--azul);color:#fff;padding:11px 16px;border-radius:8px;text-decoration:none;font-weight:700;margin-right:8px}
 .legend{font-size:.86rem;color:#5e6a6f}
 .chip{display:inline-block;padding:4px 9px;border-radius:999px;background:#e7f2f0;color:#0c5c4d;font-size:.8rem;font-weight:700;margin:2px 5px 2px 0}
 .flow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:stretch}
@@ -48,7 +49,7 @@ th{background:#dfeeee;color:#073d57;text-align:left}
 .source-links a:hover{text-decoration:underline}
 .geo-note{font-size:.82rem;color:#667;margin-top:6px}
 .source a{color:var(--azul)}
-.download{display:inline-block;background:var(--azul);color:white;padding:11px 16px;border-radius:8px;text-decoration:none;font-weight:700}.download-disabled{display:inline-block;background:#a7b1b5;color:white;padding:11px 16px;border-radius:8px;text-decoration:none;font-weight:700;cursor:not-allowed}
+.download-disabled{display:inline-block;background:#a7b1b5;color:white;padding:11px 16px;border-radius:8px;text-decoration:none;font-weight:700;cursor:not-allowed}
 footer{margin-top:34px;padding:24px 8vw;background:#0b3444;color:#fff;font-size:.86rem}
 @media(max-width:760px){.flow{grid-template-columns:1fr}}
 </style>
@@ -92,12 +93,45 @@ footer{margin-top:34px;padding:24px 8vw;background:#0b3444;color:#fff;font-size:
 <p>O ponto de atenção não é apenas o volume acumulado, mas a <strong>persistência e recorrência dos episódios</strong>. Em cenário de El Niño, a distribuição temporal e espacial da precipitação pode ser irregular, o que impede traduzir automaticamente o sinal climático em déficit ou excesso uniforme de chuva na bacia.</p>
 
 <figure class="slide-figure">
-<img src="assets/inmet_cosmo_7dias.png" alt="INMET - modelo COSMO, previsão de precipitação acumulada em 7 dias para o Brasil, inicialização de 06/10/2026">
-<figcaption>INMET/INPE - COSMO, previsão de precipitação acumulada em 7 dias. Figura extraída da apresentação oficial da 10ª Reunião.</figcaption>
+<img src="assets/inmet_cosmo_7dias.png" alt="INMET - COSMO, previsão de precipitação acumulada em 7 dias, inicialização de 06/10/2026">
+<figcaption>INMET/INPE - COSMO, previsão de precipitação acumulada em 7 dias. Figura pinçada da apresentação oficial da 10ª Reunião.</figcaption>
 </figure>
+<figure class="visual">
+<svg viewBox="0 0 900 245" role="img" aria-label="Linha temporal qualitativa da instalação do período chuvoso">
+<rect x="40" y="70" width="245" height="95" rx="14" fill="#eef6f5" stroke="#8db8ad"/>
+<rect x="327" y="70" width="245" height="95" rx="14" fill="#e4f1f4" stroke="#6fa0ad"/>
+<rect x="614" y="70" width="245" height="95" rx="14" fill="#dceee8" stroke="#5b947d"/>
+<text x="162" y="102" text-anchor="middle" font-size="22" font-weight="700" fill="#073d57">OUTUBRO</text>
+<text x="162" y="132" text-anchor="middle" font-size="17" fill="#445">Transição</text>
+<text x="162" y="154" text-anchor="middle" font-size="14" fill="#667">chuvas ainda irregulares</text>
+<text x="449" y="102" text-anchor="middle" font-size="22" font-weight="700" fill="#073d57">NOVEMBRO</text>
+<text x="449" y="132" text-anchor="middle" font-size="17" fill="#445">Consolidação esperada</text>
+<text x="449" y="154" text-anchor="middle" font-size="14" fill="#667">persistência passa a ser decisiva</text>
+<text x="736" y="102" text-anchor="middle" font-size="22" font-weight="700" fill="#073d57">DEZEMBRO</text>
+<text x="736" y="132" text-anchor="middle" font-size="17" fill="#445">Núcleo chuvoso</text>
+<text x="736" y="154" text-anchor="middle" font-size="14" fill="#667">resposta hidrológica esperada</text>
+<path d="M285 117 L327 117" stroke="#166a52" stroke-width="6"/><polygon points="327,117 312,107 312,127" fill="#166a52"/>
+<path d="M572 117 L614 117" stroke="#166a52" stroke-width="6"/><polygon points="614,117 599,107 599,127" fill="#166a52"/>
+<text x="450" y="210" text-anchor="middle" font-size="15" font-weight="700" fill="#166a52">Pergunta operacional: a chuva se torna recorrente e espacialmente organizada?</text>
+</svg>
+<figcaption>Figura sintética SOE — leitura qualitativa da instalação do período chuvoso a partir da vertical INMET.</figcaption>
+</figure>
+<div class="source-links" aria-label="Fontes e materiais da reunião">
+<a href="https://www.youtube.com/live/X9Qo3RorRvk" target="_blank" rel="noopener">▶ Gravação da 10ª Reunião — YouTube</a>
+<a href="https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/apresentacoes-das-reunioes" target="_blank" rel="noopener">▣ Apresentações oficiais — ANA</a>
+<a href="https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/sao-francisco-boletim-diario" target="_blank" rel="noopener">≋ Boletins diários — São Francisco</a>
+</div>
+<div class="detail-note"><strong>Detalhamento:</strong> a análise completa, os gráficos adicionais, as referências e as premissas metodológicas estão disponíveis na <strong>Nota Técnica final em PDF</strong>.</div>
+</section>
+
+<section id="cemaden" class="card tab-panel">
+<h2>Vertical CEMADEN — chuva observada e primeira resposta da bacia</h2>
+<p>O CEMADEN apresenta sinais mais concretos da transição nas áreas de contribuição para Três Marias. A estação seca de 2026 terminou com precipitação acumulada equivalente a <strong>105% da MLT</strong>; setembro atingiu <strong>179% da MLT</strong> e os quatro primeiros dias de outubro somavam <strong>315% da MLT parcial</strong>. Apesar disso, em 04/10 a vazão em Três Marias era de <strong>165 m³/s (73% da MLT)</strong>, evidenciando a defasagem entre chuva e resposta hidrológica.</p>
+<p>Para 05–18/10, o PDM/CEMADEN indica vazão média de <strong>291 m³/s</strong>, apresentada como 129% da MLT de setembro. O dado deve ser lido com cautela porque o período previsto já é outubro, enquanto o referencial percentual do slide permanece setembro.</p>
+
 <figure class="slide-figure">
 <img src="assets/cemaden_gefs_7dias.png" alt="CEMADEN - previsão de chuva para os próximos 7 dias pelo GEFS NOAA">
-<figcaption>CEMADEN - previsão de chuva para os próximos 7 dias (GEFS/NOAA). Figura extraída da apresentação oficial da 10ª Reunião.</figcaption>
+<figcaption>CEMADEN - previsão de chuva para os próximos 7 dias (GEFS/NOAA). Figura pinçada da apresentação oficial da 10ª Reunião.</figcaption>
 </figure>
 <div class="grid">
 <div class="metric"><span>Estação seca 2026</span><b>105% MLT</b><small>precipitação acumulada</small></div>
@@ -106,9 +140,45 @@ footer{margin-top:34px;padding:24px 8vw;background:#0b3444;color:#fff;font-size:
 <div class="metric"><span>05–18/out — PDM</span><b>291 m³/s</b><small>média prevista</small></div>
 </div>
 
+<figure class="visual">
+<svg viewBox="0 0 900 310" role="img" aria-label="Chuva e resposta hidrológica em Três Marias">
+<text x="450" y="28" text-anchor="middle" font-size="20" font-weight="700" fill="#073d57">Três Marias — o sinal meteorológico antecede a resposta hidrológica</text>
+<line x1="90" y1="250" x2="810" y2="250" stroke="#87969c"/>
+<line x1="90" y1="55" x2="90" y2="250" stroke="#87969c"/>
+<rect x="155" y="180" width="95" height="70" fill="#7bb7a0"/>
+<rect x="325" y="132" width="95" height="118" fill="#5aa381"/>
+<rect x="495" y="75" width="95" height="175" fill="#318562"/>
+<rect x="665" y="198" width="95" height="52" fill="#4e8795"/>
+<text x="202" y="172" text-anchor="middle" font-size="15" font-weight="700">105%</text>
+<text x="372" y="124" text-anchor="middle" font-size="15" font-weight="700">179%</text>
+<text x="542" y="67" text-anchor="middle" font-size="15" font-weight="700">315%*</text>
+<text x="712" y="190" text-anchor="middle" font-size="15" font-weight="700">73%</text>
+<text x="202" y="278" text-anchor="middle" font-size="14">Estação seca</text>
+<text x="372" y="278" text-anchor="middle" font-size="14">Setembro</text>
+<text x="542" y="278" text-anchor="middle" font-size="14">Outubro parcial</text>
+<text x="712" y="278" text-anchor="middle" font-size="14">Vazão 04/out</text>
+<text x="450" y="303" text-anchor="middle" font-size="12" fill="#667">* percentual referente à MLT parcial informada na apresentação</text>
+</svg>
+<figcaption>Figura sintética SOE — percentuais apresentados pelo CEMADEN para precipitação e vazão em Três Marias.</figcaption>
+</figure>
+
+<div class="note"><strong>Leitura:</strong> a chuva começa a aparecer nas cabeceiras, mas a recuperação hidrológica ainda precisa ser confirmada pela persistência dos eventos e pela elevação sustentada das afluências.</div>
+<div class="source-links" aria-label="Fontes e materiais da reunião">
+<a href="https://www.youtube.com/live/X9Qo3RorRvk" target="_blank" rel="noopener">▶ Gravação da 10ª Reunião — YouTube</a>
+<a href="https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/apresentacoes-das-reunioes" target="_blank" rel="noopener">▣ Apresentações oficiais — ANA</a>
+<a href="https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/sao-francisco-boletim-diario" target="_blank" rel="noopener">≋ Boletins diários — São Francisco</a>
+</div>
+<div class="detail-note"><strong>Detalhamento:</strong> a análise completa, os gráficos adicionais, as referências e as premissas metodológicas estão disponíveis na <strong>Nota Técnica final em PDF</strong>.</div>
+</section>
+
+<section id="ons" class="card tab-panel">
+<h2>Vertical ONS — afluências, armazenamento e perspectiva operacional</h2>
+<p>O ONS mostra que setembro trouxe melhora importante em Três Marias, com vazão natural equivalente a <strong>116% da MLT</strong>, enquanto a incremental de Sobradinho permaneceu em <strong>67% da MLT</strong>. A assimetria é relevante: o sinal favorável nas cabeceiras ainda não se propagou de modo equivalente para o reservatório de jusante.</p>
+<p>Em 04/10, Três Marias estava com <strong>78,6% do volume útil</strong>, afluência de 190 m³/s e defluência de 676 m³/s. Sobradinho apresentava <strong>64,7% do volume útil</strong>, afluência de 797 m³/s e defluência de 1.322 m³/s. As previsões de curto prazo continuam restritivas: Três Marias entre <strong>31% e 39% da MLT</strong>; Sobradinho entre <strong>43% e 45% da MLT</strong>.</p>
+
 <figure class="slide-figure">
 <img src="assets/ons_condicoes_hidrologicas.png" alt="ONS - condições hidrológicas das bacias do rio São Francisco no período 2023-2026">
-<figcaption>ONS - condições hidrológicas das bacias do rio São Francisco e posição relativa dos principais aproveitamentos. Figura extraída da apresentação oficial da 10ª Reunião.</figcaption>
+<figcaption>ONS - condições hidrológicas das bacias do rio São Francisco e posição dos principais aproveitamentos. Figura pinçada da apresentação oficial da 10ª Reunião.</figcaption>
 </figure>
 <figure class="visual">
 <svg viewBox="0 0 900 310" role="img" aria-label="ONS: afluências observadas em setembro e previsão de curto prazo">
@@ -166,7 +236,7 @@ footer{margin-top:34px;padding:24px 8vw;background:#0b3444;color:#fff;font-size:
 <a href="https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/apresentacoes-das-reunioes" target="_blank" rel="noopener">▣ Apresentações oficiais — ANA</a>
 <a href="https://www.gov.br/ana/pt-br/sala-de-situacao/sao-francisco/sao-francisco-boletim-diario" target="_blank" rel="noopener">≋ Boletins diários — São Francisco</a>
 </div>
-<div class="detail-note"><strong>Detalhamento:</strong> a análise completa, os gráficos adicionais, as referências e as premissas metodológicas serão consolidados na <strong>Nota Técnica final em PDF</strong>, disponibilizada após o fechamento da reunião.</div>
+<div class="detail-note"><strong>Detalhamento:</strong> a análise completa, os gráficos adicionais, as referências e as premissas metodológicas estão disponíveis na <strong>Nota Técnica final em PDF</strong>.</div>
 </section>
 
 <section id="cruzamentos" class="card tab-panel">
@@ -211,23 +281,19 @@ footer{margin-top:34px;padding:24px 8vw;background:#0b3444;color:#fff;font-size:
 <div class="metric"><span>Foco operacional</span><b>Três Marias → Sobradinho</b><small>acompanhar propagação da recuperação</small></div>
 </div>
 <div class="alert" style="margin-top:16px"><strong>Ponto de decisão:</strong> a próxima avaliação deve verificar se a precipitação se tornou recorrente e se as afluências interromperam a trajetória de baixa, caracterizando efetiva instalação hidrológica do período chuvoso.</div>
-
 <h3>Oscilações intradiárias e usos múltiplos</h3>
 <p>No debate foi destacada a ocorrência de variações expressivas de nível ao longo do dia, com percepção de quedas mais acentuadas em determinados períodos, inclusive fins de semana. Foi informado que as regras operativas vigentes estão sendo cumpridas; ainda assim, médias diárias podem não representar adequadamente a condição percebida por pescadores, ribeirinhos e captações por bombeamento.</p>
 <div class="note"><strong>Ponto para avaliação:</strong> foi mencionada a possibilidade de estudar uma limitação da variação operacional da ordem de <strong>300 m³/s</strong>. A referência não constitui decisão ou nova regra da Sala; trata-se de alternativa cuja viabilidade técnica e institucional deverá ser avaliada. Eventual encaminhamento deve seguir os procedimentos e instâncias competentes da PNRH/SINGREH.</div>
 <p><strong>Comunicação:</strong> eventual aviso aos usuários deve ser construído de forma compartilhada entre AXIA, ONS, ANA e atores locais, priorizando cota, amplitude, horários prováveis de subida/descida e duração esperada.</p>
-<div class="detail-note"><strong>Detalhamento:</strong> a análise completa, incluindo as ressalvas metodológicas e os encaminhamentos institucionais, está disponível na <strong>Nota Técnica final em PDF</strong>.</div>
+<div class="detail-note"><strong>Detalhamento:</strong> a análise completa, incluindo ressalvas metodológicas e encaminhamentos institucionais, está disponível na <strong>Nota Técnica final em PDF</strong>.</div>
 </section>
 
 <section id="nt" class="card tab-panel">
 <h2>Nota Técnica final</h2>
 <p>A consolidação final incorpora as verticais INMET/INPE, CEMADEN e ONS, o cruzamento técnico e os temas registrados no debate, incluindo oscilações intradiárias de nível, repercussões sobre usos múltiplos, comunicação aos usuários e a possibilidade de avaliação de limite de variação operacional.</p>
 <p><strong>Próxima reunião:</strong> 03 de novembro de 2026.</p>
-<p>
-<a class="download" href="NT_10a_Reuniao_Sao_Francisco_06-10-2026.pdf" target="_blank" rel="noopener">Baixar NT final em PDF</a>
-&nbsp;
-<a href="NT_10a_Reuniao_Sao_Francisco_06-10-2026.html" target="_blank" rel="noopener">Ler versão navegável</a>
-</p>
+<p><a class="download" href="NT_10a_Reuniao_Sao_Francisco_06-10-2026.pdf" target="_blank" rel="noopener">Baixar NT final em PDF</a>
+<a href="NT_10a_Reuniao_Sao_Francisco_06-10-2026.html" target="_blank" rel="noopener">Ler versão navegável</a></p>
 <p class="source">Supervisionado por José Aguiar de Lima Jr. · Especialista em Geoprocessamento · SOE/ANA - Gabinete · com suporte de IA e revisão técnica humana.</p>
 </section>
 
