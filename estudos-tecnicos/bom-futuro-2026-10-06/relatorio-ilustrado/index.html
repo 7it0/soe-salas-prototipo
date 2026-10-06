@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SOE Bom Futuro — relatório ilustrado</title>
+<style>
+:root{--az:#0b5f7a;--az2:#073d57;--vd:#2e6a4e;--tx:#17313a;--mu:#68777d;--ln:#d3dde1;--bg:#eef2f3;--am:#fff5da;--vr:#fcebea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font:14px/1.5 Arial,sans-serif;color:var(--tx)}
+.toolbar{position:sticky;top:0;z-index:9;background:#082f42;color:white;padding:10px 4vw;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.toolbar a,.toolbar button{border:0;border-radius:7px;padding:8px 11px;text-decoration:none;font-weight:bold;cursor:pointer}.toolbar a{background:#0b5f7a;color:#fff}.toolbar button{background:#2e6a4e;color:#fff}
+.paper{width:min(210mm,calc(100vw - 24px));margin:18px auto;background:#fff;box-shadow:0 6px 24px #0001}
+.page{min-height:297mm;padding:18mm 17mm 16mm;position:relative;page-break-after:always}.page:last-child{page-break-after:auto}
+.kicker{text-align:center;color:var(--az);font-weight:bold;letter-spacing:.04em}.title{text-align:center;color:var(--az2);font-size:28px;line-height:1.15;margin:8px 0 2px}.subtitle{text-align:center;color:var(--az2);font-size:18px;font-weight:bold}.rule{height:2px;background:#5e88b6;margin:8px 0 16px}.muted{text-align:center;color:var(--mu);font-style:italic}
+.headline{font-family:Georgia,serif;border-top:2px solid #777;border-bottom:1px solid #bbb;padding:12px 0 10px;margin-top:16px}.headline b{display:block;font-family:Arial,sans-serif;font-size:31px;line-height:1}.headline span{display:block;font-size:25px;line-height:1.15;margin-top:4px}
+.hero{margin:14px 0;border:1px solid var(--ln);background:#f8fafb;padding:14px}.hero .photo{height:210px;background:linear-gradient(#c9ddec 0 42%,#819b7a 42% 49%,#8d664c 49% 100%);border-radius:4px;position:relative;overflow:hidden}.hero .photo:before{content:"";position:absolute;left:8%;right:8%;top:48%;height:22%;background:#87aeb9;border-radius:50%;opacity:.75}.hero .photo:after{content:"Área do Garimpo Bom Futuro — representação esquemática para a versão web";position:absolute;left:12px;bottom:10px;background:#ffffffdd;padding:5px 7px;font-size:11px}
+.note{background:#edf6f0;border-left:4px solid var(--vd);padding:11px 13px;margin:10px 0}.warn{background:var(--am);border-left:4px solid #c48a18;padding:11px 13px;margin:10px 0}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}.kpi{border:1px solid var(--ln);border-radius:9px;padding:10px}.kpi strong{display:block;color:var(--az2);font-size:24px}.kpi small{color:var(--mu)}
+h2{color:var(--az2);font-size:18px;margin:0 0 10px}h3{color:var(--vd);font-size:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.box{border:1px solid var(--ln);border-radius:8px;padding:12px}.box.pro{border-left:5px solid var(--vd)}.box.con{border-left:5px solid #c48a18}
+table{width:100%;border-collapse:collapse;font-size:10.5px}th,td{border:1px solid #bccbd0;padding:5px;vertical-align:top}th{background:#e9f1f3;color:var(--az2);text-align:left}.hot{background:var(--vr);font-weight:bold}
+.chart{display:grid;grid-template-columns:130px 1fr 45px;gap:6px;align-items:center;margin:7px 0}.bar{height:13px;background:#e6edef;border-radius:8px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--az),var(--vd))}
+.flow{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:7px;margin:15px 0}.node{background:#eef4f6;border:1px solid var(--ln);border-radius:8px;padding:9px 10px;text-align:center;font-weight:bold}.node.alert{background:#fff0ee}.arrow{font-size:20px;color:var(--az);font-weight:bold}
+.figure{border:1px solid var(--ln);border-radius:8px;padding:6px;margin:10px 0}.figure img{width:100%;display:block;border-radius:5px}.cap{font-size:10.5px;color:var(--mu);margin-top:5px}
+.footer{position:absolute;left:17mm;right:17mm;bottom:8mm;border-top:1px solid #d8e1e4;padding-top:4px;font-size:9px;color:var(--mu);display:flex;justify-content:space-between}
+.ref{font-size:11px}.ref a{color:var(--az)}
+@media(max-width:800px){.paper{width:100%;margin:0;box-shadow:none}.page{min-height:auto;padding:22px}.kpis,.grid2{grid-template-columns:1fr}.footer{position:static;margin-top:18px}}
+@media print{body{background:#fff}.toolbar{display:none}.paper{width:auto;margin:0;box-shadow:none}.page{width:210mm;min-height:297mm;margin:0;page-break-after:always}.page:last-child{page-break-after:auto}@page{size:A4;margin:0}}
+</style>
+</head>
+<body>
+<div class="toolbar"><a href="../">← Atualização 06/10</a><a href="../../bom-futuro-2026-09-29/">Estudo 29/09</a><button onclick="window.print()">Imprimir / salvar em PDF</button></div>
+<div class="paper">
+<section class="page">
+<div class="kicker">SOE/ANA – GABINETE</div>
+<div class="title">BOM FUTURO – ANÁLISE ILUSTRADA</div>
+<div class="subtitle">Complexo de barragens e hipótese de efeito em cascata</div>
+<div class="rule"></div>
+<div class="muted">Atualização técnica a partir da publicação de 06/10/2026</div>
+<div class="headline"><b>EFEITO DOMINÓ</b><span>Garimpo na Amazônia tem “alto risco” para cinco de sete barragens e ameaça colapso em cadeia</span></div>
+<div class="hero"><div class="photo"></div><div class="cap">Fonte documental: publicação jornalística encaminhada em 06/10/2026. Nesta versão web, a fotografia original não é reproduzida; o foco é a análise técnica e os elementos gráficos próprios.</div></div>
+<div class="note"><b>Mensagem central:</b> a nova publicação amplia o foco de uma barragem isolada para um sistema de sete estruturas. O quadro justifica acompanhamento sistêmico prioritário, mas não demonstra, por si só, ruptura iminente ou colapso em cadeia em curso.</div>
+<div class="kpis">
+<div class="kpi"><small>CRI alto</small><strong>5/7</strong></div>
+<div class="kpi"><small>NE1</small><strong>5/7</strong></div>
+<div class="kpi"><small>Embargadas</small><strong>5/7</strong></div>
+<div class="kpi"><small>DCE não enviada</small><strong>6/7</strong></div>
+</div>
+<div class="footer"><span>SOE/ANA – Gabinete | com suporte de IA</span><span>1</span></div>
+</section>
+
+<section class="page">
+<h2>1. Leitura analítica dos indicadores</h2>
+<p>A concentração de cinco estruturas com CRI alto, cinco em NE1 e cinco embargadas é suficiente para justificar maior atenção técnica e regulatória. Contudo, essas classificações não devem ser traduzidas automaticamente como probabilidade numérica de ruptura.</p>
+<div class="chart"><span>CRI alto</span><div class="bar"><i style="width:71.4%"></i></div><b>5/7</b></div>
+<div class="chart"><span>NE1</span><div class="bar"><i style="width:71.4%"></i></div><b>5/7</b></div>
+<div class="chart"><span>Embargadas</span><div class="bar"><i style="width:71.4%"></i></div><b>5/7</b></div>
+<div class="chart"><span>DCE não enviada</span><div class="bar"><i style="width:85.7%"></i></div><b>6/7</b></div>
+<div class="warn"><b>Leitura regulatória:</b> NE1 é condição de emergência relevante, mas não significa necessariamente ruptura iminente. CRI alto é uma classificação de fatores de risco, e não uma probabilidade estatística de falha.</div>
+<h2 style="margin-top:18px">2. Quadro das sete estruturas</h2>
+<table>
+<tr><th>Estrutura</th><th>CRI</th><th>DPA</th><th>Emergência</th><th>DCE</th><th>Operação</th></tr>
+<tr><td>Jacaré Superior</td><td class="hot">ALTO</td><td>ALTO</td><td class="hot">NE1</td><td>Não enviada</td><td>Embargada</td></tr>
+<tr><td>Jacaré Inferior</td><td class="hot">ALTO</td><td>ALTO</td><td class="hot">NE1</td><td>Não enviada</td><td>Embargada</td></tr>
+<tr><td>Jacaré Médio</td><td class="hot">ALTO</td><td>ALTO</td><td class="hot">NE1</td><td>Não enviada</td><td>Embargada</td></tr>
+<tr><td>Igarapé Mutum</td><td class="hot">ALTO</td><td>MÉDIO</td><td class="hot">NE1</td><td>Não enviada</td><td>Embargada</td></tr>
+<tr><td>Belíssima</td><td class="hot">ALTO</td><td>MÉDIO</td><td class="hot">NE1</td><td>Não enviada</td><td>Embargada</td></tr>
+<tr><td>Rio Santa Cruz</td><td>MÉDIO</td><td>MÉDIO</td><td>Sem emergência</td><td>Não enviada</td><td>Desembargada</td></tr>
+<tr><td>Massangana 01</td><td>MÉDIO</td><td>BAIXO</td><td>Sem emergência</td><td>Fora da PNSB</td><td>Não embargada</td></tr>
+</table>
+<div class="footer"><span>SOE/ANA – Bom Futuro – análise ilustrada</span><span>2</span></div>
+</section>
+
+<section class="page">
+<h2>3. Hipótese de cascata: o que precisa ser demonstrado</h2>
+<div class="flow">
+<div class="node alert">Falha / sobrecarga<br>em estrutura</div><div class="arrow">→</div>
+<div class="node alert">Interação com<br>barragem a jusante</div><div class="arrow">→</div>
+<div class="node">Santa Cruz /<br>drenagens locais</div><div class="arrow">→</div>
+<div class="node">Candeias</div><div class="arrow">→</div>
+<div class="node">Jamari</div><div class="arrow">→</div>
+<div class="node">Madeira</div>
+</div>
+<div class="grid2">
+<div class="box pro"><h3>Elementos que sustentam maior atenção</h3><ul><li>Concentração de CRI alto e NE1.</li><li>Embargos em cinco estruturas.</li><li>Proximidade física entre barragens.</li><li>Mecanismos plausíveis citados: galgamento, piping e erosão.</li><li>Conectividade a jusante já mapeada.</li></ul></div>
+<div class="box con"><h3>Limites e contrapontos</h3><ul><li>Não há modelagem de ruptura em cascata apresentada.</li><li>DCE não enviada não equivale a laudo conclusivo de instabilidade.</li><li>Faltam volumes liberáveis, hidrogramas e tempos de propagação.</li><li>Faltam dados de carga de sólidos/metais e concentrações a jusante.</li></ul></div>
+</div>
+<div class="note"><b>Formulação recomendada:</b> “cenário de interação/cascata entre barragens que requer verificação e modelagem”.</div>
+<div class="footer"><span>SOE/ANA – Bom Futuro – análise ilustrada</span><span>3</span></div>
+</section>
+
+<section class="page">
+<h2>4. Conectividade hidrográfica — rota regional</h2>
+<div class="figure"><img src="../../bom-futuro-2026-09-29/assets/figura-1-rota_hidrológica_em_rondônia.png" alt="Rota hidrográfica Bom Futuro até o Madeira"><div class="cap"><b>Figura 1.</b> Conectividade potencial Barragem Santa Cruz/Bom Futuro → Santa Cruz → Candeias → Jamari → Madeira. Não representa mancha efetivamente atingida.</div></div>
+<p>A avaliação anterior permanece válida como referência de jusante. A atualização de 06/10 acrescenta a necessidade de um mapa local das sete estruturas e suas relações de montante–jusante antes da entrada no sistema fluvial.</p>
+<div class="footer"><span>SOE/ANA – Bom Futuro – análise ilustrada</span><span>4</span></div>
+</section>
+
+<section class="page">
+<h2>5. Contexto amazônico</h2>
+<div class="figure"><img src="../../bom-futuro-2026-09-29/assets/figura-2-contexto_hidrográfico_amazônico_até_o_atlântico.png" alt="Contexto Madeira Amazonas Atlântico"><div class="cap"><b>Figura 2.</b> Contexto Madeira → Amazonas → baixo Amazonas → Atlântico. Manaus está a montante da confluência do Madeira com o rio Amazonas.</div></div>
+<h2 style="margin-top:16px">6. Próximos passos prioritários</h2>
+<ol><li>Validar individualmente CRI, DPA, NE, DCE/RISR, embargo e operação no SIGBM/ANM.</li><li>Obter coordenadas e construir mapa local das sete barragens.</li><li>Obter PAEBM, mapas de inundação e estudos de ruptura.</li><li>Verificar borda livre, extravasores, níveis e volumes.</li><li>Integrar chuva, radar/satélite e vazões Santa Cruz–Candeias–Jamari.</li></ol>
+<div class="footer"><span>SOE/ANA – Bom Futuro – análise ilustrada</span><span>5</span></div>
+</section>
+
+<section class="page">
+<h2>7. Fontes e rastreabilidade</h2>
+<div class="ref">
+<p><b>ANM — SIGBM Público:</b> <a href="https://sigbm.anm.gov.br/publico" target="_blank">https://sigbm.anm.gov.br/publico</a></p>
+<p><b>ANM — Resolução nº 95/2022:</b> <a href="https://www.gov.br/anm/pt-br/assuntos/barragens/legislacao/resolucao-no-95-2022.pdf" target="_blank">abrir norma</a></p>
+<p><b>ANM — Perguntas frequentes sobre barragens:</b> <a href="https://www.gov.br/anm/pt-br/acesso-a-informacao/perguntas-frequentes/barragens" target="_blank">abrir referência</a></p>
+<p><b>Estudo SOE de 29/09:</b> <a href="../../bom-futuro-2026-09-29/">abrir página anterior</a></p>
+</div>
+<div class="warn">As classificações individuais foram transcritas do quadro da publicação encaminhada e devem ser validadas em fonte oficial corrente antes de uso decisório.</div>
+<div class="note"><b>Impressão:</b> use o botão “Imprimir / salvar em PDF”. No Chrome, em “Mais configurações”, marque “Cabeçalhos e rodapés” se quiser também a numeração automática do navegador.</div>
+<div class="footer"><span>José Aguiar de Lima Jr. — Especialista em Geoprocessamento — SOE/ANA | com suporte de IA</span><span>6</span></div>
+</section>
+</div>
+</body></html>
