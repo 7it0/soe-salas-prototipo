@@ -1,0 +1,51 @@
+name: Pin Sao Francisco presentation figures
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/pin-sao-francisco.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  figures:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install PDF renderer
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils
+
+      - name: Download official presentations
+        run: |
+          mkdir -p sao-francisco-20261006/assets
+          curl -L --fail --retry 3 \
+            "https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/bacia-do-rio_sf_inmet_06102026.pdf/@@download/file" \
+            -o /tmp/inmet.pdf
+          curl -L --fail --retry 3 \
+            "https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/apres-cemaden-s-francisco-061026.pdf/@@download/file" \
+            -o /tmp/cemaden.pdf
+          curl -L --fail --retry 3 \
+            "https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/apresentacao-ons-sala-do-rio-sao-francisco-06_10_2026.pdf/@@download/file" \
+            -o /tmp/ons.pdf
+
+      - name: Render selected slides
+        run: |
+          pdftoppm -f 6 -l 6 -singlefile -png -r 150 /tmp/inmet.pdf sao-francisco-20261006/assets/inmet_cosmo_7dias
+          pdftoppm -f 8 -l 8 -singlefile -png -r 150 /tmp/cemaden.pdf sao-francisco-20261006/assets/cemaden_gefs_7dias
+          pdftoppm -f 7 -l 7 -singlefile -png -r 150 /tmp/ons.pdf sao-francisco-20261006/assets/ons_condicoes_hidrologicas
+
+      - name: Commit figures
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sao-francisco-20261006/assets/*.png
+          git diff --cached --quiet && exit 0
+          git commit -m "Adiciona figuras oficiais da 10a reuniao do Sao Francisco"
+          git push
