@@ -12,7 +12,7 @@
 .page{min-height:297mm;padding:18mm 17mm 16mm;position:relative;page-break-after:always}.page:last-child{page-break-after:auto}
 .kicker{text-align:center;color:var(--az);font-weight:bold;letter-spacing:.04em}.title{text-align:center;color:var(--az2);font-size:28px;line-height:1.15;margin:8px 0 2px}.subtitle{text-align:center;color:var(--az2);font-size:18px;font-weight:bold}.rule{height:2px;background:#5e88b6;margin:8px 0 16px}.muted{text-align:center;color:var(--mu);font-style:italic}
 .headline{font-family:Georgia,serif;border-top:2px solid #777;border-bottom:1px solid #bbb;padding:12px 0 10px;margin-top:16px}.headline b{display:block;font-family:Arial,sans-serif;font-size:31px;line-height:1}.headline span{display:block;font-size:25px;line-height:1.15;margin-top:4px}
-.hero{margin:14px 0;border:1px solid var(--ln);background:#f8fafb;padding:14px}.hero .photo{height:210px;background:linear-gradient(#c9ddec 0 42%,#819b7a 42% 49%,#8d664c 49% 100%);border-radius:4px;position:relative;overflow:hidden}.hero .photo:before{content:"";position:absolute;left:8%;right:8%;top:48%;height:22%;background:#87aeb9;border-radius:50%;opacity:.75}.hero .photo:after{content:"Área do Garimpo Bom Futuro — representação esquemática para a versão web";position:absolute;left:12px;bottom:10px;background:#ffffffdd;padding:5px 7px;font-size:11px}
+.hero{margin:14px 0;border:1px solid var(--ln);background:#f8fafb;padding:14px}.hero img{display:block;width:100%;height:auto;border-radius:4px}
 .note{background:#edf6f0;border-left:4px solid var(--vd);padding:11px 13px;margin:10px 0}.warn{background:var(--am);border-left:4px solid #c48a18;padding:11px 13px;margin:10px 0}
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}.kpi{border:1px solid var(--ln);border-radius:9px;padding:10px}.kpi strong{display:block;color:var(--az2);font-size:24px}.kpi small{color:var(--mu)}
 h2{color:var(--az2);font-size:18px;margin:0 0 10px}h3{color:var(--vd);font-size:14px}
@@ -37,13 +37,13 @@ table{width:100%;border-collapse:collapse;font-size:10.5px}th,td{border:1px soli
 <div class="rule"></div>
 <div class="muted">Atualização técnica a partir da publicação de 06/10/2026</div>
 <div class="headline"><b>EFEITO DOMINÓ</b><span>Garimpo na Amazônia tem “alto risco” para cinco de sete barragens e ameaça colapso em cadeia</span></div>
-<div class="hero"><div class="photo"></div><div class="cap">Fonte documental: publicação jornalística encaminhada em 06/10/2026. Nesta versão web, a fotografia original não é reproduzida; o foco é a análise técnica e os elementos gráficos próprios.</div></div>
+<div class="hero"><img src="assets/reportagem_cabecalho.jpg" alt="Recorte da reportagem Efeito Dominó sobre o Garimpo Bom Futuro"><div class="cap">Fonte documental: recorte da reportagem encaminhada em 06/10/2026, reproduzido aqui como referência visual da análise técnica.</div></div>
 <div class="note"><b>Mensagem central:</b> a nova publicação amplia o foco de uma barragem isolada para um sistema de sete estruturas. O quadro justifica acompanhamento sistêmico prioritário, mas não demonstra, por si só, ruptura iminente ou colapso em cadeia em curso.</div>
 <div class="kpis">
-<div class="kpi"><small>CRI alto</small><strong>5/7</strong></div>
-<div class="kpi"><small>NE1</small><strong>5/7</strong></div>
-<div class="kpi"><small>Embargadas</small><strong>5/7</strong></div>
-<div class="kpi"><small>DCE não enviada</small><strong>6/7</strong></div>
+<div class="kpi"><small>CRI alto</small><strong>5 de 7</strong></div>
+<div class="kpi"><small>NE1</small><strong>5 de 7</strong></div>
+<div class="kpi"><small>Embargadas</small><strong>5 de 7</strong></div>
+<div class="kpi"><small>DCE não enviada</small><strong>6 de 7</strong></div>
 </div>
 <div class="footer"><span>SOE/ANA – Gabinete | com suporte de IA</span><span>1</span></div>
 </section>
@@ -51,10 +51,10 @@ table{width:100%;border-collapse:collapse;font-size:10.5px}th,td{border:1px soli
 <section class="page">
 <h2>1. Leitura analítica dos indicadores</h2>
 <p>A concentração de cinco estruturas com CRI alto, cinco em NE1 e cinco embargadas é suficiente para justificar maior atenção técnica e regulatória. Contudo, essas classificações não devem ser traduzidas automaticamente como probabilidade numérica de ruptura.</p>
-<div class="chart"><span>CRI alto</span><div class="bar"><i style="width:71.4%"></i></div><b>5/7</b></div>
+<div class="chart"><span>CRI alto</span><div class="bar"><i style="width:71.4%"></i></div><b>5 de 7</b></div>
 <div class="chart"><span>NE1</span><div class="bar"><i style="width:71.4%"></i></div><b>5/7</b></div>
 <div class="chart"><span>Embargadas</span><div class="bar"><i style="width:71.4%"></i></div><b>5/7</b></div>
-<div class="chart"><span>DCE não enviada</span><div class="bar"><i style="width:85.7%"></i></div><b>6/7</b></div>
+<div class="chart"><span>DCE não enviada</span><div class="bar"><i style="width:85.7%"></i></div><b>6 de 7</b></div>
 <div class="warn"><b>Leitura regulatória:</b> NE1 é condição de emergência relevante, mas não significa necessariamente ruptura iminente. CRI alto é uma classificação de fatores de risco, e não uma probabilidade estatística de falha.</div>
 <h2 style="margin-top:18px">2. Quadro das sete estruturas</h2>
 <table>
