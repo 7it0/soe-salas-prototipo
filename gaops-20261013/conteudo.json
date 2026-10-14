@@ -1,0 +1,682 @@
+{
+  "sections": [
+    {
+      "id": "executivo",
+      "title": "Resumo executivo",
+      "paras": [
+        "A bacia do Paraíba do Sul chega à 115ª reunião do GAOPS, realizada em 13/10/2026, com recuperação hidrológica expressiva após as chuvas de setembro e do início de outubro. O ONS apresenta vazão natural de Santa Cecília em 247% da média de longo termo (MLT) em setembro e 189% da MLT em outubro, até 12/10. Trata-se de mudança importante em relação a maio-agosto, quando os valores mensais ficaram entre 69% e 79% da MLT [O, p. 3].",
+        "O CEMADEN classifica os seis recortes do índice de seca bivariado TSI-6 como normais em setembro. Em agosto, cinco estavam em seca fraca ou moderada. Essa melhora sintetiza chuva e vazão em seis meses; não significa, por si só, que todos os reservatórios recuperaram a mesma proporção de estoque ou que os riscos locais desapareceram [C, p. 6].",
+        "O conjunto meteorológico e hidrológico oferece perspectiva favorável à continuidade dos aportes no curto prazo. A previsão GEFS apresentada pelo CEMADEN chega a aproximadamente 142 mm em 14 dias; o MHD e o GloFAS mostram sinais de vazões elevadas, com dispersão e mudança ao longo do horizonte. Os produtos de quatro semanas, 45 dias e sazonais não devem ser fundidos em uma previsão única [I, pp. 8-13; C, pp. 10-18].",
+        "Na simulação do ONS, o equivalente observado passa de 39,8% em setembro para 49,0% em outubro; as projeções são 46,4% em novembro e 41,6% no final de novembro, acima da curva apresentada. A trajetória é condicional às premissas da simulação, não detalhadas no slide. Outros gráficos destacam 51,19% com rodapés antigos: esse valor não é adotado aqui como posição confirmada em 12/10 [O, pp. 5-7, 15].",
+        "Implicação para o acompanhamento: verificar a persistência das chuvas, a conversão em afluências e o balanço de cada reservatório, conciliando a recomposição de estoques com a operação e os usos múltiplos. As apresentações sustentam melhora do quadro; não documentam, isoladamente, novas deliberações ou alterações de regras. Esta NT consolida as fontes recebidas e propõe pontos de controle para a SOE."
+      ],
+      "table": null
+    },
+    {
+      "id": "contexto",
+      "title": "1. Contexto, escopo e funções institucionais",
+      "paras": [
+        "Esta nota consolida as três apresentações fornecidas para a 115ª Reunião do Grupo de Assessoramento à Operação do Sistema Hidráulico Paraíba do Sul (GAOPS), de 13 de outubro de 2026. A elaboração tem posição documental em 14/10/2026 e mantém os cortes temporais dos dados originais. O ano hidrológico em curso é 2026/2027; as séries de 2025/2026 entram como antecedentes.",
+        "O sistema articula áreas contribuintes, reservatórios de regularização, aproveitamentos hidrelétricos e trechos utilizados para abastecimento e outras demandas. A análise requer encadear chuva, vazão natural, vazão operada e armazenamento: a melhora em uma dessas variáveis não substitui a verificação das demais.",
+        "A vertical meteorológica é identificada como INPE/INMET, conforme as marcas do documento, com apresentação de Diogo Arsego, meteorologista do INPE. A autoria da exposição e a origem dos produtos são preservadas. O papel do CEMADEN é integrar o diagnóstico de chuva e seca com previsões hidrológicas. O ONS apresenta explicitamente a “Análise hidrológica e hidráulica da bacia do Rio Paraíba do Sul”.",
+        "As repercussões sobre abastecimento, geração, usuários a jusante e planejamento são leitura integrada desta NT. As fontes não contêm inventário socioeconômico, quantificação de perdas ou registro completo dos debates. Não se atribuem às instituições conclusões socioambientais que elas não apresentaram."
+      ],
+      "table": [
+        [
+          "Vertical",
+          "Pergunta principal",
+          "Limite de interpretação"
+        ],
+        [
+          [
+            "INPE/INMET",
+            "Onde e quando choveu; perspectivas do tempo, subsazonais e sazonais",
+            "Chuva prevista não equivale a afluência ou a uma autorização de operação."
+          ],
+          [
+            "CEMADEN",
+            "Como chuva e vazão caracterizam seca e evolução hidrológica",
+            "TSI, modelos e percentis não são uma regra de despacho ou de alocação."
+          ],
+          [
+            "ONS",
+            "Como as condições hidrológicas se traduzem em operação, estoques e segurança",
+            "Simulação condicional; não substitui avaliação completa dos usos múltiplos."
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "inpe",
+      "title": "2. Vertical INPE/INMET: diagnóstico e perspectivas meteorológicas",
+      "paras": [
+        "O diagnóstico de julho-agosto-setembro e a evolução mensal mostram uma inflexão úmida em setembro, após irregularidade no ano hidrológico anterior. O painel parcial de outubro, até 12/10, mantém anomalias positivas sobre a região da bacia. É uma evidência espacial e temporal favorável à instalação da estação chuvosa, sem pressupor distribuição homogênea entre cabeceiras e trechos de jusante [I, pp. 3-5].",
+        "A previsão de tempo do BAM/CPTEC-INPE apresenta a sequência de quarta a sexta-feira, com validades de 14 a 17/10. A organização de chuva sobre o Sudeste e a região da bacia ganha expressão na sequência. Para a operação, interessa atualizar diariamente a localização dos maiores acumulados e a coincidência com áreas que alimentam Paraibuna, Jaguari, Santa Branca e Funil [I, p. 8].",
+        "No horizonte subsazonal, o BAM de referência 11/10 mostra anomalias favoráveis nas primeiras semanas, com menor uniformidade nos períodos seguintes. Isso sustenta acompanhamento da recorrência das chuvas, e não extrapolação de um único episódio para todo o trimestre [I, p. 9].",
+        "As distribuições de início da estação chuvosa expressam probabilidade e diferenças regionais. O painel sazonal conjunto CPTEC/INMET/FUNCEME para outubro-novembro-dezembro, produzido em setembro, indica tendência de temperatura elevada e sinal de chuva favorável em parte do centro-sul. A posição da bacia junto a uma transição espacial recomenda evitar um percentual único ou uma afirmação uniforme para toda sua extensão [I, pp. 11-13].",
+        "Leitura para a SOE: a variável decisiva é a persistência de chuva nas áreas contribuintes. O sinal meteorológico é favorável à recuperação, mas sua tradução em disponibilidade hídrica depende da resposta hidrológica e da operação. A previsão sazonal não permite fixar a sequência diária de eventos nem o comportamento de um município específico."
+      ],
+      "table": null
+    },
+    {
+      "id": "cemaden",
+      "title": "3. Vertical CEMADEN: chuva, seca e previsões hidrológicas",
+      "paras": [
+        "O acumulado dos últimos 30 dias, de 12/09 a 12/10, situa a bacia em um contexto de anomalias positivas. No painel temporal, o acumulado de 01 a 12/10 é 103,4 mm, e a climatologia indicada para outubro é 93,4 mm (base 2001-2024). A razão aritmética é aproximadamente 111%, mas compara uma observação parcial com a referência mensal apresentada; não é um percentual de anomalia calculado para os mesmos 12 dias [C, pp. 2-4].",
+        "O produto de estação chuvosa adota precipitação superior a 3 mm/dia em quatro de cinco dias e apresenta referência em 06/10. A ocorrência do critério em áreas da região reforça a instalação das chuvas, mas não determina simultaneidade em toda a bacia nem persistência futura [C, p. 5].",
+        "O TSI-6 combina precipitação e vazão, com séries de janeiro de 1981 a setembro de 2026. Em setembro, os seis recortes ficam na classe normal. Jaguari passa de -0,24 para 0,79; Funil de -0,73 para 0,23; Santa Branca de -1,18 para -0,33; Paraibuna de -1,16 para -0,29; Santa Cecília de -0,77 para 0,10; Ilha dos Pombos de -1,00 para -0,18. Valores ainda negativos em alguns recortes são compatíveis com a classe normal usada na apresentação [C, p. 6].",
+        "O GEFS/NOAA de 13/10 indica chuva nas duas semanas seguintes e acumulado central de aproximadamente 142 mm ao fim de 14 dias. A dispersão entre membros é visível e deve acompanhar a comunicação do número. Na terceira e quarta semanas, CFS/NOAA e ECMWF apresentam janelas diferentes; a comparação deve ser regional e qualitativa, não dia a dia [C, pp. 8-11].",
+        "O MHD apresenta previsão de 11/10 a 10/11 para Funil, Paraibuna, Santa Cecília e Ilha dos Pombos. As trajetórias centrais sugerem pulso de vazão seguido de redução e manutenção de aportes, enquanto as faixas do conjunto mostram incerteza. A referência de MLT é 1993-2024 e a forçante meteorológica é ECMWF-S2S. Não se extraíram valores exatos das curvas sem rótulos numéricos [C, p. 12].",
+        "O GloFAS/Lisflood, forçado por ECMWF, traz mapas semanais de 12/10 a 23/11 e produto sazonal OND. As categorias de percentis indicam sinal elevado inicialmente, com evolução e incerteza nos períodos seguintes. Percentis são relativos à climatologia do modelo; não podem ser convertidos diretamente em m³/s ou em níveis operativos dos reservatórios [C, pp. 13, 18].",
+        "O bloco ENSO reproduz informação do CPC/NOAA de 08/10, incluindo probabilidades de um evento de grande intensidade, e mostra anomalia de temperatura da superfície do mar destacada em +2,4 °C. São informações apresentadas pelo CEMADEN e não uma previsão local de impacto. As probabilidades de intensidade do ENSO não são probabilidades de inundação ou de chuva extrema no Paraíba do Sul [C, pp. 14-16].",
+        "A comparação sazonal de chuva usa novembro-dezembro-janeiro (NDJ), enquanto o INPE apresenta OND. Os anos análogos 1982, 1991, 1997, 2009, 2015 e 2023 exibem respostas diversas nas vazões. A utilidade gerencial é avaliar amplitude de comportamentos possíveis e atualizar cenários; não selecionar um ano como destino inevitável da bacia [C, pp. 17-19]."
+      ],
+      "table": [
+        [
+          "Recorte",
+          "TSI agosto",
+          "Classe agosto",
+          "TSI setembro",
+          "Classe setembro"
+        ],
+        [
+          [
+            "Jaguari",
+            "-0.24",
+            "Normal",
+            "0.79",
+            "Normal"
+          ],
+          [
+            "Funil",
+            "-0.73",
+            "Fraca",
+            "0.23",
+            "Normal"
+          ],
+          [
+            "Santa Branca",
+            "-1.18",
+            "Moderada",
+            "-0.33",
+            "Normal"
+          ],
+          [
+            "Paraibuna",
+            "-1.16",
+            "Moderada",
+            "-0.29",
+            "Normal"
+          ],
+          [
+            "Santa Cecília",
+            "-0.77",
+            "Fraca",
+            "0.10",
+            "Normal"
+          ],
+          [
+            "Ilha dos Pombos",
+            "-1.00",
+            "Moderada",
+            "-0.18",
+            "Normal"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "ons",
+      "title": "4. Vertical ONS: análise hidrológica e hidráulica da bacia",
+      "paras": [
+        "A contribuição do ONS organiza a passagem do diagnóstico hidrológico para as condições de operação do sistema. Seus gráficos cobrem vazão natural em Santa Cecília, armazenamento equivalente e individual, operação de Paraibuna, Santa Branca, Jaguari e Funil, curva de segurança e simulação. Essa estrutura não pretende substituir o diagnóstico meteorológico ou o levantamento socioambiental [O, pp. 1-15].",
+        "Em Santa Cecília, as médias mensais foram 69% da MLT em maio, 79% em junho, 78% em julho e 72% em agosto. Setembro alcançou 247% e outubro estava em 189% até 12/10. O aumento de setembro para o regime anterior é inequívoco, mas não se deve comparar outubro parcial como se fosse mês fechado. A série de 2014 aparece como referência histórica, sem implicar repetição de trajetória [O, pp. 3-4].",
+        "Nos gráficos de armazenamento histórico e por reservatório, o valor destacado é 51,19%, mas os rodapés informam 06/09/2026. O gráfico interanual informa 10/08/2026 embora o traçado de 2026 avance até outubro. Essas diferenças impedem atribuir automaticamente os 51,19% à posição de 12/10. A NT preserva as figuras e separa esse valor da série rotulada de observado/simulado do slide 15 [O, pp. 5-7].",
+        "Paraibuna mostra recuperação recente das afluências e estabilização/recomposição do estoque após redução no período anterior. Santa Branca evidencia o encadeamento entre afluência e defluência e inclui volume de espera. Jaguari apresenta estoque relativamente mais elevado e recuperação após pulso afluente. Funil exibe resposta acentuada do volume útil à melhora dos aportes. São leituras qualitativas dos gráficos; não se atribuem percentuais finais sem rótulos ou tabela de apoio [O, pp. 9-12].",
+        "A curva de segurança para operação normal, aplicável de abril a novembro de 2026, indica 23,8% em outubro, 16,7% em novembro e 11,6% no final de novembro. A legenda a identifica como curva de captação suplementar. Esses pontos são referências apresentadas pelo ONS; esta nota não deduz deles uma nova autorização ou alteração de regra [O, p. 14].",
+        "O slide de simulação registra armazenamento observado de 39,8% em setembro e 49,0% em outubro, diferença de +9,2 pontos percentuais. A simulação indica 46,4% em novembro e 41,6% no final de novembro, permanecendo acima da curva representada. As diferenças para a curva são 25,2 p.p. em outubro, 29,7 p.p. em novembro e 30,0 p.p. no final de novembro. São distâncias gráficas calculadas, não volume livre para alocação [O, p. 15].",
+        "Para uso decisório, é necessário conciliar as datas dos estoques, confirmar a data intramensal de cada ponto e conhecer as premissas hidrológicas e operativas da simulação. O material fornecido não explicita esse conjunto de premissas. A margem aparente é favorável, mas deve ser interpretada em conjunto com os balanços individuais, restrições e usos múltiplos."
+      ],
+      "table": [
+        [
+          "Período",
+          "Vazão natural em Santa Cecília",
+          "Situação"
+        ],
+        [
+          [
+            "Mai/26",
+            "69% MLT",
+            "Mês fechado"
+          ],
+          [
+            "Jun/26",
+            "79% MLT",
+            "Mês fechado"
+          ],
+          [
+            "Jul/26",
+            "78% MLT",
+            "Mês fechado"
+          ],
+          [
+            "Ago/26",
+            "72% MLT",
+            "Mês fechado"
+          ],
+          [
+            "Set/26",
+            "247% MLT",
+            "Mês fechado"
+          ],
+          [
+            "Out/26 até 12/10",
+            "189% MLT",
+            "Parcial até 12/10"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "cruzamento",
+      "title": "5. Cruzamento técnico e implicações para a gestão",
+      "paras": [
+        "As três verticais convergem em uma mudança favorável de estado: chuva recente com anomalias positivas, melhora do indicador conjunto chuva-vazão e recuperação das vazões naturais e do armazenamento representado pelo ONS. A convergência deve ser tratada como coerência entre evidências de escalas distintas, e não como igualdade entre métricas.",
+        "A sequência de interesse gerencial é: precipitação persistente nas áreas contribuintes; resposta das vazões naturais; afluências e defluências efetivas; alteração dos estoques; efeitos sobre disponibilidade e usuários. O TSI de seis meses responde a uma memória hidrológica; o reservatório responde ao balanço de entradas e saídas e às regras operativas.",
+        "Para abastecimento e captações, a recuperação pode favorecer a disponibilidade, mas a verificação exige condições locais e operação. Para geração, importa a trajetória das afluências, armazenamento e restrições. Para usuários a jusante, vazão natural não descreve sozinha os níveis e as oscilações resultantes da operação. Não há, nos anexos recebidos, quantificação de impactos locais que permita afirmar normalização integral dos usos.",
+        "A perspectiva úmida também recomenda acompanhar episódios intensos e a gestão de volumes de espera quando aplicável, sem declarar situação de cheia a partir apenas de percentis de modelo. A resposta deve ser proporcional a dados observados, previsões atualizadas e limites operativos verificados."
+      ],
+      "table": [
+        [
+          "Convergência",
+          "Evidência",
+          "Verificação necessária"
+        ],
+        [
+          [
+            "Recuperação recente",
+            "Anomalias de chuva; TSI normal; Santa Cecília 247% MLT em setembro",
+            "Persistência no espaço e no tempo."
+          ],
+          [
+            "Perspectiva favorável de aportes",
+            "BAM, GEFS, MHD e GloFAS",
+            "Emissões, janelas e incertezas distintas."
+          ],
+          [
+            "Melhora do equivalente",
+            "39,8% para 49,0% no slide ONS p15",
+            "Conciliação com o 51,19% e rodapés antigos."
+          ],
+          [
+            "Trajetória acima da curva",
+            "Simulação ONS até final de novembro",
+            "Premissas e restrições por reservatório."
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "cenarios",
+      "title": "6. Cenários e pontos de controle",
+      "paras": [
+        "Os cenários abaixo são interpretações condicionais desta NT, elaboradas a partir das apresentações. Não receberam probabilidades próprias e não constituem deliberação do GAOPS. O objetivo é ligar sinais observáveis a verificações de gestão.",
+        "Nos próximos 7-14 dias, o cenário coerente com os produtos apresentados é de continuidade de chuva e aportes. Deve-se conferir se os acumulados atingem as áreas contribuintes previstas e se há resposta de afluência. A previsão central de 142 mm é uma referência do GEFS, não um limiar de ação ou garantia de precipitação.",
+        "Em 3-4 semanas, a continuidade dos aportes depende da persistência meteorológica. A perda de uniformidade dos sinais e a dispersão do MHD recomendam reavaliar a trajetória ao menos a cada nova rodada disponível. O cotejo deve usar janelas compatíveis, especialmente entre CFS e ECMWF.",
+        "Em 30-60 dias, a referência operacional disponível é a simulação do ONS até o final de novembro, enquanto o GloFAS subsazonal termina em 23/11 e o sazonal se estende ao trimestre OND. Para além dos horizontes detalhados, o produto sazonal oferece orientação probabilística, sem resolver a operação diária."
+      ],
+      "table": [
+        [
+          "Cenário",
+          "Sinal a acompanhar",
+          "Implicação / ponto de controle"
+        ],
+        [
+          [
+            "Continuidade dos aportes",
+            "Chuva recorrente e afluências sustentadas",
+            "Verificar recomposição por reservatório e consistência com a simulação."
+          ],
+          [
+            "Interrupção das chuvas",
+            "Acumulados e afluências abaixo das trajetórias previstas",
+            "Recalcular balanço e ritmo de deplecionamento; não extrapolar setembro."
+          ],
+          [
+            "Eventos intensos concentrados",
+            "Acumulados de curto prazo e aumento rápido de afluências",
+            "Verificar condições a jusante, restrições e volume de espera aplicável."
+          ],
+          [
+            "Resposta espacial desigual",
+            "Recuperação em alguns recortes e fraca resposta em outros",
+            "Desagregar por área contribuinte e reservatório; evitar conclusão pela média da bacia."
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "recomendacoes",
+      "title": "7. Conclusões e recomendações de acompanhamento",
+      "paras": [
+        "A recuperação hidrológica recente é sustentada pelas três apresentações. A principal questão passa da identificação do déficit anterior para a confirmação da persistência dos aportes e de sua conversão em estoques e disponibilidade efetiva.",
+        "Recomenda-se conferir as datas dos gráficos de armazenamento do ONS e obter a posição diária consolidada; registrar as premissas da simulação; acompanhar afluência, defluência, volume útil e eventual volume de espera por reservatório; e comparar previsões e observações em janelas equivalentes.",
+        "Recomenda-se manter as verticais com identificação de fonte, data de emissão, validade, unidade e natureza do dado. Na divulgação pública, conservar os intervalos de incerteza e a distinção entre observação, previsão e simulação. Os gráficos interativos desta publicação reproduzem apenas valores explicitamente rotulados; não digitalizam curvas aproximadas como se fossem medições.",
+        "Não foram fornecidas ata, gravação ou notas de debate. Assim, esta nota não confirma novas regras, autorizações, pleitos, responsabilidades atribuídas ou data de próxima reunião. Esses itens devem ser incorporados apenas quando houver registro. O anexo final é uma síntese documental da reunião, e não uma ata oficial."
+      ],
+      "table": null
+    },
+    {
+      "id": "rastreabilidade",
+      "title": "Anexo A. Indicadores, fontes e conferências",
+      "paras": [
+        "Fontes primárias: [I] REUNIAO_ANA_GAOPS_13102026.pdf, 14 páginas, exposição de Diogo Arsego/INPE com marcas INPE e INMET; [C] Apres. CEMADEN Paraiba do Sul-131026 1.pdf, 19 páginas; [O] 115ª Reunião GAOPS-13-10-2026-Apresentação ONS.pdf, 16 páginas. Todos fornecidos pelo solicitante. A paginação citada corresponde à página física do PDF, não à numeração eventualmente impressa no slide.",
+        "Foram conferidos o texto e as figuras das três apresentações. A publicação não atualiza retroativamente os dados com informações posteriores à reunião. As reproduções dos gráficos preservam os títulos, legendas e datas originais; as ressalvas ficam nas legendas desta NT.",
+        "Conferências pendentes: [O, pp. 5-6] rodapé 06/09/2026 para gráfico com extensão até outubro; [O, p. 7] rodapé 10/08/2026 para série de 2026 que avança até outubro; [O, p. 15] data intramensal e premissas da simulação; [C, p. 12] sobreposição de texto no título original. Nenhuma dessas diferenças foi corrigida silenciosamente.",
+        "MLT: média de longo termo; VU: volume útil; p.p.: pontos percentuais; TSI-6: índice padronizado bivariado de chuva e vazão em seis meses; OND: outubro-novembro-dezembro; NDJ: novembro-dezembro-janeiro. A MLT do MHD é 1993-2024; não se presumiu que todas as outras referências climatológicas fossem idênticas."
+      ],
+      "table": [
+        [
+          "Indicador",
+          "Valor / período",
+          "Fonte / interpretação"
+        ],
+        [
+          [
+            "Chuva observada",
+            "103,4 mm, 01-12/10",
+            "C p4; parcial."
+          ],
+          [
+            "Climatologia de outubro",
+            "93,4 mm",
+            "C p4; referência mensal exibida."
+          ],
+          [
+            "GEFS 14 dias",
+            "~142 mm",
+            "C p10; previsão central aproximada."
+          ],
+          [
+            "TSI-6",
+            "6 de 6 recortes normais em setembro",
+            "C p6; diagnóstico chuva-vazão."
+          ],
+          [
+            "Equivalente observado",
+            "39,8% set; 49,0% out",
+            "O p15; datas intramensais não detalhadas."
+          ],
+          [
+            "Equivalente simulado",
+            "46,4% nov; 41,6% nov-final",
+            "O p15; cenário condicional."
+          ],
+          [
+            "Valor com data a conciliar",
+            "51,19%",
+            "O pp5-6; não adotado como estoque atual."
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "resumo-reuniao",
+      "title": "Anexo C. Resumo documental da 115ª reunião do GAOPS",
+      "paras": [
+        "Reunião: 13 de outubro de 2026. Objeto: acompanhamento das condições meteorológicas, hidrológicas e hidráulicas do sistema Paraíba do Sul. Base desta síntese: três apresentações institucionais, sem registro integral dos debates.",
+        "INPE/INMET: apresentou diagnóstico de chuva e anomalias, situação atmosférica, previsão de tempo BAM, tendência subsazonal e perspectiva OND. Mensagem técnica: contexto recente e perspectiva inicial favoráveis à chuva, com necessidade de observar persistência e diferenças espaciais.",
+        "CEMADEN: apresentou chuva observada, instalação da estação chuvosa, normalização do TSI-6 em seis recortes, previsões GEFS, MHD e GloFAS, além de contexto ENSO e anos análogos. Mensagem técnica: melhora do diagnóstico e perspectiva de aportes, com incerteza crescente e escalas de previsão distintas.",
+        "ONS: apresentou vazões naturais, estoques, operação dos quatro reservatórios principais, curva de segurança e simulação. Mensagem técnica: forte recuperação em Santa Cecília e trajetória simulada do equivalente acima da curva apresentada. Ressalva documental: conciliar datas e valores de armazenamento.",
+        "Síntese para gestão: confirmar a sustentação dos aportes, acompanhar balanços por reservatório e preservar a rastreabilidade das informações operacionais. Deliberações, responsáveis, prazos e próxima reunião: não confirmados nas fontes recebidas. Recomendações desta NT não são registradas como decisões do colegiado."
+      ],
+      "table": null
+    }
+  ],
+  "figures": [
+    {
+      "id": 1,
+      "inst": "inpe",
+      "page": 3,
+      "title": "Diagnóstico JAS/2026",
+      "caption": "Os mapas situam a mudança do trimestre: setembro concentra sinal positivo de anomalia sobre a região da bacia.",
+      "file": "assets/inpe-03.jpg"
+    },
+    {
+      "id": 2,
+      "inst": "inpe",
+      "page": 4,
+      "title": "Outubro até 12/10",
+      "caption": "Acumulado e anomalia são parciais; não representam o fechamento de outubro.",
+      "file": "assets/inpe-04.jpg"
+    },
+    {
+      "id": 3,
+      "inst": "inpe",
+      "page": 5,
+      "title": "Evolução mensal das anomalias",
+      "caption": "Setembro se destaca após meses de irregularidade. A série de anomalias não equivale ao volume armazenado.",
+      "file": "assets/inpe-05.jpg"
+    },
+    {
+      "id": 4,
+      "inst": "inpe",
+      "page": 8,
+      "title": "BAM: próximos dias",
+      "caption": "A sequência de 14 a 17/10 indica organização de chuva na região; a intensidade e a localização exigem atualização diária.",
+      "file": "assets/inpe-08.jpg"
+    },
+    {
+      "id": 5,
+      "inst": "inpe",
+      "page": 9,
+      "title": "BAM: quatro semanas",
+      "caption": "O sinal úmido inicial perde uniformidade espacial nos horizontes seguintes; preservar as janelas e a referência de 11/10.",
+      "file": "assets/inpe-09.jpg"
+    },
+    {
+      "id": 6,
+      "inst": "inpe",
+      "page": 12,
+      "title": "Início da estação chuvosa",
+      "caption": "Distribuições probabilísticas de início, sem uma data única válida para toda a bacia.",
+      "file": "assets/inpe-12.jpg"
+    },
+    {
+      "id": 7,
+      "inst": "inpe",
+      "page": 13,
+      "title": "Previsão conjunta OND/2026",
+      "caption": "Produto CPTEC/INMET/FUNCEME, produzido em setembro. O mapa favorece chuva em parte do centro-sul e temperaturas elevadas; a bacia está em zona de transição espacial.",
+      "file": "assets/inpe-13.jpg"
+    },
+    {
+      "id": 8,
+      "inst": "cemaden",
+      "page": 2,
+      "title": "Chuva dos últimos 30 dias",
+      "caption": "Janela 12/09 a 12/10/2026, com anomalias positivas na região da bacia.",
+      "file": "assets/cemaden-02.jpg"
+    },
+    {
+      "id": 9,
+      "inst": "cemaden",
+      "page": 4,
+      "title": "Chuva mensal e outubro parcial",
+      "caption": "103,4 mm de 01 a 12/10; a climatologia indicada para outubro é 93,4 mm. A barra parcial deve ser comparada com cautela ao mês completo.",
+      "file": "assets/cemaden-04.jpg"
+    },
+    {
+      "id": 10,
+      "inst": "cemaden",
+      "page": 5,
+      "title": "Instalação da estação chuvosa",
+      "caption": "Critério exibido: precipitação superior a 3 mm/dia em 4 de 5 dias, referência 06/10. A distribuição espacial interessa mais que uma data única.",
+      "file": "assets/cemaden-05.jpg"
+    },
+    {
+      "id": 11,
+      "inst": "cemaden",
+      "page": 6,
+      "title": "TSI-6: seis recortes em condição normal",
+      "caption": "Índice conjunto chuva-vazão, setembro de 2026; o mapa situa as áreas contribuintes e a série histórica contextualiza a melhora.",
+      "file": "assets/cemaden-06.jpg"
+    },
+    {
+      "id": 12,
+      "inst": "cemaden",
+      "page": 10,
+      "title": "GEFS: chuva prevista em 14 dias",
+      "caption": "A curva central chega a aproximadamente 142 mm no fim do horizonte; as trajetórias mostram dispersão. Não é chuva observada.",
+      "file": "assets/cemaden-10.jpg"
+    },
+    {
+      "id": 13,
+      "inst": "cemaden",
+      "page": 11,
+      "title": "Terceira e quarta semanas",
+      "caption": "CFS/NOAA e ECMWF mostram sinais regionais, mas usam janelas diferentes. Não comparar os painéis como períodos idênticos.",
+      "file": "assets/cemaden-11.jpg"
+    },
+    {
+      "id": 14,
+      "inst": "cemaden",
+      "page": 12,
+      "title": "MHD: vazões naturais até 10/11",
+      "caption": "Conjuntos para Paraibuna, Funil, Santa Cecília e Ilha dos Pombos. Os intervalos são parte essencial da informação; a trajetória central não é garantia operacional.",
+      "file": "assets/cemaden-12.jpg"
+    },
+    {
+      "id": 15,
+      "inst": "cemaden",
+      "page": 13,
+      "title": "GloFAS: horizonte até 23/11",
+      "caption": "Predomínio inicial de categorias de vazão acima e muito acima, com mudança de sinal/intensidade e incerteza no horizonte. Percentis, não vazão em m³/s.",
+      "file": "assets/cemaden-13.jpg"
+    },
+    {
+      "id": 16,
+      "inst": "cemaden",
+      "page": 16,
+      "title": "ENSO: informação reproduzida do CPC",
+      "caption": "A apresentação reproduz boletim de 08/10 e probabilidades de intensidade do evento. Isso não corresponde à probabilidade de chuva extrema na bacia.",
+      "file": "assets/cemaden-16.jpg"
+    },
+    {
+      "id": 17,
+      "inst": "cemaden",
+      "page": 17,
+      "title": "Chuva sazonal: NDJ",
+      "caption": "Comparação entre famílias de modelos para novembro-dezembro-janeiro, distinta do trimestre OND apresentado pelo INPE.",
+      "file": "assets/cemaden-17.jpg"
+    },
+    {
+      "id": 18,
+      "inst": "cemaden",
+      "page": 18,
+      "title": "GloFAS sazonal: OND",
+      "caption": "Sinal mais intenso de vazões elevadas em outubro; novembro e dezembro diferem. Preservar categoria e incerteza indicadas na legenda.",
+      "file": "assets/cemaden-18.jpg"
+    },
+    {
+      "id": 19,
+      "inst": "cemaden",
+      "page": 19,
+      "title": "Anos análogos de El Niño",
+      "caption": "1982, 1991, 1997, 2009, 2015 e 2023 ilustram a diversidade de respostas hidrológicas. Não constituem previsão determinística.",
+      "file": "assets/cemaden-19.jpg"
+    },
+    {
+      "id": 20,
+      "inst": "ons",
+      "page": 3,
+      "title": "Santa Cecília: vazão natural e MLT",
+      "caption": "Setembro: 247% da MLT; outubro: 189% da MLT até 12/10. A comparação com 2014 é contextual, não uma previsão.",
+      "file": "assets/ons-03.jpg"
+    },
+    {
+      "id": 21,
+      "inst": "ons",
+      "page": 6,
+      "title": "Estoques por reservatório e equivalente",
+      "caption": "Valor destacado de 51,19%, com rodapé 06/09/2026 e eixo avançando até outubro. Data de referência precisa ser conciliada antes do uso como estoque atual.",
+      "file": "assets/ons-06.jpg"
+    },
+    {
+      "id": 22,
+      "inst": "ons",
+      "page": 7,
+      "title": "Armazenamento entre 2020 e 2026",
+      "caption": "O traçado de 2026 avança até outubro, mas o rodapé informa 10/08/2026. A inconsistência foi preservada e sinalizada.",
+      "file": "assets/ons-07.jpg"
+    },
+    {
+      "id": 23,
+      "inst": "ons",
+      "page": 9,
+      "title": "Operação de Paraibuna",
+      "caption": "Afluência, defluência e volume útil: a recomposição depende do balanço acumulado e da continuidade dos aportes.",
+      "file": "assets/ons-09.jpg"
+    },
+    {
+      "id": 24,
+      "inst": "ons",
+      "page": 10,
+      "title": "Operação de Santa Branca",
+      "caption": "Afluência, defluência, volume útil e volume de espera. Não confundir percentuais de volume com vazão.",
+      "file": "assets/ons-10.jpg"
+    },
+    {
+      "id": 25,
+      "inst": "ons",
+      "page": 11,
+      "title": "Operação de Jaguari",
+      "caption": "O pulso afluente e a baixa defluência representada se associam à recuperação do estoque; valores finais não foram estimados visualmente.",
+      "file": "assets/ons-11.jpg"
+    },
+    {
+      "id": 26,
+      "inst": "ons",
+      "page": 12,
+      "title": "Operação de Funil",
+      "caption": "Resposta recente expressiva do volume útil e relação com afluências, defluências e volume de espera.",
+      "file": "assets/ons-12.jpg"
+    },
+    {
+      "id": 27,
+      "inst": "ons",
+      "page": 14,
+      "title": "Curva de segurança: operação normal",
+      "caption": "Referências de abril a novembro: outubro 23,8%; novembro 16,7%; final de novembro 11,6% do volume útil equivalente.",
+      "file": "assets/ons-14.jpg"
+    },
+    {
+      "id": 28,
+      "inst": "ons",
+      "page": 15,
+      "title": "Simulação do sistema equivalente",
+      "caption": "Observado: 39,8% em setembro e 49,0% em outubro. Simulado: 46,4% em novembro e 41,6% no final de novembro. Datas intramensais e premissas não estão explicitadas neste slide.",
+      "file": "assets/ons-15.jpg"
+    }
+  ],
+  "tsi": [
+    [
+      "Jaguari",
+      -0.24,
+      0.79,
+      "Normal"
+    ],
+    [
+      "Funil",
+      -0.73,
+      0.23,
+      "Fraca"
+    ],
+    [
+      "Santa Branca",
+      -1.18,
+      -0.33,
+      "Moderada"
+    ],
+    [
+      "Paraibuna",
+      -1.16,
+      -0.29,
+      "Moderada"
+    ],
+    [
+      "Santa Cecília",
+      -0.77,
+      0.1,
+      "Fraca"
+    ],
+    [
+      "Ilha dos Pombos",
+      -1.0,
+      -0.18,
+      "Moderada"
+    ]
+  ],
+  "flows": [
+    [
+      "Mai/26",
+      69
+    ],
+    [
+      "Jun/26",
+      79
+    ],
+    [
+      "Jul/26",
+      78
+    ],
+    [
+      "Ago/26",
+      72
+    ],
+    [
+      "Set/26",
+      247
+    ],
+    [
+      "Out/26 até 12/10",
+      189
+    ]
+  ],
+  "curve": [
+    [
+      "Abr",
+      57.7,
+      58.5,
+      null
+    ],
+    [
+      "Mai",
+      56.4,
+      58.9,
+      null
+    ],
+    [
+      "Jun",
+      50.8,
+      55.0,
+      null
+    ],
+    [
+      "Jul",
+      44.9,
+      52.1,
+      null
+    ],
+    [
+      "Ago",
+      38.2,
+      46.2,
+      null
+    ],
+    [
+      "Set",
+      30.8,
+      39.8,
+      null
+    ],
+    [
+      "Out",
+      23.8,
+      49.0,
+      null
+    ],
+    [
+      "Nov",
+      16.7,
+      null,
+      46.4
+    ],
+    [
+      "Nov-final",
+      11.6,
+      null,
+      41.6
+    ]
+  ]
+}

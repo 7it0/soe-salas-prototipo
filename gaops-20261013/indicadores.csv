@@ -1,0 +1,37 @@
+﻿grupo;local_periodo;indicador;valor;unidade;fonte_pagina;natureza
+TSI-6;Jaguari ago2026;TSI;-0,24;adimensional;CEMADEN p6;diagnostico
+TSI-6;Jaguari set2026;TSI;0,79;adimensional;CEMADEN p6;diagnostico
+TSI-6;Funil ago2026;TSI;-0,73;adimensional;CEMADEN p6;diagnostico
+TSI-6;Funil set2026;TSI;0,23;adimensional;CEMADEN p6;diagnostico
+TSI-6;Santa Branca ago2026;TSI;-1,18;adimensional;CEMADEN p6;diagnostico
+TSI-6;Santa Branca set2026;TSI;-0,33;adimensional;CEMADEN p6;diagnostico
+TSI-6;Paraibuna ago2026;TSI;-1,16;adimensional;CEMADEN p6;diagnostico
+TSI-6;Paraibuna set2026;TSI;-0,29;adimensional;CEMADEN p6;diagnostico
+TSI-6;Santa Cecília ago2026;TSI;-0,77;adimensional;CEMADEN p6;diagnostico
+TSI-6;Santa Cecília set2026;TSI;0,1;adimensional;CEMADEN p6;diagnostico
+TSI-6;Ilha dos Pombos ago2026;TSI;-1,0;adimensional;CEMADEN p6;diagnostico
+TSI-6;Ilha dos Pombos set2026;TSI;-0,18;adimensional;CEMADEN p6;diagnostico
+Santa Cecilia;Mai/26;vazao natural;69;%MLT;ONS p3;mensal
+Santa Cecilia;Jun/26;vazao natural;79;%MLT;ONS p3;mensal
+Santa Cecilia;Jul/26;vazao natural;78;%MLT;ONS p3;mensal
+Santa Cecilia;Ago/26;vazao natural;72;%MLT;ONS p3;mensal
+Santa Cecilia;Set/26;vazao natural;247;%MLT;ONS p3;mensal
+Santa Cecilia;Out/26 até 12/10;vazao natural;189;%MLT;ONS p3;parcial
+equivalente;Abr;curva;57,7;%VU;ONS p15;curva
+equivalente;Abr;observado;58,5;%VU;ONS p15;observado
+equivalente;Mai;curva;56,4;%VU;ONS p15;curva
+equivalente;Mai;observado;58,9;%VU;ONS p15;observado
+equivalente;Jun;curva;50,8;%VU;ONS p15;curva
+equivalente;Jun;observado;55,0;%VU;ONS p15;observado
+equivalente;Jul;curva;44,9;%VU;ONS p15;curva
+equivalente;Jul;observado;52,1;%VU;ONS p15;observado
+equivalente;Ago;curva;38,2;%VU;ONS p15;curva
+equivalente;Ago;observado;46,2;%VU;ONS p15;observado
+equivalente;Set;curva;30,8;%VU;ONS p15;curva
+equivalente;Set;observado;39,8;%VU;ONS p15;observado
+equivalente;Out;curva;23,8;%VU;ONS p15;curva
+equivalente;Out;observado;49,0;%VU;ONS p15;observado
+equivalente;Nov;curva;16,7;%VU;ONS p15;curva
+equivalente;Nov;simulado;46,4;%VU;ONS p15;simulado
+equivalente;Nov-final;curva;11,6;%VU;ONS p15;curva
+equivalente;Nov-final;simulado;41,6;%VU;ONS p15;simulado

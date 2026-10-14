@@ -1,0 +1,10 @@
+TÍTULO
+Paraíba do Sul: recuperação das vazões e perspectivas para o período chuvoso
+
+CHAMADA
+A síntese técnica da 115ª reunião do GAOPS, realizada em 13/10/2026, reúne as análises do INPE/INMET, CEMADEN e ONS sobre chuva, seca, vazões e operação dos reservatórios. A publicação oferece gráficos institucionais ampliáveis, indicadores interativos e a nota técnica completa em PDF.
+
+Página: https://7it0.github.io/soe-salas-prototipo/gaops-20261013/
+PDF: https://7it0.github.io/soe-salas-prototipo/gaops-20261013/NT_GAOPS_115_13-10-2026.pdf
+
+Publicação técnica para avaliação. Link externo em repositório pessoal.
