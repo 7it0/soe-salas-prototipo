@@ -1,7 +1,7 @@
 {
   "publication_version": "2.1",
   "meeting": "2026-10-21 / 13ª Pantanal",
-  "generated_at_utc": "2026-10-21T19:49:05.548805+00:00",
+  "generated_at_utc": "2026-10-21T20:00:57.203014+00:00",
   "figure_count": 18,
   "pdf_pages": 24,
   "original_docx_modified": false,
@@ -38,5 +38,19 @@
       "pages": 20,
       "bytes": 1401961
     }
+  },
+  "navigation": {
+    "component": "botoes-nt",
+    "version": "1.0",
+    "reference": "gaops-20261013/nt-final.html",
+    "actions": [
+      "Baixar NT completa · PDF",
+      "Ler NT integral",
+      "Baixar indicadores · CSV"
+    ],
+    "indicator_rows": 18,
+    "technical_content_changed": false,
+    "supervision_credit_changed": false,
+    "pdf_changed_by_toolbar": false
   }
 }
