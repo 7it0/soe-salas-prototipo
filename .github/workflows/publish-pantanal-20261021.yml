@@ -7,6 +7,7 @@ on:
       - '.github/workflows/publish-pantanal-20261021.yml'
       - 'pantanal/13a-2026-10-21/publicacao.json'
       - 'pantanal/13a-2026-10-21/build_publication.py'
+      - 'pantanal/13a-2026-10-21/publish.py'
   workflow_dispatch:
 
 permissions:
@@ -30,13 +31,15 @@ jobs:
             python -m playwright install --with-deps chromium
           fi
       - name: Build and validate complete publication
-        run: python pantanal/13a-2026-10-21/build_publication.py --output /tmp/pantanal-publication
+        run: python pantanal/13a-2026-10-21/publish.py --output /tmp/pantanal-publication
       - name: Preserve QA evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: pantanal-20261021-publication-qa
-          path: /tmp/pantanal-publication-qa/
+          path: |
+            /tmp/pantanal-publication-qa/
+            /tmp/pantanal-publication/
           if-no-files-found: ignore
           retention-days: 7
       - name: Publish only validated meeting files
