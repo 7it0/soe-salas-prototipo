@@ -1,0 +1,85 @@
+{
+  "version": "2.0",
+  "date": "21 de outubro de 2026",
+  "title": "13ª Reunião de Avaliação das Condições Hidrometeorológicas da Bacia do Alto Paraguai (Pantanal)",
+  "status": "Versão final de consolidação técnica das apresentações. Reunião encerrada sem ressalvas comunicadas. Recomendações analíticas não equivalem a deliberações formais.",
+  "summary": "As precipitações recentes apontam recuperação pluviométrica heterogênea, mas o TSI-12 ainda caracteriza seca hidrológica severa em Ladário e Porto Murtinho. A recuperação de cotas é espacialmente distinta. O ONS projeta redução do volume útil de Manso de 71,9% para 65,4% até 30/11 no cenário de defluência constante de 95 m³/s. A gestão deve conciliar segurança hídrica, regularização, navegação, ambiente e usos múltiplos.",
+  "sources": {
+    "inmet": {"label": "INMET/INPE", "filename": "reuniao_ana_altoparaguai_21102026.pdf", "sha256": "f58fa0e4b791893cf737ab546a834629781ca92070fb25f3f07b2489e9429304", "pages": 13},
+    "cemaden": {"label": "CEMADEN", "filename": "cemaden_pantanal_outubro26.pptx.pdf", "sha256": "40c87755eb2922a2a5510447dbe02a95da54ab392d5ac304f90ae46dfb85f93d", "pages": 24},
+    "sgb": {"label": "SGB", "filename": "20261021_sgb_cprm_paraguai.sureg.pdf", "sha256": "fea381b47c5e7a7101aea2a3831e0dbf0c36568f0bb0ce73ecf898d58fbb4fd9", "pages": 13},
+    "ons": {"label": "ONS", "filename": "apresentacao-ons-sala-de-acompanhamento-da-bacia-do-alto-paraguai-pantanal-21_10_2026.pdf", "sha256": "1f862333e9c4541e760193eb796cd38e3d5c23f51cc87ee21a6f34dc0dc02cc4", "pages": 20}
+  },
+  "sections": [
+    {
+      "id": "inmet", "title": "INMET/INPE — diagnóstico meteorológico e previsões",
+      "paragraphs": [
+        "A distribuição espacial das chuvas de julho a setembro e no acumulado parcial de outubro evidencia heterogeneidade na bacia. A recuperação pluviométrica não deve ser interpretada como recuperação simultânea das cotas fluviais.",
+        "As previsões de curto prazo (22–24/10), a projeção subsazonal BAM/INPE e o prognóstico sazonal novembro–janeiro devem ser interpretados em escalas temporais distintas. A climatologia destacada no material aponta 500–900 mm de precipitação e temperatura média de 24–28 °C no trimestre.",
+        "Implicação para a SOE: monitorar sobretudo a distribuição espacial e a persistência da chuva nas áreas de contribuição de cabeceira, evitando transformar probabilidades sazonais em volumes afluentes determinísticos."
+      ],
+      "figures": [
+        {"page": 3, "title": "Precipitação e anomalias — julho a setembro de 2026", "caption": "Diagnóstico mensal e trimestral. Os mapas de acumulado e anomalia devem ser lidos conjuntamente: chuva total e desvio em relação à referência climatológica são informações diferentes."},
+        {"page": 4, "title": "Precipitação parcial de outubro — até 20/10", "caption": "Distribuição espacial da chuva acumulada e das anomalias. O corte é parcial e não representa o fechamento de outubro."},
+        {"page": 8, "title": "Previsão de curto prazo — 22 a 24/10", "caption": "Sequência prevista pelo modelo MONAN. A posição dos núcleos de chuva em relação às áreas contribuintes importa para a resposta hidrológica; o mapa não fornece, isoladamente, uma previsão de afluência a Manso."},
+        {"page": 9, "title": "Previsão subsazonal — quatro semanas do BAM/INPE", "caption": "Painéis semanais de anomalia, com referência em 21/10/2026. A alternância espacial entre semanas impede tratar o horizonte inteiro como uma condição uniforme."},
+        {"page": 12, "title": "Prognóstico sazonal conjunto — novembro, dezembro e janeiro", "caption": "Probabilidades dos tercis de precipitação e temperatura. A referência temporal é novembro/dezembro de 2026 e janeiro de 2027; o cabeçalho da apresentação usa a forma abreviada NDJ/2026."}
+      ]
+    },
+    {
+      "id": "cemaden", "title": "CEMADEN — seca hidrológica, impactos e prognósticos",
+      "paragraphs": [
+        "A precipitação de outubro é indicada como 165% da média de longo termo no gráfico de monitoramento, mas os indicadores hidrológicos ainda registram seca. A diferença reflete memória hidrológica e defasagem da resposta dos cursos d’água.",
+        "Em 21/10, Ladário registra 123 cm, ante 117 cm em 30/09; Porto Murtinho, 320 cm, ante 238 cm. No TSI-12 parcial de outubro, ambos apresentam -1,59 (seca severa); no TSI-6, Ladário -1,31 (severa) e Porto Murtinho -1,25 (moderada). São indicadores de severidade, não equivalentes diretamente aos percentis de cotas.",
+        "Os produtos de previsão GEFS, ECMWF e GloFAS fornecem cenários probabilísticos de chuva, cotas e vazões. Atenção a impactos sobre navegação, ecossistemas, comunidades e usos múltiplos; o material não estabelece, por si, decisões operacionais."
+      ],
+      "figures": [
+        {"page": 8, "title": "Evolução da precipitação desde outubro de 2024", "caption": "O painel destaca outubro em 165% da referência apresentada. O mês está em curso: não interpretar o percentual como fechamento mensal nem como percentual de recuperação das cotas."},
+        {"page": 9, "title": "Ladário e Porto Murtinho — cotas observadas e histórico", "caption": "A tabela do slide registra 123 cm e 320 cm em 21/10, respectivamente. Entre 30/09 e 21/10, as diferenças são +6 cm e +82 cm. Percentuais anexos aos valores de cota não devem ser automaticamente chamados de percentis."},
+        {"page": 10, "title": "TSI — persistência de seca hidrológica", "caption": "Índice bivariado precipitação–cota em janelas de 12 e 6 meses. As classes são as informadas na apresentação: melhora frente a setembro não equivale a normalização hidrológica."},
+        {"page": 13, "title": "GEFS — previsão de chuva para a Bacia do Alto Paraguai", "caption": "Curva acumulada e dispersão dos membros do conjunto. O painel indica aproximadamente 63 mm ao fim de 14 dias; trata-se de previsão média de área, não de chuva uniforme em toda a bacia."},
+        {"page": 19, "title": "Condição do Pacífico apresentada pelo CEMADEN", "caption": "O slide de 21/10 identifica El Niño e destaca anomalia de +2,4 °C no produto NOAA ilustrado. É uma referência climática contextual da apresentação, não uma determinação direta da vazão em cada estação."},
+        {"page": 24, "title": "GloFAS — prognóstico sazonal de vazões naturais", "caption": "Mapas para novembro e dezembro de 2026 e janeiro de 2027. As categorias de anomalia e de incerteza precisam ser consideradas em conjunto; vazão natural prevista não é defluência operada de reservatório."}
+      ]
+    },
+    {
+      "id": "sgb", "title": "SGB — cotas, percentis e cenários de Ladário",
+      "paragraphs": [
+        "O SGB apresenta quadro de cotas e comparação com intervalos sazonais de normalidade, definidos entre os percentis de permanência 10% e 90% para a época do ano. A leitura deve distinguir o valor observado, sua posição histórica e a tendência de curto prazo.",
+        "A comparação por estação indica resposta espacialmente diferenciada. A análise de Ladário em horizonte de 180 dias contém cenários com grande dispersão, que não devem ser reduzidos a uma única trajetória determinística.",
+        "Recomenda-se manter vigilância das estações de referência e confrontar a previsão de longo prazo com observações semanais, especialmente para a navegação e o acompanhamento do pulso hidrológico pantaneiro."
+      ],
+      "figures": [
+        {"page": 3, "title": "Tabela de estações — posição em 20/10/2026", "caption": "Cotas, variações de 7 e 14 dias, mediana e intervalos históricos. O SGB apresenta 127 cm em Ladário e 316 cm em Porto Murtinho no dia 20/10; o CEMADEN usa o dia 21/10. A diferença de datas precisa ser preservada."},
+        {"page": 7, "title": "Chuva acumulada na área contribuinte de Porto Murtinho", "caption": "Comparação mensal baseada em MERGE/INPE. A lâmina contém rótulos de ano e períodos de referência que merecem conferência antes de reutilizar percentuais derivados; o acumulado do mês corrente é parcial."},
+        {"page": 12, "title": "Ladário — previsão de nível para 180 dias", "caption": "Trajetória média, séries históricas e cenários ameno e severo. As linhas de 0 e 100 cm são referências do gráfico; não são apresentadas aqui como limites universais de navegabilidade."}
+      ]
+    },
+    {
+      "id": "ons", "title": "ONS — armazenamento e estratégia operacional de Manso",
+      "paragraphs": [
+        "Em 20/10, a UHE Manso apresentava 71,9% de volume útil, afluência de cerca de 46 m³/s e defluência de 96 m³/s. O material registra a importância de Manso como principal reservatório de regularização da bacia, embora a participação energética da bacia no subsistema SE/CO seja pequena.",
+        "Na simulação de 21/10 a 30/11, com afluência média de 63 m³/s e defluência de 95 m³/s, o volume útil final estimado é 65,4%. A apresentação informa defluência mínima de 80 m³/s conforme FSARH 5645/2024, cuja aplicação depende das condições e restrições pertinentes.",
+        "Estratégia técnica recomendada, não deliberação da reunião: comparar cenários de 95 m³/s, 80 m³/s e operação adaptativa variável, quantificando benefícios de armazenamento e impactos a jusante. A diferença teórica de 15 m³/s ao longo de 41 dias corresponde a aproximadamente 53,1 hm³, ou 1,8 ponto percentual dos 2.951 hm³ de volume útil nominal. O cálculo não substitui simulação operacional do ONS."
+      ],
+      "figures": [
+        {"page": 6, "title": "Energia natural afluente e energia armazenada na bacia", "caption": "Posição do ONS até 19/10. O indicador agregado da bacia não se confunde com o percentual de volume útil de um reservatório específico."},
+        {"page": 11, "title": "Manso — afluência, defluência e volume útil", "caption": "Posição até 20/10: afluência de aproximadamente 46 m³/s, defluência de 96 m³/s e 71,9% de volume útil. O escoamento liberado supera o aporte observado, evidenciando uso do estoque na regularização."},
+        {"page": 18, "title": "Manso — premissas da simulação de 21/10 a 30/11", "caption": "Modelo SMAP/ONS com chuva estendida ECMWF; afluência média de 63 m³/s e defluência simulada de 95 m³/s. O mínimo de 80 m³/s é informado pelo ONS com referência à FSARH 5645/2024."},
+        {"page": 19, "title": "Manso — trajetória observada e cenário mediano de armazenamento", "caption": "A projeção termina em 65,4% de volume útil. O slide marca 71,7% na transição para o cenário, enquanto o painel operacional anterior informa 71,9%; preservam-se ambos os registros, sem forçar uma equivalência numérica."}
+      ]
+    }
+  ],
+  "crossings": [
+    "Convergência: CEMADEN e INMET/INPE identificam retomada parcial da precipitação; SGB e CEMADEN demonstram que o comportamento das cotas e os indicadores de seca respondem com defasagem.",
+    "Tensão operacional: afluência projetada em Manso (63 m³/s) inferior à defluência simulada (95 m³/s) implica consumo de armazenamento. A avaliação de redução de defluência requer explicitação dos impactos a jusante e das condições da FSARH.",
+    "Incerteza: previsões subsazonais e sazonais e a dispersão da previsão de 180 dias de Ladário exigem revisões periódicas; não justificam inferências determinísticas de cheia ou normalização hidrológica."
+  ],
+  "followup": [
+    ["SGB/ANA", "Atualizar semanalmente cotas, percentis e tendências em Ladário, Porto Murtinho e estações-chave."],
+    ["CEMADEN/INMET", "Atualizar IIS, TSI, chuva acumulada e projeções de 1–4 semanas, com atenção aos territórios e atividades expostos."],
+    ["ONS", "Caso demandado, apresentar simulações alternativas de defluência em Manso (95, 80 e variável), com volumes finais e repercussões a jusante."],
+    ["SOE", "Registrar eventuais encaminhamentos formais apenas quando documentados em ata ou confirmação dos participantes."]
+  ],
+  "record": "Informação recebida após o encerramento: reunião concluída sem ressalvas. Não foram fornecidos registros específicos de deliberações, manifestações ou alterações operacionais. Assim, nenhuma recomendação deste documento é atribuída como decisão formal dos participantes."
+}
