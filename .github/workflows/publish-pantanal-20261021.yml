@@ -8,6 +8,8 @@ on:
       - 'pantanal/13a-2026-10-21/publicacao.json'
       - 'pantanal/13a-2026-10-21/build_publication.py'
       - 'pantanal/13a-2026-10-21/publish.py'
+      - 'pantanal/13a-2026-10-21/standardize_buttons.py'
+      - 'pantanal/13a-2026-10-21/indicadores.csv'
   workflow_dispatch:
 
 permissions:
@@ -32,6 +34,8 @@ jobs:
           fi
       - name: Build and validate complete publication
         run: python pantanal/13a-2026-10-21/publish.py --output /tmp/pantanal-publication
+      - name: Apply GAOPS button standard and test downloads
+        run: python pantanal/13a-2026-10-21/standardize_buttons.py --output /tmp/pantanal-publication
       - name: Preserve QA evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -48,15 +52,16 @@ jobs:
           target='pantanal/13a-2026-10-21'
           test -s /tmp/pantanal-publication/index.html
           test -s /tmp/pantanal-publication/manifesto.json
+          test -s /tmp/pantanal-publication/indicadores.csv
           test -s /tmp/pantanal-publication/documentos/NT_Pantanal_13a_21102026_WEB.pdf
           cp -a /tmp/pantanal-publication/. "$target/"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add "$target/index.html" "$target/assets" "$target/fontes" "$target/documentos" "$target/manifesto.json"
+          git add "$target/index.html" "$target/assets" "$target/fontes" "$target/documentos" "$target/manifesto.json" "$target/indicadores.csv"
           if git diff --cached --quiet; then
             echo 'Publication already up to date'
             exit 0
           fi
-          git commit -m 'Publica Pantanal completo: 4 verticais, 18 figuras verificadas, fontes e PDF web'
+          git commit -m 'Preserva NT Pantanal integral e aplica botões padronizados PDF, HTML e CSV'
           git pull --rebase origin main
           git push origin HEAD:main
