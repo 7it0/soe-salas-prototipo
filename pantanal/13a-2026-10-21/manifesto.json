@@ -1,0 +1,42 @@
+{
+  "publication_version": "2.0",
+  "meeting": "2026-10-21 / 13ª Pantanal",
+  "generated_at_utc": "2026-10-21T19:29:08.228778+00:00",
+  "figure_count": 18,
+  "pdf_pages": 24,
+  "original_docx_modified": false,
+  "sources": {
+    "inmet": {
+      "institution": "INMET/INPE",
+      "view": "https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/reuniao_ana_altoparaguai_21102026.pdf/view",
+      "download": "https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/reuniao_ana_altoparaguai_21102026.pdf/@@download/file",
+      "sha256": "f58fa0e4b791893cf737ab546a834629781ca92070fb25f3f07b2489e9429304",
+      "pages": 13,
+      "bytes": 2882165
+    },
+    "cemaden": {
+      "institution": "CEMADEN",
+      "view": "https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/cemaden_pantanal_outubro26-pptx.pdf/view",
+      "download": "https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/cemaden_pantanal_outubro26-pptx.pdf/@@download/file",
+      "sha256": "40c87755eb2922a2a5510447dbe02a95da54ab392d5ac304f90ae46dfb85f93d",
+      "pages": 24,
+      "bytes": 10223665
+    },
+    "sgb": {
+      "institution": "SGB",
+      "view": "https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/20261021_sgb_cprm_paraguai-sureg.pdf/view",
+      "download": "https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/20261021_sgb_cprm_paraguai-sureg.pdf/@@download/file",
+      "sha256": "fea381b47c5e7a7101aea2a3831e0dbf0c36568f0bb0ce73ecf898d58fbb4fd9",
+      "pages": 13,
+      "bytes": 2167909
+    },
+    "ons": {
+      "institution": "ONS",
+      "view": "https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/apresentacao-ons-sala-de-acompanhamento-da-bacia-do-alto-paraguai-pantanal-21_10_2026.pdf/view",
+      "download": "https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/apresentacao-ons-sala-de-acompanhamento-da-bacia-do-alto-paraguai-pantanal-21_10_2026.pdf/@@download/file",
+      "sha256": "1f862333e9c4541e760193eb796cd38e3d5c23f51cc87ee21a6f34dc0dc02cc4",
+      "pages": 20,
+      "bytes": 1401961
+    }
+  }
+}
