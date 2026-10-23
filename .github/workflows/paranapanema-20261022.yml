@@ -6,9 +6,10 @@ on:
       - '.github/workflows/paranapanema-20261022.yml'
       - 'paranapanema/10a-2026-10-22/content.json'
       - 'paranapanema/10a-2026-10-22/build.py'
+      - 'paranapanema/10a-2026-10-22/publish.py'
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: paranapanema-20261022-build
   cancel-in-progress: false
@@ -25,7 +26,7 @@ jobs:
             python -m playwright install --with-deps chromium
           fi
       - name: Build and validate integral publication
-        run: python paranapanema/10a-2026-10-22/build.py --output /tmp/paranapanema-publicacao --qa /tmp/paranapanema-qa
+        run: python paranapanema/10a-2026-10-22/publish.py --output /tmp/paranapanema-publicacao --qa /tmp/paranapanema-qa
       - name: Preserve publication and visual checks
         if: always()
         uses: actions/upload-artifact@v4
@@ -34,6 +35,26 @@ jobs:
           path: |
             /tmp/paranapanema-publicacao/
             /tmp/paranapanema-qa/
-            paranapanema/10a-2026-10-22/build.py
           if-no-files-found: error
           retention-days: 7
+      - name: Commit only validated publication files
+        run: |
+          set -euo pipefail
+          target='paranapanema/10a-2026-10-22'
+          test -s /tmp/paranapanema-publicacao/index.html
+          test -s /tmp/paranapanema-publicacao/manifesto.json
+          test -s /tmp/paranapanema-publicacao/documentos/NT_Paranapanema_10a_22-10-2026.pdf
+          mkdir -p "$target/assets" "$target/fontes" "$target/documentos"
+          cp /tmp/paranapanema-publicacao/index.html "$target/index.html"
+          cp /tmp/paranapanema-publicacao/indicadores.csv "$target/indicadores.csv"
+          cp /tmp/paranapanema-publicacao/manifesto.json "$target/manifesto.json"
+          cp /tmp/paranapanema-publicacao/assets/*.png "$target/assets/"
+          cp /tmp/paranapanema-publicacao/fontes/*.pdf "$target/fontes/"
+          cp /tmp/paranapanema-publicacao/documentos/*.pdf "$target/documentos/"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$target/index.html" "$target/indicadores.csv" "$target/manifesto.json" "$target/assets" "$target/fontes" "$target/documentos"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Publica NT Paranapanema 22-10: CEMADEN e ONS, 24 figuras, PDF integral e indicadores'
+          git pull --rebase origin main
+          git push origin HEAD:main
