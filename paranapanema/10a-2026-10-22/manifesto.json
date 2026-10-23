@@ -2,7 +2,7 @@
   "meeting_date": "2026-10-22",
   "edition_date": "2026-10-23",
   "version": "1.0",
-  "generated_at_utc": "2026-10-23T12:50:16.865246+00:00",
+  "generated_at_utc": "2026-10-23T12:55:31.080741+00:00",
   "sources": {
     "cemaden": {
       "institution": "CEMADEN",
@@ -30,7 +30,7 @@
   "figure_count": 24,
   "indicator_rows": 29,
   "pdf_pages": 35,
-  "pdf_sha256": "c60427f3a7b273aa1c32f730ea0166d2985ca32d8ab3b0c5bb190685f1a926b7",
+  "pdf_sha256": "ff5117d8399bd0032619d2c11117d5ea2890d28f629e50a8fb10e042904d9b40",
   "formal_decisions_received": false,
   "scope": "Consolidação das duas apresentações publicadas; não comprova total de participantes.",
   "original_prior_publications_modified": false
