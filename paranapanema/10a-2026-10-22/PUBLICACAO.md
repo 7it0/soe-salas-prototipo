@@ -29,4 +29,6 @@ Elaboração com suporte de inteligência artificial (IA).
 
 Conteúdo comum no HTML e PDF; 24 figuras carregadas; fontes locais; downloads PDF/CSV; navegação; ampliação de figuras; apresentação em computador e celular; crédito de supervisão, cargo e suporte de IA em todas as páginas do PDF. Conferência visual das 35 páginas realizada antes do fechamento desta edição. Publicações anteriores não foram alteradas.
 
+As referências clicáveis do PDF apontam para os endereços públicos da publicação, não para o ambiente de geração. A correção dos links foi validada com comparação do texto e da renderização de todas as páginas, sem alteração do conteúdo visual ou analítico.
+
 Este repositório pessoal de protótipos não substitui publicação institucional, ato administrativo, ficha de restrição ou ata de reunião.
