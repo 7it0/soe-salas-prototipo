@@ -1,0 +1,88 @@
+name: Publish reviewed Northern Region 4th meeting
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/deploy-norte4-reviewed.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: norte4-reviewed-deploy
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: norte4-publicacao
+          run-id: 40017256007
+          github-token: ${{ github.token }}
+          path: /tmp/norte4-reviewed
+      - name: Preserve all content and optimize embedded figures for distribution
+        run: |
+          python -m pip install pymupdf pillow
+          python - <<'PY'
+          from pathlib import Path
+          import io,json,hashlib
+          import fitz
+          from PIL import Image
+          root=Path('/tmp/norte4-reviewed'); manifest=json.loads((root/'manifesto.json').read_text())
+          pdf=root/'documentos/NT_Regiao_Norte_4a_23-10-2026.pdf'
+          assert hashlib.sha256(pdf.read_bytes()).hexdigest()==manifest['pdf_sha256']
+          assert hashlib.sha256(Path('regiao-norte/4a-2026-10-23/report.md').read_bytes()).hexdigest()==manifest['report_sha256']
+          doc=fitz.open(pdf);before=[p.get_text() for p in doc];toc=doc.get_toc();seen=set()
+          links=[[l.get('uri') for l in p.get_links() if l.get('uri')] for p in doc]
+          for page in doc:
+              for item in page.get_images(full=True):
+                  xref=item[0]
+                  if xref in seen:continue
+                  seen.add(xref)
+                  image=Image.open(io.BytesIO(doc.extract_image(xref)['image'])).convert('RGB')
+                  stream=io.BytesIO();image.save(stream,format='JPEG',quality=94,subsampling=0,optimize=True)
+                  page.replace_image(xref,stream=stream.getvalue())
+          temp=pdf.with_suffix('.distribution.pdf');doc.save(temp,garbage=4,deflate=True);doc.close()
+          verified=fitz.open(temp)
+          assert len(verified)==60 and len(seen)==38
+          assert [p.get_text() for p in verified]==before
+          assert verified.get_toc()==toc
+          assert [[l.get('uri') for l in p.get_links() if l.get('uri')] for p in verified]==links
+          verified.close();temp.replace(pdf)
+          manifest['unoptimized_pdf_sha256']=manifest['pdf_sha256']
+          manifest['pdf_sha256']=hashlib.sha256(pdf.read_bytes()).hexdigest()
+          manifest['distribution_optimization']={'images':'JPEG quality 94; original pixel dimensions retained','all_text_tables_toc_links_pages_preserved':True,'web_figures':'Original PNG reproductions retained','pdf_bytes':pdf.stat().st_size}
+          (root/'manifesto.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf-8')
+          print('Complete PDF validated:',len(before),'pages,',pdf.stat().st_size,'bytes, no text/table/TOC/link changes.')
+          PY
+      - name: Publish only this meeting
+        run: |
+          set -euo pipefail
+          source=/tmp/norte4-reviewed
+          target=regiao-norte/4a-2026-10-23
+          mkdir -p "$target/assets" "$target/fontes" "$target/documentos"
+          cp "$source/index.html" "$target/index.html"
+          cp "$source/indicadores.csv" "$target/indicadores.csv"
+          cp "$source/manifesto.json" "$target/manifesto.json"
+          cp "$source/sources.json" "$target/sources.json"
+          cp "$source/assets/"*.png "$target/assets/"
+          cp "$source/fontes/"*.pdf "$target/fontes/"
+          cp "$source/documentos/"*.pdf "$target/documentos/"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$target/index.html" "$target/indicadores.csv" "$target/manifesto.json" "$target/sources.json" "$target/assets" "$target/fontes" "$target/documentos"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Publica Região Norte: 5 verticais, 38 figuras, NT completa 60 páginas e Sala de Crise em 04/12'
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Store exact PDF published
+        uses: actions/upload-artifact@v4
+        with:
+          name: norte4-entrega-final
+          path: |
+            /tmp/norte4-reviewed/documentos/
+            /tmp/norte4-reviewed/indicadores.csv
+            /tmp/norte4-reviewed/manifesto.json
+          retention-days: 7
