@@ -1,0 +1,374 @@
+[
+  {
+    "title": "I.1 — Índices de seca e cota de referência",
+    "intro": "CEMADEN • TSI-12 de outubro de 2026, parcial • Índice adimensional de precipitação e cota/vazão na janela de 12 meses. As classes são as informadas na apresentação.",
+    "tables": [
+      {
+        "headers": [
+          "Bacia / sistema",
+          "Estação / recorte",
+          "TSI-12",
+          "Classe na fonte",
+          "Fonte"
+        ],
+        "rows": [
+          [
+            "Branco",
+            "Boa Vista",
+            "-1,41",
+            "Seca severa",
+            "C, p. 12"
+          ],
+          [
+            "Negro",
+            "Manaus",
+            "-1,35",
+            "Seca severa",
+            "C, p. 11"
+          ],
+          [
+            "Tapajós",
+            "Santarém",
+            "-0,61",
+            "Seca fraca",
+            "C, p. 11"
+          ],
+          [
+            "Amazonas",
+            "Óbidos",
+            "-0,34",
+            "Normal",
+            "C, p. 11"
+          ],
+          [
+            "Madeira",
+            "UHE Santo Antônio",
+            "0,15",
+            "Normal",
+            "C, p. 11"
+          ],
+          [
+            "Xingu",
+            "UHE Belo Monte",
+            "-1,18",
+            "Seca moderada",
+            "C, p. 13"
+          ],
+          [
+            "Tocantins",
+            "UHE Tucuruí",
+            "-1,45",
+            "Seca severa",
+            "C, p. 13"
+          ],
+          [
+            "Araguaia",
+            "Araguatins",
+            "-1,41",
+            "Seca severa",
+            "C, p. 13"
+          ],
+          [
+            "Tocantins",
+            "Descarreto",
+            "-1,31",
+            "Seca severa",
+            "C, p. 13"
+          ],
+          [
+            "Araguaia",
+            "Conceição do Araguaia",
+            "-1,50",
+            "Seca severa",
+            "C, p. 13"
+          ],
+          [
+            "Solimões",
+            "Manacapuru",
+            "-0,23",
+            "Normal",
+            "C, p. 14"
+          ],
+          [
+            "Solimões",
+            "Tabatinga",
+            "-0,25",
+            "Normal",
+            "C, p. 14"
+          ],
+          [
+            "Purus, conforme CEMADEN",
+            "Beruri*",
+            "0,22",
+            "Normal",
+            "C, p. 14"
+          ],
+          [
+            "Juruá",
+            "Santos Dumont",
+            "-0,20",
+            "Normal",
+            "C, p. 14"
+          ]
+        ],
+        "widths": [
+          175,
+          200,
+          70,
+          190,
+          95
+        ]
+      }
+    ],
+    "notes": [
+      "<b>Cota diária — Boa Vista / rio Branco:</b> 66 cm em 22/10/2026, referidos ao zero da régua local [C, p. 12]. Não é profundidade do rio nem volume disponível.",
+      "<b>Leitura:</b> índices normais em um recorte não implicam cota normal em cada dia. *Beruri é associado ao Purus no CEMADEN e ao Solimões no CENSIPAM; não fundir séries sem confirmar o código da estação.",
+      "<b>Uso anual:</b> manter a janela de 12 meses e o status parcial. TSI não é vazão, percentual de armazenamento ou contagem de municípios afetados."
+    ]
+  },
+  {
+    "title": "I.2 — Variação dos níveis nos sistemas monitorados",
+    "intro": "CENSIPAM / SipamHidro • Saldo de variação da cota em 15 dias nas lâminas apresentadas em 23/10/2026. Valores positivos indicam elevação; negativos, redução. A classe é a anomalia hidrológica da fonte.",
+    "tables": [
+      {
+        "headers": [
+          "Rio / sistema",
+          "Estação",
+          "Variação (cm)",
+          "Anomalia na fonte",
+          "Fonte"
+        ],
+        "rows": [
+          [
+            "Solimões",
+            "Tabatinga",
+            "−22",
+            "Negativa leve",
+            "P, p. 3"
+          ],
+          [
+            "Acre",
+            "Rio Branco/AC",
+            "+210",
+            "Normalidade",
+            "P, p. 4"
+          ],
+          [
+            "Solimões, conforme CENSIPAM",
+            "Beruri",
+            "−128",
+            "Negativa leve",
+            "P, p. 5"
+          ],
+          [
+            "Negro",
+            "Cucuí",
+            "+44",
+            "Normalidade",
+            "P, p. 6"
+          ],
+          [
+            "Branco",
+            "Boa Vista",
+            "−22",
+            "Negativa severa",
+            "P, p. 7"
+          ],
+          [
+            "Negro*",
+            "Manaus",
+            "−102",
+            "Negativa leve",
+            "P, p. 8"
+          ],
+          [
+            "Mamoré",
+            "Guajará-Mirim",
+            "−10",
+            "Normalidade",
+            "P, p. 9"
+          ],
+          [
+            "Madeira",
+            "Porto Velho",
+            "+196",
+            "Normalidade",
+            "P, p. 10"
+          ],
+          [
+            "Amazonas",
+            "Óbidos",
+            "−79",
+            "Negativa leve",
+            "P, p. 11"
+          ],
+          [
+            "Tapajós",
+            "Itaituba",
+            "−29",
+            "Negativa leve",
+            "P, p. 12"
+          ],
+          [
+            "Tapajós",
+            "Santarém",
+            "−54",
+            "Negativa leve",
+            "P, p. 13"
+          ],
+          [
+            "Iriri / Xingu",
+            "Pedra do Ó",
+            "−7",
+            "Negativa moderada",
+            "P, p. 14"
+          ],
+          [
+            "Araguaia",
+            "Xambioá",
+            "+9",
+            "Negativa moderada",
+            "P, p. 15"
+          ],
+          [
+            "Tocantins",
+            "Marabá",
+            "−30",
+            "Negativa leve",
+            "P, p. 16"
+          ]
+        ],
+        "widths": [
+          225,
+          165,
+          95,
+          150,
+          95
+        ]
+      }
+    ],
+    "notes": [
+      "<b>Leitura:</b> a reação nos últimos dias em Tabatinga e Boa Vista pode coexistir com saldo negativo no intervalo de 15 dias. A variação não representa cota absoluta nem vazão.",
+      "<b>Rastreabilidade:</b> *a lâmina 8 do CENSIPAM escreve “Solimões” para Manaus, enquanto a lâmina 30 identifica rio Negro. A divergência está registrada na NT. As janelas devem ser conferidas antes de comparar reuniões.",
+      "<b>Uso anual:</b> intervalos de 15 dias podem se sobrepor entre reuniões. Não somar esses saldos como se fossem uma série contínua anual."
+    ]
+  },
+  {
+    "title": "I.3 — Vazões naturais, armazenamento e operação",
+    "intro": "ONS • Setembro/2026 é observação mensal; outubro/2026 é o cenário inferior apresentado, condicionado ao SMAP/ONS e à chuva ECMWF. As duas naturezas estão separadas nas colunas.",
+    "tables": [
+      {
+        "headers": [
+          "Bacia / aproveitamento",
+          "Setembro observado\nQ natural (m³/s)",
+          "Setembro\n% MLT",
+          "Outubro: cenário inferior\nQ natural (m³/s)",
+          "Outubro\n% MLT",
+          "Fonte"
+        ],
+        "rows": [
+          [
+            "Madeira / Santo Antônio",
+            "6.387",
+            "121%",
+            "5.917",
+            "91%",
+            "O, p. 8"
+          ],
+          [
+            "Xingu / Pimental",
+            "807",
+            "76%",
+            "696",
+            "64%",
+            "O, p. 12"
+          ],
+          [
+            "Araguari / Ferreira Gomes",
+            "247",
+            "54%",
+            "115",
+            "42%",
+            "O, p. 14"
+          ],
+          [
+            "Teles Pires / Tapajós / São Manoel",
+            "540",
+            "78%",
+            "604",
+            "69%",
+            "O, p. 16"
+          ],
+          [
+            "Uatumã / Balbina",
+            "165",
+            "53%",
+            "211",
+            "77%",
+            "O, p. 18"
+          ]
+        ],
+        "widths": [
+          210,
+          125,
+          75,
+          150,
+          75,
+          95
+        ]
+      },
+      {
+        "title": "Posições de estoque e operação — até 22/10/2026",
+        "headers": [
+          "Recorte",
+          "Variável",
+          "Valor",
+          "Data / referência",
+          "Fonte"
+        ],
+        "rows": [
+          [
+            "Subsistema Norte",
+            "Energia armazenada",
+            "65 % EARmáx",
+            "22/10/2026",
+            "O, p. 6"
+          ],
+          [
+            "Balbina",
+            "Volume útil",
+            "55 % VU",
+            "Painel até 22/10/2026",
+            "O, p. 19"
+          ],
+          [
+            "Balbina",
+            "Vazão afluente",
+            "248 m³/s",
+            "Painel até 22/10/2026",
+            "O, p. 19"
+          ],
+          [
+            "Balbina",
+            "Vazão defluente",
+            "728 m³/s",
+            "Painel até 22/10/2026",
+            "O, p. 19"
+          ]
+        ],
+        "widths": [
+          145,
+          165,
+          130,
+          195,
+          95
+        ]
+      }
+    ],
+    "notes": [
+      "<b>Distinções:</b> MLT = média de longo termo; EAR = energia armazenada; VU = volume útil. 65% de EAR do Subsistema Norte não equivale ao VU de cada usina. Em Balbina, as vazões do painel não são médias mensais naturais.",
+      "<b>Registro para a memória anual:</b> a próxima reunião, em 04/12/2026, será denominada Sala de Crise em razão do El Niño, conforme informado pelo responsável no encerramento. Não equivale a nova autorização operativa.",
+      "<b>Subsídio ao Conjuntura:</b> este anexo é uma síntese da reunião, não uma estatística anual homologada. Consolidar observados comparáveis, substituir parciais apenas com rastreabilidade e manter previsões fora das séries observadas."
+    ]
+  }
+]

@@ -332,9 +332,9 @@
     }
   ],
   "figure_count": 38,
-  "pdf_pages": 60,
+  "pdf_pages": 63,
   "indicator_rows": 53,
-  "pdf_sha256": "a095b89d779770ad4ff455f1756457c4068cab38f4c3400daef2d93910aada59",
+  "pdf_sha256": "19f2c9b0b141983927bea385c60b54cadb3a9eeb7852b51dda7a69e02cf2e7f7",
   "report_sha256": "b966a1f5ffe38877667263cba3ce9868b2fedd4aad45727ea5b2512e774fcd85",
   "next_meeting": {
     "date": "2026-12-04",
@@ -346,7 +346,7 @@
     "all_paragraphs_in_pdf": true,
     "all_table_cells_in_pdf": true,
     "same_figures_html_pdf": true,
-    "toc_entries": 18,
+    "toc_entries": 19,
     "credits_every_page": true
   },
   "unoptimized_pdf_sha256": "5bd23fb2cfde8780ec8c31adc9fa1f0c558945ed9ddd54f4d4be0e7dddba2534",
@@ -354,6 +354,33 @@
     "images": "JPEG quality 94; original pixel dimensions retained",
     "all_text_tables_toc_links_pages_preserved": true,
     "web_figures": "Original PNG reproductions retained",
-    "pdf_bytes": 39677676
+    "pdf_bytes": 20772202
+  },
+  "version": "1.1",
+  "anexo_i": {
+    "title": "ANEXO I — Resumo para o Relatório Anual / reunião em números",
+    "web_anchor": "anexo-i",
+    "pdf": "documentos/Anexo_I_Regiao_Norte_23-10-2026.pdf",
+    "pdf_sha256": "3677e851830873137272a05b4aef2211e23a33f2b2a19ebba505715bb0fc5e85",
+    "pages": 3,
+    "records": 53,
+    "button_after": "Dados e indicadores"
+  },
+  "editorial_revision": {
+    "revision": "1.1",
+    "change": "Inclusão do Anexo I — Resumo anual / reunião em números",
+    "annex_pages": [
+      23,
+      24,
+      25
+    ],
+    "annex_standalone_pages": 3,
+    "previous_pdf_sha256": "a095b89d779770ad4ff455f1756457c4068cab38f4c3400daef2d93910aada59",
+    "csv_sha256": "6b374f65e87b665d9a10d88211c77373d286ee92f1ec99379759cbfa9d1e918b",
+    "csv_unchanged": true,
+    "records_represented": 53,
+    "original_figures_preserved": true,
+    "original_analysis_preserved": true,
+    "annual_note": "Retratos de reuniões não constituem automaticamente estatísticas anuais; evitar duplicações, sobreposições e mistura com previsões."
   }
 }

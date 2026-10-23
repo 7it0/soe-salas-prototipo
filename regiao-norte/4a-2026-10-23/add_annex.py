@@ -75,7 +75,7 @@ def make_annex(out,blocks):
         for spec in block['tables']:
             if spec.get('title'):story.extend([Spacer(1,8),Paragraph(spec['title'],st['sub'])])
             content=[[Paragraph(esc(v).replace('\n','<br/>'),st['head']) for v in spec['headers']]]
-            content.extend([[Paragraph(esc(v),st['cell']) for v in row] for row in spec['rows'])
+            content.extend([[Paragraph(esc(v),st['cell']) for v in row] for row in spec['rows']])
             t=Table(content,colWidths=spec['widths'],repeatRows=1,hAlign='LEFT')
             t.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),colors.HexColor(BLUE)),('VALIGN',(0,0),(-1,-1),'TOP'),('GRID',(0,0),(-1,-1),.4,colors.HexColor('#C7D7DF')),('ROWBACKGROUNDS',(0,1),(-1,-1),[colors.white,colors.HexColor('#F2F6F7')]),('LEFTPADDING',(0,0),(-1,-1),6),('RIGHTPADDING',(0,0),(-1,-1),6),('TOPPADDING',(0,0),(-1,-1),4),('BOTTOMPADDING',(0,0),(-1,-1),4)]));story.append(t)
         story.append(Spacer(1,8));story.extend(Paragraph(note,st['note']) for note in block['notes'])
