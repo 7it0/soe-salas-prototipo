@@ -1,0 +1,27 @@
+{
+  "inpe": {
+    "view": "https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/reuniao_ana_regiao_norte_23102026_inpe-inmet.pdf/view",
+    "download": "https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/reuniao_ana_regiao_norte_23102026_inpe-inmet.pdf/@@download/file",
+    "sha256": "3963d47f224f9c3cfdff84cfec12381af32722235ee2af70c83727a0dd4f1c25"
+  },
+  "cemaden": {
+    "view": "https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/apres-cemaden-regiao-norte_231026.pdf/view",
+    "download": "https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/apres-cemaden-regiao-norte_231026.pdf/@@download/file",
+    "sha256": "1ee23f7eeb60f903aa8cbb0fa2e53e226068d80c653d3244c2de3a065513e7b0"
+  },
+  "sgb": {
+    "view": "https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/261023_sala_de_acompanhamento_ana_sgb.pdf/view",
+    "download": "https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/261023_sala_de_acompanhamento_ana_sgb.pdf/@@download/file",
+    "sha256": "4c4915b3056d58a947675e45925e819720ca9b1732965d353b6ffb47a8c3face"
+  },
+  "censipam": {
+    "view": "https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/censipam_sala_crise_ana-10_2026-1.pdf/view",
+    "download": "https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/censipam_sala_crise_ana-10_2026-1.pdf/@@download/file",
+    "sha256": "b1c7b9a42df9393707a225cf0cb60e6e6279e7b6c0f5cbe90e938eb3a011f577"
+  },
+  "ons": {
+    "view": "https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/apresentacao-ons-reuniao-de-avaliacao-das-condicoes-hidrometeorologicas-da-regiao-norte-23_10_2026.pdf/view",
+    "download": "https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/apresentacao-ons-reuniao-de-avaliacao-das-condicoes-hidrometeorologicas-da-regiao-norte-23_10_2026.pdf/@@download/file",
+    "sha256": "35a9dce60983d8bcdb9008e0ac57d061031c6c4a6272e9779fc9a4e02a40c8c7"
+  }
+}

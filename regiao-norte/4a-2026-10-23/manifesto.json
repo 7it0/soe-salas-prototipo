@@ -1,0 +1,359 @@
+{
+  "meeting": "4ª Região Norte",
+  "date": "2026-10-23",
+  "edition": "1.0",
+  "generated_at_utc": "2026-10-23T20:12:16.735099+00:00",
+  "sources": {
+    "inpe": {
+      "sha256": "3963d47f224f9c3cfdff84cfec12381af32722235ee2af70c83727a0dd4f1c25",
+      "pages": 16
+    },
+    "cemaden": {
+      "sha256": "1ee23f7eeb60f903aa8cbb0fa2e53e226068d80c653d3244c2de3a065513e7b0",
+      "pages": 31
+    },
+    "sgb": {
+      "sha256": "4c4915b3056d58a947675e45925e819720ca9b1732965d353b6ffb47a8c3face",
+      "pages": 21
+    },
+    "censipam": {
+      "sha256": "b1c7b9a42df9393707a225cf0cb60e6e6279e7b6c0f5cbe90e938eb3a011f577",
+      "pages": 37
+    },
+    "ons": {
+      "sha256": "35a9dce60983d8bcdb9008e0ac57d061031c6c4a6272e9779fc9a4e02a40c8c7",
+      "pages": 20
+    }
+  },
+  "figures": [
+    {
+      "number": 1,
+      "key": "inpe",
+      "page": 3,
+      "title": "Precipitação e anomalias — julho a setembro",
+      "caption": "Acumulado e desvio climatológico são informações diferentes; preservar a heterogeneidade espacial.",
+      "src": "assets/inpe_03.png"
+    },
+    {
+      "number": 2,
+      "key": "inpe",
+      "page": 4,
+      "title": "Outubro parcial — até 22/10",
+      "caption": "A distribuição da chuva não demonstra recuperação homogênea dos rios.",
+      "src": "assets/inpe_04.png"
+    },
+    {
+      "number": 3,
+      "key": "inpe",
+      "page": 8,
+      "title": "BAM — previsão de curto prazo",
+      "caption": "Janelas diárias de 24 a 27/10 em UTC. Chuva prevista não equivale a afluência.",
+      "src": "assets/inpe_08.png"
+    },
+    {
+      "number": 4,
+      "key": "inpe",
+      "page": 9,
+      "title": "BAM — primeira e segunda semanas",
+      "caption": "Rodada de 21/10; janelas 21–27/10 e 28/10–03/11.",
+      "src": "assets/inpe_09.png"
+    },
+    {
+      "number": 5,
+      "key": "inpe",
+      "page": 10,
+      "title": "BAM — terceira e quarta semanas",
+      "caption": "Janelas 04–10/11 e 11–17/11. O sinal varia no espaço e no tempo.",
+      "src": "assets/inpe_10.png"
+    },
+    {
+      "number": 6,
+      "key": "inpe",
+      "page": 15,
+      "title": "Previsão conjunta — NDJ/2026–2027",
+      "caption": "Probabilidade de tercis. Áreas brancas não significam ausência de precipitação.",
+      "src": "assets/inpe_15.png"
+    },
+    {
+      "number": 7,
+      "key": "cemaden",
+      "page": 5,
+      "title": "Índice Integrado de Seca",
+      "caption": "Janelas de 3 e 6 meses. Preservar a diferença entre título e referência temporal dos mapas.",
+      "src": "assets/cemaden_05.png"
+    },
+    {
+      "number": 8,
+      "key": "cemaden",
+      "page": 8,
+      "title": "Cotas e referência de longo termo",
+      "caption": "A coluna de desvios contém inconsistências aritméticas identificadas no capítulo 12; a figura original não foi corrigida.",
+      "src": "assets/cemaden_08.png"
+    },
+    {
+      "number": 9,
+      "key": "cemaden",
+      "page": 9,
+      "title": "SPEI — chuva e demanda atmosférica",
+      "caption": "Setembro, janelas de 3, 6 e 12 meses. Não é medição direta da evapotranspiração real.",
+      "src": "assets/cemaden_09.png"
+    },
+    {
+      "number": 10,
+      "key": "cemaden",
+      "page": 11,
+      "title": "TSI-12 — Negro, Tapajós, Amazonas e Madeira",
+      "caption": "Classes e valores transcritos da instituição, não recalculados pela NT.",
+      "src": "assets/cemaden_11.png"
+    },
+    {
+      "number": 11,
+      "key": "cemaden",
+      "page": 12,
+      "title": "Roraima — seca e cota em Boa Vista",
+      "caption": "66 cm em 22/10; TSI -1,41. Percentual da cota não é percentual de vazão ou disponibilidade.",
+      "src": "assets/cemaden_12.png"
+    },
+    {
+      "number": 12,
+      "key": "cemaden",
+      "page": 13,
+      "title": "TSI-12 — Xingu e Tocantins–Araguaia",
+      "caption": "Recortes orientais apresentam classes diferentes; preservar cada área contribuinte.",
+      "src": "assets/cemaden_13.png"
+    },
+    {
+      "number": 13,
+      "key": "cemaden",
+      "page": 14,
+      "title": "TSI-12 — Solimões, Purus, Juruá e Tapajós",
+      "caption": "Índice normal pode coexistir com nível abaixo de uma referência em determinado dia.",
+      "src": "assets/cemaden_14.png"
+    },
+    {
+      "number": 14,
+      "key": "cemaden",
+      "page": 25,
+      "title": "GloFAS — projeção subsazonal",
+      "caption": "Datas dos painéis cobrem cerca de cinco semanas apesar do título mencionar 45 dias.",
+      "src": "assets/cemaden_25.png"
+    },
+    {
+      "number": 15,
+      "key": "cemaden",
+      "page": 30,
+      "title": "GloFAS — vazões naturais sazonais",
+      "caption": "Novembro/dezembro de 2026 e janeiro de 2027; ler categoria de anomalia e incerteza conjuntamente.",
+      "src": "assets/cemaden_30.png"
+    },
+    {
+      "number": 16,
+      "key": "sgb",
+      "page": 4,
+      "title": "Síntese espacial da condição hidrológica",
+      "caption": "Branco–Negro, Madeira e Alto Solimões apresentam situações diferentes.",
+      "src": "assets/sgb_04.png"
+    },
+    {
+      "number": 17,
+      "key": "sgb",
+      "page": 11,
+      "title": "Tabatinga — cenário por análogos",
+      "caption": "Modelo em testes operacionais; tendência recente não equivale ao saldo dos últimos 15 dias.",
+      "src": "assets/sgb_11.png"
+    },
+    {
+      "number": 18,
+      "key": "sgb",
+      "page": 13,
+      "title": "Manaus — cenário por análogos",
+      "caption": "Trajetória condicionada ao modelo e à sua incerteza, não uma data garantida de recuperação.",
+      "src": "assets/sgb_13.png"
+    },
+    {
+      "number": 19,
+      "key": "sgb",
+      "page": 16,
+      "title": "Caracaraí — cenário por análogos",
+      "caption": "A condição experimental indicada na apresentação é mantida.",
+      "src": "assets/sgb_16.png"
+    },
+    {
+      "number": 20,
+      "key": "sgb",
+      "page": 19,
+      "title": "Porto Velho — cenário por análogos",
+      "caption": "Conferir a trajetória com observações e com as condições locais de navegação.",
+      "src": "assets/sgb_19.png"
+    },
+    {
+      "number": 21,
+      "key": "sgb",
+      "page": 20,
+      "title": "Itaituba — cenário por análogos",
+      "caption": "A eventual recuperação não deve ser extrapolada a toda a rede hidrográfica.",
+      "src": "assets/sgb_20.png"
+    },
+    {
+      "number": 22,
+      "key": "censipam",
+      "page": 3,
+      "title": "Tabatinga — últimos 15 dias",
+      "caption": "Saldo negativo de 22 cm e reação nos últimos pontos são compatíveis.",
+      "src": "assets/censipam_03.png"
+    },
+    {
+      "number": 23,
+      "key": "censipam",
+      "page": 7,
+      "title": "Boa Vista — anomalia negativa severa",
+      "caption": "Saldo de -22 cm em 15 dias; pequena reação final não elimina o déficit.",
+      "src": "assets/censipam_07.png"
+    },
+    {
+      "number": 24,
+      "key": "censipam",
+      "page": 10,
+      "title": "Porto Velho — recuperação recente",
+      "caption": "Elevação de 196 cm no intervalo e normalidade na classificação apresentada.",
+      "src": "assets/censipam_10.png"
+    },
+    {
+      "number": 25,
+      "key": "censipam",
+      "page": 18,
+      "title": "Comparação com a mesma data de 2023",
+      "caption": "Situação mais favorável que um ano extremo não demonstra ausência de risco futuro.",
+      "src": "assets/censipam_18.png"
+    },
+    {
+      "number": 26,
+      "key": "censipam",
+      "page": 20,
+      "title": "Metodologia dos produtos de estiagem",
+      "caption": "Dt, variação em 30 dias, ICOE e IPO têm objetivos distintos dos índices bivariados de seca.",
+      "src": "assets/censipam_20.png"
+    },
+    {
+      "number": 27,
+      "key": "censipam",
+      "page": 23,
+      "title": "Evolução do déficit nos últimos 30 dias",
+      "caption": "Recuperação e agravamento coexistem em diferentes recortes.",
+      "src": "assets/censipam_23.png"
+    },
+    {
+      "number": 28,
+      "key": "censipam",
+      "page": 25,
+      "title": "Variação dos alertas ativos",
+      "caption": "Comparação entre 25/09 e 21/10; não equivale a inventário de danos comprovados.",
+      "src": "assets/censipam_25.png"
+    },
+    {
+      "number": 29,
+      "key": "censipam",
+      "page": 30,
+      "title": "Manaus — prognóstico de cota mínima",
+      "caption": "Identificação Rio Negro nesta lâmina; preservar ressalva sobre a lâmina 8.",
+      "src": "assets/censipam_30.png"
+    },
+    {
+      "number": 30,
+      "key": "ons",
+      "page": 6,
+      "title": "Subsistema Norte — ENA e EAR",
+      "caption": "65% EAR até 22/10 não equivale ao volume útil de cada reservatório.",
+      "src": "assets/ons_06.png"
+    },
+    {
+      "number": 31,
+      "key": "ons",
+      "page": 8,
+      "title": "Madeira — Santo Antônio",
+      "caption": "Setembro observado e cenário inferior para média de outubro são referências distintas.",
+      "src": "assets/ons_08.png"
+    },
+    {
+      "number": 32,
+      "key": "ons",
+      "page": 9,
+      "title": "Jirau — condicionante de navegação",
+      "caption": "Replecionamento depende da inexistência de restrições no trecho informado pela fonte.",
+      "src": "assets/ons_09.png"
+    },
+    {
+      "number": 33,
+      "key": "ons",
+      "page": 10,
+      "title": "Santo Antônio — operação observada",
+      "caption": "Nível de montante e vazões observadas até 22/10; não deduzir volume disponível apenas da cota.",
+      "src": "assets/ons_10.png"
+    },
+    {
+      "number": 34,
+      "key": "ons",
+      "page": 12,
+      "title": "Xingu — Belo Monte/Pimental",
+      "caption": "700 m³/s do TVR em outubro e 100 m³/s do reservatório intermediário não são o mesmo controle.",
+      "src": "assets/ons_12.png"
+    },
+    {
+      "number": 35,
+      "key": "ons",
+      "page": 14,
+      "title": "Araguari — Ferreira Gomes",
+      "caption": "Setembro em 54% da MLT; cenário inferior para outubro em 42% da MLT.",
+      "src": "assets/ons_14.png"
+    },
+    {
+      "number": 36,
+      "key": "ons",
+      "page": 16,
+      "title": "Teles Pires — São Manoel",
+      "caption": "Setembro em 78% da MLT; cenário inferior para outubro em 69% da MLT.",
+      "src": "assets/ons_16.png"
+    },
+    {
+      "number": 37,
+      "key": "ons",
+      "page": 18,
+      "title": "Uatumã — vazões naturais em Balbina",
+      "caption": "Médias naturais mensais não se confundem com as vazões do painel operativo.",
+      "src": "assets/ons_18.png"
+    },
+    {
+      "number": 38,
+      "key": "ons",
+      "page": 19,
+      "title": "Balbina — operação e armazenamento",
+      "caption": "Ponto final: aproximadamente 55% VU, 248 m³/s afluentes e 728 m³/s defluentes.",
+      "src": "assets/ons_19.png"
+    }
+  ],
+  "figure_count": 38,
+  "pdf_pages": 60,
+  "indicator_rows": 53,
+  "pdf_sha256": "a095b89d779770ad4ff455f1756457c4068cab38f4c3400daef2d93910aada59",
+  "report_sha256": "b966a1f5ffe38877667263cba3ce9868b2fedd4aad45727ea5b2512e774fcd85",
+  "next_meeting": {
+    "date": "2026-12-04",
+    "designation": "Sala de Crise",
+    "reason": "El Niño",
+    "provenance": "Informação do responsável após o encerramento"
+  },
+  "checks": {
+    "all_paragraphs_in_pdf": true,
+    "all_table_cells_in_pdf": true,
+    "same_figures_html_pdf": true,
+    "toc_entries": 18,
+    "credits_every_page": true
+  },
+  "unoptimized_pdf_sha256": "5bd23fb2cfde8780ec8c31adc9fa1f0c558945ed9ddd54f4d4be0e7dddba2534",
+  "distribution_optimization": {
+    "images": "JPEG quality 94; original pixel dimensions retained",
+    "all_text_tables_toc_links_pages_preserved": true,
+    "web_figures": "Original PNG reproductions retained",
+    "pdf_bytes": 39677676
+  }
+}
