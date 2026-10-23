@@ -1,0 +1,88 @@
+name: Regiao Norte 2026-10-23 publication
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/regiao-norte-20261023.yml'
+      - 'regiao-norte/4a-2026-10-23/report.md'
+      - 'regiao-norte/4a-2026-10-23/build.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: norte4-publication
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install tools
+        run: python -m pip install requests beautifulsoup4 pymupdf reportlab pillow markdown2
+      - name: Match official source copies to uploaded PDFs
+        run: |
+          python - <<'PY'
+          import requests,hashlib,json,re,unicodedata
+          from pathlib import Path
+          from urllib.parse import urljoin,unquote
+          from bs4 import BeautifulSoup
+          base='https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/'
+          expected={'inpe':'3963d47f224f9c3cfdff84cfec12381af32722235ee2af70c83727a0dd4f1c25','cemaden':'1ee23f7eeb60f903aa8cbb0fa2e53e226068d80c653d3244c2de3a065513e7b0','sgb':'4c4915b3056d58a947675e45925e819720ca9b1732965d353b6ffb47a8c3face','censipam':'b1c7b9a42df9393707a225cf0cb60e6e6279e7b6c0f5cbe90e938eb3a011f577','ons':'35a9dce60983d8bcdb9008e0ac57d061031c6c4a6272e9779fc9a4e02a40c8c7'}
+          out=Path('/tmp/norte4/fontes');out.mkdir(parents=True,exist_ok=True)
+          session=requests.Session();session.headers['User-Agent']='SOE-publication-verification/1.0'
+          def norm(s):return ''.join(c for c in unicodedata.normalize('NFKD',unquote(s).lower()) if not unicodedata.combining(c))
+          candidates=[]
+          for start in [0,20,40]:
+              u=base+'apresentacoes-das-reunioes'+('' if start==0 else '?b_start:int='+str(start))
+              r=session.get(u,timeout=90);r.raise_for_status()
+              soup=BeautifulSoup(r.text,'html.parser')
+              for a in soup.select('a[href]'):
+                  url=urljoin(u,a['href']);label=a.get_text(' ',strip=True);text=norm(url+' '+label)
+                  if url.startswith(base) and ('.pdf' in text or url.endswith('/view')):
+                      candidates.append((url,text))
+          candidates=list(dict.fromkeys(candidates));manifest={}
+          for key,sha in expected.items():
+              local=Path('regiao-norte/4a-2026-10-23/fontes')/(key+'.pdf')
+              if local.is_file() and hashlib.sha256(local.read_bytes()).hexdigest()==sha:
+                  (out/(key+'.pdf')).write_bytes(local.read_bytes());manifest[key]={'sha256':sha,'cached':True};continue
+              def score(c):
+                  u,t=c
+                  if key=='inpe':identity=('inpe' in t or 'inmet' in t)
+                  elif key=='sgb':identity=('sgb' in t or 'cprm' in t)
+                  else:identity=key in t
+                  if not identity:return -100
+                  return 15*any(x in t for x in ['20261023','23102026','23_10_2026','23-10-2026','231026','261023'])+8*('norte' in t)+2*('10_2026' in t or 'outubro' in t)
+              choices=[c for c in candidates if score(c)>0]
+              choices.sort(key=score,reverse=True)
+              for url,text in choices[:12]:
+                  try:
+                      view=url if url.endswith('/view') else url.split('/@@download')[0].rstrip('/')+'/view'
+                      r=session.get(view,timeout=45);r.raise_for_status()
+                      soup=BeautifulSoup(r.text,'html.parser')
+                      downloads=[urljoin(view,a['href']) for a in soup.select('a[href]') if '@@download/file' in a['href']]
+                      downloads+=[view.removesuffix('/view')+'/@@download/file']
+                      for download in dict.fromkeys(downloads):
+                          if not download.startswith(base):continue
+                          r=session.get(download,timeout=90);r.raise_for_status()
+                          if hashlib.sha256(r.content).hexdigest()==sha:
+                              (out/(key+'.pdf')).write_bytes(r.content);manifest[key]={'view':view,'download':download,'sha256':sha};break
+                      if key in manifest:break
+                  except requests.RequestException as e:print('Candidate unavailable',key,type(e).__name__,flush=True)
+              if key not in manifest:raise RuntimeError('No identical public copy located for '+key)
+              print('SOURCE IDENTICAL TO UPLOAD',key,manifest[key],flush=True)
+          Path('/tmp/norte4/sources.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf-8')
+          PY
+      - name: Generate publication when builder is available
+        run: |
+          if test -f regiao-norte/4a-2026-10-23/build.py; then
+            python regiao-norte/4a-2026-10-23/build.py --output /tmp/norte4
+          fi
+      - name: Save verified sources and publication
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: norte4-publicacao
+          path: /tmp/norte4/
+          if-no-files-found: error
+          retention-days: 7
