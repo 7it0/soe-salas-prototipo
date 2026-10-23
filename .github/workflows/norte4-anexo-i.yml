@@ -1,0 +1,111 @@
+name: Northern Region numerical annex revision 1.1
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/norte4-anexo-i.yml'
+      - 'regiao-norte/4a-2026-10-23/add_annex.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: norte4-annex-revision
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install document and verification tools
+        run: |
+          python -m pip install 'pymupdf==1.26.7' reportlab beautifulsoup4 playwright
+          if ! command -v google-chrome >/dev/null && ! command -v chromium >/dev/null; then
+            python -m playwright install --with-deps chromium
+          fi
+      - name: Preserve current analytical base and build annex
+        run: python regiao-norte/4a-2026-10-23/add_annex.py --base regiao-norte/4a-2026-10-23 --output /tmp/norte4-rev11/publicacao
+      - name: Check adjacency, downloads, figures and printable annex
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from http.server import ThreadingHTTPServer,SimpleHTTPRequestHandler
+          from functools import partial
+          import threading,shutil,hashlib,json
+          import fitz
+          from playwright.sync_api import sync_playwright
+          root=Path('/tmp/norte4-rev11');out=root/'publicacao';qa=root/'qa';qa.mkdir(exist_ok=True)
+          base=Path('regiao-norte/4a-2026-10-23').resolve()
+          for name in ['assets','fontes']:(out/name).symlink_to(base/name,target_is_directory=True)
+          def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+          assert sha(out/'indicadores.csv')==sha(base/'indicadores.csv')
+          class Quiet(SimpleHTTPRequestHandler):
+              def log_message(self,*args):pass
+          server=ThreadingHTTPServer(('127.0.0.1',0),partial(Quiet,directory=str(out)))
+          threading.Thread(target=server.serve_forever,daemon=True).start()
+          try:
+              with sync_playwright() as p:
+                  chrome=shutil.which('google-chrome') or shutil.which('chromium')
+                  opts={'headless':True,'args':['--no-sandbox']}
+                  if chrome:opts['executable_path']=chrome
+                  browser=p.chromium.launch(**opts)
+                  page=browser.new_page(viewport={'width':1440,'height':1100},accept_downloads=True)
+                  page.goto(f'http://127.0.0.1:{server.server_port}/',wait_until='networkidle')
+                  page.wait_for_function("[...document.querySelectorAll('figure img')].every(x=>x.complete&&x.naturalWidth>0)")
+                  assert page.locator('figure').count()==38
+                  buttons=page.locator('.nt-data-actions a');assert buttons.count()==2
+                  assert 'Dados e indicadores' in buttons.nth(0).inner_text()
+                  assert 'Anexo I' in buttons.nth(1).inner_text()
+                  a,b=[buttons.nth(i).bounding_box() for i in [0,1]]
+                  assert abs(a['y']-b['y'])<2 and b['x']>a['x'],'Summary must be beside data button'
+                  page.locator('header').screenshot(path=str(qa/'botoes-computador.png'))
+                  buttons.nth(1).click();assert page.evaluate('location.hash')=='#anexo-i'
+                  page.locator('#anexo-i').screenshot(path=str(qa/'anexo-na-pagina.png'))
+                  for target in ['documentos/Anexo_I_Regiao_Norte_23-10-2026.pdf','indicadores.csv']:
+                      with page.expect_download() as event:page.locator('#anexo-i a[href="'+target+'"]').click()
+                      assert sha(event.value.path())==sha(out/target)
+                  with page.expect_download() as event:page.locator('header a[href="documentos/NT_Regiao_Norte_4a_23-10-2026.pdf"]').click()
+                  assert sha(event.value.path())==sha(out/'documentos/NT_Regiao_Norte_4a_23-10-2026.pdf')
+                  assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+2')
+                  page.set_viewport_size({'width':390,'height':844})
+                  page.locator('header').screenshot(path=str(qa/'botoes-celular.png'))
+                  assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+2')
+                  page.emulate_media(media='print');assert not page.locator('header .actions').is_visible()
+                  browser.close()
+          finally:server.shutdown();server.server_close()
+          annex=fitz.open(out/'documentos/Anexo_I_Regiao_Norte_23-10-2026.pdf');assert len(annex)==3
+          for i,page in enumerate(annex):page.get_pixmap(matrix=fitz.Matrix(1.5,1.5),alpha=False).save(qa/f'anexo-{i+1}.png')
+          full=fitz.open(out/'documentos/NT_Regiao_Norte_4a_23-10-2026.pdf');assert len(full)==63
+          for i in [0,1,21,22,23,24,25,62]:full[i].get_pixmap(matrix=fitz.Matrix(1.2,1.2),alpha=False).save(qa/f'nt-{i+1:02}.png')
+          print('QA PASSED: 53 records; unchanged CSV; 38 figures; 63-page NT; 3-page annex; adjacent buttons; desktop/mobile; actual downloads.')
+          PY
+      - name: Preserve exact publication and visual checks
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: norte4-anexo-i-revisao11
+          path: |
+            /tmp/norte4-rev11/publicacao/index.html
+            /tmp/norte4-rev11/publicacao/manifesto.json
+            /tmp/norte4-rev11/publicacao/ANEXO_I.json
+            /tmp/norte4-rev11/publicacao/indicadores.csv
+            /tmp/norte4-rev11/publicacao/documentos/
+            /tmp/norte4-rev11/qa/
+          if-no-files-found: error
+          retention-days: 7
+      - name: Publish only the validated revision
+        run: |
+          set -euo pipefail
+          target='regiao-norte/4a-2026-10-23'
+          cp /tmp/norte4-rev11/publicacao/index.html "$target/index.html"
+          cp /tmp/norte4-rev11/publicacao/manifesto.json "$target/manifesto.json"
+          cp /tmp/norte4-rev11/publicacao/ANEXO_I.json "$target/ANEXO_I.json"
+          cp /tmp/norte4-rev11/publicacao/documentos/*.pdf "$target/documentos/"
+          cmp /tmp/norte4-rev11/publicacao/indicadores.csv "$target/indicadores.csv"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$target/index.html" "$target/manifesto.json" "$target/ANEXO_I.json" "$target/documentos/NT_Regiao_Norte_4a_23-10-2026.pdf" "$target/documentos/Anexo_I_Regiao_Norte_23-10-2026.pdf"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'NT Norte revisão 1.1: Anexo I numérico, 53 registros preservados e acesso ao lado dos dados'
+          git pull --rebase origin main
+          git push origin HEAD:main
