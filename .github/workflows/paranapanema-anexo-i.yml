@@ -1,0 +1,115 @@
+name: Paranapanema Anexo I revision 1.1
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/paranapanema-anexo-i.yml'
+      - 'paranapanema/10a-2026-10-22/add_annex.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: paranapanema-20261022-annex
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install document and browser tools
+        run: |
+          python -m pip install 'pymupdf==1.26.7' reportlab beautifulsoup4 playwright
+          if ! command -v google-chrome >/dev/null && ! command -v chromium >/dev/null; then
+            python -m playwright install --with-deps chromium
+          fi
+      - name: Build checked annex and revised publication
+        run: |
+          python -m py_compile paranapanema/10a-2026-10-22/add_annex.py
+          python paranapanema/10a-2026-10-22/add_annex.py --base paranapanema/10a-2026-10-22 --output /tmp/paranapanema-rev11/publicacao
+      - name: Test actual downloads and button placement
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from http.server import ThreadingHTTPServer,SimpleHTTPRequestHandler
+          from functools import partial
+          import threading,shutil,hashlib,json
+          import fitz
+          from playwright.sync_api import sync_playwright
+          root=Path('/tmp/paranapanema-rev11');out=root/'publicacao';qa=root/'qa';qa.mkdir(exist_ok=True)
+          base=Path('paranapanema/10a-2026-10-22').resolve()
+          for name in ['assets','fontes']:(out/name).symlink_to(base/name,target_is_directory=True)
+          def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+          assert sha(out/'indicadores.csv')==sha(base/'indicadores.csv')
+          class Quiet(SimpleHTTPRequestHandler):
+              def log_message(self,*args):pass
+          server=ThreadingHTTPServer(('127.0.0.1',0),partial(Quiet,directory=str(out)))
+          threading.Thread(target=server.serve_forever,daemon=True).start()
+          try:
+              with sync_playwright() as p:
+                  chrome=shutil.which('google-chrome') or shutil.which('chromium')
+                  opts={'headless':True,'args':['--no-sandbox']}
+                  if chrome:opts['executable_path']=chrome
+                  browser=p.chromium.launch(**opts)
+                  page=browser.new_page(viewport={'width':1440,'height':1100},accept_downloads=True)
+                  page.goto(f'http://127.0.0.1:{server.server_port}/',wait_until='networkidle')
+                  page.wait_for_function("[...document.querySelectorAll('figure img')].every(x=>x.complete&&x.naturalWidth>0)")
+                  assert page.locator('figure').count()==24
+                  buttons=page.locator('.nt-data-actions a');assert buttons.count()==2
+                  assert 'Dados e indicadores' in buttons.nth(0).inner_text()
+                  assert 'Anexo I' in buttons.nth(1).inner_text()
+                  a,b=[buttons.nth(i).bounding_box() for i in [0,1]]
+                  assert abs(a['y']-b['y'])<2 and b['x']>a['x']
+                  page.locator('header').screenshot(path=str(qa/'botoes-computador.png'))
+                  buttons.nth(1).click();assert page.evaluate('location.hash')=='#anexo-i'
+                  page.locator('#anexo-i').screenshot(path=str(qa/'anexo-na-pagina.png'))
+                  for target in ['documentos/Anexo_I_Paranapanema_22-10-2026.pdf','indicadores.csv']:
+                      with page.expect_download() as event:page.locator('#anexo-i a[href="'+target+'"]').click()
+                      assert sha(event.value.path())==sha(out/target)
+                  with page.expect_download() as event:page.locator('header a[href="documentos/NT_Paranapanema_10a_22-10-2026.pdf"]').click()
+                  assert sha(event.value.path())==sha(out/'documentos/NT_Paranapanema_10a_22-10-2026.pdf')
+                  assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+2')
+                  page.set_viewport_size({'width':390,'height':844})
+                  page.locator('header').screenshot(path=str(qa/'botoes-celular.png'))
+                  assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+2')
+                  page.emulate_media(media='print');assert not page.locator('header .actions').is_visible()
+                  browser.close()
+          finally:server.shutdown();server.server_close()
+          annex=fitz.open(out/'documentos/Anexo_I_Paranapanema_22-10-2026.pdf');assert len(annex)==2
+          for i,page in enumerate(annex):page.get_pixmap(matrix=fitz.Matrix(1.4,1.4),alpha=False).save(qa/f'anexo-{i+1}.png')
+          full=fitz.open(out/'documentos/NT_Paranapanema_10a_22-10-2026.pdf');assert len(full)==37
+          for i in [0,1,34,35,36]:full[i].get_pixmap(matrix=fitz.Matrix(1.2,1.2),alpha=False).save(qa/f'nt-{i+1:02}.png')
+          print('QA PASSED: all downloads, 29 records, unchanged CSV, 24 figures, 37-page NT, 2-page annex, adjacent buttons and responsive layout.')
+          PY
+      - name: Save publication and checks
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: paranapanema-anexo-i-rev11
+          path: |
+            /tmp/paranapanema-rev11/publicacao/index.html
+            /tmp/paranapanema-rev11/publicacao/manifesto.json
+            /tmp/paranapanema-rev11/publicacao/ANEXO_I.json
+            /tmp/paranapanema-rev11/publicacao/REVISAO_1_1.md
+            /tmp/paranapanema-rev11/publicacao/indicadores.csv
+            /tmp/paranapanema-rev11/publicacao/documentos/
+            /tmp/paranapanema-rev11/qa/
+          if-no-files-found: error
+          retention-days: 7
+      - name: Publish only this validated revision
+        run: |
+          set -euo pipefail
+          target='paranapanema/10a-2026-10-22'
+          cp /tmp/paranapanema-rev11/publicacao/index.html "$target/index.html"
+          cp /tmp/paranapanema-rev11/publicacao/manifesto.json "$target/manifesto.json"
+          cp /tmp/paranapanema-rev11/publicacao/ANEXO_I.json "$target/ANEXO_I.json"
+          cp /tmp/paranapanema-rev11/publicacao/REVISAO_1_1.md "$target/REVISAO_1_1.md"
+          cp /tmp/paranapanema-rev11/publicacao/documentos/*.pdf "$target/documentos/"
+          cmp /tmp/paranapanema-rev11/publicacao/indicadores.csv "$target/indicadores.csv"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$target/index.html" "$target/manifesto.json" "$target/ANEXO_I.json" "$target/REVISAO_1_1.md" "$target/documentos/NT_Paranapanema_10a_22-10-2026.pdf" "$target/documentos/Anexo_I_Paranapanema_22-10-2026.pdf"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Paranapanema revisão 1.1: Anexo I analítico, 29 indicadores, PDF integral e acesso ao lado dos dados'
+          git pull --rebase origin main
+          git push origin HEAD:main
