@@ -1,7 +1,7 @@
 {
   "meeting_date": "2026-10-22",
   "edition_date": "2026-10-23",
-  "version": "1.0",
+  "version": "1.1",
   "generated_at_utc": "2026-10-23T12:55:31.080741+00:00",
   "sources": {
     "cemaden": {
@@ -29,9 +29,33 @@
   ],
   "figure_count": 24,
   "indicator_rows": 29,
-  "pdf_pages": 35,
-  "pdf_sha256": "ff5117d8399bd0032619d2c11117d5ea2890d28f629e50a8fb10e042904d9b40",
+  "pdf_pages": 37,
+  "pdf_sha256": "26841e9d4bc8e4984751576a7459c14ef2da50ae91e0225b4886971d98429a96",
   "formal_decisions_received": false,
   "scope": "Consolidação das duas apresentações publicadas; não comprova total de participantes.",
-  "original_prior_publications_modified": false
+  "original_prior_publications_modified": false,
+  "revision_date": "2026-10-26",
+  "anexo_i": {
+    "title": "ANEXO I — Resumo para o Relatório Anual / reunião em números",
+    "anchor": "anexo-i",
+    "pdf": "documentos/Anexo_I_Paranapanema_22-10-2026.pdf",
+    "pdf_pages": 2,
+    "full_pdf_pages": [
+      36,
+      37
+    ],
+    "records": 29,
+    "button_after": "Dados e indicadores",
+    "sha256": "68de30e796d294ebb0b7d6d0df53f178ba3e23733b4e29970bd31da5a687ccfb"
+  },
+  "editorial_revision": {
+    "description": "Anexo I analítico e resumido, com sumário paginado e botão adjacente aos dados",
+    "previous_pdf_sha256": "ff5117d8399bd0032619d2c11117d5ea2890d28f629e50a8fb10e042904d9b40",
+    "csv_sha256": "efdd7e44074e64812a3582f176d0f995ccc0abdcf143cefceae7d4f57a1c7fe6",
+    "csv_unchanged": true,
+    "original_analysis_preserved": true,
+    "original_24_figures_preserved": true,
+    "toc_entries": 11,
+    "observed_and_projected_separated": true
+  }
 }

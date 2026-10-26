@@ -1,0 +1,224 @@
+[
+  {
+    "title": "I.1 — Síntese hidroclimática e indicadores da bacia",
+    "intro": "Reunião de 22/10/2026. Leitura integrada: aportes elevados e estoques relevantes, com atenção à propagação de vazões pela cascata. Síntese da análise já publicada; não constitui nova decisão operativa.",
+    "tables": [
+      {
+        "title": "Principais números — preservando a natureza e o período de cada dado",
+        "headers": [
+          "Dimensão",
+          "Valor / unidade",
+          "Referência temporal",
+          "Natureza",
+          "Leitura analítica",
+          "Fonte"
+        ],
+        "rows": [
+          [
+            "ENA — aporte energético",
+            "292 % MLT",
+            "Outubro parcial até 21/10/2026",
+            "Observado parcial",
+            "ENA elevada; não representa volume útil de um reservatório.",
+            "O, p. 4"
+          ],
+          [
+            "EAR — estoque energético",
+            "78,6 % EARmáx",
+            "21/10/2026",
+            "Observado",
+            "Posição agregada da bacia; não se confunde com VU individual.",
+            "O, p. 11"
+          ],
+          [
+            "Chuva observada",
+            "122,0 mm",
+            "01 a 20/10/2026",
+            "Observado parcial",
+            "Acumulado parcial; não representa fechamento de outubro.",
+            "C, p. 3"
+          ],
+          [
+            "Referência de chuva",
+            "135,5 mm",
+            "Mês completo; base 2001–2024",
+            "Climatologia",
+            "Climatologia do mês inteiro; não é referência dos mesmos 20 dias.",
+            "C, p. 3"
+          ],
+          [
+            "Chuva GEFS — 14 dias",
+            "≈ 182 mm",
+            "Rodada 22/10/2026 00 UTC",
+            "Previsão",
+            "Valor aproximado e probabilístico; não equivale a afluência.",
+            "C, p. 14"
+          ]
+        ],
+        "widths": [
+          90,
+          90,
+          147,
+          82,
+          247,
+          90
+        ]
+      },
+      {
+        "title": "TSI — índice bivariado, adimensional; outubro de 2026 parcial",
+        "headers": [
+          "Recorte",
+          "TSI-6 / classe",
+          "TSI-3 / classe",
+          "Leitura entre escalas",
+          "Fonte"
+        ],
+        "rows": [
+          [
+            "Rosana",
+            "1,38 — Excesso moderado",
+            "1,22 — Excesso moderado",
+            "Excesso moderado nas duas janelas.",
+            "C, pp. 8–9"
+          ],
+          [
+            "Capivara",
+            "1,40 — Excesso moderado",
+            "1,15 — Excesso moderado",
+            "Excesso moderado nas duas janelas.",
+            "C, pp. 8–9"
+          ],
+          [
+            "Jurumirim",
+            "0,55 — Normal",
+            "1,13 — Excesso moderado",
+            "Excesso na janela de 3 meses; normalidade na de 6 meses.",
+            "C, pp. 8–9"
+          ]
+        ],
+        "widths": [
+          90,
+          170,
+          170,
+          226,
+          90
+        ]
+      }
+    ],
+    "notes": [
+      "<b>Comparabilidade:</b> 122,0 mm até 20/10 e 135,5 mm da climatologia mensal têm durações distintas. Não se calcula um desvio para períodos iguais a partir desses dois valores.",
+      "<b>Interpretação:</b> as classes do TSI são as informadas pelo CEMADEN. Índice de excesso não mede volume armazenado nem comprova inundação; previsão de chuva não é observação."
+    ]
+  },
+  {
+    "title": "I.2 — Reservatórios, operação e cenários",
+    "intro": "Observações e projeções estão em quadros separados. VU = volume útil; vazões em m³/s. Os traços indicam ausência na base selecionada, e não valor zero.",
+    "tables": [
+      {
+        "title": "Condições observadas — VU em 21/10; vazões destacadas nos painéis até 20/10",
+        "headers": [
+          "Reservatório",
+          "VU em 21/10",
+          "Afluência\n(m³/s)",
+          "Defluência\n(m³/s)",
+          "Leitura operacional",
+          "Fonte"
+        ],
+        "rows": [
+          [
+            "Jurumirim",
+            "80%",
+            "407",
+            "505",
+            "Defluência acima da afluência no ponto final do painel.",
+            "O, pp. 9 e 15"
+          ],
+          [
+            "Chavantes",
+            "79%",
+            "588",
+            "984",
+            "Defluência acima da afluência no ponto final do painel.",
+            "O, pp. 9 e 16"
+          ],
+          [
+            "Capivara",
+            "76%",
+            "3.790",
+            "5.062",
+            "Maior magnitude de vazões do conjunto; acompanhar passagem a jusante.",
+            "O, pp. 9 e 17"
+          ],
+          [
+            "Mauá",
+            "94%",
+            "—",
+            "—",
+            "Estoque de 94% VU; vazões observadas não constam da base selecionada.",
+            "O, p. 9"
+          ]
+        ],
+        "widths": [
+          100,
+          88,
+          88,
+          88,
+          292,
+          90
+        ]
+      },
+      {
+        "title": "Cenário ONS de 22/10 a 30/11 — SMAP/ONS com chuva ECMWF",
+        "headers": [
+          "Reservatório",
+          "Defluência média\nsimulada (m³/s)",
+          "VU final projetado\naté 30/11",
+          "Leitura / limite do cenário",
+          "Fonte"
+        ],
+        "rows": [
+          [
+            "Jurumirim",
+            "305",
+            "85%",
+            "Projeção de 85% VU, condicionada aos aportes e à operação simulada.",
+            "O, pp. 20–21"
+          ],
+          [
+            "Chavantes",
+            "495",
+            "78%",
+            "Projeção de 78% VU; acompanhar aderência das afluências ao cenário.",
+            "O, pp. 20–21"
+          ],
+          [
+            "Capivara",
+            "1.980",
+            "82%",
+            "Não confundir a média simulada de defluência com o valor observado de 5.062 m³/s.",
+            "O, pp. 20–21"
+          ],
+          [
+            "Mauá",
+            "725",
+            "94%",
+            "Projeção final de 94% VU; não é garantia de estoque.",
+            "O, pp. 20–21"
+          ]
+        ],
+        "widths": [
+          100,
+          142,
+          136,
+          278,
+          90
+        ]
+      }
+    ],
+    "notes": [
+      "<b>Cortes diferentes:</b> o VU observado em 21/10 não é automaticamente a condição inicial da simulação de 22/10. Não se apresenta a diferença entre colunas como variação observada.",
+      "<b>Subsídio ao Conjuntura:</b> consolidar apenas observações comparáveis, preservando data, unidade e fonte. Não somar percentuais de VU ou ENA, misturar previsões na série observada nem tratar esta síntese como estatística anual homologada.",
+      "<b>Memória técnica:</b> os 29 registros da base tabular foram mantidos. A análise, as reproduções e as ressalvas operacionais/regulatórias permanecem na NT; nenhuma nova decisão foi atribuída à reunião."
+    ]
+  }
+]
