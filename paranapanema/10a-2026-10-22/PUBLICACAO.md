@@ -1,23 +1,31 @@
-# Paranapanema — 10ª reunião de 2026
+# Paranapanema — 10ª reunião de 2026 — revisão 1.1
 
-Reunião: 22/10/2026. Consolidação documental: 23/10/2026. Edição 1.0.
+Reunião: 22/10/2026. Consolidação original: 23/10/2026. Revisão editorial: 26/10/2026.
 
-## Publicação integral
+## Acessos
 
-- Página navegável: `index.html`.
-- PDF integral: `documentos/NT_Paranapanema_10a_22-10-2026.pdf` (35 páginas).
-- Indicadores: `indicadores.csv` (29 registros com fonte, período, unidade e natureza do dado).
-- Figuras originais: 24 (13 CEMADEN e 11 ONS), reproduzidas com legendas e páginas de origem.
-- Apresentações integrais: `fontes/cemaden.pdf` e `fontes/ons.pdf`.
-- Rastreabilidade dos arquivos e da edição: `manifesto.json`.
+- NT navegável integral: `index.html`.
+- Anexo I — Reunião em números: `index.html#anexo-i`.
+- PDF integral revisado: `documentos/NT_Paranapanema_10a_22-10-2026.pdf` — 37 páginas.
+- PDF independente do Anexo I: `documentos/Anexo_I_Paranapanema_22-10-2026.pdf` — 2 páginas.
+- Dados e indicadores: `indicadores.csv` — os mesmos 29 registros, sem alteração dos bytes.
+- Rastreabilidade: `manifesto.json` e `REVISAO_1_1.md`.
 
-As duas apresentações foram acessadas no registro /view da ANA e no PDF de download, com verificação dos hashes. A existência de dois arquivos publicados não comprova o número de instituições participantes.
+## Anexo I — Resumo para o Relatório Anual / reunião em números
 
-## Conclusão integrada
+O Anexo I reúne as principais variáveis em quatro quadros de leitura analítica: contexto hidroclimático e hidroenergético; TSI por recorte; armazenamento e vazões observadas; e cenário operativo do ONS. Valores, unidades, datas, natureza e fonte são explícitos. Observações, climatologia, índices e projeções permanecem separados.
 
-Os materiais mostram aportes elevados e armazenamento relevante, com atenção à propagação de vazões pela cascata e aos efeitos a jusante. Capivara recebe destaque operacional. As projeções até 30/11 permanecem condicionais às premissas do ONS e não constituem decisões novas da reunião.
+Os 29 indicadores são representados. A base CSV continua disponível para planilhas e BI; o anexo é sua apresentação resumida para leitura, não sua substituição. O uso como subsídio ao Conjuntura requer consolidação de observações comparáveis, sem misturar previsões ou somar percentuais de VU/ENA.
 
-Não foram fornecidos registros específicos de deliberações. Recomendações analíticas estão separadas de decisões confirmadas. Preservadas as diferenças entre datas, tipos de indicador e horizontes de previsão.
+O botão **Anexo I — Reunião em números** está ao lado de **Dados e indicadores · CSV** no computador; no celular, os acessos permanecem consecutivos. O conteúdo do anexo fica ao final, preservando a primazia das verticais.
+
+No PDF integral, o anexo ocupa as páginas 36–37. O sumário foi paginado, sua numeração duplicada foi corrigida e os marcadores foram atualizados. Os capítulos técnicos e suas 24 figuras permanecem inalterados.
+
+## Conteúdo preservado
+
+Duas verticais: CEMADEN e ONS. Cruzamentos técnicos, cenários, leitura regulatória e acompanhamento. As 24 reproduções das apresentações — 13 CEMADEN e 11 ONS — foram preservadas, assim como as referências e as ressalvas.
+
+A existência de dois arquivos publicados não comprova o número de instituições participantes. As recomendações analíticas não são atribuídas como decisões formais sem registro.
 
 ## Supervisão
 
@@ -25,10 +33,10 @@ Supervisionado por José Aguiar de Lima Jr. — Especialista em Geoprocessamento
 
 Elaboração com suporte de inteligência artificial (IA).
 
-## Verificações
+## Verificações da revisão
 
-Conteúdo comum no HTML e PDF; 24 figuras carregadas; fontes locais; downloads PDF/CSV; navegação; ampliação de figuras; apresentação em computador e celular; crédito de supervisão, cargo e suporte de IA em todas as páginas do PDF. Conferência visual das 35 páginas realizada antes do fechamento desta edição. Publicações anteriores não foram alteradas.
+Gerador compilado e executado; PDF integral com 37 páginas; anexo independente com 2 páginas; 11 entradas de sumário; comparação do texto e da renderização dos corpos técnicos; preservação das imagens e posições; CSV idêntico por SHA-256; identificação e paginação em todas as páginas; downloads efetivos de NT, Anexo I e CSV; botão adjacente, âncora e layouts de computador/celular verificados. Capa, sumário e as duas páginas do anexo conferidos visualmente.
 
-As referências clicáveis do PDF apontam para os endereços públicos da publicação, não para o ambiente de geração. A correção dos links foi validada com comparação do texto e da renderização de todas as páginas, sem alteração do conteúdo visual ou analítico.
+A revisão não reformula a análise nem o restante da diagramação dos capítulos; acrescenta o anexo e corrige os controles editoriais indicados. O gerador da edição 1.0 não deve substituir a revisão sem reaplicar o Anexo I e suas verificações.
 
-Este repositório pessoal de protótipos não substitui publicação institucional, ato administrativo, ficha de restrição ou ata de reunião.
+Repositório pessoal de protótipos. Não substitui ata, ato administrativo, ficha de restrição ou publicação institucional formal.
