@@ -1,0 +1,101 @@
+name: Sul 9 - complete preview from received files
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sul9-preview-20261027.yml'
+      - 'regiao-sul/9a-2026-10-27/build_preview.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: sul9-complete-preview
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reuse source PDFs already obtained in this session
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: 40510568887
+          name: sul9-fontes-20261027
+          path: /tmp/sul9-fontes
+      - name: Install document and browser tools
+        run: |
+          python -m pip install 'pymupdf==1.26.7' reportlab beautifulsoup4 playwright
+          if ! command -v google-chrome >/dev/null && ! command -v chromium >/dev/null; then python -m playwright install --with-deps chromium; fi
+      - name: Build verified integral preview
+        run: |
+          python -m py_compile regiao-sul/9a-2026-10-27/build_preview.py
+          python regiao-sul/9a-2026-10-27/build_preview.py --output /tmp/sul9-preview --sources /tmp/sul9-fontes
+      - name: Test page, images, buttons and downloaded bytes
+        run: |
+          python - <<'PY'
+          import threading,shutil,hashlib,json
+          from pathlib import Path
+          from functools import partial
+          from http.server import ThreadingHTTPServer,SimpleHTTPRequestHandler
+          from playwright.sync_api import sync_playwright
+          root=Path('/tmp/sul9-preview')
+          def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+          class Quiet(SimpleHTTPRequestHandler):
+              def log_message(self,*args):pass
+          server=ThreadingHTTPServer(('127.0.0.1',0),partial(Quiet,directory=str(root)))
+          threading.Thread(target=server.serve_forever,daemon=True).start()
+          try:
+              with sync_playwright() as p:
+                  opts={'headless':True,'args':['--no-sandbox']}
+                  chrome=shutil.which('google-chrome') or shutil.which('chromium')
+                  if chrome:opts['executable_path']=chrome
+                  browser=p.chromium.launch(**opts)
+                  page=browser.new_page(viewport={'width':1440,'height':1100},accept_downloads=True)
+                  page.goto(f'http://127.0.0.1:{server.server_port}/',wait_until='networkidle')
+                  page.locator('figure img').evaluate_all("xs=>xs.forEach(x=>x.loading='eager')")
+                  page.wait_for_function("[...document.querySelectorAll('figure img')].every(x=>x.complete&&x.naturalWidth>0)")
+                  assert page.locator('figure').count()==32
+                  assert page.locator('#inmet').count()==1 and page.locator('#cemaden').count()==1 and page.locator('#ons').count()==1 and page.locator('#sgb').count()==1
+                  a,b=[page.locator('.data-actions a').nth(i).bounding_box() for i in [0,1]]
+                  assert abs(a['y']-b['y'])<2 and b['x']>a['x']
+                  page.locator('header').screenshot(path=str(root/'qa/header-desktop.png'))
+                  for selector,target in [('header a[download][href$=".pdf"]','documentos/NT_Regiao_Sul_9a_27-10-2026_PREVIA.pdf'),('#anexo-i .annex-access a','documentos/Anexo_I_Regiao_Sul_27-10-2026_PREVIA.pdf'),('.data-actions a[download]','indicadores.csv')]:
+                      with page.expect_download() as ev:page.locator(selector).click()
+                      assert sha(ev.value.path())==sha(root/target)
+                  page.locator('[data-zoom]').first.click();assert page.locator('dialog').evaluate('(d)=>d.open');page.keyboard.press('Escape')
+                  page.set_viewport_size({'width':390,'height':844})
+                  page.locator('header').screenshot(path=str(root/'qa/header-mobile.png'))
+                  assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+2')
+                  browser.close()
+          finally:server.shutdown();server.server_close()
+          print('HTML/PDF/CSV downloads and 32 images verified. Preliminary status preserved.')
+          PY
+      - name: Preserve deliverables and visual review evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sul9-previa-completa
+          path: /tmp/sul9-preview/
+          if-no-files-found: error
+          retention-days: 7
+      - name: Publish only this meeting
+        run: |
+          set -euo pipefail
+          target='regiao-sul/9a-2026-10-27'
+          cp /tmp/sul9-preview/index.html "$target/index.html"
+          cp /tmp/sul9-preview/manifesto.json "$target/manifesto.json"
+          cp /tmp/sul9-preview/indicadores.csv "$target/indicadores.csv"
+          mkdir -p "$target/assets" "$target/fontes" "$target/documentos"
+          cp /tmp/sul9-preview/assets/*.png "$target/assets/"
+          cp /tmp/sul9-preview/fontes/*.pdf "$target/fontes/"
+          cp /tmp/sul9-preview/documentos/*.pdf "$target/documentos/"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$target/index.html" "$target/manifesto.json" "$target/indicadores.csv" "$target/assets" "$target/fontes" "$target/documentos"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Prévia Sul 0.2: quatro verticais, Anexo I, 32 figuras e PDFs integrais'
+          git pull --rebase origin main
+          git push origin HEAD:main
