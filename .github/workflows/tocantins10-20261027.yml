@@ -1,0 +1,145 @@
+name: Tocantins 10 - received sources and complete preview
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tocantins10-20261027.yml'
+      - 'tocantins/10a-2026-10-27/build.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: tocantins10-20261027
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install publication tools
+        run: |
+          python -m pip install 'pymupdf==1.26.7' reportlab beautifulsoup4 requests playwright
+          if ! command -v google-chrome >/dev/null && ! command -v chromium >/dev/null; then python -m playwright install --with-deps chromium; fi
+      - name: Obtain publication copies identical to received PDFs
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,requests,concurrent.futures,unicodedata
+          from urllib.parse import urljoin,unquote
+          from bs4 import BeautifulSoup
+          root=Path('/tmp/tocantins10');root.mkdir(exist_ok=True);src=root/'fontes';src.mkdir(exist_ok=True)
+          base='https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/'
+          hashes={'cemaden':'e0d660058def8d84b03c168399bf2b0250671a10c5a6fd49b78f7f941b4acaf4','ons':'b0fa096f74332a58da11139fc5f2ce5e89152d42e6686a7bbb2bb182740867d7'}
+          known={'cemaden':['apres-cemaden-tocantins-271026.pdf'],'ons':['bacia-do-rio-tocantins-apresentacao-ons-27_10_2026.pdf','apresentacao-ons_bacia-do-rio-tocantins-20261027.pdf']}
+          def digest(b):return hashlib.sha256(b).hexdigest()
+          def get(key):
+              cached=Path('tocantins/10a-2026-10-27/fontes')/(key+'.pdf')
+              if cached.exists() and digest(cached.read_bytes())==hashes[key]:
+                  (src/(key+'.pdf')).write_bytes(cached.read_bytes());return key,{'origin':'existing verified copy','sha256':hashes[key]}
+              views=[base+x+'/view' for x in known[key]];errors=[]
+              def attempt(view):
+                  v=requests.get(view,timeout=(10,25));v.raise_for_status()
+                  download=view.removesuffix('/view')+'/@@download/file'
+                  r=requests.get(download,timeout=(10,45));r.raise_for_status()
+                  if digest(r.content)!=hashes[key]:raise ValueError('Binary differs from uploaded file; rejected')
+                  (src/(key+'.pdf')).write_bytes(r.content)
+                  return {'view':view,'download':download,'sha256':hashes[key],'identical_to_received':True}
+              for view in views:
+                  try:return key,attempt(view)
+                  except Exception as e:errors.append(str(e))
+              # Only locate a download copy of this same file. No outside content enters the analysis.
+              listing=base+'apresentacoes-das-reunioes';r=requests.get(listing,timeout=(10,25));r.raise_for_status()
+              def norm(t):return ''.join(c for c in unicodedata.normalize('NFKD',unquote(t).lower()) if not unicodedata.combining(c))
+              candidates=[]
+              for a in BeautifulSoup(r.text,'html.parser').select('a[href]'):
+                  u=urljoin(listing,a['href']);t=norm(u+' '+a.get_text(' ',strip=True))
+                  if u.startswith(base) and 'tocantins' in t and key in t and any(d in t for d in ['20261027','27_10_2026','271026','27102026']):
+                      view=u if u.endswith('/view') else u.split('/@@download')[0].rstrip('/')+'/view'
+                      if view not in views and view not in candidates:candidates.append(view)
+              for view in candidates[:3]:
+                  try:return key,attempt(view)
+                  except Exception as e:errors.append(str(e))
+              raise RuntimeError(key+': no identical publication copy. '+repr(errors))
+          with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:meta=dict(pool.map(get,hashes))
+          (root/'copy-provenance.json').write_text(json.dumps(meta,ensure_ascii=False,indent=2),encoding='utf-8')
+          print('BOTH RECEIVED PDF HASHES VERIFIED',json.dumps(meta,ensure_ascii=False),flush=True)
+          PY
+      - name: Build integral HTML PDF annex and indicators
+        run: |
+          python -m py_compile tocantins/10a-2026-10-27/build.py
+          python tocantins/10a-2026-10-27/build.py --output /tmp/tocantins10/publicacao --sources /tmp/tocantins10/fontes
+      - name: Verify public interface and actual downloads
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from functools import partial
+          from http.server import ThreadingHTTPServer,SimpleHTTPRequestHandler
+          import threading,shutil,hashlib,json
+          from playwright.sync_api import sync_playwright
+          root=Path('/tmp/tocantins10/publicacao')
+          class Quiet(SimpleHTTPRequestHandler):
+              def log_message(self,*args):pass
+          server=ThreadingHTTPServer(('127.0.0.1',0),partial(Quiet,directory=str(root)))
+          threading.Thread(target=server.serve_forever,daemon=True).start()
+          try:
+              with sync_playwright() as p:
+                  chrome=shutil.which('google-chrome') or shutil.which('chromium');opts={'headless':True,'args':['--no-sandbox']}
+                  if chrome:opts['executable_path']=chrome
+                  browser=p.chromium.launch(**opts);page=browser.new_page(viewport={'width':1440,'height':1000},accept_downloads=True)
+                  url=f'http://127.0.0.1:{server.server_port}/index.html'
+                  page.goto(url,wait_until='networkidle');assert page.locator('figure').count()==28
+                  assert page.locator('h1').inner_text()=='10ª Reunião em 2026 da Sala de Acompanhamento do Sistema Hídrico do Rio Tocantins'
+                  assert page.locator('main > section').last.get_attribute('id')=='anexo-i'
+                  page.locator('header').screenshot(path=str(root/'qa/header-desktop.png'))
+                  for href in ['documentos/NT_Tocantins_10a_27-10-2026_PREVIA.pdf','indicadores.csv']:
+                      with page.expect_download() as ev:page.locator('header a[href="'+href+'"]').click()
+                      assert hashlib.sha256(Path(ev.value.path()).read_bytes()).hexdigest()==hashlib.sha256((root/href).read_bytes()).hexdigest()
+                  page.locator('header a[href="#anexo-i"]').click();page.wait_for_timeout(500)
+                  y=page.locator('#anexo-i').bounding_box()['y'];assert 0<=y<200,('Anchor misplaced',y)
+                  page.locator('#anexo-i').screenshot(path=str(root/'qa/annex-web.png'))
+                  page.goto(url+'#anexo-i',wait_until='networkidle');page.wait_for_timeout(500)
+                  assert 0<=page.locator('#anexo-i').bounding_box()['y']<200
+                  with page.expect_download() as ev:page.locator('#anexo-i a[download]').click()
+                  assert Path(ev.value.path()).stat().st_size>1000
+                  for img in page.locator('figure img').all():
+                      img.scroll_into_view_if_needed();img.evaluate('(e)=>e.loading="eager"')
+                  page.wait_for_function("[...document.querySelectorAll('figure img')].every(e=>e.complete&&e.naturalWidth>0)")
+                  assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+2')
+                  page.set_viewport_size({'width':390,'height':844});page.goto(url,wait_until='networkidle');page.locator('header').screenshot(path=str(root/'qa/header-mobile.png'))
+                  assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+2')
+                  browser.close()
+          finally:server.shutdown();server.server_close()
+          manifest=json.loads((root/'manifesto.json').read_text());manifest['checks']['browser_downloads_and_anchor']=True
+          (root/'manifesto.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf-8')
+          print('BROWSER CHECKS PASSED: desktop/mobile; downloads; direct hash; 28 figures')
+          PY
+      - name: Preserve exact output and checks
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tocantins10-previa-completa
+          path: |
+            /tmp/tocantins10/
+            tocantins/10a-2026-10-27/index.html
+            tocantins/10a-2026-10-27/build.py
+          if-no-files-found: error
+          retention-days: 7
+      - name: Commit only validated Tocantins publication
+        run: |
+          set -euo pipefail
+          target='tocantins/10a-2026-10-27'
+          mkdir -p "$target/assets" "$target/fontes" "$target/documentos"
+          cp /tmp/tocantins10/publicacao/index.html "$target/index.html"
+          cp /tmp/tocantins10/publicacao/indicadores.csv "$target/indicadores.csv"
+          cp /tmp/tocantins10/publicacao/manifesto.json "$target/manifesto.json"
+          cp /tmp/tocantins10/publicacao/assets/*.png "$target/assets/"
+          cp /tmp/tocantins10/publicacao/fontes/*.pdf "$target/fontes/"
+          cp /tmp/tocantins10/publicacao/documentos/*.pdf "$target/documentos/"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$target/index.html" "$target/indicadores.csv" "$target/manifesto.json" "$target/assets" "$target/fontes" "$target/documentos"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Tocantins prévia 0.2: duas verticais integrais, 28 figuras, NT PDF e Anexo I'
+          git pull --rebase origin main
+          git push origin HEAD:main
