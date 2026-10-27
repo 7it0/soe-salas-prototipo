@@ -1,0 +1,330 @@
+{
+  "meeting": "9ª Sala de Crise da Região Sul",
+  "date": "2026-10-27",
+  "version": "0.2",
+  "status": "Prévia técnica — encerramento não informado",
+  "generated_at": "2026-10-27T14:04:08.389540+00:00",
+  "sources": {
+    "inmet": {
+      "sha256": "fd3b72f8b9af827ac2647a99f5790787e20479a69c85225931e77df23bc4d420",
+      "pages": 29
+    },
+    "cemaden": {
+      "sha256": "e137a004d52fa5e24a3fa68834226049326b26a0dfb563e779cad99aa7383844",
+      "pages": 17
+    },
+    "ons": {
+      "sha256": "6788619e815bf9a0ca47e571fcb610c756a848310100afb93e7704b98a6a3aa9",
+      "pages": 20
+    },
+    "sgb": {
+      "sha256": "e8e353e309cf68b209d42d776e29b1b7c9147c472f10e383f117225c629ae4a5",
+      "pages": 11
+    }
+  },
+  "pdf_pages": 46,
+  "annex_pages": 2,
+  "figure_count": 32,
+  "indicator_rows": 45,
+  "pdf_sha256": "bf71f63432004a45cad6000165a035d8ea77ff18fc0fbbe42c2fb3734c45b2af",
+  "annex_sha256": "068cbb8809b1fd596fb3117ab5f43a622a542832c953094b769a6634fa601143",
+  "csv_sha256": "38ed977371ace4bc276a89f7bbd89a2e30d9621233faf54ab358b6643755d6fc",
+  "figures": [
+    {
+      "number": 1,
+      "institution": "INMET",
+      "key": "inmet",
+      "page": 4,
+      "title": "Anomalias de precipitação — 30 e 90 dias",
+      "caption": "As janelas mostram antecedentes diferentes e não devem ser somadas.",
+      "src": "assets/inmet_04.png"
+    },
+    {
+      "number": 2,
+      "institution": "INMET",
+      "key": "inmet",
+      "page": 5,
+      "title": "Precipitação nas estações — outubro parcial",
+      "caption": "Acumulados pontuais; a tabela não explicita horário de corte.",
+      "src": "assets/inmet_05.png"
+    },
+    {
+      "number": 3,
+      "institution": "INMET",
+      "key": "inmet",
+      "page": 7,
+      "title": "Precipitação prevista — 27/10 a 02/11",
+      "caption": "COSMO, GFS e GFS Ensemble; distribuição espacial não uniforme.",
+      "src": "assets/inmet_07.png"
+    },
+    {
+      "number": 4,
+      "institution": "INMET",
+      "key": "inmet",
+      "page": 8,
+      "title": "GFS Ensemble — quinze dias",
+      "caption": "Rodadas de 26 e 27/10, até 11/11; horizontes sobrepostos.",
+      "src": "assets/inmet_08.png"
+    },
+    {
+      "number": 5,
+      "institution": "INMET",
+      "key": "inmet",
+      "page": 17,
+      "title": "Probabilidades de intensidade do ENSO",
+      "caption": "Produto NOAA reproduzido pelo INMET; contexto climático, não previsão de cheia local.",
+      "src": "assets/inmet_17.png"
+    },
+    {
+      "number": 6,
+      "institution": "INMET",
+      "key": "inmet",
+      "page": 24,
+      "title": "Prognóstico climático NDJ",
+      "caption": "Preservar distinção entre anomalias previstas de chuva e temperatura.",
+      "src": "assets/inmet_24.png"
+    },
+    {
+      "number": 7,
+      "institution": "INMET",
+      "key": "inmet",
+      "page": 27,
+      "title": "Comparação dos produtos sazonais",
+      "caption": "Convergência regional não determina o dia e a magnitude de um evento.",
+      "src": "assets/inmet_27.png"
+    },
+    {
+      "number": 8,
+      "institution": "CEMADEN",
+      "key": "cemaden",
+      "page": 2,
+      "title": "Chuva nos últimos 30 dias",
+      "caption": "Janela de 26/09 a 26/10; acumulado e anomalia são variáveis distintas.",
+      "src": "assets/cemaden_02.png"
+    },
+    {
+      "number": 9,
+      "institution": "CEMADEN",
+      "key": "cemaden",
+      "page": 3,
+      "title": "TSI-12 e vazão de Itaipu",
+      "caption": "Déficit de longo período pode coexistir com aporte mensal acima da média.",
+      "src": "assets/cemaden_03.png"
+    },
+    {
+      "number": 10,
+      "institution": "CEMADEN",
+      "key": "cemaden",
+      "page": 4,
+      "title": "TSI-6 — Paranapanema e Iguaçu",
+      "caption": "Classes escritas na fonte são preservadas; anotação histórica de Jurumirim requer conferência.",
+      "src": "assets/cemaden_04.png"
+    },
+    {
+      "number": 11,
+      "institution": "CEMADEN",
+      "key": "cemaden",
+      "page": 5,
+      "title": "TSI-6 — Uruguai, Jacuí e Ijuí",
+      "caption": "Condição normal no índice de seca não exclui inundação em uma estação.",
+      "src": "assets/cemaden_05.png"
+    },
+    {
+      "number": 12,
+      "institution": "CEMADEN",
+      "key": "cemaden",
+      "page": 8,
+      "title": "GEFS — Itaipu e Iguaçu",
+      "caption": "Acumulados de 14 dias: cerca de 109 e 113 mm, respectivamente.",
+      "src": "assets/cemaden_08.png"
+    },
+    {
+      "number": 13,
+      "institution": "CEMADEN",
+      "key": "cemaden",
+      "page": 9,
+      "title": "GEFS — Uruguai e Jacuí",
+      "caption": "Cerca de 65 e 39 mm; curvas previstas abaixo da climatologia desenhada.",
+      "src": "assets/cemaden_09.png"
+    },
+    {
+      "number": 14,
+      "institution": "CEMADEN",
+      "key": "cemaden",
+      "page": 10,
+      "title": "Tendências da terceira e quarta semanas",
+      "caption": "Janelas 09–16 e 16–23/11; CFS/NOAA e ECMWF.",
+      "src": "assets/cemaden_10.png"
+    },
+    {
+      "number": 15,
+      "institution": "CEMADEN",
+      "key": "cemaden",
+      "page": 11,
+      "title": "GloFAS subsazonal",
+      "caption": "Ler anomalia e incerteza conjuntamente; a data 31/11 é uma inconsistência da fonte.",
+      "src": "assets/cemaden_11.png"
+    },
+    {
+      "number": 16,
+      "institution": "CEMADEN",
+      "key": "cemaden",
+      "page": 16,
+      "title": "GloFAS sazonal NDJ",
+      "caption": "Novembro/dezembro de 2026 e janeiro de 2027, pelo contexto da edição.",
+      "src": "assets/cemaden_16.png"
+    },
+    {
+      "number": 17,
+      "institution": "ONS",
+      "key": "ons",
+      "page": 5,
+      "title": "ENA por bacia",
+      "caption": "Outubro parcial até 25/10; percentuais da MLT não são vazões.",
+      "src": "assets/ons_05.png"
+    },
+    {
+      "number": 18,
+      "institution": "ONS",
+      "key": "ons",
+      "page": 6,
+      "title": "Armazenamento dos principais reservatórios",
+      "caption": "Percentuais VU por aproveitamento; não medem sozinhos amortecimento de cheias.",
+      "src": "assets/ons_06.png"
+    },
+    {
+      "number": 19,
+      "institution": "ONS",
+      "key": "ons",
+      "page": 9,
+      "title": "Iguaçu — características e restrições",
+      "caption": "Máximos apresentados para Salto Santiago; verificar a aplicação operativa.",
+      "src": "assets/ons_09.png"
+    },
+    {
+      "number": 20,
+      "institution": "ONS",
+      "key": "ons",
+      "page": 10,
+      "title": "Iguaçu — operação observada",
+      "caption": "Há divergência entre 82% no diagrama e 79% no gráfico de Salto Santiago.",
+      "src": "assets/ons_10.png"
+    },
+    {
+      "number": 21,
+      "institution": "ONS",
+      "key": "ons",
+      "page": 11,
+      "title": "Baixo Iguaçu — cenários de vazão",
+      "caption": "Trajetória central em recessão, com dispersão entre cenários.",
+      "src": "assets/ons_11.png"
+    },
+    {
+      "number": 22,
+      "institution": "ONS",
+      "key": "ons",
+      "page": 13,
+      "title": "Uruguai — Barra Grande e Machadinho",
+      "caption": "Painéis até 25/10; não equivalem aos níveis locais do SGB em 27/10.",
+      "src": "assets/ons_13.png"
+    },
+    {
+      "number": 23,
+      "institution": "ONS",
+      "key": "ons",
+      "page": 15,
+      "title": "Foz do Chapecó — cenários",
+      "caption": "Percentis superiores mostram possibilidade de novos pulsos, não certeza.",
+      "src": "assets/ons_15.png"
+    },
+    {
+      "number": 24,
+      "institution": "ONS",
+      "key": "ons",
+      "page": 16,
+      "title": "Jacuí e Taquari–Antas — condicionantes",
+      "caption": "Passo Real 2.400 m³/s; Dona Francisca 1.450 m³/s sazonal, conforme a fonte.",
+      "src": "assets/ons_16.png"
+    },
+    {
+      "number": 25,
+      "institution": "ONS",
+      "key": "ons",
+      "page": 17,
+      "title": "Passo Real — operação e armazenamento",
+      "caption": "64% VU, 428 m³/s afluentes e 266 m³/s defluentes; 80% não é o estoque corrente.",
+      "src": "assets/ons_17.png"
+    },
+    {
+      "number": 26,
+      "institution": "ONS",
+      "key": "ons",
+      "page": 18,
+      "title": "Dona Francisca — cenários",
+      "caption": "A mediana e os extremos do conjunto não constituem regras de defluência.",
+      "src": "assets/ons_18.png"
+    },
+    {
+      "number": 27,
+      "institution": "SGB",
+      "key": "sgb",
+      "page": 3,
+      "title": "Situação dos sistemas de alerta em 27/10",
+      "caption": "Caí, Taquari, Guaíba e Uruguai; condições espacialmente distintas.",
+      "src": "assets/sgb_03.png"
+    },
+    {
+      "number": 28,
+      "institution": "SGB",
+      "key": "sgb",
+      "page": 4,
+      "title": "Níveis e percentis históricos",
+      "caption": "Referência para o mesmo dia; percentil não é cota local de inundação.",
+      "src": "assets/sgb_04.png"
+    },
+    {
+      "number": 29,
+      "institution": "SGB",
+      "key": "sgb",
+      "page": 7,
+      "title": "Guaíba — nível e limiares",
+      "caption": "Preservar a referência da estação e não extrapolar para outra régua.",
+      "src": "assets/sgb_07.png"
+    },
+    {
+      "number": 30,
+      "institution": "SGB",
+      "key": "sgb",
+      "page": 8,
+      "title": "Uruguai — inundação em curso",
+      "caption": "Condição explicitamente indicada na apresentação.",
+      "src": "assets/sgb_08.png"
+    },
+    {
+      "number": 31,
+      "institution": "SGB",
+      "key": "sgb",
+      "page": 9,
+      "title": "Uruguai — previsão de curto prazo",
+      "caption": "Emissão de 27/10 às 07h; trajetórias diferentes entre estações.",
+      "src": "assets/sgb_09.png"
+    },
+    {
+      "number": 32,
+      "institution": "SGB",
+      "key": "sgb",
+      "page": 10,
+      "title": "Uruguai — propagação para os trechos seguintes",
+      "caption": "Acompanhar limiares e incertezas; não inferir encerramento pelo recuo a montante.",
+      "src": "assets/sgb_10.png"
+    }
+  ],
+  "checks": {
+    "all_paragraphs": true,
+    "all_table_cells": true,
+    "credits_every_page": true,
+    "toc_entries": 13
+  },
+  "new_web_searches": false,
+  "formal_decisions_received": false
+}
