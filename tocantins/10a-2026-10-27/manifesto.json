@@ -1,0 +1,402 @@
+{
+  "meeting": "10ª Reunião em 2026 da Sala de Acompanhamento do Sistema Hídrico do Rio Tocantins",
+  "date": "2026-10-27",
+  "version": "0.2",
+  "status": "Prévia documental; INMET não recebido; encerramento não informado",
+  "generated_at": "2026-10-27T18:25:26.264750+00:00",
+  "sources": {
+    "cemaden": {
+      "sha256": "e0d660058def8d84b03c168399bf2b0250671a10c5a6fd49b78f7f941b4acaf4",
+      "pages": 24,
+      "matches_received_file": true
+    },
+    "ons": {
+      "sha256": "b0fa096f74332a58da11139fc5f2ce5e89152d42e6686a7bbb2bb182740867d7",
+      "pages": 20,
+      "matches_received_file": true
+    }
+  },
+  "pdf_pages": 42,
+  "annex_pages": 3,
+  "figure_count": 28,
+  "indicator_rows": 72,
+  "pdf_sha256": "125d88fcda06da7ee61fa976ac99544b6f6115ecff294ecb076dfe633bab0bbb",
+  "annex_sha256": "628f1af3be8d515aa7300baec04d7f47d4cd3418e1cd54011d027606fa8dfc00",
+  "csv_sha256": "24007df219c1af24505ca04e81f760ebcd2dc9814cc6d6345eaba550575099e9",
+  "toc": [
+    [
+      1,
+      "1. Síntese executiva",
+      3
+    ],
+    [
+      1,
+      "2. Escopo, fontes e cortes temporais",
+      4
+    ],
+    [
+      1,
+      "3. Vertical CEMADEN — monitoramento, seca e previsões",
+      5
+    ],
+    [
+      1,
+      "4. Vertical ONS — hidrologia, cascata e armazenamento",
+      7
+    ],
+    [
+      1,
+      "5. Cruzamentos técnicos",
+      9
+    ],
+    [
+      1,
+      "6. Focos de acompanhamento da SOE",
+      10
+    ],
+    [
+      1,
+      "7. Registro da reunião e encaminhamentos",
+      11
+    ],
+    [
+      1,
+      "8. Fontes e ressalvas documentais",
+      12
+    ],
+    [
+      1,
+      "ANEXO I — Resumo para o Relatório Anual / reunião em números",
+      13
+    ],
+    [
+      1,
+      "ANEXO GRÁFICO — CEMADEN",
+      15
+    ],
+    [
+      1,
+      "ANEXO GRÁFICO — ONS",
+      32
+    ]
+  ],
+  "figures": [
+    {
+      "number": 1,
+      "key": "cemaden",
+      "institution": "CEMADEN",
+      "page": 2,
+      "title": "Chuva acumulada e anomalia em 30 dias",
+      "caption": "26/09 a 26/10; distribuição espacial desigual no sistema.",
+      "src": "assets/cemaden_02.png",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 2,
+      "key": "cemaden",
+      "institution": "CEMADEN",
+      "page": 3,
+      "title": "Situação da estação chuvosa",
+      "caption": "Critério superior a 3 mm/dia em quatro de cinco dias; não representa estabelecimento homogêneo em toda a bacia.",
+      "src": "assets/cemaden_03.png",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 3,
+      "key": "cemaden",
+      "institution": "CEMADEN",
+      "page": 4,
+      "title": "Precipitação na bacia do Tocantins",
+      "caption": "56,3 mm entre 1 e 26/10. Não é fechamento mensal.",
+      "src": "assets/cemaden_04.png",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 4,
+      "key": "cemaden",
+      "institution": "CEMADEN",
+      "page": 5,
+      "title": "Precipitação na bacia do Araguaia",
+      "caption": "87,2 mm entre 1 e 26/10; recorte distinto do Tocantins.",
+      "src": "assets/cemaden_05.png",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 5,
+      "key": "cemaden",
+      "institution": "CEMADEN",
+      "page": 6,
+      "title": "Serra da Mesa — precipitação e vazão",
+      "caption": "Outubro até 25/10: 79 mm e média de 102 m³/s; valor diário de 72 m³/s em 25/10. MLT 1983–2025.",
+      "src": "assets/cemaden_06.png",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 6,
+      "key": "cemaden",
+      "institution": "CEMADEN",
+      "page": 7,
+      "title": "TSI de longo prazo — Tocantins",
+      "caption": "Tucuruí −1,45; Descarreto −1,31; Serra da Mesa −1,39. Classes de seca severa preservadas.",
+      "src": "assets/cemaden_07.png",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 7,
+      "key": "cemaden",
+      "institution": "CEMADEN",
+      "page": 8,
+      "title": "TSI de longo prazo — Araguaia",
+      "caption": "Araguatins −1,40; Conceição do Araguaia −1,49; seca severa.",
+      "src": "assets/cemaden_08.png",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 8,
+      "key": "cemaden",
+      "institution": "CEMADEN",
+      "page": 10,
+      "title": "GEFS — bacia do Tocantins",
+      "caption": "Cerca de 42 mm em 14 dias, rodada de 27/10 00 UTC; preservar a dispersão.",
+      "src": "assets/cemaden_10.png",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 9,
+      "key": "cemaden",
+      "institution": "CEMADEN",
+      "page": 11,
+      "title": "GEFS — bacia do Araguaia",
+      "caption": "Cerca de 41 mm em 14 dias; maiores acumulados em parcelas meridionais.",
+      "src": "assets/cemaden_11.png",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 10,
+      "key": "cemaden",
+      "institution": "CEMADEN",
+      "page": 12,
+      "title": "GEFS — Baixo Tocantins",
+      "caption": "Cerca de 11 mm em 14 dias; não confundir com o sinal previsto no alto curso.",
+      "src": "assets/cemaden_12.png",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 11,
+      "key": "cemaden",
+      "institution": "CEMADEN",
+      "page": 13,
+      "title": "GEFS — Serra da Mesa",
+      "caption": "Cerca de 88 mm em 14 dias; é previsão, não precipitação verificada.",
+      "src": "assets/cemaden_13.png",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 12,
+      "key": "cemaden",
+      "institution": "CEMADEN",
+      "page": 14,
+      "title": "PDM-CEMADEN — previsão de 14 dias",
+      "caption": "250 m³/s em 26/10–08/11: 105% da MLT de outubro, mas 55% da de novembro.",
+      "src": "assets/cemaden_14.png",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 13,
+      "key": "cemaden",
+      "institution": "CEMADEN",
+      "page": 16,
+      "title": "Previsão de vazão natural — Tocantins–Araguaia",
+      "caption": "24/10 a 23/11; trajetórias e incertezas próprias deste produto.",
+      "src": "assets/cemaden_16.png",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 14,
+      "key": "cemaden",
+      "institution": "CEMADEN",
+      "page": 17,
+      "title": "GloFAS subsazonal",
+      "caption": "Categorias de vazão e incerteza até 07/12; não equivalem a defluências operadas.",
+      "src": "assets/cemaden_17.png",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 15,
+      "key": "cemaden",
+      "institution": "CEMADEN",
+      "page": 21,
+      "title": "Previsão sazonal de chuva multimodelo",
+      "caption": "Novembro–dezembro–janeiro; tendência regional, não cronograma diário de afluências.",
+      "src": "assets/cemaden_21.png",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 16,
+      "key": "cemaden",
+      "institution": "CEMADEN",
+      "page": 22,
+      "title": "GloFAS sazonal — Tocantins",
+      "caption": "Rótulo original DNJ preservado; sequência interpretada pelo contexto como nov./dez. de 2026 e jan. de 2027.",
+      "src": "assets/cemaden_22.png",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 17,
+      "key": "cemaden",
+      "institution": "CEMADEN",
+      "page": 24,
+      "title": "Serra da Mesa — sensibilidade PDM",
+      "caption": "Linhas não são percentis. Rótulo Pcrítica (2015/2026) preservado. Curva −50% sem linha numérica própria.",
+      "src": "assets/cemaden_24.png",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 18,
+      "key": "ons",
+      "institution": "ONS",
+      "page": 5,
+      "title": "Energia armazenada dos subsistemas",
+      "caption": "Até 25/10: Nordeste 62%, Norte 63%, Sudeste 55% e Sul 83%; EAR não é VU individual.",
+      "src": "assets/ons_05.png",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 19,
+      "key": "ons",
+      "institution": "ONS",
+      "page": 8,
+      "title": "Serra da Mesa — vazões naturais",
+      "caption": "Outubro parcial até 25/10 em 34% da MLT, base 1931–2024.",
+      "src": "assets/ons_08.png",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 20,
+      "key": "ons",
+      "institution": "ONS",
+      "page": 9,
+      "title": "Estreito — vazões naturais",
+      "caption": "Outubro parcial até 25/10 em 52% da MLT, base 1931–2024.",
+      "src": "assets/ons_09.png",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 21,
+      "key": "ons",
+      "institution": "ONS",
+      "page": 10,
+      "title": "Tucuruí — vazões naturais",
+      "caption": "Dados até 26/10; não foi convertido em número exato um ponto sem rótulo explícito.",
+      "src": "assets/ons_10.png",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 22,
+      "key": "ons",
+      "institution": "ONS",
+      "page": 12,
+      "title": "Cascata, tempos de viagem e mínimos informados",
+      "caption": "Serra da Mesa 43% VU e Tucuruí 59% no diagrama. Mínimos médios e instantâneos são distintos.",
+      "src": "assets/ons_12.png",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 23,
+      "key": "ons",
+      "institution": "ONS",
+      "page": 13,
+      "title": "Serra da Mesa — operação",
+      "caption": "43% VU e defluência final de 743 m³/s; nenhum valor exato de afluência final foi inferido da curva.",
+      "src": "assets/ons_13.png",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 24,
+      "key": "ons",
+      "institution": "ONS",
+      "page": 14,
+      "title": "Estreito — operação",
+      "caption": "2.244 m³/s afluentes, 1.580 m³/s defluentes e nível de 155,52 m; painel até 25/10.",
+      "src": "assets/ons_14.png",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 25,
+      "key": "ons",
+      "institution": "ONS",
+      "page": 15,
+      "title": "Tucuruí — operação",
+      "caption": "1.663 m³/s afluentes, 4.436 m³/s defluentes e 60% VU no painel; divergência com 59% do diagrama preservada.",
+      "src": "assets/ons_15.png",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 26,
+      "key": "ons",
+      "institution": "ONS",
+      "page": 17,
+      "title": "Premissas da simulação de Serra da Mesa",
+      "caption": "27/10–30/11; SMAP/ONS–ECMWF; 1.040 m³/s seg.–sáb. e 720 m³/s domingos/feriados. Não são decisões novas.",
+      "src": "assets/ons_17.png",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 27,
+      "key": "ons",
+      "institution": "ONS",
+      "page": 18,
+      "title": "Serra da Mesa — afluência do cenário",
+      "caption": "Média de 162 m³/s e 32% MLT informada na tabela. Harmonizar janela antes de comparar ao PDM.",
+      "src": "assets/ons_18.png",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 28,
+      "key": "ons",
+      "institution": "ONS",
+      "page": 19,
+      "title": "Serra da Mesa — armazenamento projetado",
+      "caption": "43% observado para 37% no horizonte da simulação até 30/11; resultado condicional.",
+      "src": "assets/ons_19.png",
+      "width": 1800,
+      "height": 1013
+    }
+  ],
+  "checks": {
+    "all_paragraphs": true,
+    "all_table_cells": true,
+    "credits_every_page": true,
+    "reserved_image_dimensions": true,
+    "browser_downloads_and_anchor": true
+  },
+  "formal_decisions_received": false,
+  "source_of_analysis": "PDFs enviados pelo responsável; cópias de publicação verificadas por SHA-256"
+}
