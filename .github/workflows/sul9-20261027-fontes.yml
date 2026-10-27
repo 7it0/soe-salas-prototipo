@@ -1,0 +1,76 @@
+name: Sul 9 - 27-10-2026 - source acquisition
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/sul9-20261027-fontes.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  acquire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Install PDF tools
+        run: python -m pip install requests beautifulsoup4 pymupdf
+      - name: Follow ANA view pages and retrieve actual PDF files
+        run: |
+          python - <<'PY'
+          import requests,json,hashlib,unicodedata,concurrent.futures
+          from pathlib import Path
+          from urllib.parse import urljoin,unquote,urlparse
+          from bs4 import BeautifulSoup
+          import fitz
+          root=Path('/tmp/sul9-fontes');root.mkdir(exist_ok=True)
+          base='https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/'
+          listing=base+'apresentacoes-das-reunioes'
+          def norm(s):return ''.join(c for c in unicodedata.normalize('NFKD',unquote(s).lower()) if not unicodedata.combining(c))
+          r=requests.get(listing,timeout=(15,45));r.raise_for_status()
+          (root/'listing.html').write_text(r.text,encoding='utf-8')
+          soup=BeautifulSoup(r.text,'html.parser');candidates=[]
+          for a in soup.select('a[href]'):
+              url=urljoin(listing,a['href']);label=a.get_text(' ',strip=True);text=norm(label+' '+url)
+              if url.startswith(base) and 'sul' in text and any(t in text for t in ['20261027','27102026','27_10_2026','27-10-2026','271026','261027']):candidates.append({'view':url,'label':label,'norm':text})
+          unique={x['view']:x for x in candidates};candidates=list(unique.values());(root/'candidates.json').write_text(json.dumps(candidates,ensure_ascii=False,indent=2),encoding='utf-8')
+          print('CANDIDATES',json.dumps(candidates,ensure_ascii=False),flush=True)
+          def acquire(key):
+              def matches(x):
+                  t=x['norm']
+                  return ('inmet' in t or 'inpe' in t) if key=='inmet' else ('sgb' in t or 'cprm' in t) if key=='sgb' else key in t
+              entries=[x for x in candidates if matches(x)]
+              if not entries:return key,{'error':'No corresponding dated Sul link in listing'}
+              errors=[]
+              for x in entries[:3]:
+                  entry=x['view'];view=entry if entry.endswith('/view') else entry.split('/@@download')[0].rstrip('/')+'/view'
+                  try:
+                      v=requests.get(view,timeout=(15,35));v.raise_for_status()
+                      (root/(key+'_view.html')).write_text(v.text,encoding='utf-8')
+                      soup=BeautifulSoup(v.text,'html.parser');urls=[urljoin(view,a['href']) for a in soup.select('a[href]') if '@@download' in a['href']]
+                      urls.append(view.removesuffix('/view')+'/@@download/file')
+                      for url in dict.fromkeys(urls):
+                          if not url.startswith(base):continue
+                          d=requests.get(url,timeout=(15,60));d.raise_for_status()
+                          if not d.content.startswith(b'%PDF'):continue
+                          doc=fitz.open(stream=d.content,filetype='pdf');assert len(doc)>0
+                          (root/(key+'.pdf')).write_bytes(d.content)
+                          text='\n\n'.join(f'PAGINA {i+1}\n'+p.get_text() for i,p in enumerate(doc))
+                          (root/(key+'.txt')).write_text(text,encoding='utf-8')
+                          doc[0].get_pixmap(matrix=fitz.Matrix(1.5,1.5),alpha=False).save(root/(key+'_cover.png'))
+                          meta={'institution_key':key,'listing_label':x['label'],'view':view,'download':d.url,'pages':len(doc),'bytes':len(d.content),'sha256':hashlib.sha256(d.content).hexdigest(),'first_page':doc[0].get_text()}
+                          print('PDF OBTAINED',json.dumps(meta,ensure_ascii=False),flush=True)
+                          return key,meta
+                      errors.append('No PDF response from '+view)
+                  except Exception as e:errors.append(type(e).__name__+': '+str(e))
+              return key,{'error':errors}
+          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:results=dict(pool.map(acquire,['inmet','cemaden','sgb','ons']))
+          (root/'sources.json').write_text(json.dumps(results,ensure_ascii=False,indent=2),encoding='utf-8')
+          print('RESULT',json.dumps(results,ensure_ascii=False,indent=2),flush=True)
+          PY
+      - name: Preserve sources even when one download fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sul9-fontes-20261027
+          path: /tmp/sul9-fontes/
+          if-no-files-found: error
+          retention-days: 7
