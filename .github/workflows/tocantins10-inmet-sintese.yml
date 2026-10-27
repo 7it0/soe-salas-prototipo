@@ -1,0 +1,41 @@
+name: Tocantins - ressalva INMET na sintese
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/tocantins10-inmet-sintese.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inserir ressalva sem modificar a analise
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('tocantins/10a-2026-10-27/index.html')
+          old=p.read_text(encoding='utf-8')
+          target='<section class="chapter" id="executivo"><h2>1. Síntese executiva</h2>'
+          note='<p id="ressalva-inmet-sintese"><strong>Ressalva documental:</strong> até o momento da elaboração desta versão, não foi recebida a apresentação do INMET, que tradicionalmente abre essas reuniões. A presente síntese executiva baseia-se nas apresentações recebidas do CEMADEN e do ONS.</p>'
+          assert old.count(target)==1, 'Cabecalho da sintese alterado; revisar antes de editar.'
+          if 'id="ressalva-inmet-sintese"' not in old:
+              new=old.replace(target,target+note,1)
+              assert new.replace(note,'',1)==old
+              p.write_text(new,encoding='utf-8')
+          else:
+              assert target+note in old, 'Ressalva existente diferente; preservar e revisar.'
+          print('Ressalva confirmada como primeiro paragrafo da sintese; restante preservado.')
+          PY
+      - name: Gravar somente a pagina solicitada
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tocantins/10a-2026-10-27/index.html
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Tocantins: registra INMET ainda nao recebido no primeiro paragrafo da sintese executiva'
+          git pull --rebase origin main
+          git push origin HEAD:main
