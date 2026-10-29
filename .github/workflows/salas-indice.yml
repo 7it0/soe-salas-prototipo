@@ -1,0 +1,92 @@
+name: Salas SOE - indice por bacia
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/salas-indice.yml'
+      - 'tools/build_salas_index.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: salas-indice
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install parser and browser checks
+        run: python -m pip install beautifulsoup4 playwright
+      - name: Build index and verify destinations
+        run: python tools/build_salas_index.py
+      - name: Test search and mobile layout
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from functools import partial
+          from http.server import ThreadingHTTPServer,SimpleHTTPRequestHandler
+          import threading,shutil,json
+          from playwright.sync_api import sync_playwright
+          root=Path.cwd();qa=Path('/tmp/salas-indice-qa');qa.mkdir()
+          class Quiet(SimpleHTTPRequestHandler):
+              def log_message(self,*args):pass
+          server=ThreadingHTTPServer(('127.0.0.1',0),partial(Quiet,directory=str(root)))
+          threading.Thread(target=server.serve_forever,daemon=True).start()
+          try:
+              with sync_playwright() as p:
+                  chrome=shutil.which('google-chrome') or shutil.which('chromium')
+                  if not chrome:raise RuntimeError('Browser unavailable; index not published without layout test')
+                  browser=p.chromium.launch(executable_path=chrome,headless=True,args=['--no-sandbox'])
+                  page=browser.new_page(viewport={'width':1440,'height':1000})
+                  page.goto(f'http://127.0.0.1:{server.server_port}/salas/',wait_until='networkidle')
+                  assert page.locator('.meeting').count()==9
+                  assert page.locator('.basin').count()==8
+                  assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+2')
+                  page.screenshot(path=str(qa/'indice-computador.png'),full_page=True)
+                  page.locator('#busca').fill('Norte')
+                  assert page.locator('.meeting:visible').count()==2
+                  page.locator('#busca').fill('29/10/2026')
+                  assert page.locator('.meeting:visible').count()==1
+                  page.locator('#limpar').click();assert page.locator('.meeting:visible').count()==9
+                  page.set_viewport_size({'width':390,'height':844})
+                  assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+2')
+                  page.screenshot(path=str(qa/'indice-celular.png'),full_page=True)
+                  browser.close()
+          finally:server.shutdown();server.server_close()
+          print('TESTES OK: nove reuniões, oito bacias/salas, busca por nome/data, computador/celular.')
+          PY
+      - name: Add index access without changing meeting contents
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          for name,link in [('index.html','salas/'),('parana/10a-2026-10-29/index.html','../../salas/')]:
+              p=Path(name);s=p.read_text(encoding='utf-8')
+              if 'id="indice-geral-salas"' in s:continue
+              m=re.search(r'<header\b[^>]*>',s)
+              if not m:raise RuntimeError('Header not found: '+name)
+              anchor='<p id="indice-geral-salas" style="font-size:14px;margin:0 0 18px"><a href="'+link+'" style="color:inherit;text-underline-offset:3px">← Índice de reuniões e Notas Técnicas por bacia</a></p>'
+              updated=s[:m.end()]+anchor+s[m.end():]
+              assert updated.replace(anchor,'',1)==s
+              p.write_text(updated,encoding='utf-8')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: salas-indice-validado
+          path: |
+            salas/
+            /tmp/salas-indice-qa/
+          retention-days: 7
+      - name: Publish validated index
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add salas/index.html salas/reunioes.json index.html parana/10a-2026-10-29/index.html
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Publica Salas SOE: nove reuniões em oito bacias, links verificados e busca no acervo'
+          git pull --rebase origin main
+          git push origin HEAD:main
