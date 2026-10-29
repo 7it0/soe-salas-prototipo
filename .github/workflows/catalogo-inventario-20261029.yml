@@ -1,0 +1,38 @@
+name: Inventario de publicacoes por bacia
+on:
+  push:
+    paths: ['.github/workflows/catalogo-inventario-20261029.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inventario:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Preparar inventario e copias textuais
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,subprocess,shutil,re,html
+          root=Path('/tmp/catalogo-inventario');root.mkdir()
+          paths=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          items=[]
+          for name in paths:
+              if not name:continue
+              p=Path(name)
+              if not p.is_file():continue
+              items.append({'path':name,'bytes':p.stat().st_size})
+              if p.suffix.lower() in ['.html','.md','.json','.py','.yml','.csv','.txt'] and p.stat().st_size<3000000:
+                  dest=root/'textos'/name;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,dest)
+          (root/'arquivos.json').write_text(json.dumps(items,ensure_ascii=False,indent=2))
+          print('Inventario de',len(items),'arquivos; paginas HTML:',sum(x['path'].endswith('.html') for x in items))
+          for x in items:
+              if x['path'].endswith('.html'):print(x['path'])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: catalogo-inventario
+          path: /tmp/catalogo-inventario/
+          retention-days: 3
