@@ -1,0 +1,85 @@
+﻿instituicao;sistema;indicador;valor;unidade;periodo;natureza;pagina_fonte;fonte_arquivo;observacao
+CEMADEN;Bacia do Paraná;Precipitação acumulada;189,1;mm;01–28/10/2026;observado_parcial;4;Apres. CEMADEN Paraná-291026 1.pdf;
+CEMADEN;Itumbiara;TSI-6;-0,54;adimensional;Outubro/2026 parcial;indice_acumulado;5;Apres. CEMADEN Paraná-291026 1.pdf;Classe informada: Seca fraca
+CEMADEN;Emborcação;TSI-6;-0,52;adimensional;Outubro/2026 parcial;indice_acumulado;5;Apres. CEMADEN Paraná-291026 1.pdf;Classe informada: Seca fraca
+CEMADEN;Nova Ponte;TSI-6;0,09;adimensional;Outubro/2026 parcial;indice_acumulado;5;Apres. CEMADEN Paraná-291026 1.pdf;Classe informada: Normal
+CEMADEN;Furnas;TSI-6;0,02;adimensional;Outubro/2026 parcial;indice_acumulado;5;Apres. CEMADEN Paraná-291026 1.pdf;Classe informada: Normal
+CEMADEN;Marimbondo;TSI-6;-0,01;adimensional;Outubro/2026 parcial;indice_acumulado;5;Apres. CEMADEN Paraná-291026 1.pdf;Classe informada: Normal
+CEMADEN;Rosana;TSI-6;1,47;adimensional;Outubro/2026 parcial;indice_acumulado;6;Apres. CEMADEN Paraná-291026 1.pdf;Classe informada: Normal
+CEMADEN;Capivara;TSI-6;1,54;adimensional;Outubro/2026 parcial;indice_acumulado;6;Apres. CEMADEN Paraná-291026 1.pdf;Classe informada: Normal
+CEMADEN;Jurumirim;TSI-6;0,77;adimensional;Outubro/2026 parcial;indice_acumulado;6;Apres. CEMADEN Paraná-291026 1.pdf;Classe informada: Normal
+CEMADEN;Salto Santiago;TSI-6;1,47;adimensional;Outubro/2026 parcial;indice_acumulado;6;Apres. CEMADEN Paraná-291026 1.pdf;Classe informada: Normal
+CEMADEN;Salto Caxias;TSI-6;1,43;adimensional;Outubro/2026 parcial;indice_acumulado;6;Apres. CEMADEN Paraná-291026 1.pdf;Classe informada: Normal
+CEMADEN;Segredo;TSI-6;1,51;adimensional;Outubro/2026 parcial;indice_acumulado;6;Apres. CEMADEN Paraná-291026 1.pdf;Classe informada: Normal
+CEMADEN;Porto Primavera;TSI-12;-1,03;adimensional;Outubro/2026 parcial;indice_acumulado;7;Apres. CEMADEN Paraná-291026 1.pdf;Classe informada: Seca moderada
+CEMADEN;Itaipu;TSI-12;-0,5;adimensional;Outubro/2026 parcial;indice_acumulado;7;Apres. CEMADEN Paraná-291026 1.pdf;Classe informada: Seca fraca
+CEMADEN;Itaipu;Vazão natural relativa;185;% MLT;Outubro/2026 parcial;observado_parcial;7;Apres. CEMADEN Paraná-291026 1.pdf;
+CEMADEN;Paranaíba;Chuva GEFS em 14 dias;118;mm;Rodada 29/10/2026 00 UTC;previsao_aproximada;12;Apres. CEMADEN Paraná-291026 1.pdf;"Leitura do rótulo do traçado central; não observado"
+CEMADEN;Grande;Chuva GEFS em 14 dias;138;mm;Rodada 29/10/2026 00 UTC;previsao_aproximada;12;Apres. CEMADEN Paraná-291026 1.pdf;"Leitura do rótulo do traçado central; não observado"
+CEMADEN;Tietê;Chuva GEFS em 14 dias;103;mm;Rodada 29/10/2026 00 UTC;previsao_aproximada;13;Apres. CEMADEN Paraná-291026 1.pdf;"Leitura do rótulo do traçado central; não observado"
+CEMADEN;Paranapanema;Chuva GEFS em 14 dias;115;mm;Rodada 29/10/2026 00 UTC;previsao_aproximada;13;Apres. CEMADEN Paraná-291026 1.pdf;"Leitura do rótulo do traçado central; não observado"
+CEMADEN;Itaipu;Chuva GEFS em 14 dias;124;mm;Rodada 29/10/2026 00 UTC;previsao_aproximada;14;Apres. CEMADEN Paraná-291026 1.pdf;"Leitura do rótulo do traçado central; não observado"
+CEMADEN;Iguaçu;Chuva GEFS em 14 dias;129;mm;Rodada 29/10/2026 00 UTC;previsao_aproximada;14;Apres. CEMADEN Paraná-291026 1.pdf;"Leitura do rótulo do traçado central; não observado"
+CEMADEN;Paraná agregado;Chuva GEFS em 14 dias;113;mm;Rodada 28/10/2026 00 UTC;previsao_aproximada;15;Apres. CEMADEN Paraná-291026 1.pdf;"Leitura do rótulo do traçado central; não observado"
+CEMADEN;Furnas;Vazão natural média PDM;1220;m³/s;28/10–10/11/2026;previsao;16;Apres. CEMADEN Paraná-291026 1.pdf;"Título interno com 2025; janela explícita de 2026 preservada"
+CEMADEN;Furnas;PDM relativo à MLT outubro;305;% MLT;28/10–10/11/2026;previsao;16;Apres. CEMADEN Paraná-291026 1.pdf;"Título interno com 2025; janela explícita de 2026 preservada"
+CEMADEN;Furnas;PDM relativo à MLT novembro;212;% MLT;28/10–10/11/2026;previsao;16;Apres. CEMADEN Paraná-291026 1.pdf;"Título interno com 2025; janela explícita de 2026 preservada"
+ONS;Paranaíba;Energia natural afluente;78;% MLT;Outubro parcial até 26/10/2026;observado_parcial;8;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;
+ONS;Grande;Energia natural afluente;129;% MLT;Outubro parcial até 26/10/2026;observado_parcial;8;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;
+ONS;Paraná;Energia natural afluente;190;% MLT;Outubro parcial até 26/10/2026;observado_parcial;8;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;
+ONS;Tietê;Energia natural afluente;216;% MLT;Outubro parcial até 26/10/2026;observado_parcial;8;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;
+ONS;Paranapanema;Energia natural afluente;320;% MLT;Outubro parcial até 26/10/2026;observado_parcial;8;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;
+ONS;Subsistema Nordeste;Energia armazenada;62;% EARmáx;26/10/2026;observado;5;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;Não equivale ao VU de uma usina
+ONS;Subsistema Norte;Energia armazenada;63;% EARmáx;26/10/2026;observado;5;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;Não equivale ao VU de uma usina
+ONS;Subsistema Sudeste/Centro-Oeste;Energia armazenada;55;% EARmáx;26/10/2026;observado;5;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;Não equivale ao VU de uma usina
+ONS;Subsistema Sul;Energia armazenada;83;% EARmáx;26/10/2026;observado;5;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;Não equivale ao VU de uma usina
+ONS;Furnas;Volume útil — painel operativo;63;% VU;Painel até 26/10/2026;observado;13;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Grande; não é média mensal"
+ONS;Furnas;Afluência — ponto final;938;m³/s;Painel até 26/10/2026;observado;13;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Grande; não é média mensal"
+ONS;Furnas;Defluência — ponto final;802;m³/s;Painel até 26/10/2026;observado;13;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Grande; não é média mensal"
+ONS;Mascarenhas de Moraes;Volume útil — painel operativo;78;% VU;Painel até 26/10/2026;observado;14;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Grande; não é média mensal"
+ONS;Mascarenhas de Moraes;Afluência — ponto final;1034;m³/s;Painel até 26/10/2026;observado;14;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Grande; não é média mensal"
+ONS;Mascarenhas de Moraes;Defluência — ponto final;768;m³/s;Painel até 26/10/2026;observado;14;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Grande; não é média mensal"
+ONS;Marimbondo;Volume útil — painel operativo;49;% VU;Painel até 26/10/2026;observado;15;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Grande; não é média mensal"
+ONS;Marimbondo;Afluência — ponto final;1140;m³/s;Painel até 26/10/2026;observado;15;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Grande; não é média mensal"
+ONS;Marimbondo;Defluência — ponto final;1510;m³/s;Painel até 26/10/2026;observado;15;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Grande; não é média mensal"
+ONS;Água Vermelha;Volume útil — painel operativo;29;% VU;Painel até 26/10/2026;observado;16;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Grande; não é média mensal"
+ONS;Água Vermelha;Afluência — ponto final;1606;m³/s;Painel até 26/10/2026;observado;16;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Grande; não é média mensal"
+ONS;Água Vermelha;Defluência — ponto final;1825;m³/s;Painel até 26/10/2026;observado;16;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Grande; não é média mensal"
+ONS;Nova Ponte;Volume útil — painel operativo;45;% VU;Painel até 26/10/2026;observado;20;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Paranaíba; não é média mensal"
+ONS;Nova Ponte;Afluência — ponto final;233;m³/s;Painel até 26/10/2026;observado;20;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Paranaíba; não é média mensal"
+ONS;Nova Ponte;Defluência — ponto final;327;m³/s;Painel até 26/10/2026;observado;20;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Paranaíba; não é média mensal"
+ONS;Emborcação;Volume útil — painel operativo;54;% VU;Painel até 26/10/2026;observado;21;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Paranaíba; não é média mensal"
+ONS;Emborcação;Afluência — ponto final;326;m³/s;Painel até 26/10/2026;observado;21;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Paranaíba; não é média mensal"
+ONS;Emborcação;Defluência — ponto final;514;m³/s;Painel até 26/10/2026;observado;21;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Paranaíba; não é média mensal"
+ONS;Itumbiara;Volume útil — painel operativo;64;% VU;Painel até 26/10/2026;observado;22;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Paranaíba; não é média mensal"
+ONS;Itumbiara;Afluência — ponto final;1150;m³/s;Painel até 26/10/2026;observado;22;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Paranaíba; não é média mensal"
+ONS;Itumbiara;Defluência — ponto final;1504;m³/s;Painel até 26/10/2026;observado;22;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Paranaíba; não é média mensal"
+ONS;São Simão;Volume útil — painel operativo;35;% VU;Painel até 26/10/2026;observado;23;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Paranaíba; não é média mensal"
+ONS;São Simão;Afluência — ponto final;1916;m³/s;Painel até 26/10/2026;observado;23;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Paranaíba; não é média mensal"
+ONS;São Simão;Defluência — ponto final;1738;m³/s;Painel até 26/10/2026;observado;23;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Paranaíba; não é média mensal"
+ONS;Barra Bonita;Volume útil — painel operativo;94;% VU;Painel até 26/10/2026;observado;26;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Tietê; não é média mensal; quadro p. 25 indica 95% VU"
+ONS;Barra Bonita;Afluência — ponto final;2275;m³/s;Painel até 26/10/2026;observado;26;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Tietê; não é média mensal; quadro p. 25 indica 95% VU"
+ONS;Barra Bonita;Defluência — ponto final;1614;m³/s;Painel até 26/10/2026;observado;26;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Tietê; não é média mensal; quadro p. 25 indica 95% VU"
+ONS;Promissão;Volume útil — painel operativo;96;% VU;Painel até 26/10/2026;observado;27;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Tietê; não é média mensal"
+ONS;Promissão;Afluência — ponto final;2357;m³/s;Painel até 26/10/2026;observado;27;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Tietê; não é média mensal"
+ONS;Promissão;Defluência — ponto final;1930;m³/s;Painel até 26/10/2026;observado;27;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Tietê; não é média mensal"
+ONS;Três Irmãos;Volume útil — painel operativo;70;% VU;Painel até 26/10/2026;observado;28;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Tietê; não é média mensal"
+ONS;Três Irmãos;Afluência — ponto final;2067;m³/s;Painel até 26/10/2026;observado;28;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Tietê; não é média mensal"
+ONS;Três Irmãos;Defluência — ponto final;1009;m³/s;Painel até 26/10/2026;observado;28;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Tietê; não é média mensal"
+ONS;Barra Bonita;Volume útil — quadro comparativo;95;% VU;26/10/2026;observado;25;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;"Painel p. 26 indica 94%; diferença preservada"
+ONS;Furnas;Volume útil no início do mês;61,9;% VU;Início de outubro/2026;observado_referencia_operativa;12;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;
+ONS;Furnas;Cota no início do mês;762,94;m;Início de outubro/2026;observado_referencia_operativa;12;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;
+ONS;Mascarenhas de Moraes;Volume útil no início do mês;73,3;% VU;Início de outubro/2026;observado_referencia_operativa;12;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;
+ONS;Mascarenhas de Moraes;Cota no início do mês;663,28;m;Início de outubro/2026;observado_referencia_operativa;12;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;
+ONS;Emborcação;Volume útil no início do mês;55,4;% VU;Início de outubro/2026;observado_referencia_operativa;19;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;
+ONS;Emborcação;Cota no início do mês;646,09;m;Início de outubro/2026;observado_referencia_operativa;19;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;
+ONS;Itumbiara;Volume útil no início do mês;68,47;% VU;Início de outubro/2026;observado_referencia_operativa;19;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;
+ONS;Itumbiara;Cota no início do mês;514,4;m;Início de outubro/2026;observado_referencia_operativa;19;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;
+ONS;Jupiá;Defluência — ponto final;6113;m³/s;Painel até 26/10/2026;observado;30;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;
+ONS;Jupiá;Defluência mínima informada;3300;m³/s;Permanente, conforme apresentação;condicionante_informada;30;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;FSARH 5777-2024
+ONS;Porto Primavera;Defluência — ponto final;6011;m³/s;Painel até 26/10/2026;observado;30;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;
+ONS;Porto Primavera;Defluência mínima informada;3900;m³/s;Até 31/10/2026;condicionante_informada;30;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;FSARH 9101-2025
+ONS;Barra Bonita;Nível mínimo informado para navegação;446,5;m;Condição apresentada em 29/10/2026;condicionante_informada;26;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;FSARH 75-2018
+ONS;Barra Bonita;Volume útil correspondente ao mínimo de navegação;47,8;% VU;Condição apresentada em 29/10/2026;condicionante_informada;26;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;FSARH 75-2018
+ONS;Promissão;Nível mínimo informado para navegação;381;m;Condição apresentada em 29/10/2026;condicionante_informada;27;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;FSARH 96-2018
+ONS;Promissão;Volume útil correspondente ao mínimo de navegação;28,7;% VU;Condição apresentada em 29/10/2026;condicionante_informada;27;Apresentação ONS_Bacia do rio Paraná-20261029 1.pdf;FSARH 96-2018
