@@ -22,7 +22,7 @@ ANNEX='Anexo_I_Sao_Francisco_03-11-2026.pdf'
 NAME='José Aguiar de Lima Jr.'
 ROLE='Especialista em Geoprocessamento'
 HASHES={'cemaden':'86db45c42190ba159b2bd62f32483651148ef422d6b46c82db1c2ae5390825ff','ons':'83537d7b2349cc644c991990f5ffcc551ac8bbe32c6d58ca84588d5e75087dad'}
-LABELS={'cemaden':'CEMADEN/MCTI','ons':'ONS'}
+LABELS={'inmet':'INMET','cemaden':'CEMADEN/MCTI','ons':'ONS'}
 FIGS={
 'cemaden':[
 (2,'Chuva acumulada e anomalia em 30 dias','03/10–02/11/2026; leitura espacial, sem estimativa de médias pelas cores.'),
@@ -86,7 +86,12 @@ def indicators(out):
   for period,v in [('Novembro/2026',nov),('Dezembro/2026',dec)]:add('ons',local,'Defluência simulada — '+scen,v,'m³/s',period,'premissa_operativa',page,'Não é mínimo legal nem decisão da reunião')
  for local,date,lo,hi,page in [('Três Marias','01/12/2026',72.9,74.2,18),('Três Marias','01/01/2027',77.1,77.5,18),('Sobradinho','01/12/2026',52.5,54.8,19),('Sobradinho','01/01/2027',57.5,65.4,19)]:
   for scen,v in [('inferior',lo),('superior',hi)]:add('ons',local,'Volume útil previsto — '+scen,v,'% VU',date,'projecao_condicional',page,'Não é intervalo de confiança')
- assert len(rows)==56
+ for local,value in [('Niño 4',0.2),('Niño 3.4',2.5),('Niño 3',3.7),('Niño 1+2',4.6)]:
+  add('inmet',local,'Anomalia de TSM apresentada',value,'°C','Quadro apresentado em 03/11/2026','observacao_oceanica_reproduzida',10,'Data de referência própria do produto; não equiparar automaticamente a ONI/RONI')
+  rows[-1][8]='Bacia do Rio_SF_INMET_03112026 2.pdf#page=10'
+ add('inmet','ENSO / El Niño','Probabilidade de continuidade','>80','%','Até MAM/2027; produto emitido em outubro/2026','previsao_probabilistica',13,'Limiar informado na lâmina; não é probabilidade de impacto local')
+ rows[-1][8]='Bacia do Rio_SF_INMET_03112026 2.pdf#page=13'
+ assert len(rows)==61
  with (out/'indicadores.csv').open('w',encoding='utf-8-sig',newline='') as f:
   w=csv.writer(f,delimiter=';');w.writerow(['instituicao','local','indicador','valor','unidade','periodo','natureza','pagina_fonte','fonte_pdf','observacao']);w.writerows(rows)
  return rows
@@ -100,7 +105,7 @@ def build(out):
  s=BeautifulSoup((ROOT/'index.html').read_text(encoding='utf-8'),'html.parser')
  for el in s.select('.gallery,.annex-access,#zoom-script,dialog'):el.decompose()
  originals={sec['id']:BeautifulSoup(str(sec),'html.parser').section for sec in s.select('main > section')}
- assert 'o INMET iniciou a reunião' in originals['executivo'].get_text()
+ assert 'inmet' in originals, 'Vertical INMET ausente'
  sections=list(originals.values())
  paragraphs=[norm(p.get_text(' ',strip=True)) for sec in sections for p in sec.find_all('p')]
  cells=[norm(p.get_text(' ',strip=True)) for sec in sections for p in sec.select('th,td')]
@@ -122,9 +127,9 @@ def build(out):
  for ident,href,label in [('pdf-action','documentos/'+PDF,'Nota Técnica integral · PDF preliminar'),('csv-action','indicadores.csv','Dados e indicadores · CSV')]:
   el=s.find(id=ident);assert el is not None;el.name='a';el.attrs={'id':ident,'href':href,'download':''};el.string=label
  p=s.new_tag('p',attrs={'class':'annex-access'});link=s.new_tag('a',href='documentos/'+ANNEX,download='');link.string='Consultar somente o Anexo I · PDF';p.append(link);s.find(id='anexo-i').append(p)
- s.select_one('.notice').string='PRÉVIA DOCUMENTAL 0.2 — duas verticais completas, cruzamentos, Anexo I, 32 reproduções e 56 indicadores. INMET iniciou a reunião; seu PDF ainda não foi recebido. Debate e encerramento em aberto.'
+ s.select_one('.notice').string='PRÉVIA DOCUMENTAL 0.3 — INMET, CEMADEN e ONS: três verticais, cruzamentos, Anexo I e 61 indicadores. Web e PDF sincronizados. Preservadas as 32 reproduções de CEMADEN/ONS; imagens do INMET ainda não hospedadas. Debate e encerramento em aberto.'
  for text in list(s.find_all(string=True)):
-  if 'prévia documental 0.1' in text.lower():text.replace_with(str(text).replace('0.1','0.2'))
+  if 'prévia documental 0.1' in text.lower():text.replace_with(str(text))
  (out/'index.html').write_text(str(s),encoding='utf-8')
  pdfmetrics.registerFont(TTFont('NT','/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'))
  pdfmetrics.registerFont(TTFont('NTB','/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'))
@@ -143,7 +148,7 @@ def build(out):
   for tag in fragment.find_all('a'):
    href=tag.get('href','')
    if href.startswith('fontes/'):tag['href']=SITE+href
-  return fragment.find().decode_contents().replace('<strong>','<b>').replace('</strong>','</b>').replace('<br>','<br/>').replace('0.1','0.2')
+  return fragment.find().decode_contents().replace('<strong>','<b>').replace('</strong>','</b>').replace('<br>','<br/>')
  def table(el,width):
   data=[]
   for i,tr in enumerate(el.find_all('tr')):data.append([para(esc(c.get_text(' ',strip=True)),'head' if i==0 else 'cell') for c in tr.find_all(['td','th'])])
@@ -160,7 +165,7 @@ def build(out):
    elif el.name=='div' and 'tablewrap' in el.get('class',[]):result.extend([table(el.table,width),Spacer(1,9)])
   return result
  def furniture(c,doc):
-  w,h=c._pagesize;c.saveState();c.setFont('NT',7);c.setFillColor(colors.HexColor('#506975'));c.drawString(52,h-28,'SOE/ANA — GABINETE | SÃO FRANCISCO | 11ª reunião — 03/11/2026 | Prévia 0.2');c.setStrokeColor(colors.HexColor('#bfd1da'));c.line(52,h-35,w-52,h-35);c.line(52,57,w-52,57)
+  w,h=c._pagesize;c.saveState();c.setFont('NT',7);c.setFillColor(colors.HexColor('#506975'));c.drawString(52,h-28,'SOE/ANA — GABINETE | SÃO FRANCISCO | 11ª reunião — 03/11/2026 | Prévia 0.3');c.setStrokeColor(colors.HexColor('#bfd1da'));c.line(52,h-35,w-52,h-35);c.line(52,57,w-52,57)
   c.drawCentredString(w/2,43,'Supervisionado por '+NAME+' · '+ROLE);c.drawCentredString(w/2,32,'Gabinete/SOE/ANA · Elaboração com suporte de inteligência artificial (IA)');c.drawCentredString(w/2,22,'Discussão interna · Protótipo pessoal — não constitui publicação institucional da ANA.');c.restoreState()
  class Doc(BaseDocTemplate):
   def afterFlowable(self,f):
@@ -171,13 +176,13 @@ def build(out):
  pdfpath=out/'documentos'/PDF
  doc=Doc(str(pdfpath),pagesize=A4,leftMargin=56,rightMargin=56,topMargin=52,bottomMargin=74,title=TITLE,author=NAME)
  doc.addPageTemplates([PageTemplate(id='portrait',pagesize=A4,frames=[Frame(56,74,A4[0]-112,A4[1]-126,leftPadding=0,rightPadding=0,topPadding=0,bottomPadding=0)],onPage=furniture),PageTemplate(id='landscape',pagesize=ls,frames=[Frame(53,74,ls[0]-106,ls[1]-126,leftPadding=0,rightPadding=0,topPadding=0,bottomPadding=0)],onPage=furniture)])
- story=[Spacer(1,32),para(esc(TITLE),'cover'),para('Nota Técnica — SÃO FRANCISCO','h1'),para('3 de novembro de 2026 · Prévia documental 0.2','h2'),Spacer(1,12),para('Condições hidrológicas, transição para o período chuvoso e perspectivas de operação da cascata.'),Spacer(1,18),para('<b>Supervisionado por '+NAME+'</b>'),para(ROLE+'<br/>Gabinete da Superintendência de Operações e Eventos Críticos — SOE/ANA'),para('Elaboração com suporte de inteligência artificial (IA).'),Spacer(1,18),para('Base: CEMADEN e ONS, 20 páginas cada. O INMET iniciou a reunião, conforme relato do responsável, mas seu PDF ainda não foi recebido. Encerramento e deliberações finais não informados.'),para('Duas verticais completas, cruzamentos, quadro executivo, Anexo I, 32 reproduções identificadas e base de 56 indicadores.'),PageBreak(),para('SUMÁRIO','h1')]
+ story=[Spacer(1,32),para(esc(TITLE),'cover'),para('Nota Técnica — SÃO FRANCISCO','h1'),para('3 de novembro de 2026 · Prévia documental 0.3','h2'),Spacer(1,12),para('Condições hidrológicas, transição para o período chuvoso e perspectivas de operação da cascata.'),Spacer(1,18),para('<b>Supervisionado por '+NAME+'</b>'),para(ROLE+'<br/>Gabinete da Superintendência de Operações e Eventos Críticos — SOE/ANA'),para('Elaboração com suporte de inteligência artificial (IA).'),Spacer(1,18),para('Base: INMET, 18 páginas; CEMADEN e ONS, 20 páginas cada. As três apresentações foram recebidas e analisadas. Encerramento e deliberações finais não informados. As 32 reproduções são do CEMADEN e do ONS; as imagens do INMET ainda não integram esta edição.'),para('Três verticais completas, cruzamentos, quadro executivo, Anexo I, 32 reproduções identificadas de CEMADEN/ONS e base de 61 indicadores.'),PageBreak(),para('SUMÁRIO','h1')]
  toc=TableOfContents();toc.levelStyles=[ParagraphStyle('Toc',fontName='NT',fontSize=9,leading=14,spaceBefore=7)];story.extend([toc,PageBreak()])
- keys=['executivo','escopo','cemaden','ons','cruzamentos','acompanhamento','registro','fontes']
+ keys=['executivo','escopo','inmet','cemaden','ons','cruzamentos','acompanhamento','registro','fontes']
  for i,key in enumerate(keys):
   if i:story.append(PageBreak())
   sec=originals[key];story.append(heading(sec.h2.get_text(),key));story.extend(emit(sec,A4[0]-112))
- annex=originals['anexo-i'];blocks=annex.select('.annex-block');assert len(blocks)==4
+ annex=originals['anexo-i'];blocks=annex.select('.annex-block');assert len(blocks)==5
  story.extend([NextPageTemplate('landscape'),PageBreak(),heading(annex.h2.get_text(),'anexo-i')]);story.extend(emit(annex,ls[0]-106))
  separate=[para(esc(annex.h2.get_text()),'h1')]+emit(annex,ls[0]-106)
  for i,block in enumerate(blocks):
@@ -198,10 +203,10 @@ def build(out):
   for i,p in enumerate(d):p.insert_text((p.rect.width-125,p.rect.height-11),f'Página {i+1} de {total}',fontsize=8,fontname='helv',color=(.25,.35,.4))
   tmp=path.with_suffix('.tmp.pdf');d.save(tmp,garbage=4,deflate=True);d.close();tmp.replace(path);return total
  pages=paginate(pdfpath);annpages=paginate(annexpath)
- d=fitz.open(pdfpath);fulltext=norm(' '.join(p.get_text() for p in d))
- for text in paragraphs:assert text.replace('0.1','0.2') in fulltext,'Paragraph missing: '+text[:160]
+ d=fitz.open(pdfpath);fulltext=norm(' '.join(p.get_text(clip=fitz.Rect(45,48,p.rect.width-45,p.rect.height-70)) for p in d))
+ for text in paragraphs:assert text in fulltext,'Paragraph missing: '+text[:160]
  for text in cells:assert text in fulltext,'Table cell missing: '+text[:160]
- assert len(d.get_toc())==11
+ assert len(d.get_toc())==12
  assert sum(len(p.get_images()) for p in d)==32
  for p in d:
   text=p.get_text();assert NAME in text and ROLE in text and 'inteligência artificial' in text
@@ -209,10 +214,10 @@ def build(out):
  for i in [0,1,2]:d[i].get_pixmap(matrix=fitz.Matrix(1.3,1.3),alpha=False).save(out/'qa'/f'check-{i+1:02}.png')
  ad=fitz.open(annexpath)
  for i,p in enumerate(ad):p.get_pixmap(matrix=fitz.Matrix(1.2,1.2),alpha=False).save(out/'qa'/f'annex-{i+1}.png')
- manifest={'meeting':TITLE,'date':'2026-11-03','version':'0.2','status':'Prévia documental; INMET iniciou a reunião, PDF não recebido; encerramento não informado','generated_at':datetime.now(timezone.utc).isoformat(),'sources':{k:{'sha256':h,'pages':20,'matches_received_file':True} for k,h in HASHES.items()},'pdf_pages':pages,'annex_pages':annpages,'figure_count':32,'indicator_rows':56,'pdf_sha256':sha(pdfpath),'annex_sha256':sha(annexpath),'csv_sha256':sha(out/'indicadores.csv'),'toc':d.get_toc(),'figures':selected,'checks':{'all_paragraphs':True,'all_table_cells':True,'credits_every_page':True,'reserved_image_dimensions':True},'formal_decisions_received':False}
+ manifest={'meeting':TITLE,'date':'2026-11-03','version':'0.3','status':'Prévia documental; três verticais incorporadas; encerramento não informado; imagens INMET não hospedadas','generated_at':datetime.now(timezone.utc).isoformat(),'sources':{k:{'sha256':h,'pages':20,'matches_received_file':True} for k,h in HASHES.items()},'pdf_pages':pages,'annex_pages':annpages,'figure_count':32,'indicator_rows':61,'pdf_sha256':sha(pdfpath),'annex_sha256':sha(annexpath),'csv_sha256':sha(out/'indicadores.csv'),'toc':d.get_toc(),'figures':selected,'checks':{'all_paragraphs':True,'all_table_cells':True,'credits_every_page':True,'reserved_image_dimensions':True},'formal_decisions_received':False}
  (out/'manifesto.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf-8')
- email='Assunto: São Francisco — 11ª reunião de 2026 — prévia técnica\n\nPrezados(as),\n\nCompartilho a página da reunião de 03/11/2026: '+SITE+'\n\nO endereço reúne as verticais CEMADEN e ONS, cruzamentos, NT integral em PDF, Anexo I e indicadores. O INMET iniciou a reunião, conforme registro do acompanhamento, mas seu PDF ainda não integra esta edição. Trata-se de prévia documental, sem deliberações finais ou encerramento registrados.\n\nAtenciosamente,\n'+NAME+'\n'+ROLE+' — Gabinete/SOE/ANA\n'
+ email='Assunto: São Francisco — 11ª reunião de 2026 — prévia técnica\n\nPrezados(as),\n\nCompartilho a página da reunião de 03/11/2026: '+SITE+'\n\nO endereço reúne as verticais INMET, CEMADEN e ONS, cruzamentos, NT integral em PDF, Anexo I e indicadores. A análise do INMET integra esta revisão; as reproduções gráficas do INMET ainda não estão hospedadas. Trata-se de prévia documental, sem deliberações finais ou encerramento registrados.\n\nAtenciosamente,\n'+NAME+'\n'+ROLE+' — Gabinete/SOE/ANA\n'
  (out/'email_encaminhamento.txt').write_text(email,encoding='utf-8')
- print('VERIFIED:',pages,'NT pages;',annpages,'annex pages;32 figures;56 indicators.',flush=True)
+ print('VERIFIED:',pages,'NT pages;',annpages,'annex pages;32 figures;61 indicators.',flush=True)
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('--output',type=Path,required=True);a=p.parse_args();build(a.output.resolve())
