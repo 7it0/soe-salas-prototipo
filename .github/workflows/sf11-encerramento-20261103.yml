@@ -1,0 +1,190 @@
+name: Sao Francisco 11 - encerramento e horizonte 2027
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sf11-encerramento-20261103.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: sf11-consolidacao-20261103
+  cancel-in-progress: false
+jobs:
+  consolidate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: sao-francisco/11a-2026-11-03
+      - name: Install existing document dependencies
+        run: python -m pip install 'pymupdf==1.26.7' reportlab beautifulsoup4
+      - name: Incorporate the reported closure without inventing deliberations
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          import json,hashlib,re
+          root=Path('sao-francisco/11a-2026-11-03')
+          p=root/'index.html'
+          s=BeautifulSoup(p.read_text(encoding='utf-8'),'html.parser')
+          assert s.find(id='inmet') is not None, 'INMET must already be incorporated'
+          assert s.find(id='registro-encerramento') is None, 'Closure already incorporated; reconcile rather than repeat'
+          def digest(path): return hashlib.sha256(path.read_bytes()).hexdigest()
+          def analytical(sec):
+              c=BeautifulSoup(str(sec),'html.parser').section
+              for el in c.select('.gallery'):el.decompose()
+              return c.get_text(' ',strip=True)
+          previous={'csv_sha256':digest(root/'indicadores.csv'),'verticals':{k:analytical(s.find(id=k)) for k in ['inmet','cemaden','ons']},'figure_count':len(s.select('figure'))}
+          assert previous['figure_count']==32
+          Path('/tmp/sf11-closure-before.json').write_text(json.dumps(previous,ensure_ascii=False),encoding='utf-8')
+          notice='CONSOLIDAÇÃO PÓS-REUNIÃO 1.0 — reunião encerrada, conforme informação do responsável. INMET, CEMADEN e ONS incorporados; atenção às projeções para 2027, conforme manifestação relatada de Joaquim, superintendente da SOE/ANA. Mantidas 32 reproduções de CEMADEN/ONS e 61 indicadores. As imagens e o PDF original do INMET ainda não estão hospedados.'
+          s.select_one('.notice').string=notice
+          scope=s.find(id='ressalva-inmet-sintese');assert scope is not None
+          scope.clear()
+          b=s.new_tag('strong');b.string='Escopo e encerramento: ';scope.append(b)
+          scope.append('esta consolidação reúne as apresentações recebidas do INMET (18 páginas), CEMADEN (20 páginas) e ONS (20 páginas), referentes a 03/11/2026. O responsável confirmou a abertura pelo INMET e o encerramento da reunião. A pendência inicial de recebimento do INMET está superada. [R1]')
+          p2027=s.new_tag('p',attrs={'id':'destaque-2027'})
+          b=s.new_tag('strong');b.string='Ponto de atenção no encerramento — 2027: ';p2027.append(b)
+          p2027.append('conforme relato do responsável pelo acompanhamento, Joaquim, superintendente da SOE/ANA, manifestou preocupação com as projeções e com o comportamento do sistema hídrico em 2027. Esta foi a única preocupação adicional comunicada no relato de fechamento. Registra-se a manifestação como ponto de atenção, não como nova determinação de vazão, mudança de regra ou aprovação dos cenários. [R1]')
+          scope.insert_after(p2027)
+          tr=s.new_tag('tr')
+          for txt in ['Horizonte 2027','Preocupação destacada por Joaquim no encerramento, conforme relato.','Distinguir os horizontes dos produtos; não extrapolar para o ano inteiro. [R1]']:
+              td=s.new_tag('td');td.string=txt;tr.append(td)
+          s.find(id='executivo').select_one('tbody').append(tr)
+          ac=s.find(id='acompanhamento')
+          for tr in ac.select('tr'):
+              cells=tr.find_all('td')
+              if cells and cells[0].get_text(strip=True)=='INMET':
+                  values=['Rastreabilidade INMET','O arquivo recebido está identificado e sua análise incorporada?','Recebimento e análise confirmados; original e reproduções ainda pendentes de hospedagem.']
+                  for cell,value in zip(cells,values):cell.string=value
+          horizon='''<h3 id="horizonte-2027">7.1 — Projeções para 2027: alcance e limites dos materiais</h3>
+          <p>A preocupação manifestada no encerramento é preservada sem converter os produtos apresentados em uma previsão para todo o ano de 2027. Os horizontes e variáveis são distintos. O quadro abaixo é uma leitura analítica dos materiais, não uma deliberação da reunião. [R1]</p>
+          <div class="tablewrap"><table><thead><tr><th>Produto / fonte</th><th>Horizonte apresentado</th><th>Limite de interpretação</th></tr></thead><tbody>
+          <tr><td>INMET — ENSO, p. 13</td><td>A lâmina indica mais de 80% de continuidade do El Niño até março–abril–maio de 2027.</td><td>Probabilidade de continuidade do fenômeno; não é probabilidade de seca, vazão ou impacto local.</td></tr>
+          <tr><td>INMET, pp. 16–17; CEMADEN, p. 18</td><td>Prognósticos de chuva e/ou temperatura para novembro–dezembro/2026–janeiro/2027.</td><td>Produtos sazonais não descrevem todo o ano de 2027 nem garantem resposta hidrológica uniforme.</td></tr>
+          <tr><td>CEMADEN — GloFAS, p. 19</td><td>Categorias de vazões naturais previstas para novembro, dezembro e janeiro de 2027.</td><td>Janeiro é o último mês desse painel; não extrapolar suas categorias para os meses seguintes.</td></tr>
+          <tr><td>ONS, pp. 13–19</td><td>Vazões médias de 02/11–31/12/2026, premissas de novembro/dezembro e estoques em 01/01/2027.</td><td>A posição em 1º de janeiro representa a transição de ano, não uma trajetória de armazenamento durante 2027.</td></tr>
+          </tbody></table></div>
+          <p><strong>Recomendação analítica para as próximas avaliações:</strong> atualizar conjuntamente cenários de precipitação, afluências e armazenamento, confrontando-os com as observações e explicitando horizonte, premissas e incertezas. Não foram informados responsáveis, prazos ou uma encomenda formal de novos estudos; esses elementos não são atribuídos à manifestação de Joaquim. [I, pp. 13–17; C, pp. 18–19; O, pp. 13–19; R1]</p>'''
+          frag=BeautifulSoup(horizon,'html.parser')
+          for el in list(frag.contents):ac.append(el.extract())
+          reg=s.find(id='registro');reg.clear()
+          closure='''<h2>8. Registro de encerramento e encaminhamentos</h2>
+          <p id="registro-encerramento"><strong>Reunião encerrada:</strong> o responsável pelo acompanhamento confirmou o encerramento da 11ª Reunião em 2026 da Sala de Acompanhamento do Sistema Hídrico do Rio São Francisco, realizada em 03/11/2026. O horário exato do encerramento não foi informado. [R1]</p>
+          <p>O INMET iniciou a reunião. Seu PDF foi recebido após os materiais do CEMADEN e do ONS e está incorporado à análise desta consolidação. A pendência inicial de recebimento não permanece vigente. [R1]</p>
+          <h3>Manifestação destacada no fechamento</h3>
+          <p>Segundo relato do responsável, Joaquim, superintendente da SOE/ANA, expressou preocupação com as projeções e com o comportamento do sistema hídrico em 2027. Essa foi a única preocupação adicional comunicada no relato de encerramento. Trata-se de síntese atribuída da manifestação, não de transcrição literal. [R1]</p>
+          <p><strong>Decisões e encaminhamentos:</strong> não foram comunicadas novas deliberações operativas, mudanças de defluências, prazos ou designações de responsáveis. As premissas do ONS e as recomendações desta NT permanecem distintas de decisões da reunião. Não se presume aprovação formal desta NT, alteração das regras vigentes ou definição de nova reunião. [R1]</p>
+          <p><strong>Controle editorial:</strong> consolidação pós-reunião 1.0. Encerramento e manifestação sobre 2027 registrados; conteúdo analítico e indicadores das três instituições preservados. O documento não substitui ata ou ato administrativo. As imagens e o PDF original do INMET ainda estão pendentes de hospedagem, embora o material tenha sido recebido e analisado.</p>'''
+          frag=BeautifulSoup(closure,'html.parser')
+          for el in list(frag.contents):reg.append(el.extract())
+          sources=s.find(id='fontes')
+          for para in list(sources.find_all('p',recursive=False)):
+              if para.get_text(strip=True).startswith('Controle:'):
+                  para.string='Controle: consolidação pós-reunião 1.0, de 03/11/2026. Três apresentações recebidas e analisadas; encerramento confirmado; manifestação sobre 2027 registrada. O endereço da publicação é preservado.'
+          oral=s.new_tag('p',attrs={'id':'fonte-registro-encerramento'})
+          oral.string='[R1] Relato do responsável pelo acompanhamento, José Aguiar de Lima Jr., no chat de trabalho da reunião de 03/11/2026: abertura pelo INMET; recebimento das apresentações; confirmação do encerramento; preocupação de Joaquim, superintendente da SOE/ANA, com as projeções e o comportamento do sistema em 2027. Registro fornecido pelo usuário, sem gravação ou ata verificada nesta consolidação.'
+          sources.append(oral)
+          intro=s.find(id='anexo-i').find('p',recursive=False)
+          intro.string='Quadro de leitura dos principais números apresentados. Observações, índices, previsões e premissas operativas são separados. I, C e O indicam instituição e página física. Este retrato da reunião é subsídio à memória anual/Conjuntura, não estatística anual homologada. A manifestação de encerramento sobre 2027 consta do Registro e não foi transformada em novo indicador numérico.'
+          for node in list(s.footer.find_all(string=True)):
+              t=str(node).replace('Prévia documental 0.2','Consolidação pós-reunião 1.0').replace('Prévia documental 0.3','Consolidação pós-reunião 1.0').replace('Prévia 0.3','Consolidação 1.0').replace('prévia documental 0.2','consolidação pós-reunião 1.0')
+              if t!=str(node):node.replace_with(t)
+          p.write_text(str(s),encoding='utf-8')
+          for k,text in previous['verticals'].items():assert analytical(s.find(id=k))==text,'Analytical vertical modified: '+k
+          assert len(s.select('figure'))==32
+          assert s.select('main > section')[-1].get('id')=='anexo-i'
+          assert 'PDF pendente' not in sources.get_text()
+          builder=root/'build.py';code=builder.read_text(encoding='utf-8')
+          code=code.replace('NT_Sao_Francisco_11a_03-11-2026_PREVIA.pdf','NT_Sao_Francisco_11a_03-11-2026_CONSOLIDADA.pdf')
+          code=code.replace('0.3','1.0').replace('PRÉVIA DOCUMENTAL','CONSOLIDAÇÃO PÓS-REUNIÃO').replace('Prévia documental','Consolidação pós-reunião').replace('Prévia 1.0','Consolidação 1.0').replace('prévia técnica','consolidação pós-reunião')
+          lines=code.splitlines()
+          for i,line in enumerate(lines):
+              if line.startswith(" s.select_one('.notice').string="):lines[i]=" s.select_one('.notice').string="+repr(notice)
+          code='\n'.join(lines)+'\n'
+          code=code.replace('Encerramento e deliberações finais não informados.','Encerramento confirmado; preocupação com as projeções para 2027 registrada. Não foram comunicadas novas deliberações operativas.')
+          code=code.replace('encerramento não informado','encerramento confirmado; preocupação relatada com 2027')
+          code=code.replace('Trata-se de prévia documental, sem deliberações finais ou encerramento registrados.','Reunião encerrada. Conforme relato do responsável, Joaquim, superintendente da SOE/ANA, destacou preocupação com as projeções para 2027. Não foram comunicadas novas deliberações operativas.')
+          code=code.replace('Nota Técnica integral · PDF preliminar','Nota Técnica integral · PDF consolidado')
+          # The manifest records receipt separately from hosting; do not erase the INMET source metadata.
+          needle=" (out/'manifesto.json').write_text"
+          assert code.count(needle)==1
+          extra=""" manifest['status']='Consolidação pós-reunião; encerramento confirmado; atenção às projeções para 2027; original e imagens INMET ainda não hospedados'
+           manifest['meeting_closed']=True
+           manifest['closure_source']='Relato do responsável pelo acompanhamento em 03/11/2026'
+           manifest['closure_focus']='Preocupação de Joaquim, superintendente da SOE/ANA, com as projeções e o comportamento do sistema hídrico em 2027, conforme relato do usuário.'
+           manifest['new_operational_decisions_reported']=False
+           manifest['pdf_path']='documentos/'+PDF
+           manifest['sources']['inmet']={'sha256':'c7eafb4527008b52839e02058da2b3bba29a0c02893482886745ce198680aee9','pages':18,'received_and_analyzed':True,'original_pdf_hosted':False,'figures_hosted':False}
+          """
+          extra='\n'.join(' '+line.strip() for line in extra.strip().splitlines())+'\n'
+          code=code.replace(needle,extra+needle)
+          compile(code,str(builder),'exec');builder.write_text(code,encoding='utf-8')
+          record={'meeting_date':'2026-11-03','version':'1.0','closed':True,'closure_time':None,'source':'Informação do usuário, responsável pelo acompanhamento','speaker_as_reported':'Joaquim — superintendente da SOE/ANA','reported_concern':'Projeções e comportamento do sistema hídrico em 2027','nature':'Preocupação para acompanhamento; não nova deliberação operativa','no_other_operational_decisions_reported':True,'inmet_received':True,'original_inmet_filename':'Bacia do Rio_SF_INMET_03112026 2.pdf','original_inmet_hosted':False}
+          (root/'ENCERRAMENTO.json').write_text(json.dumps(record,ensure_ascii=False,indent=2),encoding='utf-8')
+          print('Closure and 2027 horizons inserted. Three verticals and all 32 original figures preserved.')
+          PY
+      - name: Rebuild synchronized site, integral PDF and annex
+        run: python sao-francisco/11a-2026-11-03/build.py --output /tmp/sf11-final
+      - name: Validate final content and retain previously distributed PDF address
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          import json,hashlib,shutil
+          import fitz
+          out=Path('/tmp/sf11-final');root=Path('sao-francisco/11a-2026-11-03')
+          sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+          before=json.loads(Path('/tmp/sf11-closure-before.json').read_text())
+          assert sha(out/'indicadores.csv')==before['csv_sha256'],'Numeric base changed'
+          s=BeautifulSoup((out/'index.html').read_text(),'html.parser')
+          for k,text in before['verticals'].items():
+              sec=BeautifulSoup(str(s.find(id=k)),'html.parser').section
+              for el in sec.select('.gallery'):el.decompose()
+              assert sec.get_text(' ',strip=True)==text,'Vertical changed: '+k
+          assert s.find(id='registro-encerramento') and s.find(id='destaque-2027') and s.find(id='horizonte-2027')
+          assert 'encerramento em aberto' not in s.get_text().lower()
+          assert len(s.select('figure'))==32
+          for image in s.select('figure img'):assert (out/image['src']).exists()
+          pdf=out/'documentos/NT_Sao_Francisco_11a_03-11-2026_CONSOLIDADA.pdf'
+          with fitz.open(pdf) as d:
+              text=' '.join(p.get_text() for p in d)
+              assert 'Joaquim' in text and '2027' in text and 'Reunião encerrada' in text
+              assert sum(len(p.get_images()) for p in d)==32
+              for i,p in enumerate(d):
+                  if 'Joaquim' in p.get_text() or '7.1' in p.get_text():p.get_pixmap(matrix=fitz.Matrix(1.3,1.3),alpha=False).save(out/'qa'/f'closure-{i+1:02}.png')
+          shutil.copyfile(pdf,out/'documentos/NT_Sao_Francisco_11a_03-11-2026_PREVIA.pdf')
+          m=json.loads((out/'manifesto.json').read_text())
+          m['checks']['closure_in_html_and_pdf']=True;m['checks']['numeric_base_preserved']=True
+          m['checks']['three_verticals_preserved']=True
+          m['legacy_pdf_alias']='documentos/NT_Sao_Francisco_11a_03-11-2026_PREVIA.pdf'
+          (out/'manifesto.json').write_text(json.dumps(m,ensure_ascii=False,indent=2),encoding='utf-8')
+          shutil.copyfile(root/'ENCERRAMENTO.json',out/'ENCERRAMENTO.json')
+          print('VALIDATED: closure in HTML and PDF; 61 indicators unchanged; 32 figures; old PDF URL preserved.')
+          PY
+      - name: Preserve rendered QA and final deliverables
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sf11-consolidacao-encerramento-2027
+          path: /tmp/sf11-final/
+          if-no-files-found: error
+          retention-days: 7
+      - name: Publish only the validated meeting revision
+        run: |
+          set -euo pipefail
+          target='sao-francisco/11a-2026-11-03'
+          cp /tmp/sf11-final/index.html "$target/index.html"
+          cp /tmp/sf11-final/manifesto.json "$target/manifesto.json"
+          cp /tmp/sf11-final/email_encaminhamento.txt "$target/email_encaminhamento.txt"
+          cp /tmp/sf11-final/documentos/*.pdf "$target/documentos/"
+          cmp /tmp/sf11-final/indicadores.csv "$target/indicadores.csv"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$target/index.html" "$target/build.py" "$target/manifesto.json" "$target/email_encaminhamento.txt" "$target/ENCERRAMENTO.json" "$target/documentos/"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'São Francisco 11: consolidação pós-reunião, preocupação relatada com 2027 e site/PDF sincronizados'
+          git pull --rebase origin main
+          git push origin HEAD:main
