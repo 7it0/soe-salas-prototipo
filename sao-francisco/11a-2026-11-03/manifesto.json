@@ -1,9 +1,9 @@
 {
   "meeting": "11ª Reunião em 2026 da Sala de Acompanhamento do Sistema Hídrico do Rio São Francisco",
   "date": "2026-11-03",
-  "version": "0.3",
-  "status": "Prévia documental; três verticais incorporadas; encerramento não informado; imagens INMET não hospedadas",
-  "generated_at": "2026-11-03T13:33:59.466688+00:00",
+  "version": "1.0",
+  "status": "Consolidação pós-reunião; encerramento confirmado; atenção às projeções para 2027; original e imagens INMET ainda não hospedados",
+  "generated_at": "2026-11-03T14:10:56.984785+00:00",
   "sources": {
     "cemaden": {
       "sha256": "86db45c42190ba159b2bd62f32483651148ef422d6b46c82db1c2ae5390825ff",
@@ -27,8 +27,8 @@
   "annex_pages": 5,
   "figure_count": 32,
   "indicator_rows": 61,
-  "pdf_sha256": "ef3b2dcc33bc8ab3dd03dc53eb068811c0366b62de7d4bf7ea875b1a34824f23",
-  "annex_sha256": "4a89945e9eec842591c4d9af8a48bbb9281b2fb1144553cd5aceb9160e40b5d4",
+  "pdf_sha256": "908301cadc07cfff00ebd828fe9dfba6f1dba1ead1a156a7677a63a651b2eead",
+  "annex_sha256": "ce0c388bf7c052b38fa8c23131bd9e60337b4ff2064c992aaf7283058281ece2",
   "csv_sha256": "1f8a67b010c3d442c5e8b0ef01fbc9eff10d25c2af70162a69bd56eca8ec4feb",
   "toc": [
     [
@@ -68,7 +68,7 @@
     ],
     [
       1,
-      "8. Registro da reunião e encaminhamentos",
+      "8. Registro de encerramento e encaminhamentos",
       15
     ],
     [
@@ -451,8 +451,15 @@
     "all_table_cells": true,
     "credits_every_page": true,
     "reserved_image_dimensions": true,
-    "inmet_vertical_in_html_and_pdf": true,
-    "existing_cemaden_ons_preserved": true
+    "closure_in_html_and_pdf": true,
+    "numeric_base_preserved": true,
+    "three_verticals_preserved": true
   },
-  "formal_decisions_received": false
+  "formal_decisions_received": false,
+  "meeting_closed": true,
+  "closure_source": "Relato do responsável pelo acompanhamento em 03/11/2026",
+  "closure_focus": "Preocupação de Joaquim, superintendente da SOE/ANA, com as projeções e o comportamento do sistema hídrico em 2027, conforme relato do usuário.",
+  "new_operational_decisions_reported": false,
+  "pdf_path": "documentos/NT_Sao_Francisco_11a_03-11-2026_CONSOLIDADA.pdf",
+  "legacy_pdf_alias": "documentos/NT_Sao_Francisco_11a_03-11-2026_PREVIA.pdf"
 }

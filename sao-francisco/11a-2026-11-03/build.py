@@ -17,7 +17,7 @@ from reportlab.platypus.tableofcontents import TableOfContents
 ROOT=Path(__file__).resolve().parent
 SITE='https://7it0.github.io/soe-salas-prototipo/sao-francisco/11a-2026-11-03/'
 TITLE='11ª Reunião em 2026 da Sala de Acompanhamento do Sistema Hídrico do Rio São Francisco'
-PDF='NT_Sao_Francisco_11a_03-11-2026_PREVIA.pdf'
+PDF='NT_Sao_Francisco_11a_03-11-2026_CONSOLIDADA.pdf'
 ANNEX='Anexo_I_Sao_Francisco_03-11-2026.pdf'
 NAME='José Aguiar de Lima Jr.'
 ROLE='Especialista em Geoprocessamento'
@@ -124,10 +124,10 @@ def build(out):
   s.find(id=k).append(gallery);source.close()
  assert len(selected)==32
  rows=indicators(out)
- for ident,href,label in [('pdf-action','documentos/'+PDF,'Nota Técnica integral · PDF preliminar'),('csv-action','indicadores.csv','Dados e indicadores · CSV')]:
+ for ident,href,label in [('pdf-action','documentos/'+PDF,'Nota Técnica integral · PDF consolidado'),('csv-action','indicadores.csv','Dados e indicadores · CSV')]:
   el=s.find(id=ident);assert el is not None;el.name='a';el.attrs={'id':ident,'href':href,'download':''};el.string=label
  p=s.new_tag('p',attrs={'class':'annex-access'});link=s.new_tag('a',href='documentos/'+ANNEX,download='');link.string='Consultar somente o Anexo I · PDF';p.append(link);s.find(id='anexo-i').append(p)
- s.select_one('.notice').string='PRÉVIA DOCUMENTAL 0.3 — INMET, CEMADEN e ONS: três verticais, cruzamentos, Anexo I e 61 indicadores. Web e PDF sincronizados. Preservadas as 32 reproduções de CEMADEN/ONS; imagens do INMET ainda não hospedadas. Debate e encerramento em aberto.'
+ s.select_one('.notice').string='CONSOLIDAÇÃO PÓS-REUNIÃO 1.0 — reunião encerrada, conforme informação do responsável. INMET, CEMADEN e ONS incorporados; atenção às projeções para 2027, conforme manifestação relatada de Joaquim, superintendente da SOE/ANA. Mantidas 32 reproduções de CEMADEN/ONS e 61 indicadores. As imagens e o PDF original do INMET ainda não estão hospedados.'
  for text in list(s.find_all(string=True)):
   if 'prévia documental 0.1' in text.lower():text.replace_with(str(text))
  (out/'index.html').write_text(str(s),encoding='utf-8')
@@ -165,7 +165,7 @@ def build(out):
    elif el.name=='div' and 'tablewrap' in el.get('class',[]):result.extend([table(el.table,width),Spacer(1,9)])
   return result
  def furniture(c,doc):
-  w,h=c._pagesize;c.saveState();c.setFont('NT',7);c.setFillColor(colors.HexColor('#506975'));c.drawString(52,h-28,'SOE/ANA — GABINETE | SÃO FRANCISCO | 11ª reunião — 03/11/2026 | Prévia 0.3');c.setStrokeColor(colors.HexColor('#bfd1da'));c.line(52,h-35,w-52,h-35);c.line(52,57,w-52,57)
+  w,h=c._pagesize;c.saveState();c.setFont('NT',7);c.setFillColor(colors.HexColor('#506975'));c.drawString(52,h-28,'SOE/ANA — GABINETE | SÃO FRANCISCO | 11ª reunião — 03/11/2026 | Consolidação 1.0');c.setStrokeColor(colors.HexColor('#bfd1da'));c.line(52,h-35,w-52,h-35);c.line(52,57,w-52,57)
   c.drawCentredString(w/2,43,'Supervisionado por '+NAME+' · '+ROLE);c.drawCentredString(w/2,32,'Gabinete/SOE/ANA · Elaboração com suporte de inteligência artificial (IA)');c.drawCentredString(w/2,22,'Discussão interna · Protótipo pessoal — não constitui publicação institucional da ANA.');c.restoreState()
  class Doc(BaseDocTemplate):
   def afterFlowable(self,f):
@@ -176,7 +176,7 @@ def build(out):
  pdfpath=out/'documentos'/PDF
  doc=Doc(str(pdfpath),pagesize=A4,leftMargin=56,rightMargin=56,topMargin=52,bottomMargin=74,title=TITLE,author=NAME)
  doc.addPageTemplates([PageTemplate(id='portrait',pagesize=A4,frames=[Frame(56,74,A4[0]-112,A4[1]-126,leftPadding=0,rightPadding=0,topPadding=0,bottomPadding=0)],onPage=furniture),PageTemplate(id='landscape',pagesize=ls,frames=[Frame(53,74,ls[0]-106,ls[1]-126,leftPadding=0,rightPadding=0,topPadding=0,bottomPadding=0)],onPage=furniture)])
- story=[Spacer(1,32),para(esc(TITLE),'cover'),para('Nota Técnica — SÃO FRANCISCO','h1'),para('3 de novembro de 2026 · Prévia documental 0.3','h2'),Spacer(1,12),para('Condições hidrológicas, transição para o período chuvoso e perspectivas de operação da cascata.'),Spacer(1,18),para('<b>Supervisionado por '+NAME+'</b>'),para(ROLE+'<br/>Gabinete da Superintendência de Operações e Eventos Críticos — SOE/ANA'),para('Elaboração com suporte de inteligência artificial (IA).'),Spacer(1,18),para('Base: INMET, 18 páginas; CEMADEN e ONS, 20 páginas cada. As três apresentações foram recebidas e analisadas. Encerramento e deliberações finais não informados. As 32 reproduções são do CEMADEN e do ONS; as imagens do INMET ainda não integram esta edição.'),para('Três verticais completas, cruzamentos, quadro executivo, Anexo I, 32 reproduções identificadas de CEMADEN/ONS e base de 61 indicadores.'),PageBreak(),para('SUMÁRIO','h1')]
+ story=[Spacer(1,32),para(esc(TITLE),'cover'),para('Nota Técnica — SÃO FRANCISCO','h1'),para('3 de novembro de 2026 · Consolidação pós-reunião 1.0','h2'),Spacer(1,12),para('Condições hidrológicas, transição para o período chuvoso e perspectivas de operação da cascata.'),Spacer(1,18),para('<b>Supervisionado por '+NAME+'</b>'),para(ROLE+'<br/>Gabinete da Superintendência de Operações e Eventos Críticos — SOE/ANA'),para('Elaboração com suporte de inteligência artificial (IA).'),Spacer(1,18),para('Base: INMET, 18 páginas; CEMADEN e ONS, 20 páginas cada. As três apresentações foram recebidas e analisadas. Encerramento confirmado; preocupação com as projeções para 2027 registrada. Não foram comunicadas novas deliberações operativas. As 32 reproduções são do CEMADEN e do ONS; as imagens do INMET ainda não integram esta edição.'),para('Três verticais completas, cruzamentos, quadro executivo, Anexo I, 32 reproduções identificadas de CEMADEN/ONS e base de 61 indicadores.'),PageBreak(),para('SUMÁRIO','h1')]
  toc=TableOfContents();toc.levelStyles=[ParagraphStyle('Toc',fontName='NT',fontSize=9,leading=14,spaceBefore=7)];story.extend([toc,PageBreak()])
  keys=['executivo','escopo','inmet','cemaden','ons','cruzamentos','acompanhamento','registro','fontes']
  for i,key in enumerate(keys):
@@ -214,9 +214,16 @@ def build(out):
  for i in [0,1,2]:d[i].get_pixmap(matrix=fitz.Matrix(1.3,1.3),alpha=False).save(out/'qa'/f'check-{i+1:02}.png')
  ad=fitz.open(annexpath)
  for i,p in enumerate(ad):p.get_pixmap(matrix=fitz.Matrix(1.2,1.2),alpha=False).save(out/'qa'/f'annex-{i+1}.png')
- manifest={'meeting':TITLE,'date':'2026-11-03','version':'0.3','status':'Prévia documental; três verticais incorporadas; encerramento não informado; imagens INMET não hospedadas','generated_at':datetime.now(timezone.utc).isoformat(),'sources':{k:{'sha256':h,'pages':20,'matches_received_file':True} for k,h in HASHES.items()},'pdf_pages':pages,'annex_pages':annpages,'figure_count':32,'indicator_rows':61,'pdf_sha256':sha(pdfpath),'annex_sha256':sha(annexpath),'csv_sha256':sha(out/'indicadores.csv'),'toc':d.get_toc(),'figures':selected,'checks':{'all_paragraphs':True,'all_table_cells':True,'credits_every_page':True,'reserved_image_dimensions':True},'formal_decisions_received':False}
+ manifest={'meeting':TITLE,'date':'2026-11-03','version':'1.0','status':'Consolidação pós-reunião; três verticais incorporadas; encerramento confirmado; preocupação relatada com 2027; imagens INMET não hospedadas','generated_at':datetime.now(timezone.utc).isoformat(),'sources':{k:{'sha256':h,'pages':20,'matches_received_file':True} for k,h in HASHES.items()},'pdf_pages':pages,'annex_pages':annpages,'figure_count':32,'indicator_rows':61,'pdf_sha256':sha(pdfpath),'annex_sha256':sha(annexpath),'csv_sha256':sha(out/'indicadores.csv'),'toc':d.get_toc(),'figures':selected,'checks':{'all_paragraphs':True,'all_table_cells':True,'credits_every_page':True,'reserved_image_dimensions':True},'formal_decisions_received':False}
+ manifest['status']='Consolidação pós-reunião; encerramento confirmado; atenção às projeções para 2027; original e imagens INMET ainda não hospedados'
+ manifest['meeting_closed']=True
+ manifest['closure_source']='Relato do responsável pelo acompanhamento em 03/11/2026'
+ manifest['closure_focus']='Preocupação de Joaquim, superintendente da SOE/ANA, com as projeções e o comportamento do sistema hídrico em 2027, conforme relato do usuário.'
+ manifest['new_operational_decisions_reported']=False
+ manifest['pdf_path']='documentos/'+PDF
+ manifest['sources']['inmet']={'sha256':'c7eafb4527008b52839e02058da2b3bba29a0c02893482886745ce198680aee9','pages':18,'received_and_analyzed':True,'original_pdf_hosted':False,'figures_hosted':False}
  (out/'manifesto.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf-8')
- email='Assunto: São Francisco — 11ª reunião de 2026 — prévia técnica\n\nPrezados(as),\n\nCompartilho a página da reunião de 03/11/2026: '+SITE+'\n\nO endereço reúne as verticais INMET, CEMADEN e ONS, cruzamentos, NT integral em PDF, Anexo I e indicadores. A análise do INMET integra esta revisão; as reproduções gráficas do INMET ainda não estão hospedadas. Trata-se de prévia documental, sem deliberações finais ou encerramento registrados.\n\nAtenciosamente,\n'+NAME+'\n'+ROLE+' — Gabinete/SOE/ANA\n'
+ email='Assunto: São Francisco — 11ª reunião de 2026 — consolidação pós-reunião\n\nPrezados(as),\n\nCompartilho a página da reunião de 03/11/2026: '+SITE+'\n\nO endereço reúne as verticais INMET, CEMADEN e ONS, cruzamentos, NT integral em PDF, Anexo I e indicadores. A análise do INMET integra esta revisão; as reproduções gráficas do INMET ainda não estão hospedadas. Reunião encerrada. Conforme relato do responsável, Joaquim, superintendente da SOE/ANA, destacou preocupação com as projeções para 2027. Não foram comunicadas novas deliberações operativas.\n\nAtenciosamente,\n'+NAME+'\n'+ROLE+' — Gabinete/SOE/ANA\n'
  (out/'email_encaminhamento.txt').write_text(email,encoding='utf-8')
  print('VERIFIED:',pages,'NT pages;',annpages,'annex pages;32 figures;61 indicators.',flush=True)
 if __name__=='__main__':
