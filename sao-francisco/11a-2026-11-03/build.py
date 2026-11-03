@@ -124,10 +124,10 @@ def build(out):
   s.find(id=k).append(gallery);source.close()
  assert len(selected)==32
  rows=indicators(out)
- for ident,href,label in [('pdf-action','documentos/'+PDF,'Nota Técnica integral · PDF consolidado'),('csv-action','indicadores.csv','Dados e indicadores · CSV')]:
+ for ident,href,label in [('pdf-action','documentos/'+PDF,'NT final da reunião · PDF'),('csv-action','indicadores.csv','Dados e indicadores · CSV')]:
   el=s.find(id=ident);assert el is not None;el.name='a';el.attrs={'id':ident,'href':href,'download':''};el.string=label
  p=s.new_tag('p',attrs={'class':'annex-access'});link=s.new_tag('a',href='documentos/'+ANNEX,download='');link.string='Consultar somente o Anexo I · PDF';p.append(link);s.find(id='anexo-i').append(p)
- s.select_one('.notice').string='CONSOLIDAÇÃO PÓS-REUNIÃO 1.0 — reunião encerrada, conforme informação do responsável. INMET, CEMADEN e ONS incorporados; atenção às projeções para 2027, conforme manifestação relatada de Joaquim, superintendente da SOE/ANA. Mantidas 32 reproduções de CEMADEN/ONS e 61 indicadores. As imagens e o PDF original do INMET ainda não estão hospedados.'
+ s.select_one('.notice').string='NT FINAL DA REUNIÃO — versão 1.0 — reunião encerrada, conforme informação do responsável. INMET, CEMADEN e ONS incorporados; atenção às projeções para 2027, conforme manifestação relatada de Joaquim, superintendente da SOE/ANA. Mantidas 32 reproduções de CEMADEN/ONS e 61 indicadores. As imagens e o PDF original do INMET ainda não estão hospedados.'
  for text in list(s.find_all(string=True)):
   if 'prévia documental 0.1' in text.lower():text.replace_with(str(text))
  (out/'index.html').write_text(str(s),encoding='utf-8')
