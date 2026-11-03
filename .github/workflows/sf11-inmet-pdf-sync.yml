@@ -1,0 +1,72 @@
+name: Sao Francisco 11 - sincronizar PDF com INMET
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/sf11-inmet-pdf-sync.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: sf11-inmet-revisao
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            sao-francisco/11a-2026-11-03
+            .github/workflows
+      - name: Instalar ferramentas
+        run: python -m pip install beautifulsoup4 reportlab 'pymupdf==1.26.7' PyYAML
+      - name: Corrigir indentacao e reconstruir NT
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import yaml,subprocess
+          path=Path('.github/workflows/sf11-inmet-revisao.yml')
+          workflow=yaml.safe_load(path.read_text())
+          step=next(s for s in workflow['jobs']['publish']['steps'] if s.get('name')=='Sincronizar gerador PDF e base de indicadores')
+          program=step['run'].split("python - <<'PY'\n",1)[1].split('\nPY\n',1)[0]
+          lines=program.splitlines()
+          for i,line in enumerate(lines):
+              if line.lstrip().startswith("addition='\\n'.join("):
+                  lines[i]="    addition='\\n'.join(('  ' if j in (1,2) else ' ')+line.strip() for j,line in enumerate(addition.splitlines()))"
+          program='\n'.join(lines)
+          compile(program,'patch_inmet_generator','exec')
+          exec(program,{'__name__':'__main__'})
+          subprocess.run(['python','sao-francisco/11a-2026-11-03/build.py','--output','/tmp/sf11-inmet/publicacao'],check=True)
+          check=next(s for s in workflow['jobs']['publish']['steps'] if s.get('name')=='Conferir PDF atualizado e preservar rastreabilidade')
+          subprocess.run(['bash','-e','-c',check['run']],check=True)
+          PY
+      - name: Preservar documentos e imagens de conferencia
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sf11-inmet-revisao03
+          path: |
+            /tmp/sf11-inmet/publicacao/index.html
+            /tmp/sf11-inmet/publicacao/documentos/
+            /tmp/sf11-inmet/publicacao/indicadores.csv
+            /tmp/sf11-inmet/publicacao/manifesto.json
+            /tmp/sf11-inmet/publicacao/qa/
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Publicar somente resultados conferidos
+        run: |
+          set -euo pipefail
+          target='sao-francisco/11a-2026-11-03'
+          cp /tmp/sf11-inmet/publicacao/index.html "$target/index.html"
+          cp /tmp/sf11-inmet/publicacao/indicadores.csv "$target/indicadores.csv"
+          cp /tmp/sf11-inmet/publicacao/manifesto.json "$target/manifesto.json"
+          cp /tmp/sf11-inmet/publicacao/email_encaminhamento.txt "$target/email_encaminhamento.txt"
+          cp /tmp/sf11-inmet/publicacao/documentos/*.pdf "$target/documentos/"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$target/index.html" "$target/build.py" "$target/indicadores.csv" "$target/manifesto.json" "$target/email_encaminhamento.txt" "$target/documentos/"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'São Francisco 0.3: sincroniza três verticais no site e PDF, Anexo I e 61 indicadores'
+          git pull --rebase origin main
+          git push origin HEAD:main
