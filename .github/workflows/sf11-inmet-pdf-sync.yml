@@ -37,7 +37,14 @@ jobs:
           program='\n'.join(lines)
           compile(program,'patch_inmet_generator','exec')
           exec(program,{'__name__':'__main__'})
-          subprocess.run(['python','sao-francisco/11a-2026-11-03/build.py','--output','/tmp/sf11-inmet/publicacao'],check=True)
+          builder=Path('sao-francisco/11a-2026-11-03/build.py')
+          text=builder.read_text(encoding='utf-8')
+          old="fulltext=norm(' '.join(p.get_text() for p in d))"
+          new="fulltext=norm(' '.join(p.get_text(clip=fitz.Rect(45,48,p.rect.width-45,p.rect.height-70)) for p in d))"
+          assert old in text or new in text
+          text=text.replace(old,new)
+          compile(text,str(builder),'exec');builder.write_text(text,encoding='utf-8')
+          subprocess.run(['python',str(builder),'--output','/tmp/sf11-inmet/publicacao'],check=True)
           check=next(s for s in workflow['jobs']['publish']['steps'] if s.get('name')=='Conferir PDF atualizado e preservar rastreabilidade')
           subprocess.run(['bash','-e','-c',check['run']],check=True)
           PY
