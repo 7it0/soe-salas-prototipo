@@ -1,0 +1,70 @@
+name: Sao Francisco 11 - rotulo NT final da reuniao
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sf11-rotulo-nt-final.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: sf11-final-label
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: sao-francisco/11a-2026-11-03
+      - name: Alterar somente identificacao editorial e acessos
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,re
+          root=Path('sao-francisco/11a-2026-11-03')
+          path=root/'index.html'
+          before=path.read_text(encoding='utf-8')
+          main=re.search(r'<main>(.*?)</main>',before,re.S).group(0)
+          csv_hash=hashlib.sha256((root/'indicadores.csv').read_bytes()).hexdigest()
+          pdf=root/'documentos/NT_Sao_Francisco_11a_03-11-2026_CONSOLIDADA.pdf'
+          assert pdf.exists() and pdf.read_bytes().startswith(b'%PDF-'),'PDF consolidado indisponivel'
+          pdf_hash=hashlib.sha256(pdf.read_bytes()).hexdigest()
+          label='NT final da reunião · PDF'
+          note='Versão final da reunião, sujeita a revisão após avaliação da equipe. Eventuais ajustes serão identificados em nova revisão, mantendo este endereço.'
+          after=before.replace('Nota Técnica integral · PDF consolidado',label)
+          after=after.replace('Ler Nota Técnica integral no site','Ler NT final da reunião no site')
+          after=after.replace('CONSOLIDAÇÃO PÓS-REUNIÃO 1.0','NT FINAL DA REUNIÃO — versão 1.0')
+          paragraph='<p class="small" id="nota-revisao-equipe">'+note+'</p>'
+          if 'id="nota-revisao-equipe"' in after:
+              after=re.sub(r'<p\b[^>]*\bid="nota-revisao-equipe"[^>]*>.*?</p>',paragraph,after,count=1,flags=re.S)
+          else:
+              assert after.count('</header>')==1
+              after=after.replace('</header>',paragraph+'</header>',1)
+          assert re.search(r'<main>(.*?)</main>',after,re.S).group(0)==main,'Conteudo analitico alterado'
+          assert label in after and after.count('id="nota-revisao-equipe"')==1
+          assert 'documentos/NT_Sao_Francisco_11a_03-11-2026_CONSOLIDADA.pdf' in after
+          assert 'PDF preliminar' not in after.split('</header>')[0]
+          assert 'As imagens e o PDF original do INMET ainda não estão hospedados.' in after,'Ressalva de publicacao deve permanecer'
+          path.write_text(after,encoding='utf-8')
+          builder=root/'build.py'
+          source=builder.read_text(encoding='utf-8')
+          source=source.replace('Nota Técnica integral · PDF consolidado',label)
+          source=source.replace('CONSOLIDAÇÃO PÓS-REUNIÃO 1.0','NT FINAL DA REUNIÃO — versão 1.0')
+          compile(source,str(builder),'exec')
+          builder.write_text(source,encoding='utf-8')
+          assert hashlib.sha256(pdf.read_bytes()).hexdigest()==pdf_hash
+          assert hashlib.sha256((root/'indicadores.csv').read_bytes()).hexdigest()==csv_hash
+          print('VALIDADO: NT final da reunião; ressalva de revisão pela equipe; análise, PDF, CSV e URLs preservados.')
+          PY
+      - name: Publicar ajuste editorial
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add sao-francisco/11a-2026-11-03/index.html sao-francisco/11a-2026-11-03/build.py
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'São Francisco: NT final da reunião, sujeita à revisão após avaliação da equipe'
+          git pull --rebase origin main
+          git push origin HEAD:main
