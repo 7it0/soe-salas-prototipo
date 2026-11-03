@@ -1,0 +1,69 @@
+name: Sao Francisco 11 - fontes recebidas
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/sf11-fontes.yml']
+permissions:
+  contents: write
+jobs:
+  fontes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: sao-francisco/11a-2026-11-03
+      - name: Buscar somente copias identicas aos PDFs recebidos
+        run: |
+          python - <<'PY'
+          import urllib.request,urllib.parse,hashlib,re,concurrent.futures
+          from pathlib import Path
+          base='https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/'
+          expected={'cemaden':'86db45c42190ba159b2bd62f32483651148ef422d6b46c82db1c2ae5390825ff','ons':'83537d7b2349cc644c991990f5ffcc551ac8bbe32c6d58ca84588d5e75087dad'}
+          guesses=['apres-cemaden-s-francisco-031126.pdf','apresentacao-ons-sala-do-rio-sao-francisco-03_11_2026.pdf','apresentacao-ons-sala-do-rio-sao-francisco-03_11_2026-1.pdf']
+          def read(url):
+              req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0'})
+              return urllib.request.urlopen(req,timeout=18).read()
+          urls=set(base+s+'/@@download/file' for s in guesses)
+          for listing in [base,base+'apresentacoes-das-reunioes']:
+              try:
+                  text=read(listing).decode('utf-8','replace')
+                  for link in re.findall(r'href=[\"\x27]([^\"\x27]+)',text):
+                      if any(d in link for d in ['031126','03112026','03_11_2026','20261103','03-11-2026']):
+                          view=urllib.parse.urljoin(listing,link)
+                          if view.endswith('/view'):
+                              try:read(view)
+                              except Exception:pass
+                              urls.add(view[:-5]+'/@@download/file')
+              except Exception as e:print('Listagem:',type(e).__name__)
+          out=Path('sao-francisco/11a-2026-11-03/fontes');out.mkdir(parents=True,exist_ok=True)
+          def attempt(url):
+              try:
+                  data=read(url);h=hashlib.sha256(data).hexdigest()
+                  for key,expected_hash in expected.items():
+                      if h==expected_hash:return key,data,url
+              except Exception as e:print(type(e).__name__,url)
+              return None
+          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
+              for result in pool.map(attempt,sorted(urls)):
+                  if result:
+                      key,data,url=result;(out/(key+'.pdf')).write_bytes(data);print('IDENTICO AO ANEXO RECEBIDO',key,url)
+          missing=[key for key,h in expected.items() if not (out/(key+'.pdf')).exists() or hashlib.sha256((out/(key+'.pdf')).read_bytes()).hexdigest()!=h]
+          if missing:raise SystemExit('Copias oficiais ainda indisponiveis: '+', '.join(missing)+'. Nenhuma fonte divergente foi utilizada.')
+          PY
+      - name: Guardar fontes verificadas
+        uses: actions/upload-artifact@v4
+        with:
+          name: sf11-fontes-verificadas
+          path: sao-francisco/11a-2026-11-03/fontes/*.pdf
+          retention-days: 7
+      - name: Publicar fontes verificadas
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add sao-francisco/11a-2026-11-03/fontes
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'São Francisco 11: hospeda PDFs idênticos aos recebidos de CEMADEN e ONS'
+          git pull --rebase origin main
+          git push origin HEAD:main
