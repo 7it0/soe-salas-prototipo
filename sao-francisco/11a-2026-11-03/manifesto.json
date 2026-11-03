@@ -1,0 +1,445 @@
+{
+  "meeting": "11ª Reunião em 2026 da Sala de Acompanhamento do Sistema Hídrico do Rio São Francisco",
+  "date": "2026-11-03",
+  "version": "0.2",
+  "status": "Prévia documental; INMET iniciou a reunião, PDF não recebido; encerramento não informado",
+  "generated_at": "2026-11-03T13:19:02.282410+00:00",
+  "sources": {
+    "cemaden": {
+      "sha256": "86db45c42190ba159b2bd62f32483651148ef422d6b46c82db1c2ae5390825ff",
+      "pages": 20,
+      "matches_received_file": true
+    },
+    "ons": {
+      "sha256": "83537d7b2349cc644c991990f5ffcc551ac8bbe32c6d58ca84588d5e75087dad",
+      "pages": 20,
+      "matches_received_file": true
+    }
+  },
+  "pdf_pages": 48,
+  "annex_pages": 4,
+  "figure_count": 32,
+  "indicator_rows": 56,
+  "pdf_sha256": "eb9d6eeef4d887daa9b538a6b099276799c3e68ffc02fbf6cd6a809b3ed56d16",
+  "annex_sha256": "19aca9bcd66014de086d6a2e2fdb2730d77af581ff454b42f43f07a03142bce4",
+  "csv_sha256": "596abcb0e0269a24548176821b30fd403991369470ad4eac89e650ef48feb0ae",
+  "toc": [
+    [
+      1,
+      "1. Síntese executiva",
+      3
+    ],
+    [
+      1,
+      "2. Escopo, fontes e cortes temporais",
+      4
+    ],
+    [
+      1,
+      "3. Vertical CEMADEN — monitoramento, seca e perspectivas",
+      5
+    ],
+    [
+      1,
+      "4. Vertical ONS — hidrologia, armazenamento e operação",
+      7
+    ],
+    [
+      1,
+      "5. Cruzamentos técnicos",
+      9
+    ],
+    [
+      1,
+      "6. Quadro executivo de acompanhamento",
+      10
+    ],
+    [
+      1,
+      "7. Registro da reunião e encaminhamentos",
+      11
+    ],
+    [
+      1,
+      "8. Fontes e ressalvas documentais",
+      12
+    ],
+    [
+      1,
+      "ANEXO I — Resumo para o Relatório Anual / reunião em números",
+      13
+    ],
+    [
+      1,
+      "ANEXO GRÁFICO — CEMADEN/MCTI",
+      17
+    ],
+    [
+      1,
+      "ANEXO GRÁFICO — ONS",
+      36
+    ]
+  ],
+  "figures": [
+    {
+      "number": 1,
+      "institution": "CEMADEN/MCTI",
+      "key": "cemaden",
+      "page": 2,
+      "title": "Chuva acumulada e anomalia em 30 dias",
+      "caption": "03/10–02/11/2026; leitura espacial, sem estimativa de médias pelas cores.",
+      "src": "assets/cemaden_02.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 2,
+      "institution": "CEMADEN/MCTI",
+      "key": "cemaden",
+      "page": 3,
+      "title": "Situação da estação chuvosa",
+      "caption": "02/11; critério superior a 3 mm/dia em quatro de cinco dias. Não indica estabelecimento uniforme.",
+      "src": "assets/cemaden_03.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 3,
+      "institution": "CEMADEN/MCTI",
+      "key": "cemaden",
+      "page": 4,
+      "title": "Precipitação na bacia do São Francisco",
+      "caption": "5,7 mm em 01/11 e 62,7 mm entre 01/10 e 01/11; não são fechamento de novembro.",
+      "src": "assets/cemaden_04.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 4,
+      "institution": "CEMADEN/MCTI",
+      "key": "cemaden",
+      "page": 5,
+      "title": "TSI de longo prazo",
+      "caption": "Outubro: Xingó −0,44; Sobradinho −0,33; Três Marias −0,24. Condição normal nos três recortes.",
+      "src": "assets/cemaden_05.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 5,
+      "institution": "CEMADEN/MCTI",
+      "key": "cemaden",
+      "page": 6,
+      "title": "TSI de curto prazo",
+      "caption": "Xingó −0,98 e Sobradinho −1,29: seca moderada. Três Marias 0,09: normal.",
+      "src": "assets/cemaden_06.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 6,
+      "institution": "CEMADEN/MCTI",
+      "key": "cemaden",
+      "page": 7,
+      "title": "Chuva prevista na primeira semana",
+      "caption": "GEFS, rodada 03/11/2026 00 UTC; acumulado e anomalia são produtos distintos.",
+      "src": "assets/cemaden_07.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 7,
+      "institution": "CEMADEN/MCTI",
+      "key": "cemaden",
+      "page": 8,
+      "title": "Tendência para a segunda semana",
+      "caption": "Não somar ao acumulado de 14 dias da página seguinte.",
+      "src": "assets/cemaden_08.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 8,
+      "institution": "CEMADEN/MCTI",
+      "key": "cemaden",
+      "page": 9,
+      "title": "Acumulado para duas semanas",
+      "caption": "Distribuição espacial desigual; os produtos sobrepostos não são aditivos.",
+      "src": "assets/cemaden_09.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 9,
+      "institution": "CEMADEN/MCTI",
+      "key": "cemaden",
+      "page": 10,
+      "title": "GEFS — bacia do São Francisco",
+      "caption": "Aproximadamente 58 mm em 14 dias; dispersão dos membros preservada.",
+      "src": "assets/cemaden_10.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 10,
+      "institution": "CEMADEN/MCTI",
+      "key": "cemaden",
+      "page": 11,
+      "title": "GEFS — bacia de Sobradinho",
+      "caption": "Aproximadamente 66 mm em 14 dias; não é vazão afluente.",
+      "src": "assets/cemaden_11.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 11,
+      "institution": "CEMADEN/MCTI",
+      "key": "cemaden",
+      "page": 12,
+      "title": "GEFS — bacia de Três Marias",
+      "caption": "Aproximadamente 120 mm em 14 dias; não garante recuperação do estoque.",
+      "src": "assets/cemaden_12.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 12,
+      "institution": "CEMADEN/MCTI",
+      "key": "cemaden",
+      "page": 13,
+      "title": "Tendência na terceira e quarta semanas",
+      "caption": "CFS e ECMWF usam janelas semanais diferentes; preservar datas na comparação.",
+      "src": "assets/cemaden_13.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 13,
+      "institution": "CEMADEN/MCTI",
+      "key": "cemaden",
+      "page": 14,
+      "title": "GloFAS subsazonal",
+      "caption": "Cabeçalho inicia em 02/10, mas os painéis em 02/11; divergência mantida e registrada.",
+      "src": "assets/cemaden_14.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 14,
+      "institution": "CEMADEN/MCTI",
+      "key": "cemaden",
+      "page": 15,
+      "title": "Contexto ENSO apresentado pelo CEMADEN",
+      "caption": "Mapa da NOAA reproduzido na apresentação; o destaque +2,5 °C não é tratado como índice trimestral.",
+      "src": "assets/cemaden_15.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 15,
+      "institution": "CEMADEN/MCTI",
+      "key": "cemaden",
+      "page": 16,
+      "title": "Previsão de intensidade ENSO",
+      "caption": "Produto rotulado como emitido em outubro/2026; não determina impactos locais.",
+      "src": "assets/cemaden_16.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 16,
+      "institution": "CEMADEN/MCTI",
+      "key": "cemaden",
+      "page": 17,
+      "title": "Probabilidades de intensidade de El Niño",
+      "caption": "Categorias probabilísticas da figura; não equivalem a probabilidades de impactos na bacia.",
+      "src": "assets/cemaden_17.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 17,
+      "institution": "CEMADEN/MCTI",
+      "key": "cemaden",
+      "page": 18,
+      "title": "Previsão sazonal multimodelo de chuva",
+      "caption": "Novembro–dezembro–janeiro; tendência regional não é cronograma de afluências.",
+      "src": "assets/cemaden_18.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 18,
+      "institution": "CEMADEN/MCTI",
+      "key": "cemaden",
+      "page": 19,
+      "title": "GloFAS sazonal",
+      "caption": "Novembro e dezembro/2026 e janeiro/2027; categorias de vazão modelada, não defluências operadas.",
+      "src": "assets/cemaden_19.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 19,
+      "institution": "CEMADEN/MCTI",
+      "key": "cemaden",
+      "page": 20,
+      "title": "Anos análogos de El Niño",
+      "caption": "Trajetórias históricas ilustram dispersão; não comprovam repetição dos impactos.",
+      "src": "assets/cemaden_20.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 20,
+      "institution": "ONS",
+      "key": "ons",
+      "page": 4,
+      "title": "Afluências dos subsistemas do SIN",
+      "caption": "Nov./2025–out./2026; panorama hidroenergético não substitui diagnóstico de cada reservatório.",
+      "src": "assets/ons_04.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 21,
+      "institution": "ONS",
+      "key": "ons",
+      "page": 5,
+      "title": "Energia armazenada dos subsistemas",
+      "caption": "Até 01/11: Nordeste 62%, Norte 61%, Sudeste/Centro-Oeste 55%, Sul 80%. EAR não é VU individual.",
+      "src": "assets/ons_05.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 22,
+      "institution": "ONS",
+      "key": "ons",
+      "page": 6,
+      "title": "Balanço energético dos subsistemas",
+      "caption": "Composição das fontes; não é uma ordem operativa para a cascata.",
+      "src": "assets/ons_06.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 23,
+      "institution": "ONS",
+      "key": "ons",
+      "page": 7,
+      "title": "Condições hidrológicas e esquema do São Francisco",
+      "caption": "Coluna final rotulada novembro/2026 precisa de confirmação; 101% e 68% não usados como fechamento mensal.",
+      "src": "assets/ons_07.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 24,
+      "institution": "ONS",
+      "key": "ons",
+      "page": 9,
+      "title": "Três Marias — operação observada",
+      "caption": "Até 01/11: 69,7% VU; afluência 112 m³/s; defluência 311 m³/s. Rótulos finais, não médias mensais.",
+      "src": "assets/ons_09.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 25,
+      "institution": "ONS",
+      "key": "ons",
+      "page": 10,
+      "title": "Sobradinho — operação observada",
+      "caption": "Até 01/11: 62,8% VU; afluência 1.150 m³/s; defluência 1.393 m³/s.",
+      "src": "assets/ons_10.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 26,
+      "institution": "ONS",
+      "key": "ons",
+      "page": 11,
+      "title": "Luiz Gonzaga — operação observada",
+      "caption": "Até 01/11: 37,1% VU; afluência 934 m³/s; defluência 1.056 m³/s.",
+      "src": "assets/ons_11.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 27,
+      "institution": "ONS",
+      "key": "ons",
+      "page": 13,
+      "title": "Três Marias — vazão natural prevista",
+      "caption": "Média 02/11–31/12: 734 m³/s (89% MLT) e 1.016 m³/s (123%), cenários inferior/superior.",
+      "src": "assets/ons_13.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 28,
+      "institution": "ONS",
+      "key": "ons",
+      "page": 14,
+      "title": "Sobradinho — vazão natural incremental prevista",
+      "caption": "Média 02/11–31/12: 1.224 m³/s (66% MLT) e 1.510 m³/s (82%). Não é afluência total observada.",
+      "src": "assets/ons_14.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 29,
+      "institution": "ONS",
+      "key": "ons",
+      "page": 16,
+      "title": "Três Marias — premissas de defluência",
+      "caption": "Inferior: 350/740 m³/s; superior: 430/1.200 m³/s, novembro/dezembro. Simulação, não decisão.",
+      "src": "assets/ons_16.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 30,
+      "institution": "ONS",
+      "key": "ons",
+      "page": 17,
+      "title": "Sobradinho e Xingó — premissas de defluência",
+      "caption": "Novembro/dezembro: Sobradinho 1.770/1.700 m³/s; Xingó 1.500/1.530 m³/s.",
+      "src": "assets/ons_17.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 31,
+      "institution": "ONS",
+      "key": "ons",
+      "page": 18,
+      "title": "Três Marias — volumes projetados",
+      "caption": "01/12: 72,9/74,2%; 01/01/2027: 77,1/77,5%, inferior/superior.",
+      "src": "assets/ons_18.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 32,
+      "institution": "ONS",
+      "key": "ons",
+      "page": 19,
+      "title": "Sobradinho — volumes projetados",
+      "caption": "01/12: 52,5/54,8%; 01/01/2027: 57,5/65,4%. Queda em novembro nos dois cenários.",
+      "src": "assets/ons_19.jpg",
+      "width": 1800,
+      "height": 1013
+    }
+  ],
+  "checks": {
+    "all_paragraphs": true,
+    "all_table_cells": true,
+    "credits_every_page": true,
+    "reserved_image_dimensions": true,
+    "browser_downloads_and_anchor": true
+  },
+  "formal_decisions_received": false
+}
