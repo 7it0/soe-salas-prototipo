@@ -1,0 +1,193 @@
+name: Sao Francisco 11 - incorporar INMET
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sf11-inmet-revisao.yml'
+      - 'sao-francisco/11a-2026-11-03/inmet.vertical.html'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: sf11-inmet-revisao
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: sao-francisco/11a-2026-11-03
+      - name: Instalar ferramentas documentais
+        run: python -m pip install beautifulsoup4 reportlab 'pymupdf==1.26.7'
+      - name: Incorporar vertical e atualizar controle documental
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          import re
+          root=Path('sao-francisco/11a-2026-11-03')
+          p=root/'index.html';s=BeautifulSoup(p.read_text(encoding='utf-8'),'html.parser')
+          def body(sec):
+              x=BeautifulSoup(str(sec),'html.parser')
+              for h in x.select('h2,h3'):h.decompose()
+              return x.get_text(' ',strip=True)
+          original={key:body(s.find(id=key)) for key in ['cemaden','ons']}
+          old=s.select_one('main > section#inmet')
+          if old:old.decompose()
+          section=BeautifulSoup((root/'inmet.vertical.html').read_text(encoding='utf-8'),'html.parser').section
+          s.find(id='cemaden').insert_before(section)
+          nav=s.find('nav')
+          if not nav.find('a',href='#inmet'):
+              a=s.new_tag('a',href='#inmet');a.string='INMET';nav.find('a',href='#cemaden').insert_before(a)
+          for i,sec in enumerate(s.select('main > section:not(#anexo-i)'),1):
+              sec.h2.string=re.sub(r'^\d+\.\s*',str(i)+'. ',sec.h2.get_text())
+              for h in sec.find_all('h3'):
+                  h.string=re.sub(r'^\d+\.',str(i)+'.',h.get_text())
+          scope=s.find(id='ressalva-inmet-sintese')
+          scope.clear();b=s.new_tag('strong');b.string='Atualização documental — INMET incorporado: ';scope.append(b)
+          scope.append('a apresentação do INMET foi recebida e analisada nesta revisão. A síntese reúne INMET (18 páginas), CEMADEN (20 páginas) e ONS (20 páginas), todos referentes à reunião de 03/11/2026. O responsável confirmou que o INMET iniciou a reunião. A ressalva anterior de não recebimento está superada; debate e encerramento permanecem em aberto.')
+          old=s.find(id='sintese-inmet');
+          if old:old.decompose()
+          q=s.new_tag('p',id='sintese-inmet');q.append('O INMET acrescenta os acumulados e anomalias observados, previsões COSMO/GFS e a perspectiva sazonal NDJ. Os produtos mostram diferenças entre o alto curso e os trechos ao norte; a persistência prevista do El Niño não equivale a uma probabilidade de impacto local. Chuva prevista não deve ser convertida diretamente em disponibilidade adicional para operação. [I, pp. 3–17]');scope.insert_after(q)
+          esc=s.find(id='escopo').find_all('p',recursive=False)
+          esc[0].string='Foram recebidos três PDFs: INMET (18 páginas), CEMADEN (20 páginas) e ONS (20 páginas). [I], [C] e [O] indicam páginas físicas, contadas a partir da capa. A análise utiliza os documentos desta reunião; não transporta números de outras salas.'
+          esc[1].string='O responsável confirmou que o INMET iniciou a reunião. Seu PDF, recebido após a primeira prévia, foi incorporado nesta revisão. Referências a INPE, NOAA e ECMWF identificam fontes dos produtos e não confirmam participação dessas instituições. Recomendações analíticas não equivalem a deliberações.'
+          reg=s.find(id='registro')
+          for q in reg.find_all('p'):
+              t=q.get_text()
+              if 'INMET' in t and any(w in t.lower() for w in ['não recebid','nao recebid','pendência documental']):
+                  q.string='Registro do responsável: o INMET iniciou a reunião; seu PDF foi posteriormente recebido e incorporado. A reunião também dispõe das apresentações do CEMADEN e do ONS. Não foram informados encerramento ou novas deliberações.'
+          if not reg.find(id='registro-inmet-recebido'):
+              q=s.new_tag('p',id='registro-inmet-recebido');q.string='Revisão 0.3: recebido e analisado o PDF do INMET. O histórico da pendência inicial não representa ausência da instituição nem falta de material nesta revisão.';reg.append(q)
+          cross=s.find(id='cruzamentos')
+          if not cross.find(id='cruzamento-inmet'):
+              q=s.new_tag('p',id='cruzamento-inmet');q.string='INMET × CEMADEN × ONS: a perspectiva de chuva espacialmente desigual não contradiz o TSI de curto prazo moderado em Sobradinho/Xingó nem a redução simulada de Sobradinho em novembro. COSMO, GFS e GEFS têm janelas diferentes; os acumulados não são diretamente aditivos. A trajetória dos reservatórios permanece condicionada à realização da chuva, à afluência incremental e às premissas de defluência. [I, pp. 6–8 e 16–17; C, pp. 6 e 10–14; O, pp. 16–19]';cross.h2.insert_after(q)
+          fontes=s.find(id='fontes')
+          for q in fontes.find_all('p'):
+              t=q.get_text()
+              if 'INMET' in t and any(w in t.lower() for w in ['não recebid','nao recebid']):
+                  q.string='O PDF do INMET foi recebido e analisado nesta revisão; a primeira prévia utilizava somente CEMADEN e ONS.'
+          if not fontes.find(id='fonte-inmet'):
+              q=s.new_tag('p',id='fonte-inmet');q.string='[I] INMET — Melk Duarte. Bacia do Rio_SF_INMET_03112026 2.pdf. Brasília, 03/11/2026. 18 páginas. Arquivo recebido diretamente do responsável; SHA-256 c7eafb4527008b52839e02058da2b3bba29a0c02893482886745ce198680aee9.';fontes.h2.insert_after(q)
+          if not s.find(id='inmet-figuras-status'):
+              q=s.new_tag('p',id='inmet-figuras-status',attrs={'class':'small'});q.string='A análise textual do INMET integra esta revisão. As reproduções gráficas e o PDF original do INMET ainda não estão hospedados; as 32 reproduções do CEMADEN e do ONS foram preservadas.';section.append(q)
+          if not fontes.find(id='ressalva-gfs-inmet'):
+              q=s.new_tag('p',id='ressalva-gfs-inmet');q.string='Ressalva INMET, p. 7: o título informa “15 dias”, mas o mapa declara 384 horas e validade entre 03/11 e 19/11/2026, 00 UTC. A janela não foi silenciosamente convertida em 15 dias. A TSM da p. 10 e a probabilidade da p. 13 são produtos distintos e não expressam probabilidade de impacto na bacia.';fontes.append(q)
+          annex=s.find(id='anexo-i')
+          if not annex.find(id='anexo-inmet'):
+              fragment='''<div class="annex-block" id="anexo-inmet"><h3>I.5 — INMET: contexto oceânico e perspectivas</h3><p>Valores reproduzidos da apresentação de 03/11/2026. São referências oceânicas e probabilísticas, não medidas de armazenamento nem estatísticas anuais da bacia.</p><div class="tablewrap"><table><thead><tr><th>Recorte / produto</th><th>Indicador</th><th>Valor</th><th>Referência / leitura</th><th>Fonte</th></tr></thead><tbody><tr><td>Niño 4</td><td>Anomalia de TSM</td><td>+0,2 °C</td><td>Quadro apresentado; não equiparar automaticamente a ONI/RONI trimestral.</td><td>I, p. 10</td></tr><tr><td>Niño 3.4</td><td>Anomalia de TSM</td><td>+2,5 °C</td><td>Quadro apresentado; referência própria do produto.</td><td>I, p. 10</td></tr><tr><td>Niño 3</td><td>Anomalia de TSM</td><td>+3,7 °C</td><td>Recorte oceânico, não temperatura da bacia.</td><td>I, p. 10</td></tr><tr><td>Niño 1+2</td><td>Anomalia de TSM</td><td>+4,6 °C</td><td>Recorte oceânico, não variável operativa.</td><td>I, p. 10</td></tr><tr><td>ENSO / El Niño</td><td>Probabilidade de continuidade</td><td>Mais de 80%</td><td>Até MAM/2027, segundo indicação da lâmina; não é probabilidade de seca local.</td><td>I, p. 13</td></tr></tbody></table></div><p>GFS: título “15 dias”, mas mapa de 384 horas válido de 03/11 a 19/11. Precipitação sazonal: NDJ/2026–2027. As faixas regionais de chuva da p. 3 e a climatologia da p. 15 não foram convertidas em médias de bacia. Não misturar estes produtos com as séries observadas utilizadas no Conjuntura.</p></div>'''
+              annex.append(BeautifulSoup(fragment,'html.parser').div)
+          for key in original:assert original[key]==body(s.find(id=key)), 'Conteúdo alterado: '+key
+          s.select_one('.notice').string='PRÉVIA WEB 0.3 — INMET, CEMADEN e ONS: três verticais, cruzamentos e Anexo I. O PDF 0.2 ainda está sendo sincronizado. As 32 reproduções anteriores foram preservadas; imagens do INMET ainda não hospedadas. Debate e encerramento em aberto.'
+          s.find(id='pdf-action').string='Nota Técnica · PDF 0.2 anterior (sem INMET)'
+          for q in s.footer.find_all('p'):
+              if '0.2' in q.get_text():q.string=q.get_text().replace('0.2','0.3')
+          assert s.select('main > section')[2]['id']=='inmet'
+          assert s.select('main > section')[-1]['id']=='anexo-i'
+          assert len(s.select('figure'))==32
+          p.write_text(str(s),encoding='utf-8')
+          print('WEB CONFERIDA: INMET antes do CEMADEN; conteúdos anteriores e 32 figuras preservados.')
+          PY
+      - name: Publicar vertical imediatamente no mesmo endereco
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add sao-francisco/11a-2026-11-03/index.html
+          if ! git diff --cached --quiet; then
+            git commit -m 'São Francisco: publica vertical INMET e supera ressalva de não recebimento'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Sincronizar gerador PDF e base de indicadores
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('sao-francisco/11a-2026-11-03/build.py');text=p.read_text(encoding='utf-8')
+          if "'indicator_rows':61" in text:
+              print('Gerador já atualizado.')
+          else:
+              text=text.replace("assert 'o INMET iniciou a reunião' in originals['executivo'].get_text()", "assert 'inmet' in originals, 'Vertical INMET ausente'")
+              text=text.replace("keys=['executivo','escopo','cemaden'", "keys=['executivo','escopo','inmet','cemaden'")
+              text=text.replace('assert len(blocks)==4','assert len(blocks)==5')
+              text=text.replace('assert len(d.get_toc())==11','assert len(d.get_toc())==12')
+              text=text.replace(".replace('0.1','0.2')", '')
+              text=text.replace("'0.2'", "'0.3'")
+              text=text.replace('Prévia 0.2','Prévia 0.3').replace('Prévia documental 0.2','Prévia documental 0.3')
+              old="Base: CEMADEN e ONS, 20 páginas cada. O INMET iniciou a reunião, conforme relato do responsável, mas seu PDF ainda não foi recebido. Encerramento e deliberações finais não informados."
+              new="Base: INMET, 18 páginas; CEMADEN e ONS, 20 páginas cada. As três apresentações foram recebidas e analisadas. Encerramento e deliberações finais não informados. As 32 reproduções são do CEMADEN e do ONS; as imagens do INMET ainda não integram esta edição."
+              assert old in text; text=text.replace(old,new)
+              text=text.replace('Duas verticais completas, cruzamentos, quadro executivo, Anexo I, 32 reproduções identificadas e base de 56 indicadores.', 'Três verticais completas, cruzamentos, quadro executivo, Anexo I, 32 reproduções identificadas de CEMADEN/ONS e base de 61 indicadores.')
+              lines=text.splitlines()
+              for i,line in enumerate(lines):
+                  if "s.select_one('.notice').string=" in line:
+                      lines[i]=" s.select_one('.notice').string='PRÉVIA DOCUMENTAL 0.3 — INMET, CEMADEN e ONS: três verticais, cruzamentos, Anexo I e 61 indicadores. Web e PDF sincronizados. Preservadas as 32 reproduções de CEMADEN/ONS; imagens do INMET ainda não hospedadas. Debate e encerramento em aberto.'"
+              text='\n'.join(lines)+'\n'
+              text=text.replace("LABELS={'cemaden':'CEMADEN/MCTI','ons':'ONS'}", "LABELS={'inmet':'INMET','cemaden':'CEMADEN/MCTI','ons':'ONS'}")
+              addition=""" for local,value in [('Niño 4',0.2),('Niño 3.4',2.5),('Niño 3',3.7),('Niño 1+2',4.6)]:
+              add('inmet',local,'Anomalia de TSM apresentada',value,'°C','Quadro apresentado em 03/11/2026','observacao_oceanica_reproduzida',10,'Data de referência própria do produto; não equiparar automaticamente a ONI/RONI')
+              rows[-1][8]='Bacia do Rio_SF_INMET_03112026 2.pdf#page=10'
+             add('inmet','ENSO / El Niño','Probabilidade de continuidade','>80','%','Até MAM/2027; produto emitido em outubro/2026','previsao_probabilistica',13,'Limiar informado na lâmina; não é probabilidade de impacto local')
+             rows[-1][8]='Bacia do Rio_SF_INMET_03112026 2.pdf#page=13'
+             assert len(rows)==61"""
+              addition='\n'.join(line[12:] if line.startswith('            ') else line for line in addition.splitlines())
+              assert ' assert len(rows)==56' in text;text=text.replace(' assert len(rows)==56',addition)
+              text=text.replace("'indicator_rows':56", "'indicator_rows':61")
+              text=text.replace('Prévia documental; INMET iniciou a reunião, PDF não recebido; encerramento não informado', 'Prévia documental; três verticais incorporadas; encerramento não informado; imagens INMET não hospedadas')
+              text=text.replace('as verticais CEMADEN e ONS', 'as verticais INMET, CEMADEN e ONS')
+              text=text.replace('O INMET iniciou a reunião, conforme registro do acompanhamento, mas seu PDF ainda não integra esta edição.', 'A análise do INMET integra esta revisão; as reproduções gráficas do INMET ainda não estão hospedadas.')
+              text=text.replace('annex pages;32 figures;56 indicators.', 'annex pages;32 figures;61 indicators.')
+              compile(text,str(p),'exec');p.write_text(text,encoding='utf-8')
+              print('Gerador atualizado; nenhuma substituição global altera valores decimais.')
+          PY
+          python sao-francisco/11a-2026-11-03/build.py --output /tmp/sf11-inmet/publicacao
+      - name: Conferir PDF atualizado e preservar rastreabilidade
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          import fitz,json,csv
+          r=Path('/tmp/sf11-inmet/publicacao');s=BeautifulSoup((r/'index.html').read_text(),'html.parser')
+          assert s.select('main > section')[2]['id']=='inmet'
+          assert len(s.select('figure'))==32
+          assert len(list(csv.DictReader((r/'indicadores.csv').open(encoding='utf-8-sig'),delimiter=';')))==61
+          d=fitz.open(r/'documentos/NT_Sao_Francisco_11a_03-11-2026_PREVIA.pdf')
+          texts='\n'.join(p.get_text() for p in d)
+          assert 'Vertical INMET' in texts and '384' in texts
+          assert 'seu PDF ainda não foi recebido' not in texts
+          assert '0,11' in texts
+          m=json.loads((r/'manifesto.json').read_text());m['sources']['inmet']={'sha256':'c7eafb4527008b52839e02058da2b3bba29a0c02893482886745ce198680aee9','pages':18,'received_and_analyzed':True,'original_pdf_hosted':False,'figures_hosted':False}
+          m['checks']['inmet_vertical_in_html_and_pdf']=True
+          m['checks']['existing_cemaden_ons_preserved']=True
+          (r/'manifesto.json').write_text(json.dumps(m,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps({'pdf_pages':len(d),'figures':32,'indicators':61,'inmet_in_web_and_pdf':True},ensure_ascii=False))
+          PY
+      - name: Guardar documentos e conferencias
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sf11-inmet-revisao03
+          path: |
+            /tmp/sf11-inmet/publicacao/index.html
+            /tmp/sf11-inmet/publicacao/documentos/
+            /tmp/sf11-inmet/publicacao/indicadores.csv
+            /tmp/sf11-inmet/publicacao/manifesto.json
+            /tmp/sf11-inmet/publicacao/qa/
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Publicar documentos sincronizados
+        run: |
+          set -euo pipefail
+          target='sao-francisco/11a-2026-11-03'
+          cp /tmp/sf11-inmet/publicacao/index.html "$target/index.html"
+          cp /tmp/sf11-inmet/publicacao/indicadores.csv "$target/indicadores.csv"
+          cp /tmp/sf11-inmet/publicacao/manifesto.json "$target/manifesto.json"
+          cp /tmp/sf11-inmet/publicacao/email_encaminhamento.txt "$target/email_encaminhamento.txt"
+          cp /tmp/sf11-inmet/publicacao/documentos/*.pdf "$target/documentos/"
+          git add "$target/index.html" "$target/build.py" "$target/indicadores.csv" "$target/manifesto.json" "$target/email_encaminhamento.txt" "$target/documentos/"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'São Francisco revisão 0.3: INMET no site e na NT PDF, Anexo I e 61 indicadores'
+          git pull --rebase origin main
+          git push origin HEAD:main
