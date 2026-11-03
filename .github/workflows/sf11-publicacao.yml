@@ -1,0 +1,100 @@
+name: Sao Francisco 11 - publicacao documental
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sf11-publicacao.yml'
+      - 'sao-francisco/11a-2026-11-03/build.py'
+permissions:
+  contents: write
+concurrency:
+  group: sf11-publicacao
+  cancel-in-progress: false
+jobs:
+  publicacao:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Preparar ferramentas
+        run: |
+          python -m pip install 'pymupdf==1.26.7' reportlab beautifulsoup4 pillow playwright
+          if ! command -v google-chrome >/dev/null && ! command -v chromium >/dev/null; then python -m playwright install --with-deps chromium; fi
+      - name: Gerar e conferir NT integral
+        run: |
+          python -m py_compile sao-francisco/11a-2026-11-03/build.py
+          python sao-francisco/11a-2026-11-03/build.py --output /tmp/sf11-publicacao
+      - name: Conferir pagina, figuras e downloads
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from functools import partial
+          from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
+          import threading, shutil, hashlib, json
+          from playwright.sync_api import sync_playwright
+          root=Path('/tmp/sf11-publicacao')
+          class Quiet(SimpleHTTPRequestHandler):
+              def log_message(self,*args):pass
+          server=ThreadingHTTPServer(('127.0.0.1',0),partial(Quiet,directory=str(root)))
+          threading.Thread(target=server.serve_forever,daemon=True).start()
+          try:
+              with sync_playwright() as p:
+                  opts={'headless':True,'args':['--no-sandbox']}
+                  chrome=shutil.which('google-chrome') or shutil.which('chromium')
+                  if chrome:opts['executable_path']=chrome
+                  browser=p.chromium.launch(**opts)
+                  page=browser.new_page(viewport={'width':1440,'height':1000},accept_downloads=True)
+                  url=f'http://127.0.0.1:{server.server_port}/index.html'
+                  page.goto(url,wait_until='networkidle')
+                  assert page.locator('figure').count()==32
+                  assert page.locator('main > section').last.get_attribute('id')=='anexo-i'
+                  assert 'o INMET iniciou a reunião' in page.locator('#ressalva-inmet-sintese').inner_text()
+                  assert page.locator('#cemaden h3').count()==6 and page.locator('#ons h3').count()==6
+                  assert page.locator('header [aria-disabled=true]').count()==0
+                  page.locator('header').screenshot(path=str(root/'qa/header-desktop.png'))
+                  for selector,target in [('#pdf-action','documentos/NT_Sao_Francisco_11a_03-11-2026_PREVIA.pdf'),('#csv-action','indicadores.csv'),('.annex-access a','documentos/Anexo_I_Sao_Francisco_03-11-2026.pdf')]:
+                      with page.expect_download() as ev:page.locator(selector).click()
+                      actual=Path(ev.value.path()).read_bytes()
+                      assert hashlib.sha256(actual).hexdigest()==hashlib.sha256((root/target).read_bytes()).hexdigest()
+                  page.goto(url+'#anexo-i',wait_until='networkidle')
+                  assert 0<=page.locator('#anexo-i').bounding_box()['y']<220
+                  for image in page.locator('figure img').all():image.evaluate('(e)=>e.loading="eager"')
+                  page.wait_for_function("[...document.querySelectorAll('figure img')].every(e=>e.complete&&e.naturalWidth>0)")
+                  assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+2')
+                  page.set_viewport_size({'width':390,'height':844})
+                  page.goto(url,wait_until='networkidle')
+                  assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+2')
+                  page.locator('header').screenshot(path=str(root/'qa/header-mobile.png'))
+                  browser.close()
+          finally:server.shutdown();server.server_close()
+          mf=root/'manifesto.json';data=json.loads(mf.read_text());data['checks']['browser_downloads_and_anchor']=True
+          mf.write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf-8')
+          print('VERIFICADO: duas verticais integrais, 32 imagens, downloads reais, Anexo I apos Fontes, computador e celular.')
+          PY
+      - name: Guardar documentos e verificacoes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sf11-publicacao-validada
+          path: /tmp/sf11-publicacao/
+          if-no-files-found: error
+          retention-days: 7
+      - name: Publicar somente os arquivos desta reuniao
+        run: |
+          set -euo pipefail
+          target='sao-francisco/11a-2026-11-03'
+          mkdir -p "$target/documentos" "$target/assets"
+          cp /tmp/sf11-publicacao/index.html "$target/index.html"
+          cp /tmp/sf11-publicacao/manifesto.json "$target/manifesto.json"
+          cp /tmp/sf11-publicacao/indicadores.csv "$target/indicadores.csv"
+          cp /tmp/sf11-publicacao/email_encaminhamento.txt "$target/email_encaminhamento.txt"
+          cp /tmp/sf11-publicacao/assets/*.jpg "$target/assets/"
+          cp /tmp/sf11-publicacao/documentos/*.pdf "$target/documentos/"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$target/index.html" "$target/manifesto.json" "$target/indicadores.csv" "$target/email_encaminhamento.txt" "$target/assets" "$target/documentos"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Sao Francisco 11 previa 0.2: NT PDF integral, Anexo I, 32 figuras e 56 indicadores'
+          git pull --rebase origin main
+          git push origin HEAD:main
