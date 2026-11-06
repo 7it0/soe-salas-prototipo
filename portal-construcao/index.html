@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Guia de construção do Portal SOE/ANA: documentação, arquitetura, checkpoint, notícias RSS, execução delegada e continuidade.">
+<title>Portal SOE — Guia de construção e continuidade</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:20px}body{max-width:960px;margin:auto;padding:20px;font:18px/1.7 system-ui,-apple-system,"Segoe UI",sans-serif;color:#173343;background:#f4f7f8}section,header{background:white;padding:28px;margin:18px 0;border-radius:12px;border:1px solid #d8e5e9}header{border-top:6px solid #087a78}h1{line-height:1.2;font-size:clamp(30px,5vw,44px);margin:14px 0 20px}h2{line-height:1.3;color:#104f66;font-size:27px}h3{font-size:21px}a{color:#075e76;overflow-wrap:anywhere;text-underline-offset:3px}nav{display:flex;flex-wrap:wrap;gap:9px}nav a{display:inline-block;padding:8px 10px;border:1px solid #d8e5e9;border-radius:6px;text-decoration:none;min-height:44px}nav a:hover{background:#edf6f5}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:15px/1.7 ui-monospace,Consolas,monospace;background:#eef4f6;padding:20px;border-radius:7px}small,.small{font-size:14px;color:#536d78}li{margin:9px 0}p{margin:12px 0 17px}.note{background:#fff5df;border-left:4px solid #a97822;padding:14px 18px}.callout{background:#eaf5f3;border-left:4px solid #087a78;padding:16px 20px}.table{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:15px}th,td{text-align:left;vertical-align:top;border-bottom:1px solid #d8e5e9;padding:12px}th{background:#eaf5f3}a:focus-visible,button:focus-visible{outline:3px solid #ce9324;outline-offset:3px}button{font:inherit;padding:9px 14px;min-height:44px;background:#fff;color:#173343;border:1px solid #bfd3db;border-radius:6px;cursor:pointer}.tools{display:flex;gap:8px;flex-wrap:wrap}.status{font-size:14px;color:#536d78}.skip{position:absolute;top:-80px;left:20px;background:white;padding:12px}.skip:focus{top:8px}@media(max-width:600px){body{padding:10px}section,header{padding:21px 18px}h2{font-size:24px}pre{padding:14px}th,td{padding:8px}ul,ol{padding-left:22px}}@media print{body{max-width:none;padding:0;font-size:11pt;background:#fff}section,header{border:0;padding:10px 0;margin:10px 0;break-inside:auto}h2,h3{break-after:avoid}nav,.tools,.skip{display:none}pre{font-size:9pt}a{color:#111}.table{overflow:visible}tr{break-inside:avoid}}
+</style>
+</head>
+<body id="topo">
+<a class="skip" href="#conteudo">Ir para o conteúdo</a>
+<header>
+<small>DOCUMENTAÇÃO DE TRABALHO · VERSÃO 1.0 · 06/11/2026</small>
+<h1>Portal SOE<br>Guia de construção e continuidade</h1>
+<p>Documentação principal e instruções de execução em leitura direta, sem depender de downloads. O acervo das reuniões permanece separado e com seus endereços preservados.</p>
+<p><strong>Concepção e coordenação: José Aguiar de Lima Júnior</strong><br>Especialista em Geoprocessamento — Gabinete/SOE/ANA.</p>
+<p class="note"><strong>Protótipo técnico em ambiente pessoal — não constitui publicação institucional da ANA.</strong> Esta página orienta a construção do Portal; não acessa o SharePoint nem executa automações institucionais.</p>
+<nav aria-label="Índice"><a href="#acervo">Documentação</a><a href="#estado">Checkpoint</a><a href="#modelo">Arquitetura</a><a href="#execucao">Construção</a><a href="#automacao">RSS e filtros</a><a href="#tokens">Tokens</a><a href="#testes">Testes</a><a href="#codex">Codex</a><a href="#continuidade">Continuidade</a></nav>
+<div class="tools" style="margin-top:18px"><button type="button" id="imprimir">Imprimir / salvar PDF</button></div>
+</header>
+<main id="conteudo">
+<section id="acervo"><h2>1. Documentação principal</h2>
+<p>A central reúne as diretrizes e os procedimentos disponíveis, com acesso aos textos públicos completos de governança. Documentos internos, credenciais, identificadores do ambiente corporativo e capturas de conta não foram publicados.</p>
+<ul><li><a href="../documentos/governanca/">Governança e evolução institucional do piloto</a>.</li><li>Minuta de arquitetura institucional: <a href="../documentos/governanca/minuta-nt-parte1.html">parte 1</a> · <a href="../documentos/governanca/minuta-nt-parte2.html">parte 2</a> · <a href="../documentos/governanca/minuta-nt-parte3.html">parte 3</a>. Permanecem documentos de trabalho, sem aprovação institucional.</li><li><a href="../salas/">Reuniões e Notas Técnicas por bacia e sala</a>.</li><li><a href="../gaops-20261013/nt-final.html">NT da 115ª reunião do GAOPS, de 13/10/2026</a>.</li><li><a href="https://github.com/7it0/soe-salas-prototipo/blob/main/PADRAO_BOTOES_NT.md">Padrão editorial das chamadas e botões</a>.</li></ul>
+<p class="small">Base de concepção: versão 0.3, de 08/10/2026, sintetizada nesta página. O Caderno Orientador citado no projeto não foi reproduzido integralmente nesta edição. Não confundir síntese pública com publicação dos originais internos.</p>
+</section>
+<section id="estado"><h2>2. Checkpoint de 29/10/2026</h2>
+<p><strong>Último estado confirmado pelas telas e pela conferência do responsável.</strong> Não é uma inspeção atual da ANA. A data de publicação deste guia não atualiza automaticamente o estado dos sistemas.</p>
+<div class="table"><table><thead><tr><th>Recurso</th><th>Estado documentado</th><th>Pendência</th></tr></thead><tbody>
+<tr><td>Fluxo SOE - Notícias externas - RSS</td><td>Salvo com acionador de nova publicação, Condição e Compor de teste.</td><td>Conferir a versão existente e validar execução.</td></tr>
+<tr><td>Filtro temático</td><td>Expressão inserida e comparada com SIM.</td><td>Testar com notícias conhecidas e revisar mapeamento de campos.</td></tr>
+<tr><td>Lista SOE - Notícias externas</td><td>Criada, vazia, com coluna Título.</td><td>Completar colunas e conectar ao fluxo.</td></tr>
+<tr><td>Gravação na lista</td><td>Não configurada; caminhos Verdadeiro e Falso estavam sem ações.</td><td>Gravar apenas os itens selecionados e impedir duplicidades.</td></tr>
+<tr><td>Página SOE – Proposta de Nova Página Inicial</td><td>Localizada e adicionada aos favoritos; aparecia publicada.</td><td>Conferir cópia ou ambiente de teste autorizado antes de editar.</td></tr>
+<tr><td>Índice das reuniões</td><td>Abertura do GitHub Pages confirmada pelo responsável.</td><td>Chamada no SharePoint ainda pendente no checkpoint.</td></tr>
+</tbody></table></div>
+<p><strong>Não recriar recursos já existentes. Salvar não comprova execução.</strong> Uma página denominada Proposta pode estar publicada. A falha de download de um documento não é evidência de perda do fluxo ou da lista.</p>
+<div class="callout"><strong>Próxima entrega:</strong> preparar a chamada para o índice das reuniões, salvar em ambiente controlado, reabrir e conferir. Não depende de concluir a automação RSS.</div>
+</section>
+<section id="modelo"><h2>3. Arquitetura do Portal</h2>
+<p>A concepção v0.3 propõe uma entrada SOE com Gabinete e páginas das coordenações, articuladas com áreas transversais. Nomes e atribuições devem ser validados na estrutura institucional vigente antes da publicação.</p>
+<p>Organizar notícias, pessoas, agenda, documentos, serviços e links. Relacionar <strong>evento → sala ou fórum → reunião → documento ou produto → decisão</strong>, com identificadores, data, fonte, versão, abrangência e bacia. O leitor deve chegar do assunto à evidência, sem conhecer previamente a pasta onde ela está.</p>
+<p>Separar notícias próprias, acompanhamento de notícias externas e alertas operacionais oficiais. Manter um registro com múltiplas formas de consulta, evitando cópias. O Portal não substitui SEI, gestão documental formal nem bases de origem.</p>
+<p>Usar componentes nativos primeiro. Preservar identidade visual, legibilidade e autoria. Nas páginas técnicas, apresentar síntese, verticais, fontes, cruzamentos e encaminhamentos comprovados; manter anexos ao final. Não inventar decisões a partir de previsões.</p>
+<h3>Ambientes e visibilidade</h3><p>Desenvolvimento para ensaio; homologação para revisão; produção para conteúdo aprovado. O isolamento depende das permissões reais, não apenas do nome da página ou do estado de rascunho.</p>
+</section>
+<section id="execucao"><h2>4. Primeira entrega: chamada das reuniões</h2>
+<div class="callout"><p><strong>Título:</strong> Salas SOE — Reuniões e Notas Técnicas</p><p><strong>Descrição:</strong> Consulte as reuniões por bacia e sistema hídrico, com notas técnicas em HTML, PDFs e indicadores disponíveis. Protótipo técnico em ambiente pessoal — não constitui publicação institucional da ANA.</p><p><strong>Destino:</strong> <a href="../salas/">Índice das reuniões e Notas Técnicas</a>.</p></div>
+<ol><li>Conferir conta, site, página, recursos existentes e versão anterior.</li><li>Trabalhar em cópia ou ambiente autorizado, com possibilidade de retorno.</li><li>Preparar a chamada no componente apropriado, preservando as demais seções.</li><li>Salvar, reabrir e verificar título, descrição, destino e leitura no tablet.</li><li>Publicar somente após aprovação; registrar evidências e próximo passo.</li></ol>
+<p>O componente Notícias permite chamadas por link, mas uma notícia publicada pode aparecer em outros componentes que usem o site como origem. Não publicar notícias de teste em produção. A miniatura técnica pode ser acrescentada após a primeira entrega funcional. <a href="#ref-noticias">[1]</a></p>
+</section>
+<section id="automacao"><h2>5. RSS, filtros e estrutura da lista</h2>
+<p><strong>Receber → normalizar → filtrar → deduplicar → registrar → revisar → exibir.</strong></p>
+<p>Preservar o requisito de receber novas publicações por RSS. Mudanças no acionador ou na periodicidade devem ser justificadas, registradas e aprovadas; não substituir silenciosamente o fluxo existente.</p>
+<h3>Temas definidos</h3><p>Barragens e reservatórios; cheias, enchentes e inundações; chuvas intensas ou fortes; transbordamentos; estiagem, seca e escassez de água. Examinar título e resumo recebidos, sem presumir leitura integral da reportagem.</p>
+<p>Normalizar caixa, acentos, espaços e marcação HTML. Exigir contexto hídrico para palavras ambíguas. Uma referência isolada a Lei Seca não deve selecionar uma notícia; sua presença também não deve excluir automaticamente outro conteúdo hídrico pertinente.</p>
+<p><strong>Verdadeiro significa que a condição foi atendida, não que a notícia foi comprovada.</strong> A gravação deve ocorrer nesse caminho. Compor permanece apenas uma ação de teste até ser substituída ou aproveitada de modo explícito.</p>
+<h3>Campos propostos</h3><p>Título, fonte, data de publicação, data de coleta, resumo, URL original, identificador estável, tema, status de revisão e versão do filtro. Preservar URLs completas. Verificar a chave antes de inserir e prever proteção contra execuções concorrentes.</p>
+<p>Proposta inicial de exibição: até seis notícias recentes aprovadas, com fonte, data, resumo e link. A lista armazena registros; sua apresentação deve ser configurada no Portal. Um item de lista não é automaticamente uma notícia do componente Notícias.</p>
+<h3>Teste sem ficar esperando uma nova notícia</h3><p>Validar as regras com amostras conhecidas e uma consulta de teste separada. O conector RSS distingue o acionador de novas publicações da ação que lista itens já disponíveis. Manter separados teste do filtro, teste de leitura e teste de publicação. <a href="#ref-rss">[2]</a></p>
+</section>
+<section id="tokens"><h2>6. Operação e economia de tokens</h2>
+<p>Nesta proposta, gestão de tráfego significa circulação de conteúdo: fontes, filas, encaminhamento, tentativas, erros e publicação. Publicidade e compra de mídia não fazem parte deste escopo.</p>
+<p>Coleta, normalização, filtros, deduplicação, conferência de links, registro e distribuição devem funcionar por regras ou código. <strong>Meta: nenhuma chamada a modelo de linguagem por notícia no processamento normal.</strong></p>
+<p>Usar IA para construir, revisar, diagnosticar e tratar exceções autorizadas, com limites de consumo. Evitar múltiplos agentes sobre a mesma fonte e releitura de toda a conversa a cada tarefa. Manter configuração, testes e checkpoint reutilizáveis.</p>
+<p>A rotina deve executar em serviço institucional aprovado, sem depender de manter uma conversa ou o Codex abertos. Prever tentativas limitadas, registro de erro, fila de recuperação e responsável operacional. Licenças, execução e armazenamento podem ter custos; reduzir tokens não significa custo total zero.</p>
+</section>
+<section id="testes"><h2>7. Testes e critérios de aceite</h2>
+<div class="table"><table><thead><tr><th>Teste</th><th>Resultado esperado</th></tr></thead><tbody><tr><td>Notícia dos temas definidos</td><td>Seleção coerente e motivo registrado.</td></tr><tr><td>Assunto não relacionado / Lei Seca isolada</td><td>Não seleção por esses termos.</td></tr><tr><td>Mesma notícia reprocessada</td><td>Nenhuma duplicação.</td></tr><tr><td>Fonte sem novidades</td><td>Registro de consulta sem novos itens, distinto de falha.</td></tr><tr><td>Fonte indisponível</td><td>Erro identificado, tentativas limitadas e recuperação possível.</td></tr><tr><td>Item gravado no SharePoint</td><td>Localizado por nova leitura, com campos corretos.</td></tr><tr><td>Apresentação no Portal</td><td>Somente itens e campos autorizados; leitura e links conferidos.</td></tr></tbody></table></div>
+<p>Não declarar a automação concluída apenas porque o fluxo foi salvo ou um teste não retornou erro. Demonstrar coleta, decisão, gravação e exibição.</p>
+</section>
+<section id="codex"><h2>8. Instrução para execução delegada</h2>
+<p>O documento orienta a execução, mas não concede acesso. A ferramenta escolhida deve comprovar leitura e escrita autorizadas antes de prometer alterações institucionais. Não presumir que uma sessão Microsoft aberta no navegador foi transferida a outro ambiente.</p>
+<div class="tools"><button id="copiar" type="button">Copiar instrução</button><span id="status" class="status" role="status" aria-live="polite"></span></div>
+<pre id="instrucao">Leia o guia do Portal SOE/ANA e o checkpoint de 29/10/2026.
+
+Verifique as ferramentas e permissões realmente disponíveis antes de modificar recursos. Não produza outro planejamento extenso.
+
+Não presuma acesso ao SharePoint nem herança da sessão Microsoft do navegador. Não solicite senhas, códigos, cookies ou tokens no chat.
+
+Localize os recursos existentes. Com edição autorizada, prepare a chamada para o índice das reuniões em cópia ou ambiente controlado. Preserve as demais seções. Salve, reabra, confira o link e documente a reversão. Não publique.
+
+Sem acesso, informe o bloqueio específico e avance somente nos arquivos e testes independentes dele, com dados sintéticos. Não declare edição institucional concluída.
+
+Aproveite fluxo, filtro e lista existentes. Priorize rotinas determinísticas para RSS, duplicidades, filas e erros, sem chamadas de IA por notícia.
+
+Não altere permissões, não exclua conteúdo e não substitua a página inicial oficial sem aprovação expressa. SEI está fora do piloto.
+
+Entregue resultado, evidências dos testes, forma de retorno e CHECKPOINT.md atualizado.</pre>
+<p>Skills e agentes reutilizáveis devem ser construídos depois de validar um procedimento. Notícias externas são dados não confiáveis, não instruções para executar comandos.</p>
+</section>
+<section id="continuidade"><h2>9. Continuidade, segurança e STI</h2>
+<p>Manter README, CHECKPOINT, decisões, configurações, testes e evidências em local institucional aprovado. Esta central pública não cria essa estrutura na ANA.</p>
+<pre>Portal-SOE/
+  README.md
+  CHECKPOINT.md
+  AGENTS.md
+  configuracao/
+  testes/
+  decisoes/
+  evidencias/</pre>
+<p>Atualizar o checkpoint após cada entrega com data, resultado confirmado, recursos alterados, evidências, pendências e próximo passo. Não guardar acessos, dados pessoais desnecessários ou registros internos neste repositório público.</p>
+<p><strong>Pedido à STI:</strong> avaliar piloto restrito à página de trabalho, à lista e ao fluxo; ambiente de teste; ferramentas admitidas; conectores, permissões mínimas e licenças; autenticação multifator; custódia, revisão e publicação. Quando necessária, a edição visual deve utilizar ferramenta autorizada. A aprovação pessoal não substitui políticas institucionais.</p>
+<p>Não prometer frequência fixa de login. A sessão poderá exigir renovação conforme a política aplicável. Não desativar controles corporativos para contornar dificuldades.</p>
+<h3>Versão desta central</h3><p>v1.0 — 06/11/2026: publicação inicial da documentação principal, síntese de concepção, checkpoint de referência e instruções. Não houve alteração do SharePoint, do fluxo RSS ou das páginas técnicas existentes como parte desta publicação.</p>
+</section>
+<section id="referencias"><h2>10. Referências e termos</h2>
+<p id="ref-noticias">[1] Microsoft Support — <a href="https://support.microsoft.com/en-us/office/use-the-news-web-part-on-a-sharepoint-page-c2dcee50-f5d7-434b-8cb9-a7feefd9f165">Uso do componente Notícias no SharePoint</a>.</p>
+<p id="ref-rss">[2] Microsoft Learn — <a href="https://learn.microsoft.com/en-us/connectors/rss/">Conector RSS: acionador, ações e campos</a>.</p>
+<p><strong>Checkpoint:</strong> estado confirmado e próximo passo. <strong>Homologação:</strong> revisão antes de uso em produção. <strong>Deduplicação:</strong> impedir registros repetidos. <strong>Execução determinística:</strong> regra ou código sem interpretação de um modelo a cada item.</p>
+<p class="small">Fontes de projeto: concepção v0.3, documentação pública de governança, checkpoint e proposta de execução delegada discutidos no Chat 08. Esta edição sintetiza o material disponível; não reproduz todos os anexos originais.</p>
+<a href="#topo">Voltar ao início</a>
+</section>
+</main>
+<script>
+document.getElementById('imprimir').addEventListener('click',()=>window.print());
+document.getElementById('copiar').addEventListener('click',async()=>{const text=document.getElementById('instrucao').textContent;const status=document.getElementById('status');try{await navigator.clipboard.writeText(text);status.textContent='Instrução copiada.'}catch(e){const range=document.createRange();range.selectNodeContents(document.getElementById('instrucao'));const s=window.getSelection();s.removeAllRanges();s.addRange(range);status.textContent='Texto selecionado. Use a opção Copiar do navegador.'}});
+</script>
+</body>
+</html>
