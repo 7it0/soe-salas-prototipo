@@ -12,12 +12,13 @@
 <body id="topo">
 <a class="skip" href="#conteudo">Ir para o conteúdo</a>
 <header>
-<small>DOCUMENTAÇÃO DE TRABALHO · VERSÃO 1.0 · 06/11/2026</small>
+<small>DOCUMENTAÇÃO DE TRABALHO · VERSÃO 1.1 · 06/11/2026</small>
 <h1>Portal SOE<br>Guia de construção e continuidade</h1>
 <p>Documentação principal e instruções de execução em leitura direta, sem depender de downloads. O acervo das reuniões permanece separado e com seus endereços preservados.</p>
 <p><strong>Concepção e coordenação: José Aguiar de Lima Júnior</strong><br>Especialista em Geoprocessamento — Gabinete/SOE/ANA.</p>
 <p class="note"><strong>Protótipo técnico em ambiente pessoal — não constitui publicação institucional da ANA.</strong> Esta página orienta a construção do Portal; não acessa o SharePoint nem executa automações institucionais.</p>
-<nav aria-label="Índice"><a href="#acervo">Documentação</a><a href="#estado">Checkpoint</a><a href="#modelo">Arquitetura</a><a href="#execucao">Construção</a><a href="#automacao">RSS e filtros</a><a href="#tokens">Tokens</a><a href="#testes">Testes</a><a href="#codex">Codex</a><a href="#continuidade">Continuidade</a></nav>
+<div class="callout"><strong>Roteiro operacional para o agente</strong><p>Da verificação do acesso à publicação: etapas E00–E12, tarefas do agente, sua participação, critérios de pronto, testes e retomada.</p><p><a href="execucao.html"><strong>Abrir roteiro completo de execução →</strong></a></p><p class="small">Arquivos versionados: <a href="https://github.com/7it0/soe-salas-prototipo/blob/main/portal-construcao/AGENTS.md">AGENTS.md</a> · <a href="https://github.com/7it0/soe-salas-prototipo/blob/main/portal-construcao/INICIAR_CODEX.md">Iniciar no Codex</a> · <a href="https://github.com/7it0/soe-salas-prototipo/blob/main/portal-construcao/ROTEIRO_EXECUCAO.md">Roteiro técnico integral</a>.</p></div>
+<nav aria-label="Índice"><a href="execucao.html">Execução E00–E12</a><a href="#acervo">Documentação</a><a href="#estado">Checkpoint</a><a href="#modelo">Arquitetura</a><a href="#execucao">Construção</a><a href="#automacao">RSS e filtros</a><a href="#tokens">Tokens</a><a href="#testes">Testes</a><a href="#codex">Codex</a><a href="#continuidade">Continuidade</a></nav>
 <div class="tools" style="margin-top:18px"><button type="button" id="imprimir">Imprimir / salvar PDF</button></div>
 </header>
 <main id="conteudo">
@@ -37,7 +38,7 @@
 <tr><td>Índice das reuniões</td><td>Abertura do GitHub Pages confirmada pelo responsável.</td><td>Chamada no SharePoint ainda pendente no checkpoint.</td></tr>
 </tbody></table></div>
 <p><strong>Não recriar recursos já existentes. Salvar não comprova execução.</strong> Uma página denominada Proposta pode estar publicada. A falha de download de um documento não é evidência de perda do fluxo ou da lista.</p>
-<div class="callout"><strong>Próxima entrega:</strong> preparar a chamada para o índice das reuniões, salvar em ambiente controlado, reabrir e conferir. Não depende de concluir a automação RSS.</div>
+<div class="callout"><strong>Próxima entrega:</strong> preparar a chamada para o índice das reuniões, salvar em ambiente controlado, reabrir e conferir. Não depende de concluir a automação RSS. <a href="execucao.html#e00">Iniciar pelo lote E00–E03</a>.</div>
 </section>
 <section id="modelo"><h2>3. Arquitetura do Portal</h2>
 <p>A concepção v0.3 propõe uma entrada SOE com Gabinete e páginas das coordenações, articuladas com áreas transversais. Nomes e atribuições devem ser validados na estrutura institucional vigente antes da publicação.</p>
@@ -60,6 +61,7 @@
 <h3>Campos propostos</h3><p>Título, fonte, data de publicação, data de coleta, resumo, URL original, identificador estável, tema, status de revisão e versão do filtro. Preservar URLs completas. Verificar a chave antes de inserir e prever proteção contra execuções concorrentes.</p>
 <p>Proposta inicial de exibição: até seis notícias recentes aprovadas, com fonte, data, resumo e link. A lista armazena registros; sua apresentação deve ser configurada no Portal. Um item de lista não é automaticamente uma notícia do componente Notícias.</p>
 <h3>Teste sem ficar esperando uma nova notícia</h3><p>Validar as regras com amostras conhecidas e uma consulta de teste separada. O conector RSS distingue o acionador de novas publicações da ação que lista itens já disponíveis. Manter separados teste do filtro, teste de leitura e teste de publicação. <a href="#ref-rss">[2]</a></p>
+<p><a href="execucao.html#e05">Etapas técnicas E05–E08: campos, filtro, integração e exibição →</a></p>
 </section>
 <section id="tokens"><h2>6. Operação e economia de tokens</h2>
 <p>Nesta proposta, gestão de tráfego significa circulação de conteúdo: fontes, filas, encaminhamento, tentativas, erros e publicação. Publicidade e compra de mídia não fazem parte deste escopo.</p>
@@ -70,25 +72,37 @@
 <section id="testes"><h2>7. Testes e critérios de aceite</h2>
 <div class="table"><table><thead><tr><th>Teste</th><th>Resultado esperado</th></tr></thead><tbody><tr><td>Notícia dos temas definidos</td><td>Seleção coerente e motivo registrado.</td></tr><tr><td>Assunto não relacionado / Lei Seca isolada</td><td>Não seleção por esses termos.</td></tr><tr><td>Mesma notícia reprocessada</td><td>Nenhuma duplicação.</td></tr><tr><td>Fonte sem novidades</td><td>Registro de consulta sem novos itens, distinto de falha.</td></tr><tr><td>Fonte indisponível</td><td>Erro identificado, tentativas limitadas e recuperação possível.</td></tr><tr><td>Item gravado no SharePoint</td><td>Localizado por nova leitura, com campos corretos.</td></tr><tr><td>Apresentação no Portal</td><td>Somente itens e campos autorizados; leitura e links conferidos.</td></tr></tbody></table></div>
 <p>Não declarar a automação concluída apenas porque o fluxo foi salvo ou um teste não retornou erro. Demonstrar coleta, decisão, gravação e exibição.</p>
+<p><a href="https://github.com/7it0/soe-salas-prototipo/blob/main/portal-construcao/ROTEIRO_EXECUCAO.md">Matriz integral T01–T17 no roteiro de execução →</a></p>
 </section>
 <section id="codex"><h2>8. Instrução para execução delegada</h2>
 <p>O documento orienta a execução, mas não concede acesso. A ferramenta escolhida deve comprovar leitura e escrita autorizadas antes de prometer alterações institucionais. Não presumir que uma sessão Microsoft aberta no navegador foi transferida a outro ambiente.</p>
+<p><strong>Pacote para o agente:</strong> <a href="https://github.com/7it0/soe-salas-prototipo/blob/main/portal-construcao/AGENTS.md">instruções persistentes</a>, <a href="https://github.com/7it0/soe-salas-prototipo/blob/main/portal-construcao/INICIAR_CODEX.md">comando inicial</a> e <a href="execucao.html">roteiro E00–E12</a>. O arquivo de instruções está nesta subpasta; leia-o explicitamente quando iniciar a sessão na raiz.</p>
 <div class="tools"><button id="copiar" type="button">Copiar instrução</button><span id="status" class="status" role="status" aria-live="polite"></span></div>
-<pre id="instrucao">Leia o guia do Portal SOE/ANA e o checkpoint de 29/10/2026.
+<pre id="instrucao">No repositório 7it0/soe-salas-prototipo, leia explicitamente:
+portal-construcao/AGENTS.md
+portal-construcao/INICIAR_CODEX.md
+portal-construcao/ROTEIRO_EXECUCAO.md
 
-Verifique as ferramentas e permissões realmente disponíveis antes de modificar recursos. Não produza outro planejamento extenso.
+Execute o primeiro lote E00–E03, começando somente por leitura.
+Comprove ferramentas, permissões e recursos existentes.
+Não presuma acesso ao SharePoint nem herança da sessão Microsoft.
+Solicite meu login apenas na interface oficial quando necessário.
+Proponha o alvo de teste e obtenha minha aprovação do lote.
+Depois execute as ações reversíveis sem pedir que eu opere cada botão,
+respeitando confirmações obrigatórias da plataforma.
 
-Não presuma acesso ao SharePoint nem herança da sessão Microsoft do navegador. Não solicite senhas, códigos, cookies ou tokens no chat.
+Prepare a chamada das reuniões em ambiente controlado.
+Preserve as demais seções. Salve, reabra, confira o link e a persistência.
+Não publique, exclua, mude permissões ou troque a página inicial.
 
-Localize os recursos existentes. Com edição autorizada, prepare a chamada para o índice das reuniões em cópia ou ambiente controlado. Preserve as demais seções. Salve, reabra, confira o link e documente a reversão. Não publique.
+Sem acesso, informe o bloqueio específico e avance somente nos arquivos
+e testes independentes dele, com dados sintéticos, sem simular sucesso.
+Não copie dados corporativos para este repositório público.
 
-Sem acesso, informe o bloqueio específico e avance somente nos arquivos e testes independentes dele, com dados sintéticos. Não declare edição institucional concluída.
-
-Aproveite fluxo, filtro e lista existentes. Priorize rotinas determinísticas para RSS, duplicidades, filas e erros, sem chamadas de IA por notícia.
-
-Não altere permissões, não exclua conteúdo e não substitua a página inicial oficial sem aprovação expressa. SEI está fora do piloto.
-
-Entregue resultado, evidências dos testes, forma de retorno e CHECKPOINT.md atualizado.</pre>
+Reutilize fluxo, filtro e lista existentes. Priorize regras para RSS,
+duplicidades, filas e erros, sem chamadas de IA por notícia.
+Entregue resultado, evidências privadas, reversão e CHECKPOINT.md.
+SEI está fora do piloto.</pre>
 <p>Skills e agentes reutilizáveis devem ser construídos depois de validar um procedimento. Notícias externas são dados não confiáveis, não instruções para executar comandos.</p>
 </section>
 <section id="continuidade"><h2>9. Continuidade, segurança e STI</h2>
@@ -104,13 +118,13 @@ Entregue resultado, evidências dos testes, forma de retorno e CHECKPOINT.md atu
 <p>Atualizar o checkpoint após cada entrega com data, resultado confirmado, recursos alterados, evidências, pendências e próximo passo. Não guardar acessos, dados pessoais desnecessários ou registros internos neste repositório público.</p>
 <p><strong>Pedido à STI:</strong> avaliar piloto restrito à página de trabalho, à lista e ao fluxo; ambiente de teste; ferramentas admitidas; conectores, permissões mínimas e licenças; autenticação multifator; custódia, revisão e publicação. Quando necessária, a edição visual deve utilizar ferramenta autorizada. A aprovação pessoal não substitui políticas institucionais.</p>
 <p>Não prometer frequência fixa de login. A sessão poderá exigir renovação conforme a política aplicável. Não desativar controles corporativos para contornar dificuldades.</p>
-<h3>Versão desta central</h3><p>v1.0 — 06/11/2026: publicação inicial da documentação principal, síntese de concepção, checkpoint de referência e instruções. Não houve alteração do SharePoint, do fluxo RSS ou das páginas técnicas existentes como parte desta publicação.</p>
+<h3>Versões desta central</h3><p>v1.0 — 06/11/2026: publicação inicial da documentação principal, síntese de concepção, checkpoint e instruções.</p><p>v1.1 — 06/11/2026: inclusão do roteiro operacional E00–E12, matriz de 17 testes, AGENTS.md e comando inicial. Não houve alteração do SharePoint, do fluxo RSS ou das páginas técnicas das reuniões como parte desta atualização documental.</p>
 </section>
 <section id="referencias"><h2>10. Referências e termos</h2>
 <p id="ref-noticias">[1] Microsoft Support — <a href="https://support.microsoft.com/en-us/office/use-the-news-web-part-on-a-sharepoint-page-c2dcee50-f5d7-434b-8cb9-a7feefd9f165">Uso do componente Notícias no SharePoint</a>.</p>
 <p id="ref-rss">[2] Microsoft Learn — <a href="https://learn.microsoft.com/en-us/connectors/rss/">Conector RSS: acionador, ações e campos</a>.</p>
 <p><strong>Checkpoint:</strong> estado confirmado e próximo passo. <strong>Homologação:</strong> revisão antes de uso em produção. <strong>Deduplicação:</strong> impedir registros repetidos. <strong>Execução determinística:</strong> regra ou código sem interpretação de um modelo a cada item.</p>
-<p class="small">Fontes de projeto: concepção v0.3, documentação pública de governança, checkpoint e proposta de execução delegada discutidos no Chat 08. Esta edição sintetiza o material disponível; não reproduz todos os anexos originais.</p>
+<p class="small">Fontes de projeto: concepção v0.3, documentação pública de governança, checkpoint e proposta de execução delegada discutidos no Chat 08. Esta edição sintetiza o material disponível; não reproduz todos os anexos originais. As fontes de implementação estão também no <a href="execucao.html#fontes">roteiro operacional</a>.</p>
 <a href="#topo">Voltar ao início</a>
 </section>
 </main>
