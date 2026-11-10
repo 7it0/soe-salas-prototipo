@@ -1,0 +1,70 @@
+name: GAOPS 116 - exact ONS source
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/gaops116-ons-source.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: gaops/116a-2026-11-10
+      - run: python -m pip install requests beautifulsoup4
+      - name: Retrieve only a byte-identical public copy
+        run: |
+          python - <<'PY'
+          import hashlib, concurrent.futures
+          from pathlib import Path
+          from urllib.parse import urljoin,unquote
+          import requests
+          from bs4 import BeautifulSoup
+          root=Path('gaops/116a-2026-11-10/fontes');root.mkdir(parents=True,exist_ok=True)
+          expected='7bef207e667eb08c522fe046e2ac9fbdaa618e7b3d1b00c803a82c310b1d9e29'
+          dest=root/'ons.pdf'
+          if dest.exists() and hashlib.sha256(dest.read_bytes()).hexdigest()==expected:raise SystemExit(0)
+          base='https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/'
+          choices=[]
+          for listing in [base+'apresentacoes-das-reunioes',base]:
+              try:
+                  r=requests.get(listing,timeout=15);r.raise_for_status()
+                  for a in BeautifulSoup(r.text,'html.parser').find_all('a',href=True):
+                      t=unquote(a['href']+' '+a.get_text(' ',strip=True)).lower()
+                      if 'ons' in t and any(k in t for k in ['116','20261110','10112026','10-11-2026']):choices.append(urljoin(listing,a['href']))
+              except requests.RequestException as e:print(type(e).__name__)
+          choices += [base+x+'/view' for x in ['116a-reuniao-gaops-10-11-2026-apresentacao-ons.pdf','116a-reuniao-gaops-10-11-2026-apresentacao-ons-1.pdf','116a-reuniao-gaops-10-11-2026-apresentacao-ons.pdf.pdf','116-reuniao-gaops-10-11-2026-apresentacao-ons.pdf']]
+          def get(view):
+              try:
+                  if not view.endswith('/view'):view=view.rstrip('/')+'/view'
+                  r=requests.get(view,timeout=12)
+                  urls=[]
+                  if r.ok:
+                      for a in BeautifulSoup(r.text,'html.parser').find_all('a',href=True):
+                          if '@@download' in a['href']:urls.append(urljoin(view,a['href']))
+                  urls.append(view[:-5]+'/@@download/file')
+                  for u in dict.fromkeys(urls):
+                      rr=requests.get(u,timeout=18)
+                      if rr.ok and hashlib.sha256(rr.content).hexdigest()==expected:return (rr.content,view,u)
+              except requests.RequestException:pass
+              return None
+          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
+              results=list(pool.map(get,list(dict.fromkeys(choices))[:8]))
+          match=next((x for x in results if x),None)
+          if match is None:raise SystemExit('No byte-identical public ONS copy found. Received PDF is analyzed; no substitute published.')
+          dest.write_bytes(match[0])
+          (root/'ons-source.txt').write_text('Original recebido: 116ª Reunião GAOPS-10-11-2026-Apresentação ONS.pdf\nSHA-256: '+expected+'\nRegistro: '+match[1]+'\nPDF: '+match[2]+'\n',encoding='utf-8')
+          print('EXACT ONS VERIFIED',len(match[0]),match[1])
+          PY
+      - name: Store exact source in this meeting only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add gaops/116a-2026-11-10/fontes/ons.pdf gaops/116a-2026-11-10/fontes/ons-source.txt
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m '116ª GAOPS: hospeda PDF ONS idêntico ao arquivo recebido'
+          git pull --rebase origin main
+          git push origin HEAD:main
