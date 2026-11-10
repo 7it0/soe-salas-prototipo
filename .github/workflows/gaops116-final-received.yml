@@ -1,0 +1,107 @@
+name: GAOPS 116 - final meeting publication
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/gaops116-final-received.yml'
+      - 'gaops/116a-2026-11-10/finalize_received.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: gaops116-final-meeting
+  cancel-in-progress: false
+jobs:
+  publication:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: gaops/116a-2026-11-10
+      - name: Install document tools
+        run: |
+          python -m pip install 'pymupdf==1.26.7' reportlab beautifulsoup4 requests playwright
+          if ! command -v google-chrome >/dev/null && ! command -v chromium >/dev/null; then python -m playwright install --with-deps chromium; fi
+      - name: Build final edition from received sources
+        run: |
+          python -m py_compile gaops/116a-2026-11-10/finalize_received.py
+          python gaops/116a-2026-11-10/finalize_received.py --out /tmp/gaops116-final
+      - name: Check page, downloads and annex anchor
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from functools import partial
+          from http.server import ThreadingHTTPServer,SimpleHTTPRequestHandler
+          import threading,shutil,hashlib,json
+          from playwright.sync_api import sync_playwright
+          root=Path('/tmp/gaops116-final')
+          class Quiet(SimpleHTTPRequestHandler):
+              def log_message(self,*args):pass
+          server=ThreadingHTTPServer(('127.0.0.1',0),partial(Quiet,directory=str(root)))
+          threading.Thread(target=server.serve_forever,daemon=True).start()
+          try:
+              with sync_playwright() as p:
+                  options={'headless':True,'args':['--no-sandbox']}
+                  chrome=shutil.which('google-chrome') or shutil.which('chromium')
+                  if chrome:options['executable_path']=chrome
+                  browser=p.chromium.launch(**options)
+                  page=browser.new_page(viewport={'width':1440,'height':1000},accept_downloads=True)
+                  base=f'http://127.0.0.1:{server.server_port}/'
+                  page.goto(base,wait_until='networkidle')
+                  assert page.locator('figure').count()==35
+                  assert 'NT FINAL DA REUNIÃO' in page.locator('#publication-status').inner_text()
+                  assert 'Encerramento:' in page.locator('#registro').inner_text()
+                  assert page.locator('nav a[href="#ons"]').inner_text()=='ONS'
+                  for file in ['documentos/NT_GAOPS_116_10-11-2026_FINAL.pdf','documentos/Anexo_I_GAOPS_116_10-11-2026.pdf','fontes/ons.pdf','indicadores.csv']:
+                      response=page.request.get(base+file)
+                      assert response.ok,file
+                      assert hashlib.sha256(response.body()).hexdigest()==hashlib.sha256((root/file).read_bytes()).hexdigest(),file
+                  page.locator('header').screenshot(path=str(root/'qa/header-final-desktop.png'))
+                  page.evaluate("document.querySelectorAll('figure img').forEach(e=>e.loading='eager')")
+                  page.wait_for_function("[...document.querySelectorAll('figure img')].every(e=>e.complete&&e.naturalWidth>0)")
+                  page.goto(base+'#anexo-i',wait_until='networkidle')
+                  page.wait_for_timeout(600)
+                  y=page.locator('#anexo-i').bounding_box()['y']
+                  assert 0<=y<220,('annex_anchor',y)
+                  assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+2')
+                  page.set_viewport_size({'width':390,'height':844})
+                  page.goto(base,wait_until='networkidle')
+                  assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+2')
+                  page.locator('header').screenshot(path=str(root/'qa/header-final-mobile.png'))
+                  browser.close()
+          finally:
+              server.shutdown();server.server_close()
+          m=json.loads((root/'manifesto.json').read_text())
+          m['checks']['browser_downloads_images_and_anchor']=True
+          m['checks']['desktop_mobile_no_overflow']=True
+          (root/'manifesto.json').write_text(json.dumps(m,ensure_ascii=False,indent=2),encoding='utf-8')
+          print('BROWSER CHECKS PASSED')
+          PY
+      - name: Preserve final edition and validation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gaops116-final-validated
+          path: /tmp/gaops116-final/
+          retention-days: 7
+          if-no-files-found: warn
+      - name: Commit only the validated meeting publication
+        run: |
+          set -euo pipefail
+          target='gaops/116a-2026-11-10'
+          cp /tmp/gaops116-final/index.html "$target/index.html"
+          cp /tmp/gaops116-final/indicadores.csv "$target/indicadores.csv"
+          cp /tmp/gaops116-final/manifesto.json "$target/manifesto.json"
+          cp /tmp/gaops116-final/fontes/ons.pdf "$target/fontes/ons.pdf"
+          cp /tmp/gaops116-final/assets/ons_*.jpg "$target/assets/"
+          cp /tmp/gaops116-final/documentos/NT_GAOPS_116_10-11-2026_FINAL.pdf "$target/documentos/"
+          cp /tmp/gaops116-final/documentos/NT_GAOPS_116_10-11-2026_PREVIA.pdf "$target/documentos/"
+          cp /tmp/gaops116-final/documentos/Anexo_I_GAOPS_116_10-11-2026.pdf "$target/documentos/"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$target/index.html" "$target/indicadores.csv" "$target/manifesto.json" "$target/fontes/ons.pdf" "$target/assets" "$target/documentos"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m '116ª GAOPS: NT final 1.0, ONS incorporado, 35 reproduções, 64 indicadores e encerramento registrado'
+          git pull --rebase origin main
+          git push origin HEAD:main
