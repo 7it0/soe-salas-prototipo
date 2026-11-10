@@ -5,12 +5,14 @@ on:
     paths:
       - '.github/workflows/salas-indice.yml'
       - 'tools/build_salas_index.py'
+      - 'tools/refresh_salas_index.py'
+      - '**/manifesto.json'
   workflow_dispatch:
 permissions:
   contents: write
 concurrency:
   group: salas-indice
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -19,9 +21,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install parser and browser checks
         run: python -m pip install beautifulsoup4 playwright
-      - name: Build index and verify destinations
-        run: python tools/build_salas_index.py
-      - name: Test search and mobile layout
+      - name: Synchronize manifest-backed meetings and verify all destinations
+        run: python tools/refresh_salas_index.py
+      - name: Test GAOPS final links, search and mobile layout
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -30,6 +32,10 @@ jobs:
           import threading,shutil,json
           from playwright.sync_api import sync_playwright
           root=Path.cwd();qa=Path('/tmp/salas-indice-qa');qa.mkdir()
+          manifest=json.loads((root/'salas/reunioes.json').read_text(encoding='utf-8'))
+          records=manifest['records'];total=len(records)
+          north=sum(x['slug']=='regiao-norte' for x in records)
+          date_matches=sum(x['date']=='2026-10-29' for x in records)
           class Quiet(SimpleHTTPRequestHandler):
               def log_message(self,*args):pass
           server=ThreadingHTTPServer(('127.0.0.1',0),partial(Quiet,directory=str(root)))
@@ -40,37 +46,42 @@ jobs:
                   if not chrome:raise RuntimeError('Browser unavailable; index not published without layout test')
                   browser=p.chromium.launch(executable_path=chrome,headless=True,args=['--no-sandbox'])
                   page=browser.new_page(viewport={'width':1440,'height':1000})
-                  page.goto(f'http://127.0.0.1:{server.server_port}/salas/',wait_until='networkidle')
-                  assert page.locator('.meeting').count()==9
-                  assert page.locator('.basin').count()==8
+                  base=f'http://127.0.0.1:{server.server_port}'
+                  page.goto(base+'/salas/#paraiba-do-sul',wait_until='networkidle')
+                  assert page.locator('.meeting').count()==total
+                  assert page.locator('.basin').count()==manifest['basins']
                   assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+2')
+                  cards=page.locator('#paraiba-do-sul .meeting')
+                  assert cards.count()>=2
+                  assert '116ª' in cards.nth(0).inner_text()
+                  assert '115ª' in cards.nth(1).inner_text()
+                  assert 'NT final da reunião' in cards.nth(0).inner_text()
+                  pdf=cards.nth(0).locator('a.pdf').get_attribute('href')
+                  assert pdf.endswith('NT_GAOPS_116_10-11-2026_FINAL.pdf'),pdf
+                  doc=(root/'salas'/pdf).resolve()
+                  with doc.open('rb') as f:assert f.read(5)==b'%PDF-'
+                  assert 'gaops/116a-2026-11-10/index.html' in cards.nth(0).locator('a.read').get_attribute('href')
+                  page.locator('#paraiba-do-sul').screenshot(path=str(qa/'indice-paraiba-do-sul.png'))
                   page.screenshot(path=str(qa/'indice-computador.png'),full_page=True)
-                  page.locator('#busca').fill('Norte')
-                  assert page.locator('.meeting:visible').count()==2
-                  page.locator('#busca').fill('29/10/2026')
+                  page.locator('#busca').fill('116ª')
                   assert page.locator('.meeting:visible').count()==1
-                  page.locator('#limpar').click();assert page.locator('.meeting:visible').count()==9
+                  page.locator('#busca').fill('Norte')
+                  assert page.locator('.meeting:visible').count()==north
+                  page.locator('#busca').fill('29/10/2026')
+                  assert page.locator('.meeting:visible').count()==date_matches
+                  page.locator('#limpar').click()
+                  assert page.locator('.meeting:visible').count()==total
                   page.set_viewport_size({'width':390,'height':844})
                   assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+2')
+                  page.goto(base+'/salas/#paraiba-do-sul',wait_until='networkidle')
                   page.screenshot(path=str(qa/'indice-celular.png'),full_page=True)
                   browser.close()
           finally:server.shutdown();server.server_close()
-          print('TESTES OK: nove reuniões, oito bacias/salas, busca por nome/data, computador/celular.')
-          PY
-      - name: Add index access without changing meeting contents
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          import re
-          for name,link in [('index.html','salas/'),('parana/10a-2026-10-29/index.html','../../salas/')]:
-              p=Path(name);s=p.read_text(encoding='utf-8')
-              if 'id="indice-geral-salas"' in s:continue
-              m=re.search(r'<header\b[^>]*>',s)
-              if not m:raise RuntimeError('Header not found: '+name)
-              anchor='<p id="indice-geral-salas" style="font-size:14px;margin:0 0 18px"><a href="'+link+'" style="color:inherit;text-underline-offset:3px">← Índice de reuniões e Notas Técnicas por bacia</a></p>'
-              updated=s[:m.end()]+anchor+s[m.end():]
-              assert updated.replace(anchor,'',1)==s
-              p.write_text(updated,encoding='utf-8')
+          checks={'meetings':total,'basins':manifest['basins'],'gaops116_first':True,
+                  'gaops115_preserved':True,'final_pdf_exists':True,'search':True,
+                  'desktop_mobile':True,'local_destinations_verified':True}
+          (qa/'checks.json').write_text(json.dumps(checks,ensure_ascii=False,indent=2),encoding='utf-8')
+          print('TESTES OK',json.dumps(checks,ensure_ascii=False))
           PY
       - uses: actions/upload-artifact@v4
         if: always()
@@ -80,13 +91,13 @@ jobs:
             salas/
             /tmp/salas-indice-qa/
           retention-days: 7
-      - name: Publish validated index
+      - name: Publish only the validated catalog
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add salas/index.html salas/reunioes.json index.html parana/10a-2026-10-29/index.html
+          git add salas/index.html salas/reunioes.json
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Publica Salas SOE: nove reuniões em oito bacias, links verificados e busca no acervo'
+          git commit -m 'Sincroniza índice por bacia: GAOPS 116 final, PDFs e demais reuniões com manifesto'
           git pull --rebase origin main
           git push origin HEAD:main
