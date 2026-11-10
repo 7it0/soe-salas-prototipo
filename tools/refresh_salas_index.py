@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Refresh the existing basin index without rewriting any meeting publication.
-Keep the historical catalog and discover additional meetings from their manifests.
-All links are still validated by build_salas_index before publication.
+"""Refresh the basin index without rewriting any meeting publication.
+Preserve historical records; discover additional meetings from published manifests.
+The existing renderer validates every local destination and anchor.
 """
 from datetime import datetime
 from pathlib import Path
@@ -38,37 +38,37 @@ def main():
             page = manifest_path.parent / 'index.html'
             if not page.is_file():
                 continue
-            manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
             relative = page.relative_to(ROOT).as_posix()
+            if relative in by_page:
+                # Old publications have several metadata schemas. Do not reinterpret them.
+                continue
+            manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
             soup = BeautifulSoup(page.read_text(encoding='utf-8'), 'html.parser')
             heading = soup.find('h1')
             title = heading.get_text(' ', strip=True) if heading else manifest.get('meeting', '')
             number = re.search(r'\b\d+\s*ª', title)
             date = manifest.get('date', '')
-            if not number or not re.fullmatch(r'\d{4}-\d{2}-\d{2}', date):
-                raise ValueError('Unusable meeting metadata: ' + str(manifest_path))
+            if not number or not re.fullmatch(r'\d{4}-\d{2}-\d{2}', str(date)):
+                print('Not added: incomplete explicit meeting metadata:', relative, flush=True)
+                continue
             raw_status = str(manifest.get('status', '')).strip()
-            status_lower = raw_status.lower()
+            notice = soup.select_one('header .notice')
+            notice_text = notice.get_text(' ', strip=True) if notice else ''
+            editorial = (raw_status + ' ' + notice_text).lower()
             version = str(manifest.get('version', '')).strip()
-            if 'nt final' in status_lower:
+            if 'nt final' in editorial:
                 state = 'NT final da reunião'
-                edition = ('Versão ' + version if version else 'Versão final')
-                if 'revis' in status_lower:
+                edition = 'Versão ' + version if version else 'Versão final'
+                if 'revis' in editorial or soup.find(id='nota-revisao-equipe'):
                     edition += ' · sujeita à revisão da equipe'
-            elif 'prévia' in status_lower or 'previa' in status_lower:
+            elif 'prévia' in editorial or 'previa' in editorial:
                 state = 'Prévia técnica'
                 edition = 'Versão ' + version if version else 'Prévia documental'
             else:
-                old = by_page.get(relative, {})
-                state = old.get('state') or raw_status or 'Publicação documental'
-                edition = old.get('edition') or ('Versão ' + version if version else 'Edição publicada')
-            if relative in by_page:
-                # Retain existing descriptions and dates; only reflect explicit editorial status.
-                if 'nt final' in status_lower or 'prévia' in status_lower or 'previa' in status_lower:
-                    by_page[relative].update(state=state, edition=edition)
-                continue
-            institutions = list(dict.fromkeys(LABELS.get(key, key.upper())
-                                             for key in manifest.get('sources', {})))
+                state = raw_status or 'Publicação documental'
+                edition = 'Versão ' + version if version else 'Edição publicada'
+            sources = manifest.get('sources', {})
+            institutions = list(dict.fromkeys(LABELS.get(key, key.upper()) for key in sources))
             description = ('Materiais de ' + ', '.join(institutions) + '. ') if institutions else ''
             if isinstance(manifest.get('figure_count'), int):
                 description += str(manifest['figure_count']) + ' reproduções identificadas. '
@@ -81,7 +81,6 @@ def main():
             catalog.append(item)
             by_page[relative] = item
             discovered.append(relative)
-    # Keep the established basin order, and let the renderer sort each basin by date.
     group_order = list(dict.fromkeys(item['group'] for item in legacy.MEETINGS))
     catalog.sort(key=lambda item: group_order.index(item['group']))
     legacy.MEETINGS = catalog
