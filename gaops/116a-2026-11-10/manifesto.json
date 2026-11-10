@@ -1,0 +1,340 @@
+{
+  "meeting": "116ª Reunião do GAOPS",
+  "date": "2026-11-10",
+  "version": "0.2",
+  "status": "Prévia documental; ONS pendente; encerramento não informado",
+  "generated_at": "2026-11-10T17:48:20.559023+00:00",
+  "sources": {
+    "inpe": {
+      "view": "https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/reuniao_ana_gaops_10112026.pdf/view",
+      "download": "https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/reuniao_ana_gaops_10112026.pdf/@@download/file",
+      "method": "official_copy_sha256_equal_to_attachment",
+      "sha256": "7d5085dbce87548a950802b2b0f6efda5063134196f61f24fa891b7949e016d3",
+      "pages": 13,
+      "matches_received_file": true
+    },
+    "cemaden": {
+      "view": "https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/apres-cemaden-paraiba-do-sul-20261110-pptx.pdf/view",
+      "download": "https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/apres-cemaden-paraiba-do-sul-20261110-pptx.pdf/@@download/file",
+      "method": "official_copy_sha256_equal_to_attachment",
+      "sha256": "e1faf0a46061e191b6c0d834b0070d1fb7a908c74b86a9405d7ee93a37661161",
+      "pages": 17,
+      "matches_received_file": true
+    }
+  },
+  "figure_count": 24,
+  "indicator_rows": 38,
+  "figures": [
+    {
+      "number": 1,
+      "key": "inpe",
+      "page": 3,
+      "title": "Precipitação e anomalias — agosto a outubro",
+      "caption": "Diagnóstico mensal e trimestral; áreas e períodos distintos.",
+      "src": "assets/inpe_03.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 2,
+      "key": "inpe",
+      "page": 4,
+      "title": "Novembro — parcial até 09/11",
+      "caption": "Não representa fechamento mensal.",
+      "src": "assets/inpe_04.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 3,
+      "key": "inpe",
+      "page": 5,
+      "title": "Evolução das anomalias na bacia",
+      "caption": "Barras sem rótulos exatos não foram convertidas em valores numéricos.",
+      "src": "assets/inpe_05.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 4,
+      "key": "inpe",
+      "page": 6,
+      "title": "GOES-19 — 10/11",
+      "caption": "Contexto de nebulosidade; não é acumulado de chuva.",
+      "src": "assets/inpe_06.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 5,
+      "key": "inpe",
+      "page": 8,
+      "title": "Previsão diária — 11 a 13/11",
+      "caption": "Título BAM e mapas MONAN: identificação divergente preservada.",
+      "src": "assets/inpe_08.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 6,
+      "key": "inpe",
+      "page": 9,
+      "title": "BAM subsazonal — quatro semanas",
+      "caption": "Referência 08/11; não somar com acumulados de outros horizontes.",
+      "src": "assets/inpe_09.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 7,
+      "key": "inpe",
+      "page": 11,
+      "title": "Climatologia NDJ",
+      "caption": "600–800 mm e 18–26 °C: faixas climatológicas, não previsões.",
+      "src": "assets/inpe_11.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 8,
+      "key": "inpe",
+      "page": 12,
+      "title": "Previsão em conjunto NDJ 2026/2027",
+      "caption": "Probabilidade por tercil; branco indica probabilidades iguais.",
+      "src": "assets/inpe_12.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 9,
+      "key": "cemaden",
+      "page": 2,
+      "title": "Precipitação nos últimos 30 dias",
+      "caption": "10/10–09/11; acumulado e anomalia separados.",
+      "src": "assets/cemaden_02.jpg",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 10,
+      "key": "cemaden",
+      "page": 3,
+      "title": "Chuva no ano hidrológico",
+      "caption": "01/10–09/11; janela sobreposta à de 30 dias.",
+      "src": "assets/cemaden_03.jpg",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 11,
+      "key": "cemaden",
+      "page": 4,
+      "title": "Evolução temporal da precipitação",
+      "caption": "55,0 mm de 1 a 9/11; anotação de 11% da MLT requer esclarecimento.",
+      "src": "assets/cemaden_04.jpg",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 12,
+      "key": "cemaden",
+      "page": 5,
+      "title": "TSI-6 — outubro",
+      "caption": "Excesso em Jaguari, Funil e Santa Cecília; demais recortes normais.",
+      "src": "assets/cemaden_05.jpg",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 13,
+      "key": "cemaden",
+      "page": 6,
+      "title": "TSI-3 — outubro",
+      "caption": "Excesso hídrico nos seis recortes; índice não é volume útil.",
+      "src": "assets/cemaden_06.jpg",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 14,
+      "key": "cemaden",
+      "page": 7,
+      "title": "Situação meteorológica atual",
+      "caption": "Imagem de satélite apresentada pelo CEMADEN.",
+      "src": "assets/cemaden_07.jpg",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 15,
+      "key": "cemaden",
+      "page": 8,
+      "title": "GEFS — chuva e anomalia em 14 dias",
+      "caption": "Rodada 10/11 00 UTC; previsão, não observação.",
+      "src": "assets/cemaden_08.jpg",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 16,
+      "key": "cemaden",
+      "page": 9,
+      "title": "GEFS — acumulado na bacia",
+      "caption": "Aproximadamente 112 mm ao final de 14 dias; dispersão dos membros.",
+      "src": "assets/cemaden_09.jpg",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 17,
+      "key": "cemaden",
+      "page": 10,
+      "title": "Terceira e quarta semanas",
+      "caption": "CFS/NOAA e ECMWF; 23–29/11 e 30/11–06/12.",
+      "src": "assets/cemaden_10.jpg",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 18,
+      "key": "cemaden",
+      "page": 11,
+      "title": "MHD — vazões naturais",
+      "caption": "07/11–07/12; MLT 1991–2020. Não representa defluências programadas.",
+      "src": "assets/cemaden_11.jpg",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 19,
+      "key": "cemaden",
+      "page": 12,
+      "title": "TSI previsto — escala de seis meses",
+      "caption": "Faixa +1,27 a +1,77; extremos não individualizados por reservatório.",
+      "src": "assets/cemaden_12.jpg",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 20,
+      "key": "cemaden",
+      "page": 13,
+      "title": "GloFAS subsazonal",
+      "caption": "Título de 30 dias e painéis 16/11–21/12: datas preservadas.",
+      "src": "assets/cemaden_13.jpg",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 21,
+      "key": "cemaden",
+      "page": 14,
+      "title": "El Niño — produto reproduzido na fonte",
+      "caption": "Niño 3.4 +2,3 °C; não é probabilidade de impacto local.",
+      "src": "assets/cemaden_14.jpg",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 22,
+      "key": "cemaden",
+      "page": 15,
+      "title": "Anos análogos",
+      "caption": "Trajetórias distintas; não representam repetição determinística.",
+      "src": "assets/cemaden_15.jpg",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 23,
+      "key": "cemaden",
+      "page": 16,
+      "title": "Chuva sazonal multimodelo",
+      "caption": "NDJ; categorias e anomalias não são acumulados diários.",
+      "src": "assets/cemaden_16.jpg",
+      "width": 1800,
+      "height": 1350
+    },
+    {
+      "number": 24,
+      "key": "cemaden",
+      "page": 17,
+      "title": "GloFAS sazonal NDJ",
+      "caption": "Novembro/dezembro de 2026 e janeiro de 2027; painéis inferiores antigos preservados.",
+      "src": "assets/cemaden_17.jpg",
+      "width": 1800,
+      "height": 1350
+    }
+  ],
+  "pdf_pages": 39,
+  "annex_pages": 3,
+  "annex_start_page": 13,
+  "toc": [
+    [
+      1,
+      "1. Síntese executiva",
+      3
+    ],
+    [
+      1,
+      "2. Escopo, fontes e referências temporais",
+      4
+    ],
+    [
+      1,
+      "3. Vertical INPE/INMET — diagnóstico e perspectivas meteorológicas",
+      5
+    ],
+    [
+      1,
+      "4. Vertical CEMADEN — chuva, TSI e previsões hidrológicas",
+      7
+    ],
+    [
+      1,
+      "5. ONS — material ainda não recebido",
+      9
+    ],
+    [
+      1,
+      "6. Cruzamentos técnicos e consequências operacionais",
+      10
+    ],
+    [
+      1,
+      "7. Registro da reunião e encaminhamentos",
+      11
+    ],
+    [
+      1,
+      "8. Fontes e ressalvas documentais",
+      12
+    ],
+    [
+      1,
+      "ANEXO I — Resumo para o Relatório Anual / Reunião em números",
+      13
+    ],
+    [
+      1,
+      "ANEXO GRÁFICO — INPE/INMET",
+      16
+    ],
+    [
+      1,
+      "ANEXO GRÁFICO — CEMADEN",
+      24
+    ]
+  ],
+  "text_and_tables_preserved": true,
+  "pdf_sha256": "adfc0a4e62598634681265cf2133641b39655d491848c0d849b971a0c3442abe",
+  "annex_sha256": "f4dbf344ac8403e151e03a28ae2e010d85ffe1450c06fb11756d75616fa0f061",
+  "csv_sha256": "006d23680930190d608d9635394f8b1ff86235345d097ca3a9dfff7f554e88e7",
+  "browser_checks": {
+    "desktop": true,
+    "mobile": true,
+    "downloads": true,
+    "annex_anchor": true,
+    "all_images_loaded": true
+  }
+}
