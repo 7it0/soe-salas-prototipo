@@ -1,0 +1,83 @@
+name: Salas SOE - verify public catalog
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/salas-verify-public.yml']
+  workflow_run:
+    workflows: ['Salas SOE - indice por bacia']
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: salas-verify-public
+  cancel-in-progress: true
+jobs:
+  public-check:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Verify live index, GAOPS final page and complete PDF download
+        run: |
+          python - <<'PY'
+          import hashlib,json,re,time,urllib.request
+          from pathlib import Path
+          BASE='https://7it0.github.io/soe-salas-prototipo/'
+          MEETING='gaops/116a-2026-11-10/'
+          out=Path('/tmp/salas-public-check');out.mkdir(exist_ok=True)
+          def get(path):
+              url=BASE+path+('?' if '?' not in path else '&')+'verify='+str(time.time_ns())
+              req=urllib.request.Request(url,headers={'User-Agent':'SOE-publication-verification','Cache-Control':'no-cache'})
+              with urllib.request.urlopen(req,timeout=25) as res:
+                  data=res.read();return data,res.status,res.headers.get('Content-Type','')
+          errors=[]
+          for attempt in range(16):
+              try:
+                  raw,status,mime=get('salas/')
+                  text=raw.decode('utf-8')
+                  section=re.search(r'<section[^>]+id="paraiba-do-sul"[^>]*>(.*?)</section>',text,re.S)
+                  assert section,'Paraíba do Sul section absent'
+                  part=section.group(1)
+                  assert '116ª Reunião' in part,'116ª missing from live index'
+                  assert part.index('116ª')<part.index('115ª'),'Meeting ordering incorrect'
+                  assert 'NT_GAOPS_116_10-11-2026_FINAL.pdf' in part,'Final PDF link absent'
+                  assert 'NT final da reunião' in part,'Final editorial state absent'
+                  assert 'gaops/116a-2026-11-10/index.html#anexo-i' in part,'Annex link absent'
+                  metadata=json.loads(get('salas/reunioes.json')[0])
+                  record=next(x for x in metadata['records'] if x['page']==MEETING+'index.html')
+                  assert record['state']=='NT final da reunião'
+                  manifest=json.loads(get(MEETING+'manifesto.json')[0])
+                  assert manifest['version']=='1.0' and 'ons' in manifest['sources']
+                  page=get(MEETING)[0].decode('utf-8')
+                  assert 'NT FINAL DA REUNIÃO' in page
+                  assert 'ONS · pendente' not in page
+                  assert 'ONS — material ainda não recebido' not in page
+                  pdf,ps,pm=get(record['pdf'])
+                  assert ps==200 and pdf.startswith(b'%PDF-') and len(pdf)>10000
+                  digest=hashlib.sha256(pdf).hexdigest()
+                  assert digest==manifest['pdf_sha256'],'Public PDF differs from publication manifest'
+                  report={'verified_at_utc':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),
+                          'index_url':BASE+'salas/#paraiba-do-sul','index_http_status':status,
+                          'meetings':metadata['meetings'],'basins':metadata['basins'],
+                          'gaops116_first':True,'gaops115_preserved':True,
+                          'page_url':BASE+MEETING,'ons_incorporated':True,
+                          'pdf_url':BASE+record['pdf'],'pdf_http_status':ps,
+                          'pdf_bytes':len(pdf),'pdf_sha256':digest,'pdf_matches_manifest':True}
+                  (out/'verification.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
+                  (out/'public-index.html').write_text(text,encoding='utf-8')
+                  print(json.dumps(report,ensure_ascii=False,indent=2));break
+              except Exception as exc:
+                  errors.append(str(exc));print('Public propagation check',attempt+1,str(exc),flush=True)
+                  if attempt==15:
+                      (out/'failure.json').write_text(json.dumps(errors,ensure_ascii=False,indent=2),encoding='utf-8')
+                      raise
+                  time.sleep(12)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: salas-public-verification
+          path: /tmp/salas-public-check/
+          retention-days: 7
