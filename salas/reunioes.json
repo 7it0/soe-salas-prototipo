@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-10-29T14:23:57.600778+00:00",
+  "updated_at": "2026-11-10T19:29:07.877019+00:00",
   "scope": "Reuniões publicadas neste repositório",
-  "meetings": 9,
+  "meetings": 11,
   "basins": 8,
-  "hosted_pdfs": 8,
+  "hosted_pdfs": 10,
   "records": [
     {
       "group": "Alto Paraguai · Pantanal",
@@ -36,6 +36,22 @@
       "csv": "gaops-20261013/indicadores.csv",
       "annex": null,
       "date_br": "13/10/2026"
+    },
+    {
+      "group": "Paraíba do Sul · GAOPS",
+      "slug": "paraiba-do-sul",
+      "date": "2026-11-10",
+      "number": "116ª",
+      "title": "116ª Reunião do GAOPS",
+      "page": "gaops/116a-2026-11-10/index.html",
+      "state": "NT final da reunião",
+      "edition": "Versão 1.0 · sujeita à revisão da equipe",
+      "description": "Materiais de INPE/INMET, CEMADEN, ONS. 35 reproduções identificadas. 64 registros numéricos. Consulte a NT para o escopo e as ressalvas documentais.",
+      "read_page": "gaops/116a-2026-11-10/index.html",
+      "pdf": "gaops/116a-2026-11-10/documentos/NT_GAOPS_116_10-11-2026_FINAL.pdf",
+      "csv": "gaops/116a-2026-11-10/indicadores.csv",
+      "annex": "gaops/116a-2026-11-10/index.html#anexo-i",
+      "date_br": "10/11/2026"
     },
     {
       "group": "Paraná · Região Hidrográfica",
@@ -132,6 +148,22 @@
       "csv": null,
       "annex": null,
       "date_br": "06/10/2026"
+    },
+    {
+      "group": "São Francisco",
+      "slug": "sao-francisco",
+      "date": "2026-11-03",
+      "number": "11ª",
+      "title": "11ª Reunião em 2026 da Sala de Acompanhamento do Sistema Hídrico do Rio São Francisco",
+      "page": "sao-francisco/11a-2026-11-03/index.html",
+      "state": "NT final da reunião",
+      "edition": "Versão 1.0 · sujeita à revisão da equipe",
+      "description": "Materiais de CEMADEN, ONS, INMET. 32 reproduções identificadas. 61 registros numéricos. Consulte a NT para o escopo e as ressalvas documentais.",
+      "read_page": "sao-francisco/11a-2026-11-03/index.html",
+      "pdf": "sao-francisco/11a-2026-11-03/documentos/NT_Sao_Francisco_11a_03-11-2026_CONSOLIDADA.pdf",
+      "csv": "sao-francisco/11a-2026-11-03/indicadores.csv",
+      "annex": "sao-francisco/11a-2026-11-03/index.html#anexo-i",
+      "date_br": "03/11/2026"
     },
     {
       "group": "Tocantins",
