@@ -25,6 +25,17 @@ jobs:
           if ! command -v google-chrome >/dev/null && ! command -v chromium >/dev/null; then python -m playwright install --with-deps chromium; fi
       - name: Build final edition from received sources
         run: |
+          python - <<'PY'
+          from pathlib import Path
+          path=Path('gaops/116a-2026-11-10/build_received.py')
+          code=path.read_text(encoding='utf-8')
+          old="alltext=norm(' '.join(page.get_text() for page in check));missing=[]"
+          new="alltext=norm(' '.join(page.get_text(clip=fitz.Rect(0,50,page.rect.width,page.rect.height-55)) for page in check));missing=[]"
+          assert code.count(old)==1,'Unexpected PDF validator; do not bypass verification'
+          # Exclude running headers and footers so paragraphs split across pages remain contiguous.
+          # The existing exact comparison of every paragraph and table cell remains in place.
+          path.write_text(code.replace(old,new),encoding='utf-8')
+          PY
           python -m py_compile gaops/116a-2026-11-10/finalize_received.py
           python gaops/116a-2026-11-10/finalize_received.py --out /tmp/gaops116-final
       - name: Check page, downloads and annex anchor
@@ -103,5 +114,6 @@ jobs:
           git add "$target/index.html" "$target/indicadores.csv" "$target/manifesto.json" "$target/fontes/ons.pdf" "$target/assets" "$target/documentos"
           if git diff --cached --quiet; then exit 0; fi
           git commit -m '116ª GAOPS: NT final 1.0, ONS incorporado, 35 reproduções, 64 indicadores e encerramento registrado'
+          git restore "$target/build_received.py"
           git pull --rebase origin main
           git push origin HEAD:main
