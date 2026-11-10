@@ -1,9 +1,9 @@
 {
   "meeting": "116ª Reunião do GAOPS",
   "date": "2026-11-10",
-  "version": "0.2",
-  "status": "Prévia documental; ONS pendente; encerramento não informado",
-  "generated_at": "2026-11-10T17:48:20.559023+00:00",
+  "version": "1.0",
+  "status": "NT final da reunião; encerramento confirmado; INPE/INMET, CEMADEN e ONS incorporados; sujeita à revisão da equipe",
+  "generated_at": "2026-11-10T19:09:23.116103+00:00",
   "sources": {
     "inpe": {
       "view": "https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/apresentacoes-das-reunioes/reuniao_ana_gaops_10112026.pdf/view",
@@ -20,10 +20,16 @@
       "sha256": "e1faf0a46061e191b6c0d834b0070d1fb7a908c74b86a9405d7ee93a37661161",
       "pages": 17,
       "matches_received_file": true
+    },
+    "ons": {
+      "method": "verified_existing_copy",
+      "sha256": "7bef207e667eb08c522fe046e2ac9fbdaa618e7b3d1b00c803a82c310b1d9e29",
+      "pages": 16,
+      "matches_received_file": true
     }
   },
-  "figure_count": 24,
-  "indicator_rows": 38,
+  "figure_count": 35,
+  "indicator_rows": 64,
   "figures": [
     {
       "number": 1,
@@ -264,11 +270,121 @@
       "src": "assets/cemaden_17.jpg",
       "width": 1800,
       "height": 1350
+    },
+    {
+      "number": 25,
+      "key": "ons",
+      "page": 3,
+      "title": "Santa Cecília — vazões naturais e percentuais da MLT",
+      "caption": "Novembro parcial até 09/11; não é vazão defluente.",
+      "src": "assets/ons_03.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 26,
+      "key": "ons",
+      "page": 4,
+      "title": "Santa Cecília — hidrograma de 2026",
+      "caption": "Comparação com 2014; não é previsão.",
+      "src": "assets/ons_04.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 27,
+      "key": "ons",
+      "page": 5,
+      "title": "Armazenamento equivalente histórico",
+      "caption": "57,06%; rodapé 06/09/2026 em curva posterior. Data a confirmar.",
+      "src": "assets/ons_05.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 28,
+      "key": "ons",
+      "page": 6,
+      "title": "Armazenamentos dos quatro reservatórios e equivalente",
+      "caption": "Posições individuais distintas; rodapé 06/09/2026 a confirmar.",
+      "src": "assets/ons_06.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 29,
+      "key": "ons",
+      "page": 7,
+      "title": "Armazenamento equivalente — comparação entre anos",
+      "caption": "Rodapé 10/08/2026; não atribuir ranking sem harmonizar os cortes.",
+      "src": "assets/ons_07.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 30,
+      "key": "ons",
+      "page": 9,
+      "title": "Operação da UHE Paraibuna",
+      "caption": "Afluência, defluência e volume útil; sem rótulo exato de posição final.",
+      "src": "assets/ons_09.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 31,
+      "key": "ons",
+      "page": 10,
+      "title": "Operação da UHE Santa Branca",
+      "caption": "Volume de espera é curva de referência; não é margem de amortecimento calculada.",
+      "src": "assets/ons_10.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 32,
+      "key": "ons",
+      "page": 11,
+      "title": "Operação da UHE Jaguari",
+      "caption": "A defluência do gráfico não é uma medida de transferência para a SABESP.",
+      "src": "assets/ons_11.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 33,
+      "key": "ons",
+      "page": 12,
+      "title": "Operação da UHE Funil",
+      "caption": "Oscilações de estoque e vazões; sem inferência de inundação ou nova determinação.",
+      "src": "assets/ons_12.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 34,
+      "key": "ons",
+      "page": 14,
+      "title": "Curva de segurança — operação normal",
+      "caption": "Abril a novembro/2026; curva Captação Suplementar conforme apresentada.",
+      "src": "assets/ons_14.jpg",
+      "width": 1800,
+      "height": 1013
+    },
+    {
+      "number": 35,
+      "key": "ons",
+      "page": 15,
+      "title": "Simulação do sistema equivalente",
+      "caption": "Nov: 56,5% observado; Nov-final: 54,0% simulado. Não extrapolar para 2027.",
+      "src": "assets/ons_15.jpg",
+      "width": 1800,
+      "height": 1013
     }
   ],
-  "pdf_pages": 39,
-  "annex_pages": 3,
-  "annex_start_page": 13,
+  "pdf_pages": 55,
+  "annex_pages": 4,
+  "annex_start_page": 17,
   "toc": [
     [
       1,
@@ -278,63 +394,77 @@
     [
       1,
       "2. Escopo, fontes e referências temporais",
-      4
-    ],
-    [
-      1,
-      "3. Vertical INPE/INMET — diagnóstico e perspectivas meteorológicas",
       5
     ],
     [
       1,
+      "3. Vertical INPE/INMET — diagnóstico e perspectivas meteorológicas",
+      6
+    ],
+    [
+      1,
       "4. Vertical CEMADEN — chuva, TSI e previsões hidrológicas",
-      7
+      8
     ],
     [
       1,
-      "5. ONS — material ainda não recebido",
-      9
-    ],
-    [
-      1,
-      "6. Cruzamentos técnicos e consequências operacionais",
+      "5. Vertical ONS — hidrologia, armazenamento e operação",
       10
     ],
     [
       1,
-      "7. Registro da reunião e encaminhamentos",
-      11
-    ],
-    [
-      1,
-      "8. Fontes e ressalvas documentais",
-      12
-    ],
-    [
-      1,
-      "ANEXO I — Resumo para o Relatório Anual / Reunião em números",
+      "6. Cruzamentos técnicos e consequências operacionais",
       13
     ],
     [
       1,
-      "ANEXO GRÁFICO — INPE/INMET",
+      "7. Registro da reunião e encaminhamentos",
+      15
+    ],
+    [
+      1,
+      "8. Fontes e ressalvas documentais",
       16
     ],
     [
       1,
+      "ANEXO I — Resumo para o Relatório Anual / Reunião em números",
+      17
+    ],
+    [
+      1,
+      "ANEXO GRÁFICO — INPE/INMET",
+      21
+    ],
+    [
+      1,
       "ANEXO GRÁFICO — CEMADEN",
-      24
+      29
+    ],
+    [
+      1,
+      "ANEXO GRÁFICO — ONS",
+      45
     ]
   ],
   "text_and_tables_preserved": true,
-  "pdf_sha256": "adfc0a4e62598634681265cf2133641b39655d491848c0d849b971a0c3442abe",
-  "annex_sha256": "f4dbf344ac8403e151e03a28ae2e010d85ffe1450c06fb11756d75616fa0f061",
-  "csv_sha256": "006d23680930190d608d9635394f8b1ff86235345d097ca3a9dfff7f554e88e7",
+  "pdf_sha256": "217aba11a5219a085249da0af458b468dddc3fbf1b4c1da9797522d763fedd75",
+  "annex_sha256": "ef3dc474582e165cc2373b686d733c3b83e5fa4e223f2077970d08752f1f0854",
+  "csv_sha256": "4d33529f5f462653368010776ecc12af54c2912f5f4263b2a5a7fdbc372bdc88",
   "browser_checks": {
     "desktop": true,
     "mobile": true,
     "downloads": true,
     "annex_anchor": true,
     "all_images_loaded": true
+  },
+  "checks": {
+    "source_hashes_match_attachments": true,
+    "all_local_links_exist": true,
+    "old_pending_ons_labels_removed": true,
+    "meeting_closure_recorded": true,
+    "text_and_tables_preserved": true,
+    "browser_downloads_images_and_anchor": true,
+    "desktop_mobile_no_overflow": true
   }
 }
