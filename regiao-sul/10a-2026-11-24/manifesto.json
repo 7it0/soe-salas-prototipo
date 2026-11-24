@@ -4,12 +4,29 @@
   "start_at": "2026-11-24T10:00:00-03:00",
   "end_at": "2026-11-24T11:00:00-03:00",
   "timezone": "America/Sao_Paulo",
-  "version": "0.1",
-  "editorial_state": "preparation",
-  "status": "Em preparação — aguardando apresentações",
-  "description": "24/11/2026, das 10h às 11h (Brasília). Página em preparação; apresentações aguardadas. Análises e documentos serão incorporados conforme o recebimento dos materiais.",
-  "generated_at": "2026-11-24T09:23:17-03:00",
-  "sources": {},
+  "version": "1.0",
+  "editorial_state": "documentary_synthesis",
+  "status": "Síntese das apresentações · sujeita à revisão da equipe",
+  "description": "Texto integral das quatro verticais INMET, CEMADEN, ONS e SGB, integração por bacia, oito tabelas e Anexo I. Reunião de 24/11/2026.",
+  "generated_at": "2026-11-24T14:19:21.085Z",
+  "sources": {
+    "inmet": {
+      "title": "Condições Observadas e Prognóstico Climático DJF/2026–2027",
+      "date": "2026-11-24"
+    },
+    "cemaden": {
+      "title": "Monitoramento e Previsões da situação hidrometeorológica na Região Sul",
+      "date": "2026-11-24"
+    },
+    "ons": {
+      "title": "Avaliação das condições hidrológicas e de armazenamento dos reservatórios do Subsistema Sul",
+      "date": "2026-11-24"
+    },
+    "sgb": {
+      "title": "10ª Reunião em 2026 da Sala de Crise da Região Sul",
+      "date": "2026-11-24"
+    }
+  },
   "expected_institutions": [
     "inmet",
     "cemaden",
@@ -20,5 +37,6 @@
   "formal_decisions_received": false,
   "closure_received": false,
   "pdf": null,
-  "csv": null
+  "csv": null,
+  "public_edition": "text_and_tables"
 }
