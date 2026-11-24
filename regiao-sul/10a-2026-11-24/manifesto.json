@@ -4,10 +4,10 @@
   "start_at": "2026-11-24T10:00:00-03:00",
   "end_at": "2026-11-24T11:00:00-03:00",
   "timezone": "America/Sao_Paulo",
-  "version": "1.0",
-  "editorial_state": "documentary_synthesis",
-  "status": "Síntese das apresentações · sujeita à revisão da equipe",
-  "description": "Texto integral das quatro verticais INMET, CEMADEN, ONS e SGB, integração por bacia, oito tabelas e Anexo I. Reunião de 24/11/2026.",
+  "version": "1.1",
+  "editorial_state": "documentary_synthesis_after_closure",
+  "status": "Consolidação documental após encerramento · sujeita à revisão da equipe",
+  "description": "Quatro verticais INMET, CEMADEN, ONS e SGB, integração por bacia, oito tabelas e Anexo I; 47 registros numéricos individualizados no CSV.",
   "generated_at": "2026-11-24T14:19:21.085Z",
   "sources": {
     "inmet": {
@@ -35,8 +35,10 @@
   ],
   "participation_confirmed": false,
   "formal_decisions_received": false,
-  "closure_received": false,
+  "closure_received": true,
   "pdf": null,
-  "csv": null,
-  "public_edition": "text_and_tables"
+  "csv": "indicadores.csv",
+  "public_edition": "text_tables_csv",
+  "closure_source": "Informação da supervisão em 24/11/2026; horário efetivo não informado.",
+  "indicator_rows": 47
 }
