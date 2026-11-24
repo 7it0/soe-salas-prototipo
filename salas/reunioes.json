@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-24T14:21:00.238243+00:00",
+  "updated_at": "2026-11-24T14:36:59.763069+00:00",
   "scope": "Reuniões publicadas neste repositório",
   "meetings": 12,
   "basins": 8,
@@ -142,7 +142,7 @@
       "page": "regiao-sul/10a-2026-11-24/index.html",
       "state": "Consolidação documental após encerramento · sujeita à revisão da equipe",
       "edition": "Versão 1.1",
-      "description": "Quatro verticais INMET, CEMADEN, ONS e SGB, integração por bacia, oito tabelas e Anexo I; 47 registros numéricos individualizados no CSV.",
+      "description": "Materiais de INMET, CEMADEN, ONS, SGB. 47 registros numéricos. Consulte a NT para o escopo e as ressalvas documentais.",
       "read_page": "regiao-sul/10a-2026-11-24/index.html",
       "pdf": null,
       "csv": "regiao-sul/10a-2026-11-24/indicadores.csv",
