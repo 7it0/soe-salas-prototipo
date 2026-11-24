@@ -56,7 +56,11 @@ def main():
             notice_text = notice.get_text(' ', strip=True) if notice else ''
             editorial = (raw_status + ' ' + notice_text).lower()
             version = str(manifest.get('version', '')).strip()
-            if 'nt final' in editorial:
+            preparing = manifest.get('editorial_state') == 'preparation' or 'em preparação' in editorial
+            if preparing:
+                state = 'Em preparação — aguardando apresentações'
+                edition = ('Versão ' + version + ' · preparação') if version else 'Edição em preparação'
+            elif 'nt final' in editorial:
                 state = 'NT final da reunião'
                 edition = 'Versão ' + version if version else 'Versão final'
                 if 'revis' in editorial or soup.find(id='nota-revisao-equipe'):
@@ -75,6 +79,8 @@ def main():
             if isinstance(manifest.get('indicator_rows'), int):
                 description += str(manifest['indicator_rows']) + ' registros numéricos. '
             description += 'Consulte a NT para o escopo e as ressalvas documentais.'
+            if preparing:
+                description = manifest.get('description') or 'Apresentações aguardadas. Análises e documentos serão incorporados conforme o recebimento dos materiais.'
             item = dict(group=group, slug=slug, date=date, number=number.group().replace(' ', ''),
                         title=title, page=relative, state=state, edition=edition,
                         description=description)
@@ -102,3 +108,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

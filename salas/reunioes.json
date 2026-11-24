@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-11-10T19:29:07.877019+00:00",
+  "updated_at": "2026-11-24T09:23:17-03:00",
   "scope": "Reuniões publicadas neste repositório",
-  "meetings": 11,
+  "meetings": 12,
   "basins": 8,
   "hosted_pdfs": 10,
   "records": [
@@ -132,6 +132,22 @@
       "csv": "regiao-sul/9a-2026-10-27/indicadores.csv",
       "annex": "regiao-sul/9a-2026-10-27/index.html#anexo-i",
       "date_br": "27/10/2026"
+    },
+    {
+      "group": "Região Sul",
+      "slug": "regiao-sul",
+      "date": "2026-11-24",
+      "number": "10ª",
+      "title": "10ª Reunião em 2026 da Sala de Crise da Região Sul",
+      "page": "regiao-sul/10a-2026-11-24/index.html",
+      "state": "Em preparação — aguardando apresentações",
+      "edition": "Versão 0.1 · preparação",
+      "description": "24/11/2026, das 10h às 11h (Brasília). Página em preparação; apresentações aguardadas. Análises e documentos serão incorporados conforme o recebimento dos materiais.",
+      "read_page": "regiao-sul/10a-2026-11-24/index.html",
+      "pdf": null,
+      "csv": null,
+      "annex": "regiao-sul/10a-2026-11-24/index.html#anexo-i",
+      "date_br": "24/11/2026"
     },
     {
       "group": "São Francisco",

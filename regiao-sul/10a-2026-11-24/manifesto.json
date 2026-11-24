@@ -1,0 +1,24 @@
+{
+  "meeting": "10ª Reunião em 2026 da Sala de Crise da Região Sul",
+  "date": "2026-11-24",
+  "start_at": "2026-11-24T10:00:00-03:00",
+  "end_at": "2026-11-24T11:00:00-03:00",
+  "timezone": "America/Sao_Paulo",
+  "version": "0.1",
+  "editorial_state": "preparation",
+  "status": "Em preparação — aguardando apresentações",
+  "description": "24/11/2026, das 10h às 11h (Brasília). Página em preparação; apresentações aguardadas. Análises e documentos serão incorporados conforme o recebimento dos materiais.",
+  "generated_at": "2026-11-24T09:23:17-03:00",
+  "sources": {},
+  "expected_institutions": [
+    "inmet",
+    "cemaden",
+    "ons",
+    "sgb"
+  ],
+  "participation_confirmed": false,
+  "formal_decisions_received": false,
+  "closure_received": false,
+  "pdf": null,
+  "csv": null
+}
