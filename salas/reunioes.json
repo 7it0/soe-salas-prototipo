@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-11-24T14:36:59.763069+00:00",
+  "updated_at": "2026-11-25T13:00:00Z",
   "scope": "Reuniões publicadas neste repositório",
-  "meetings": 12,
+  "meetings": 13,
   "basins": 8,
   "hosted_pdfs": 10,
   "records": [
@@ -196,6 +196,22 @@
       "csv": "tocantins/10a-2026-10-27/indicadores.csv",
       "annex": "tocantins/10a-2026-10-27/index.html#anexo-i",
       "date_br": "27/10/2026"
+    },
+    {
+      "group": "Tocantins",
+      "slug": "tocantins",
+      "date": "2026-11-25",
+      "number": "11ª",
+      "title": "11ª Reunião em 2026 da Sala de Acompanhamento do Sistema Hídrico do Rio Tocantins",
+      "page": "tocantins/11a-2026-11-25/index.html",
+      "state": "Prévia documental · reunião em acompanhamento",
+      "edition": "Versão 0.1",
+      "description": "Três verticais INMET/INPE, CEMADEN e ONS; comparação com outubro, simulação de Serra da Mesa e Anexo I.",
+      "read_page": "tocantins/11a-2026-11-25/index.html",
+      "pdf": null,
+      "csv": "tocantins/11a-2026-11-25/indicadores.csv",
+      "annex": "tocantins/11a-2026-11-25/index.html#anexo-i",
+      "date_br": "25/11/2026"
     }
   ]
 }
