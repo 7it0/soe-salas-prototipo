@@ -1,0 +1,33 @@
+﻿Tema;Indicador;Local;Valor;Unidade;Período de 2026 ou referência;Natureza;Fonte;Página do PDF
+Chuva e indicadores;Precipitação acumulada;Bacia;164,5;mm;01–25/11;Observação;CEMADEN;4
+Chuva e indicadores;Precipitação acumulada;Bacia;368,7;mm;01/10–25/11;Observação;CEMADEN;4
+Chuva e indicadores;Precipitação diária;Bacia;10,8;mm;25/11;Observação;CEMADEN;4
+Chuva e indicadores;Climatologia mensal;Bacia;112,5;mm;Novembro · 2001–2024;Referência;CEMADEN;4
+Chuva e indicadores;Precipitação GEFS;Bacia;≈125;mm;14 dias · rodada 26/11;Previsão;CEMADEN;14
+Chuva e indicadores;TSI-6;Rosana;1,80;índice;Novembro parcial;Diagnóstico;CEMADEN;9
+Chuva e indicadores;TSI-6;Capivara;1,86;índice;Novembro parcial;Diagnóstico;CEMADEN;9
+Chuva e indicadores;TSI-6;Jurumirim;1,12;índice;Novembro parcial;Diagnóstico;CEMADEN;9
+Chuva e indicadores;TSI-3;Rosana;2,21;índice;Novembro parcial;Diagnóstico;CEMADEN;10
+Chuva e indicadores;TSI-3;Capivara;2,30;índice;Novembro parcial;Diagnóstico;CEMADEN;10
+Chuva e indicadores;TSI-3;Jurumirim;2,11;índice;Novembro parcial;Diagnóstico;CEMADEN;10
+Operação;Energia natural afluente;Paranapanema;338;% MLT;Novembro até 24/11;Observação;ONS;9
+Operação;Energia armazenada;Paranapanema;81;%;24/11;Observação;ONS;10
+Operação;Armazenamento;Jurumirim;83,7;% VU;IPDO de 26/11;Observação;ONS;8
+Operação;Armazenamento;Chavantes;81,4;% VU;IPDO de 26/11;Observação;ONS;8
+Operação;Armazenamento;Capivara;79,3;% VU;IPDO de 26/11;Observação;ONS;8
+Operação;Armazenamento;Mauá;95,1;% VU;IPDO de 26/11;Observação;ONS;8
+Operação;Vazão afluente;Jurumirim;621;m³/s;24/11;Observação;ONS;14
+Operação;Vazão defluente;Jurumirim;366;m³/s;24/11;Observação;ONS;14
+Operação;Vazão afluente;Chavantes;907;m³/s;24/11;Observação;ONS;15
+Operação;Vazão defluente;Chavantes;465;m³/s;24/11;Observação;ONS;15
+Operação;Vazão afluente;Capivara;2.286;m³/s;24/11;Observação;ONS;16
+Operação;Vazão defluente;Capivara;2.286;m³/s;24/11;Observação;ONS;16
+Operação;Defluência média;Jurumirim;430;m³/s;25/11–31/12;Premissa de simulação;ONS;18
+Operação;Defluência média;Chavantes;670;m³/s;25/11–31/12;Premissa de simulação;ONS;18
+Operação;Defluência média;Capivara;2.500;m³/s;25/11–31/12;Premissa de simulação;ONS;18
+Operação;Defluência média;Mauá;515;m³/s;25/11–31/12;Premissa de simulação;ONS;18
+Itapetininga;Acréscimo de vazão;Junção → Várzea de Cima;40,3;%;13/11;Campanha;SP Águas;19
+Itapetininga;Variação de vazão;Várzea de Cima → JU01;1,74;%;12/11;Campanha;SP Águas;19
+Itapetininga;Participação aparente da defluência da PCH;Junção;35,7;%;Análise estadual;Estimativa;SP Águas;19
+Itapetininga;Elevação média do nível;Porto Velho;119,75;cm;Após evento de 24/10;Observação;SP Águas;19
+Itapetininga;Extensão da série analisada;Itapetininga;49;dias;Diagnóstico de novembro;Cobertura;SP Águas;22
