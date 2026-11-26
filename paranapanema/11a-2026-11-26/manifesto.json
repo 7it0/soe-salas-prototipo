@@ -11,5 +11,6 @@
   },
   "figure_count": 66,
   "indicator_rows": 32,
-  "documento": "documentos/NT_Paranapanema_11a_26-11-2026_PREVIA.pdf"
+  "documento": "documentos/NT_Paranapanema_11a_26-11-2026_PREVIA.pdf",
+  "indicadores": "indicadores.csv"
 }
