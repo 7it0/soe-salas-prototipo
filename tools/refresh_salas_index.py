@@ -83,7 +83,7 @@ def main():
                 description = manifest.get('description') or 'Apresentações aguardadas. Análises e documentos serão incorporados conforme o recebimento dos materiais.'
             item = dict(group=group, slug=slug, date=date, number=number.group().replace(' ', ''),
                         title=title, page=relative, state=state, edition=edition,
-                        description=description)
+                        description=manifest.get('catalog_description') or description)
             catalog.append(item)
             by_page[relative] = item
             discovered.append(relative)
