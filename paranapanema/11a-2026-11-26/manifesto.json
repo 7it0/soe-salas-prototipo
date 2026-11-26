@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-26",
+  "meeting": "11ª Reunião em 2026 da Sala de Acompanhamento do Sistema Hídrico do Rio Paranapanema",
+  "status": "Prévia técnica · quatro apresentações recebidas",
+  "version": "1.0",
+  "sources": {
+    "inpe": "INPE",
+    "cemaden": "CEMADEN",
+    "ons": "ONS",
+    "sp-aguas": "SP Águas"
+  },
+  "figure_count": 66,
+  "indicator_rows": 32,
+  "documento": "documentos/NT_Paranapanema_11a_26-11-2026_PREVIA.pdf"
+}
