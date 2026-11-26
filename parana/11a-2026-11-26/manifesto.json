@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-26",
+  "meeting": "11ª Reunião em 2026 da Sala de Acompanhamento do Sistema Hídrico da Região Hidrográfica do Paraná",
+  "status": "Prévia técnica",
+  "version": "1.0",
+  "sources": {
+    "inpe": "INPE/INMET",
+    "cemaden": "CEMADEN",
+    "ons": "ONS"
+  }
+}

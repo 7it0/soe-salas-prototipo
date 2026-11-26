@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-11-25T13:00:00Z",
+  "updated_at": "2026-11-26T13:08:00Z",
   "scope": "Reuniões publicadas neste repositório",
-  "meetings": 13,
+  "meetings": 14,
   "basins": 8,
   "hosted_pdfs": 10,
   "records": [
@@ -52,6 +52,22 @@
       "csv": "gaops/116a-2026-11-10/indicadores.csv",
       "annex": "gaops/116a-2026-11-10/index.html#anexo-i",
       "date_br": "10/11/2026"
+    },
+    {
+      "group": "Paraná · Região Hidrográfica",
+      "slug": "parana",
+      "date": "2026-11-26",
+      "number": "11ª",
+      "title": "11ª Reunião em 2026 da Sala de Acompanhamento do Sistema Hídrico da Região Hidrográfica do Paraná",
+      "page": "parana/11a-2026-11-26/index.html",
+      "state": "Prévia técnica",
+      "edition": "Durante a reunião",
+      "description": "Verticais INPE/INMET, CEMADEN e ONS, comparação com outubro e questões para o debate.",
+      "read_page": "parana/11a-2026-11-26/index.html",
+      "pdf": null,
+      "csv": null,
+      "annex": null,
+      "date_br": "26/11/2026"
     },
     {
       "group": "Paraná · Região Hidrográfica",
