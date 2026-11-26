@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-26T18:03:49.671739+00:00",
+  "updated_at": "2026-11-26T18:11:32.254177+00:00",
   "scope": "Reuniões publicadas neste repositório",
   "meetings": 14,
   "basins": 8,
@@ -109,8 +109,8 @@
       "title": "11ª Reunião em 2026 da Sala de Acompanhamento do Sistema Hídrico do Rio Paranapanema",
       "page": "paranapanema/11a-2026-11-26/index.html",
       "state": "Prévia técnica",
-      "edition": "Versão 1.0",
-      "description": "Materiais de INPE/INMET, CEMADEN, ONS, SP-AGUAS. 66 reproduções identificadas. 32 registros numéricos. Consulte a NT para o escopo e as ressalvas documentais.",
+      "edition": "Versão 1.1",
+      "description": "INPE, CEMADEN, ONS e SP Águas. 66 figuras comentadas por tema nas quatro verticais, Síntese Executiva e Anexo I com indicadores e comparação com outubro.",
       "read_page": "paranapanema/11a-2026-11-26/index.html",
       "pdf": "paranapanema/11a-2026-11-26/documentos/NT_Paranapanema_11a_26-11-2026_PREVIA.pdf",
       "csv": "paranapanema/11a-2026-11-26/indicadores.csv",
