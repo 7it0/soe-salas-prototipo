@@ -2,7 +2,7 @@
   "date": "2026-11-26",
   "meeting": "11ª Reunião em 2026 da Sala de Acompanhamento do Sistema Hídrico do Rio Paranapanema",
   "status": "Prévia técnica · quatro apresentações recebidas",
-  "version": "1.1",
+  "version": "1.2",
   "sources": {
     "inpe": "INPE",
     "cemaden": "CEMADEN",
@@ -13,5 +13,5 @@
   "indicator_rows": 40,
   "documento": "documentos/NT_Paranapanema_11a_26-11-2026_PREVIA.pdf",
   "indicadores": "indicadores.csv",
-  "catalog_description": "INPE, CEMADEN, ONS e SP Águas. 66 figuras comentadas por tema nas quatro verticais, Síntese Executiva e Anexo I com indicadores e comparação com outubro."
+  "catalog_description": "Síntese Executiva na abertura. Quatro verticais — INPE, CEMADEN, ONS e SP Águas — com 66 figuras. Anexo I com indicadores e comparação com outubro."
 }
