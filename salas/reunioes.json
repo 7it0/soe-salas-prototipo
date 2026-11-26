@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-11-26T16:13:35.347374+00:00",
+  "updated_at": "2026-11-26T18:03:49.671739+00:00",
   "scope": "Reuniões publicadas neste repositório",
-  "meetings": 13,
+  "meetings": 14,
   "basins": 8,
-  "hosted_pdfs": 11,
+  "hosted_pdfs": 12,
   "records": [
     {
       "group": "Alto Paraguai · Pantanal",
@@ -100,6 +100,22 @@
       "csv": "paranapanema/10a-2026-10-22/indicadores.csv",
       "annex": "paranapanema/10a-2026-10-22/index.html#anexo-i",
       "date_br": "22/10/2026"
+    },
+    {
+      "group": "Paranapanema",
+      "slug": "paranapanema",
+      "date": "2026-11-26",
+      "number": "11ª",
+      "title": "11ª Reunião em 2026 da Sala de Acompanhamento do Sistema Hídrico do Rio Paranapanema",
+      "page": "paranapanema/11a-2026-11-26/index.html",
+      "state": "Prévia técnica",
+      "edition": "Versão 1.0",
+      "description": "Materiais de INPE/INMET, CEMADEN, ONS, SP-AGUAS. 66 reproduções identificadas. 32 registros numéricos. Consulte a NT para o escopo e as ressalvas documentais.",
+      "read_page": "paranapanema/11a-2026-11-26/index.html",
+      "pdf": "paranapanema/11a-2026-11-26/documentos/NT_Paranapanema_11a_26-11-2026_PREVIA.pdf",
+      "csv": "paranapanema/11a-2026-11-26/indicadores.csv",
+      "annex": "paranapanema/11a-2026-11-26/index.html#anexo-i",
+      "date_br": "26/11/2026"
     },
     {
       "group": "Região Norte",
