@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-11-26T13:16:09.539961+00:00",
+  "updated_at": "2026-11-26T16:13:35.347374+00:00",
   "scope": "Reuniões publicadas neste repositório",
   "meetings": 13,
   "basins": 8,
-  "hosted_pdfs": 10,
+  "hosted_pdfs": 11,
   "records": [
     {
       "group": "Alto Paraguai · Pantanal",
@@ -76,13 +76,13 @@
       "number": "11ª",
       "title": "11ª reunião da Sala de Acompanhamento da Região Hidrográfica do Paraná",
       "page": "parana/11a-2026-11-26/index.html",
-      "state": "Prévia técnica",
-      "edition": "Versão 1.0",
-      "description": "Materiais de INPE/INMET, CEMADEN, ONS. 22 reproduções identificadas. Consulte a NT para o escopo e as ressalvas documentais.",
+      "state": "NT final da reunião",
+      "edition": "Versão 2.0 · sujeita à revisão da equipe",
+      "description": "Materiais de INPE/INMET, CEMADEN, ONS. 22 reproduções identificadas. 38 registros numéricos. Consulte a NT para o escopo e as ressalvas documentais.",
       "read_page": "parana/11a-2026-11-26/index.html",
-      "pdf": null,
-      "csv": null,
-      "annex": null,
+      "pdf": "parana/11a-2026-11-26/documentos/NT_Parana_11a_26-11-2026_FINAL.pdf",
+      "csv": "parana/11a-2026-11-26/indicadores.csv",
+      "annex": "parana/11a-2026-11-26/index.html#anexo-i",
       "date_br": "26/11/2026"
     },
     {
