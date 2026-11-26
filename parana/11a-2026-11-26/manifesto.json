@@ -1,12 +1,14 @@
 {
   "date": "2026-11-26",
   "meeting": "11ª Reunião em 2026 da Sala de Acompanhamento do Sistema Hídrico da Região Hidrográfica do Paraná",
-  "status": "Prévia técnica",
-  "version": "1.0",
+  "status": "NT final da reunião · sujeita à revisão da equipe",
+  "version": "2.0",
   "sources": {
     "inpe": "INPE/INMET",
     "cemaden": "CEMADEN",
     "ons": "ONS"
   },
-  "figure_count": 22
+  "figure_count": 22,
+  "indicator_rows": 38,
+  "documento": "documentos/NT_Parana_11a_26-11-2026_FINAL.pdf"
 }
