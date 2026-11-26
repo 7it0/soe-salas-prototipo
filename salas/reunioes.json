@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-11-26T13:08:00Z",
+  "updated_at": "2026-11-26T13:09:18.871181+00:00",
   "scope": "Reuniões publicadas neste repositório",
-  "meetings": 14,
+  "meetings": 13,
   "basins": 8,
   "hosted_pdfs": 10,
   "records": [
@@ -56,22 +56,6 @@
     {
       "group": "Paraná · Região Hidrográfica",
       "slug": "parana",
-      "date": "2026-11-26",
-      "number": "11ª",
-      "title": "11ª Reunião em 2026 da Sala de Acompanhamento do Sistema Hídrico da Região Hidrográfica do Paraná",
-      "page": "parana/11a-2026-11-26/index.html",
-      "state": "Prévia técnica",
-      "edition": "Durante a reunião",
-      "description": "Verticais INPE/INMET, CEMADEN e ONS, comparação com outubro e questões para o debate.",
-      "read_page": "parana/11a-2026-11-26/index.html",
-      "pdf": null,
-      "csv": null,
-      "annex": null,
-      "date_br": "26/11/2026"
-    },
-    {
-      "group": "Paraná · Região Hidrográfica",
-      "slug": "parana",
       "date": "2026-10-29",
       "number": "10ª",
       "title": "10ª Reunião em 2026 da Sala de Acompanhamento do Sistema Hídrico da Região Hidrográfica do Paraná",
@@ -84,6 +68,22 @@
       "csv": "parana/10a-2026-10-29/indicadores.csv",
       "annex": null,
       "date_br": "29/10/2026"
+    },
+    {
+      "group": "Paraná · Região Hidrográfica",
+      "slug": "parana",
+      "date": "2026-11-26",
+      "number": "11ª",
+      "title": "11ª reunião da Sala de Acompanhamento da Região Hidrográfica do Paraná",
+      "page": "parana/11a-2026-11-26/index.html",
+      "state": "Prévia técnica",
+      "edition": "Versão 1.0",
+      "description": "Materiais de INPE/INMET, CEMADEN, ONS. Consulte a NT para o escopo e as ressalvas documentais.",
+      "read_page": "parana/11a-2026-11-26/index.html",
+      "pdf": null,
+      "csv": null,
+      "annex": null,
+      "date_br": "26/11/2026"
     },
     {
       "group": "Paranapanema",
@@ -212,22 +212,6 @@
       "csv": "tocantins/10a-2026-10-27/indicadores.csv",
       "annex": "tocantins/10a-2026-10-27/index.html#anexo-i",
       "date_br": "27/10/2026"
-    },
-    {
-      "group": "Tocantins",
-      "slug": "tocantins",
-      "date": "2026-11-25",
-      "number": "11ª",
-      "title": "11ª Reunião em 2026 da Sala de Acompanhamento do Sistema Hídrico do Rio Tocantins",
-      "page": "tocantins/11a-2026-11-25/index.html",
-      "state": "Prévia documental · reunião em acompanhamento",
-      "edition": "Versão 0.1",
-      "description": "Três verticais INMET/INPE, CEMADEN e ONS; comparação com outubro, simulação de Serra da Mesa e Anexo I.",
-      "read_page": "tocantins/11a-2026-11-25/index.html",
-      "pdf": null,
-      "csv": "tocantins/11a-2026-11-25/indicadores.csv",
-      "annex": "tocantins/11a-2026-11-25/index.html#anexo-i",
-      "date_br": "25/11/2026"
     }
   ]
 }
